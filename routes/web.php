@@ -11,7 +11,12 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+use App\Tag;
+
+Route::get('/tag', function () {
+
+    $tag = Tag::find(1);
+
+    return view('welcome', compact("tag"));
 });
 

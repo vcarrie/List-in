@@ -17,7 +17,7 @@ class CreateAccountsTable extends Migration
             $table->increments('idAccount');
             $table->string('pseudo', 255);
             $table->string('firstName', 255);
-            $table->string('latName', 255);
+            $table->string('lastName', 255);
             $table->string('email', 255);
             $table->text('pwd');
             $table->boolean('admin')->default(0);
