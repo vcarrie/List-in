@@ -20,3 +20,6 @@ Route::get('/tag', function () {
     return view('welcome', compact("tag"));
 });
 
+Route::get('/marceau', function (){
+    return view('layouts.base');
+});
