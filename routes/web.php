@@ -20,6 +20,12 @@ Route::get('/tag', function () {
     return view('welcome', compact("tag"));
 });
 
+Route::get('/auth/login', 'Authentication@login');
+
+Route::post('/auth/login', 'Authentication@checkLogin');
+
+Route::get('/auth/register', 'Authentication@register');
+
 Route::get('/marceau', function (){
     return view('layouts.base');
 });
