@@ -1,3 +1,7 @@
+@extends('layouts.base')
+
+
+@section("content")
 <main class="row">
     <div class="col-xs-12">
         <div id="lists-filter" class="row form-group">
@@ -25,3 +29,4 @@
 
     </div>
 </main>
+@endsection

@@ -1,3 +1,7 @@
+@extends('layouts.main')
+
+@section('mid-content-catalogue')
+
 <aside>
     <h3>Listes associées aux tags "..."</h3>
     <p>Trier par
@@ -42,3 +46,4 @@
         <button>Ajouter au panier</button>
     </div>
 </section>
+    @endsection
