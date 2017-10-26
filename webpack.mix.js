@@ -12,4 +12,11 @@ let mix = require('laravel-mix');
  */
 
 mix.js('resources/assets/js/app.js', 'public/js')
-   .sass('resources/assets/sass/app.scss', 'public/css');
+    .sass([
+        'resources/assets/sass/app.scss',
+        'ressources/assets/sass/print.scss',
+        'ressources/assets/sass/theme.scss',
+        'ressources/assets/sass/speech.scss'], 'public/css')
+    .combine(['public/css/vendor/browserfix.css',
+             'public/css/vendor/theme.css',
+             'public/css/vendor/theme.css.map'], 'public/css/all.css');

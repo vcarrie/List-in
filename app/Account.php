@@ -13,4 +13,5 @@ class Account extends Model
     public static function getByMail($mail){
         return static::where('mail', '=', $mail);
     }
+
 }
