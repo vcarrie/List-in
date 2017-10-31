@@ -26,3 +26,11 @@ Route::get('/tag', function () {
 Route::get('/', function () {
     return view('catalogue');
 });
+
+Route::get('/catalogue', function () {
+    return view('catalogue');
+});
+
+Route::get('/list/{id}', 'ListController@show');
+
+Route::get('/json/list/{id}', 'ListController@getJson');

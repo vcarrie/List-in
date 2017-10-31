@@ -29,6 +29,7 @@ main {
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
 header {
+	border-top: 4px solid $color_background_red;
 	border-bottom: 1px solid $color_separation;
 	background-color: $color_background_white;
 
@@ -38,17 +39,20 @@ header {
 
 	nav.navbar {
 		min-height: 5rem;
-		margin-bottom: 0;
 		background-color: transparent;
 		border: none;
+		margin: 0;
 
 		.navbar-brand {
+			height: 9rem;
 			padding: 0;
+			padding-top: 0.5rem;
 			margin-left: 2rem;
-			height: 8rem;
 
 			@media screen and (max-width: $bootstrap-sm) {
 				height: 5rem;
+				padding-top: 0;
+				margin-left: 1rem;
 			}
 
 			&> img {
@@ -67,20 +71,13 @@ header {
 					text-align: left;
 				}
 
-				&+li {
-					border-left: 1px solid $color_separation;
-
-					@media screen and (max-width: $bootstrap-sm) {
-						border-left: none;
-					}
-				}
-
 				a {
 					color: $color_text;
 
 					&:hover, &:active, &:focus {
 						color: $color_link_hover;
-						text-decoration: underline;
+						background-color: $color_background;
+						outline: none;
 					}
 
 					img {
@@ -96,7 +93,8 @@ header {
 					h5 {
 						margin: 0;
 						font-size: 2rem;
-						font-family: Lato, sans-serif;
+						font-family: 'Quicksand', sans-serif;
+						vertical-align: middle;
 
 						@media screen and (max-width: $bootstrap-sm) {
 							display: inline;
@@ -107,7 +105,9 @@ header {
 		}
 
 		.navbar-collapse {
-			margin-top: 1rem;
+			@media screen and (max-width: $bootstrap-sm) {
+				margin-top: 1rem;
+			}
 		}
 	}
 }
@@ -439,8 +439,8 @@ header {
 				color: $color_link_hover;
 
 				&:hover {
-					background-color: $color_background_dark;
-					color: $color_text_white;
+					background-color: $color_background_grey;
+					color: $color_text;
 				}
 			}
 

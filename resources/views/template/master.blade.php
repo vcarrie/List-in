@@ -23,8 +23,10 @@
         <div class="container-fluid">
 
             @include('include.header')
-            
-            @yield('main')
+
+            <main class="row">
+                @yield('main')
+            </main>
 
             @include('include.footer')
 

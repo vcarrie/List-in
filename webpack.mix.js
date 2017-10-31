@@ -22,7 +22,7 @@ mix.scripts([
 	'public/js/main.js'
 ], 'public/js/all.js');
 
-mix.copyDirectory('resources/assets/images', 'public/images');
+//mix.copyDirectory('resources/assets/images', 'public/images');
 
 mix.sass('resources/assets/sass/theme.scss', 'public/css');
 mix.styles([
