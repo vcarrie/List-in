@@ -11,5 +11,26 @@ let mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/assets/js/app.js', 'public/js')
-   .sass('resources/assets/sass/app.scss', 'public/css');
+mix.scripts([
+	'public/js/vendor/jquery-3.2.1.min.js',
+	'public/js/vendor/modernizr-3.5.0.min.js',
+	'public/js/vendor/bootstrap.min.js',
+	'public/js/vendor/bootstrap-tagsinput.min.js',
+	'public/js/vendor/bootstrap-select.min.js',
+	'public/js/vendor/typeahead.bundle.min.js',
+	'public/js/plugins.js',
+	'public/js/main.js'
+], 'public/js/all.js');
+
+mix.copyDirectory('resources/assets/images', 'public/images');
+
+mix.sass('resources/assets/sass/theme.scss', 'public/css');
+mix.styles([
+	'public/css/typography.css',
+	'public/css/browserfix.css',
+	'public/css/normalize.css',
+	'public/css/bootstrap.min.css',
+	'public/css/bootstrap-select.min.css',
+	'public/css/bootstrap-tagsinput.min.css',
+	'public/css/theme.css'
+], 'public/css/all.css');

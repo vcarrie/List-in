@@ -20,3 +20,9 @@ Route::get('/tag', function () {
     return view('welcome', compact("tag"));
 });
 
+
+// Official routes
+
+Route::get('/', function () {
+    return view('catalogue');
+});
