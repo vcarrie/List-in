@@ -11,14 +11,13 @@
 |
 */
 
-use App\Tag;
 
-Route::get('/lists/user/{id}', 'ListController@getListesByIdAccount');
+Route::get('/lists/user/{id}', 'ListController@getListsByIdAccount');
 Route::get('/lists', 'ListController@getAllLists');
 Route::get('/list/{id}', 'ListController@getListById');
 
 
-Route::post('/tags', 'tags@getTags');
+Route::post('/tags', 'TagsController@getTags');
 
 Route::get('/auth/login', 'Authentication@login');
 

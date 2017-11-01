@@ -6,10 +6,10 @@ use Illuminate\Http\Request;
 use App\Liste;
 use App\Belong;
 
-class listController extends Controller
+class ListController extends Controller
 {
-    //
-    public function getListesByIdAccount($id){
+
+    public function getListsByIdAccount($id){
         $lists = Liste::getByIdCreator($id)->get();
         return $lists;
     }
