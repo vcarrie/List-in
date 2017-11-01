@@ -19,6 +19,7 @@ mix.scripts([
 	'public/js/vendor/bootstrap-select.min.js',
 	'public/js/vendor/typeahead.bundle.min.js',
 	'public/js/plugins.js',
+	'public/js/catalogue.js',
 	'public/js/main.js'
 ], 'public/js/all.js');
 
