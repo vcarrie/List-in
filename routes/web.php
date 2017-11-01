@@ -26,6 +26,10 @@ Route::post('/auth/login', 'Authentication@checkLogin');
 
 Route::get('/auth/register', 'Authentication@register');
 
-Route::get('/home', function (){
-    return view('layouts.mid-content-catalogue');
+Route::get('/getproductbykeyword', 'ApiCdiscountSearchByKeywordController@get');
+Route::post('/getproductbykeyword', 'ApiCdiscountSearchByKeywordController@post');
+
+Route::get('/marceau', function (){
+    return view('layouts.base');
 });
+
