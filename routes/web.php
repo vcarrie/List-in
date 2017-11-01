@@ -20,13 +20,16 @@ Route::get('/tag', function () {
     return view('welcome', compact("tag"));
 });
 
-Route::get('/marceau', function () {
+Route::get('/auth/login', 'Authentication@login');
 
-    return view('layouts.base');
+Route::post('/auth/login', 'Authentication@checkLogin');
 
-});
-
-
+Route::get('/auth/register', 'Authentication@register');
 
 Route::get('/getproductbykeyword', 'ApiCdiscountSearchByKeywordController@get');
 Route::post('/getproductbykeyword', 'ApiCdiscountSearchByKeywordController@post');
+
+Route::get('/marceau', function (){
+    return view('layouts.base');
+});
+

@@ -41,5 +41,4 @@
         <button class="">Voir la liste</button>
         <button>Ajouter au panier</button>
     </div>
-
 </section>
