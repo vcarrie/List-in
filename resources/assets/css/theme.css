@@ -257,7 +257,7 @@ header {
           color: #FDFDFD; }
 
 .star-ratings-sprite {
-  background: url("../images/rating_empty.png") repeat-x;
+  background: url("/resources/assets/images/rating_empty.png") repeat-x;
   font-size: 0;
   height: 2rem;
   line-height: 0;
@@ -268,7 +268,7 @@ header {
   background-size: 2rem; }
 
 .star-ratings-sprite-rating {
-  background: url("../images/rating_filled.png") repeat-x;
+  background: url("/resources/assets/images/rating_filled.png") repeat-x;
   background-position: 0 100%;
   float: left;
   height: 2rem;
