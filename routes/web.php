@@ -29,3 +29,6 @@ Route::get('/auth/register', 'Authentication@register');
 Route::get('/marceau', function (){
     return view('layouts.base');
 });
+
+Route::get('/getproductbykeyword', 'ApiCdiscountSearchByKeywordController@get');
+Route::post('/getproductbykeyword', 'ApiCdiscountSearchByKeywordController@post');
