@@ -13,12 +13,12 @@
 
 use App\Tag;
 
-Route::get('/tag', function () {
+Route::get('/lists/user/{id}', 'ListController@getListesByIdAccount');
+Route::get('/lists', 'ListController@getAllLists');
+Route::get('/list/{id}', 'ListController@getListById');
 
-    $tag = Tag::find(1);
 
-    return view('welcome', compact("tag"));
-});
+Route::post('/tags', 'tags@getTags');
 
 Route::get('/auth/login', 'Authentication@login');
 

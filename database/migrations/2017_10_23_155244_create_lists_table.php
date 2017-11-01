@@ -13,7 +13,7 @@ class CreateListsTable extends Migration
      */
     public function up()
     {
-        Schema::create('lists', function (Blueprint $table) {
+        Schema::create('listes', function (Blueprint $table) {
             $table->increments('idList');
             $table->string('listName', 255);
             $table->text('description');
@@ -30,6 +30,6 @@ class CreateListsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('lists');
+        Schema::dropIfExists('listController');
     }
 }

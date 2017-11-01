@@ -17,7 +17,7 @@ class CreateBelongsTable extends Migration
             $table->integer('idList')->unsigned();
             $table->string('idCdiscount');
             $table->primary(['idList', 'idCdiscount']);
-            $table->foreign('idList')->references('idList')->on('lists');
+            $table->foreign('idList')->references('idList')->on('listController');
             $table->foreign('idCdiscount')->references('idCdiscount')->on('products');
             $table->timestamps();
         });
