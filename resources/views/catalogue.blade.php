@@ -26,9 +26,9 @@
     </ul>
   </div>
 </aside>
-<section class="lists-preview">
+<section class="cards-container">
 
-  <div class="preview-card">
+  <div class="card">
     <div class="card-header">
       <div class="star-ratings-sprite"><span style="width: 55%" class="star-ratings-sprite-rating"></span></div>
     </div>

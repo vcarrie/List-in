@@ -306,19 +306,19 @@ header {
 				}
 				li.active > a {
 					color: $color_text_white;
-					background-color: $color_link_hover;
-					border: 1px solid $color_link_hover;
+					background-color: $color_background_red;
+					border: 1px solid $color_background_red;
 				}
 			}
 		}
 		
 	}
 
-	.lists-preview {
+	.cards-container {
 		text-align: left;
 		white-space: nowrap;
 
-		.preview-card {
+		.card {
 			width: 250px;
 			display: inline-block;
 			margin-right: 3rem;
@@ -447,7 +447,7 @@ header {
 			// Add to cart button
 			button:last-child {
 				color: $color_text_white;
-				background-color: $color_link_hover;
+				background-color: $color_background_red;
 			}
 		}
 	}
@@ -473,47 +473,11 @@ header {
 
 				button {
 					float: right;
-					background-color: $color_link_alt_hover;
+					background-color: $color_background_red;
 					color: $color_text_white;
 					margin-top: 1rem;
 					padding: 0.75rem 0.75rem;
 					border: 0;
-				}
-			}
-		}
-
-		.list-articles {
-			width: 100%;
-			margin-top: 1rem;
-			border-top: 1px solid $color_separation;
-			background-color: $color_background_white;
-
-			thead {
-				border-bottom: 1px solid $color_separation;
-
-				th {
-					text-align: center;
-					font-size: 2rem;
-				}
-			}
-
-			.article-detail {
-				border-bottom: 1px solid $color_separation;
-
-				.article-count {
-					width: 6rem;
-
-					div {
-						height: 6rem;
-						text-align: center;
-
-						span {
-							display: block;
-							font-size: 2rem;
-							line-height: 2rem;
-							padding-top: 2rem;
-						}
-					}
 				}
 			}
 		}
