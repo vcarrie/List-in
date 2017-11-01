@@ -26,3 +26,7 @@ Route::get('/marceau', function () {
 
 });
 
+
+
+Route::get('/getproductbykeyword', 'ApiCdiscountSearchByKeywordController@get');
+Route::post('/getproductbykeyword', 'ApiCdiscountSearchByKeywordController@post');
