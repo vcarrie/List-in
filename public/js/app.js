@@ -1860,7 +1860,7 @@ setDocument = Sizzle.setDocument = function( node ) {
 			return siblingCheck( a, b );
 		}
 
-		// Otherwise we need full lists of their ancestors for comparison
+		// Otherwise we need full listController of their ancestors for comparison
 		cur = a;
 		while ( (cur = cur.parentNode) ) {
 			ap.unshift( cur );
@@ -3661,7 +3661,7 @@ jQuery.Callbacks = function( options ) {
 	var // Flag to know if list is currently firing
 		firing,
 
-		// Last fire value for non-forgettable lists
+		// Last fire value for non-forgettable listController
 		memory,
 
 		// Flag to know if list was already fired
@@ -3673,7 +3673,7 @@ jQuery.Callbacks = function( options ) {
 		// Actual callback list
 		list = [],
 
-		// Queue of execution data for repeatable lists
+		// Queue of execution data for repeatable listController
 		queue = [],
 
 		// Index of currently firing callback (modified by add/remove as needed)
@@ -35371,7 +35371,7 @@ function resolveInject (inject, vm) {
 /*  */
 
 /**
- * Runtime helper for rendering v-for lists.
+ * Runtime helper for rendering v-for listController.
  */
 function renderList (
   val,
@@ -37573,7 +37573,7 @@ function createPatchFunction (backend) {
               return false
             }
           } else {
-            // iterate and compare children lists
+            // iterate and compare children listController
             var childrenMatch = true;
             var childNode = elm.firstChild;
             for (var i$1 = 0; i$1 < children.length; i$1++) {
@@ -39695,7 +39695,7 @@ var Transition = {
     if ("development" !== 'production' && children.length > 1) {
       warn(
         '<transition> can only be used on a single element. Use ' +
-        '<transition-group> for lists.',
+        '<transition-group> for listController.',
         this.$parent
       );
     }
@@ -41659,7 +41659,7 @@ function genFor (
     !el.key
   ) {
     state.warn(
-      "<" + (el.tag) + " v-for=\"" + alias + " in " + exp + "\">: component lists rendered with " +
+      "<" + (el.tag) + " v-for=\"" + alias + " in " + exp + "\">: component listController rendered with " +
       "v-for should have explicit keys. " +
       "See https://vuejs.org/guide/list.html#key for more info.",
       true /* tip */
@@ -44616,7 +44616,7 @@ $(function () {
     /* PREVIEW CARD BODY & SLIDESHOW SCROLL
     –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
-    $("#lists-preview").mCustomScrollbar({
+    $("#listController-preview").mCustomScrollbar({
         axis: "x",
         theme: "dark-3",
         scrollButtons: {
@@ -44635,15 +44635,15 @@ $(function () {
             onTotalScrollOffset: 260,
             onTotalScroll: function onTotalScroll() {
                 // load and queue 2 more cards when the end is reached
-                $(".preview-card:first-child").clone().appendTo("#lists-preview>div>div.mCSB_container");
-                $(".preview-card:first-child").clone().appendTo("#lists-preview>div>div.mCSB_container");
+                $(".preview-card:first-child").clone().appendTo("#listController-preview>div>div.mCSB_container");
+                $(".preview-card:first-child").clone().appendTo("#listController-preview>div>div.mCSB_container");
             }
         }
     });
 
     // simulation
     for (var i = 1; i < 9; i++) {
-        $(".preview-card:first-child").clone().appendTo("#lists-preview>div>div.mCSB_container");
+        $(".preview-card:first-child").clone().appendTo("#listController-preview>div>div.mCSB_container");
     }
 
     $(".card-body").mCustomScrollbar({
@@ -44709,7 +44709,7 @@ $(function () {
             $(newRow).click(function() {
     
             });
-            $("#lists-preview > tbody").append(newRow);
+            $("#listController-preview > tbody").append(newRow);
         });
     */
 
