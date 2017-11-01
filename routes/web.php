@@ -31,6 +31,30 @@ Route::get('/catalogue', function () {
     return view('catalogue');
 });
 
-Route::get('/list/{id}', 'ListController@show');
 
-Route::get('/json/list/{id}', 'ListController@getJson');
+Route::get('/liste', function () {
+    return view('list');
+});
+Route::get('/liste/{id}', 'ListController@show');
+Route::get('/liste/{id}/json', 'ListController@getJson');
+
+
+Route::get('/a-propos', function () {
+    return view('about');
+});
+
+Route::get('/mentions-legales', function () {
+    return view('legal');
+});
+
+Route::get('/cgu', function () {
+    return view('cgu');
+});
+
+Route::get('/sitemap', function () {
+    return view('sitemap');
+});
+
+Route::get('/contact', function () {
+    return view('contact');
+});
