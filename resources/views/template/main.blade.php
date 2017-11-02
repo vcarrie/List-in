@@ -13,8 +13,9 @@
                                 class='glyphicon glyphicon-search'></span></button>
                 </form>
                 <h6>Tags populaires :
-                    <span class="label label-default popular-tag">Cocktail</span>
-                    <span class="label label-default popular-tag">Sport</span>
+                    @foreach ($tags_final_tab as $tag)
+                        <span class="label label-default popular-tag">{{ $tag->tagName }}</span>
+                    @endforeach
                 </h6>
             </div>
         </div>

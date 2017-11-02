@@ -32,17 +32,14 @@ Route::get('/liste', function () {
 
 
 
-Route::get('/', function () {
-    return view('catalogue');
-});
+Route::get('/', 'HomeController@index');
 
-Route::get('/catalogue', function () {
-    return view('catalogue');
-});
+Route::get('/catalogue', 'HomeController@index');
 
 Route::get('/tags', 'TagsController@getTags');
 
-Route::get('/popular-tags', 'TagsController@getTags');
+
+//
 
 Route::get('/liste/{id}', 'ListController@show');
 
