@@ -26,10 +26,10 @@ class Categorize extends Model
 
     public static function top_5_most_used_tags(){
 
-        $popular_Tags = Categorize::all()->groupBy('idTag');
+        $popular_tags = Categorize::all()->groupBy('idTag');
         $popular = array();
 
-        foreach ($popular_Tags as $group){
+        foreach ($popular_tags as $group){
             $popular[] = array(count($group), $group[0]['idTag']);
         }
         rsort($popular);
@@ -38,6 +38,7 @@ class Categorize extends Model
         for ($i = 0;$i<5;$i++){
             $ids_most_used[] = $popular[$i][1];
         }
+
         return $ids_most_used;
     }
 }
