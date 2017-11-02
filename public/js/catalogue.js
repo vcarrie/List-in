@@ -30,7 +30,7 @@ function Catalogue(elemForm, elemContainer) {
     };
 
     this.ajaxJsonTagsError = function(result, status, error) {
-
+        console.error('Error 500: tags couldn\'t be retrieved.');
     };
 
     this.ajaxJsonTagsSuccess = function(jsonTags, status) {
