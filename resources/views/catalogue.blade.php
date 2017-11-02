@@ -16,18 +16,9 @@
       <option>Plus d'articles</option>
     </select>
   </p>
-  <div class="pagination-box">
-    <ul class="pagination pagination-lg">
-        <li class="disabled"><a href="#">&laquo;</a></li>
-        <li><a href="#">&lsaquo;</a></li>
-        <li class="active"><a href="#">1</a></li>
-        <li><a href="#">&rsaquo;</a></li>
-        <li><a href="#">&raquo;</a></li>
-    </ul>
-  </div>
 </aside>
-<section class="cards-container">
 
+<section class="cards-container">
   <div class="card">
     <div class="card-header">
       <div class="star-ratings-sprite"><span style="width: 55%" class="star-ratings-sprite-rating"></span></div>
@@ -56,6 +47,17 @@
     <button>Voir la liste</button>
     <button>Ajouter au panier</button>
   </div>
-
 </section>
+
+<aside>
+  <div class="pagination-box">
+    <ul class="pagination pagination-lg">
+        <li class="disabled"><a href="#">&laquo;</a></li>
+        <li><a href="#">&lsaquo;</a></li>
+        <li class="active"><a href="#">1</a></li>
+        <li><a href="#">&rsaquo;</a></li>
+        <li><a href="#">&raquo;</a></li>
+    </ul>
+  </div>
+</aside>
 @endsection

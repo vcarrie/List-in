@@ -12,11 +12,8 @@
 				<button tabindex="1" title="Rechercher des listes en fonction des tags entrés"><span class='glyphicon glyphicon-search'></span></button>
 		    </form>
 			<h6>Tags populaires :
-				<span class="label label-default popular-tag">Jardinage</span>
+				<span class="label label-default popular-tag">Cocktail</span>
 				<span class="label label-default popular-tag">Sport</span>
-				<span class="label label-default popular-tag">Bricolage</span>
-				<span class="label label-default popular-tag">Cuisine</span>
-				<span class="label label-default popular-tag">Escalade</span>
 			</h6>
 		</div>
 	</div>

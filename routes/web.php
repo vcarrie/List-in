@@ -20,6 +20,10 @@ Route::get('/tag', function () {
     return view('welcome', compact("tag"));
 });
 
+Route::get('/liste', function () {
+    return view('list');
+});
+
 
 // Official routes
 
@@ -31,13 +35,11 @@ Route::get('/catalogue', function () {
     return view('catalogue');
 });
 
-
-Route::get('/liste', function () {
-    return view('list');
-});
 Route::get('/liste/{id}', 'ListController@show');
-Route::get('/liste/{id}/json', 'ListController@getJson');
 
+Route::get('/auth', function() {
+    return view('auth');
+});
 
 Route::get('/a-propos', function () {
     return view('about');
@@ -58,3 +60,9 @@ Route::get('/sitemap', function () {
 Route::get('/contact', function () {
     return view('contact');
 });
+
+// Services
+
+Route::get('/liste/{id}/json', 'ListController@getList');
+
+Route::get('/tags', 'TagsController@getTags');

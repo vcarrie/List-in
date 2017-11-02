@@ -136,6 +136,21 @@ header {
 
 	form {
 
+		/* default style for when the plugins haven't loaded yet */
+		> .tags-input {
+			display: inline-block;
+			width: 80%;
+			height: 4.6rem;
+			max-width: 800px;
+			padding: 1.2rem;
+			padding-left: 1.8rem;
+			border: 0px solid transparent;
+		  	-webkit-border-radius: 24px;
+		       -moz-border-radius: 24px;
+		            border-radius: 24px;
+			text-align: left;
+		}
+
 		.bootstrap-tagsinput {
 			width: 80%;
 			max-width: 800px;
@@ -164,8 +179,8 @@ header {
 			}
 
 			.tt-empty {
-			  padding: 3px 20px;
-			  line-height: 24px;
+				padding: 3px 20px;
+				line-height: 24px;
 				font-style: italic;
 
 				&> span {
@@ -306,8 +321,8 @@ header {
 				}
 				li.active > a {
 					color: $color_text_white;
-					background-color: $color_link_hover;
-					border: 1px solid $color_link_hover;
+					background-color: $color_background_red;
+					border: 1px solid $color_background_red;
 				}
 			}
 		}
@@ -447,7 +462,7 @@ header {
 			// Add to cart button
 			button:last-child {
 				color: $color_text_white;
-				background-color: $color_link_hover;
+				background-color: $color_background_red;
 			}
 		}
 	}
@@ -473,23 +488,11 @@ header {
 
 				button {
 					float: right;
-					background-color: $color_link_hover;
+					background-color: $color_background_red;
 					color: $color_text_white;
 					margin-top: 1rem;
 					padding: 0.75rem 0.75rem;
 					border: 0;
-				}
-			}
-
-			h6 {
-				span.label {
-					color: $color_text_white;
-					background-color: $color_background_dark_grey;
-					letter-spacing: 0.5px;
-				  	-webkit-border-radius: 50px;
-				       -moz-border-radius: 50px;
-				            border-radius: 50px;
-				    padding: 0.5rem 0.7rem;
 				}
 			}
 		}
