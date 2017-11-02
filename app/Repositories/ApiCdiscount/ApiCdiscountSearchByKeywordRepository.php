@@ -21,7 +21,6 @@ class ApiCdiscountSearchByKeywordRepository
         $json = curl_exec($ch);
         curl_close($ch);
 
-        return $json;
+        return json_decode($json);
     }
-
 }

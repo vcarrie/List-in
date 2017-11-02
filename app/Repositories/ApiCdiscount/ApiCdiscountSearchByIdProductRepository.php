@@ -3,7 +3,7 @@
 namespace App\Repositories\ApiCdiscount;
 
 
-class ApiCdiscountSearchByIdProduct
+class ApiCdiscountSearchByIdProductRepository
 {
     public function searchWithIdProduct($id)
     {
@@ -21,6 +21,6 @@ class ApiCdiscountSearchByIdProduct
         $json = curl_exec($ch);
         curl_close($ch);
 
-        return $json;
+        return json_decode($json);
     }
 }
