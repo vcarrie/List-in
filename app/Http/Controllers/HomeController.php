@@ -13,12 +13,9 @@ class HomeController extends Controller
 
         $top_5_ids = Categorize::top_5_most_used_tags();
 
+        $tags_final_tab = Tag::getByIdsTag($top_5_ids);
 
-
-        $Tags_final_tab = Tag::getByIdsTag($top_5_ids);
-
-
-        //return $Tags_final_tab;
-        return view('layouts.mid-content-catalogue', compact('Tags_final_tab'));
+        return $tags_final_tab;
+        //return view('layouts.mid-content-catalogue', compact('tags_final_tab'));
     }
 }
