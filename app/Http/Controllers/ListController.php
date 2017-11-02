@@ -2,28 +2,36 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Repositories\ApiCdiscount\ApiCdiscountSearchByIdProductRepository;
 use App\Liste;
 use App\Belong;
 
 class ListController extends Controller
 {
-    //
-    public function getListsByIdAccount($id){
-        $lists = Liste::getByIdCreator($id)->get();
-        return $lists;
+
+    public function getListsByIdAccount($id)
+    {
+        return Liste::getByIdCreator($id)->get();
     }
 
-    public function getAllLists(){
-        $lists = Liste::all()->toJson();
-        return $lists;
+    public function getAllLists()
+    {
+        return Liste::all();
     }
 
-    public function getListById($id){
-        $list = Liste::getByIdList($id)->get();//Contains all the list's attributes
-        $Products = Belong::getByIdList($id)->get();//Contains all the associated products ids
+    public function getListById($id, ApiCdiscountSearchByIdProductRepository $apiCdiscountSearchByIdProduct)
+    {
+        $products = Belong::getByIdList($id)->get();//Contains all the associated products ids
 
-        return $Products;
+        $json = [];
+        $id = 0;
+
+        foreach ($products as $product) {
+            $json[$id] = $apiCdiscountSearchByIdProduct->searchWithIdProduct($product->idCdiscount);
+            $id++;
+        }
+
+        return $json;
     }
 
 }

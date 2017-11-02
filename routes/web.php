@@ -11,7 +11,6 @@
 |
 */
 
-use App\Tag;
 
 Route::get('/lists/user/{id}', 'ListController@getListsByIdAccount');
 Route::get('/lists', 'ListController@getAllLists');
@@ -29,7 +28,7 @@ Route::post('/auth/login', 'Authentication@checkLogin');
 Route::get('/auth/register', 'Authentication@register');
 
 Route::get('/marceau', function (){
-    return view('layouts.base');
+    return view('layouts.mid-content-catalogue');
 });
 
 Route::get('/getproductbykeyword', 'ApiCdiscountSearchByKeywordController@get');

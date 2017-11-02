@@ -1,0 +1,14 @@
+{
+  "ApiKey": "c9dcd6cc-8908-4039-a91f-0f27ef9615b6",
+  "ProductRequest": {
+    "ProductIdList": [
+      "$1"
+    ],
+    "Scope": {
+      "Offers": false,
+      "AssociatedProducts": false,
+      "Images": true,
+      "Ean": false
+    }
+  }
+}

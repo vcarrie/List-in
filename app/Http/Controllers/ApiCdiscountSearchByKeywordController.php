@@ -8,14 +8,10 @@ use App\Repositories\ApiCdiscount\ApiCdiscountSearchByKeywordRepository;
 class ApiCdiscountSearchByKeywordController extends Controller
 {
     public function get(){
-        return view('api.api');
+        return "Oui oui";
     }
 
     public function post(ApiCdiscountSearchByKeywordRequest $request, ApiCdiscountSearchByKeywordRepository $apiRepository){
-
-        $data = $apiRepository->searchWithKeyword($request->search);
-        $result = json_decode($data, true);
-
-        return view('api.apiresponse', compact('result'));
+        return $apiRepository->searchWithKeyword($request->search);
     }
 }
