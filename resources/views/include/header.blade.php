@@ -45,35 +45,6 @@
             </ul>
           </div>
 
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav navbar-right">
-            <li>
-              <a tabindex="1" href="/catalogue">
-                <img alt="catalogue" src="images/icon-catalogue.png"/>
-                <h5>Catalogue</h5>
-              </a>
-            </li>
-            <li>
-              <a tabindex="1" href="#">
-                <img alt="créer une liste" src="images/icon-new-list.png"/>
-                <h5>Créer une liste</h5>
-              </a>
-            </li>
-            <li>
-              <a tabindex="1" href="#">
-                <img alt="mon compte" src="images/icon-account.png"/>
-                <h5>Mon Compte</h5>
-              </a>
-            </li>
-            <li>
-              <a tabindex="1" href="#">
-                <img alt="mon panier" src="images/icon-basket.png"/>
-                <h5>Mon Panier</h5>
-              </a>
-            </li>
-          </ul>
-        </div>
-
       </div>
     </nav>
 
