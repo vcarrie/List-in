@@ -33,3 +33,49 @@ Route::get('/marceau', function (){
 
 Route::get('/getproductbykeyword', 'ApiCdiscountSearchByKeywordController@get');
 Route::post('/getproductbykeyword', 'ApiCdiscountSearchByKeywordController@post');
+Route::get('/liste', function () {
+    return view('list');
+});
+
+
+// Official routes
+
+Route::get('/', function () {
+    return view('catalogue');
+});
+
+Route::get('/catalogue', function () {
+    return view('catalogue');
+});
+
+Route::get('/liste/{id}', 'ListController@show');
+
+Route::get('/auth', function() {
+    return view('auth');
+});
+
+Route::get('/a-propos', function () {
+    return view('about');
+});
+
+Route::get('/mentions-legales', function () {
+    return view('legal');
+});
+
+Route::get('/cgu', function () {
+    return view('cgu');
+});
+
+Route::get('/sitemap', function () {
+    return view('sitemap');
+});
+
+Route::get('/contact', function () {
+    return view('contact');
+});
+
+// Services
+
+Route::get('/liste/{id}/json', 'ListController@getList');
+
+Route::get('/tags', 'TagsController@getTags');

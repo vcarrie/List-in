@@ -1,13 +1,20 @@
 @import 'config';
+<<<<<<< HEAD
 @import 'typography';
 @import 'reset';
+=======
+>>>>>>> front-end
 
 * {
 	box-sizing: border-box;
 }
 
 html, body {
+<<<<<<< HEAD
 	min-width: 50rem;
+=======
+	min-width: 0rem;
+>>>>>>> front-end
 }
 
 html {
@@ -17,7 +24,14 @@ html {
 
 body {
 	background-color: $color_background;
+<<<<<<< HEAD
 	margin-bottom: 61px; /* Margin bottom by footer height */
+=======
+	margin-bottom: 60px; /* Margin bottom by footer height */
+	@media screen and (max-width: $bootstrap-sm) {
+		margin-bottom: 120px;
+	}
+>>>>>>> front-end
 }
 
 main {
@@ -28,6 +42,7 @@ main {
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
 header {
+<<<<<<< HEAD
 	padding: 1rem;
 	border-bottom: 1px solid $color_separation;
 	background-color: $color_background_white;
@@ -94,10 +109,82 @@ header {
 					@media screen and (min-width: 768px) {
 						&+ li {
 							border-left: 1px solid $color_separation;
+=======
+	border-top: 4px solid $color_background_red;
+	border-bottom: 1px solid $color_separation;
+	background-color: $color_background_white;
+
+	@media screen and (max-width: $bootstrap-sm) {
+		padding: 1rem;
+	}
+
+	nav.navbar {
+		min-height: 5rem;
+		background-color: transparent;
+		border: none;
+		margin: 0;
+
+		.navbar-brand {
+			height: 9rem;
+			padding: 0;
+			padding-top: 0.5rem;
+			margin-left: 2rem;
+
+			@media screen and (max-width: $bootstrap-sm) {
+				height: 5rem;
+				padding-top: 0;
+				margin-left: 1rem;
+			}
+
+			&> img {
+				height: 100%;
+				padding: 0;
+				width: auto;
+			}
+		}
+
+		.navbar-nav {
+
+			li {
+				text-align: center;
+
+				@media screen and (max-width: $bootstrap-sm) {
+					text-align: left;
+				}
+
+				a {
+					color: $color_text;
+
+					&:hover, &:active, &:focus {
+						color: $color_link_hover;
+						background-color: $color_background;
+						outline: none;
+					}
+
+					img {
+						width: 38px;
+						margin-bottom: 0.75rem;
+
+						@media screen and (max-width: $bootstrap-sm) {
+							margin-right: 0.75rem;
+							margin-bottom: 0;
+						}
+					}
+
+					h5 {
+						margin: 0;
+						font-size: 2rem;
+						font-family: 'Quicksand', sans-serif;
+						vertical-align: middle;
+
+						@media screen and (max-width: $bootstrap-sm) {
+							display: inline;
+>>>>>>> front-end
 						}
 					}
 				}
 			}
+<<<<<<< HEAD
 
 		}
 
@@ -115,23 +202,81 @@ header {
 	&> h1 {
 		margin: 3rem 0;
 		text-align: center;
+=======
+		}
+
+		.navbar-collapse {
+			@media screen and (max-width: $bootstrap-sm) {
+				margin-top: 1rem;
+			}
+		}
+	}
+}
+
+/* SEARCH REGION
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+#search-region {
+	margin-bottom: 2rem;
+	background-color: $color_background_dark;
+	font-family: 'Lato', sans-serif;
+	padding: 3rem 0 2rem 0;
+	text-align: center;
+
+	h1 {
+		margin: 0;
+>>>>>>> front-end
 		color: $color_text_white;
 		font-family: 'Quicksand', sans-serif;
 	}
 
+<<<<<<< HEAD
 	span.popular-tag {
 		cursor: pointer;
+=======
+	h4 {
+		margin: 1rem 0;
+		color: $color_text_white;
+		font-family: 'Quicksand', sans-serif;
+>>>>>>> front-end
 	}
 
 	form {
 
+<<<<<<< HEAD
 		.bootstrap-tagsinput {
 			width: 88%;
 			padding: 1.2rem;
+=======
+		/* default style for when the plugins haven't loaded yet */
+		> .tags-input {
+			display: inline-block;
+			width: 80%;
+			height: 4.6rem;
+			max-width: 800px;
+			padding: 1.2rem;
+			padding-left: 1.8rem;
 			border: 0px solid transparent;
 		  	-webkit-border-radius: 24px;
 		       -moz-border-radius: 24px;
 		            border-radius: 24px;
+			text-align: left;
+		}
+
+		.bootstrap-tagsinput {
+			width: 80%;
+			max-width: 800px;
+			padding: 1.2rem;
+			padding-top: 0.2rem;
+>>>>>>> front-end
+			border: 0px solid transparent;
+		  	-webkit-border-radius: 24px;
+		       -moz-border-radius: 24px;
+		            border-radius: 24px;
+<<<<<<< HEAD
+=======
+			text-align: left;
+>>>>>>> front-end
 
 			span.label-info {
 				background-color: $color_input_tags_background;
@@ -139,17 +284,53 @@ header {
 			  	-webkit-border-radius: 50px;
 			       -moz-border-radius: 50px;
 			            border-radius: 50px;
+<<<<<<< HEAD
 			    padding: 0.3rem 0.8rem;
 			    vertical-align: middle;
+=======
+			    padding: 0.7rem 0.8rem;
+			    vertical-align: middle;
+				margin-top: 1rem;
+				display: inline-block;
+>>>>>>> front-end
 			}
 
 			div.tt-menu div.tt-suggestion:hover {
 				background-color: $color_input_tags_background;
 			}
+<<<<<<< HEAD
 		}
 
 		button {
 			padding: 0.6rem 1.2rem;
+=======
+
+			.tt-empty {
+				padding: 3px 20px;
+				line-height: 24px;
+				font-style: italic;
+
+				&> span {
+					font-weight: bold;
+				}
+			}
+
+			.twitter-typeahead {
+				margin-top: 1rem;
+				vertical-align: bottom;
+			}
+		}
+
+		button {
+			padding: 0.9rem 2rem;
+			@media screen and (max-width: $bootstrap-sm) {
+				padding: 0.9rem 1.5rem;
+			}
+			@media screen and (max-width: 320px) {
+				margin-top: 0.8rem;
+				width: 70%;
+			}
+>>>>>>> front-end
 			font-size: 2rem;
 			border: 0px solid $color_input_border;
 			background-color: $color_link_hover;
@@ -164,8 +345,13 @@ header {
 	}
 
 	h6 {
+<<<<<<< HEAD
 		margin-bottom: 4rem;
 		margin-left: 5%;
+=======
+		margin-left: 15%;
+		text-align: left;
+>>>>>>> front-end
 		color: $color_text_white;
 
 		span.label-default {
@@ -243,9 +429,16 @@ header {
 /* LISTS PREVIEW
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
+<<<<<<< HEAD
 #mid-content {
 	background-color: $color_background;
 	font-family: 'Lato', sans-serif;
+=======
+.mid-content {
+	background-color: $color_background;
+	font-family: 'Lato', sans-serif;
+	padding: 0;
+>>>>>>> front-end
 
 	&> aside {
 		margin-left: 2rem;
@@ -253,6 +446,7 @@ header {
 		h3 {
 			margin-top: 0;
 		}
+<<<<<<< HEAD
 	}
 
 	#lists-preview {
@@ -272,6 +466,48 @@ header {
 		       -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075);
 		            box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075);
 		    vertical-align: top;
+=======
+
+		.pagination-box {
+			width: 100%;
+			text-align: center;
+
+			.pagination {
+				width: auto;
+				margin: 0rem;
+
+				li:not(.disabled) > a {
+					color: $color_link_hover;
+				}
+				li.active > a {
+					color: $color_text_white;
+					background-color: $color_background_red;
+					border: 1px solid $color_background_red;
+				}
+			}
+		}
+		
+	}
+
+	.cards-container {
+		text-align: left;
+		white-space: nowrap;
+
+		.card {
+			width: 250px;
+			display: inline-block;
+			margin-right: 3rem;
+			margin-bottom: 1rem;
+			background-color: white;
+			border: 0px solid $color_separation;
+	  	-webkit-border-radius: 1px;
+	       -moz-border-radius: 1px;
+	            border-radius: 1px;
+	    -webkit-box-shadow: 10px 10px 0px $color_background_dark;
+	       -moz-box-shadow: 10px 10px 0px $color_background_dark;
+	            box-shadow: 10px 10px 0px $color_background_dark;
+	    vertical-align: top;
+>>>>>>> front-end
 			white-space: normal;
 
 			.card-header {
@@ -279,18 +515,58 @@ header {
 				border-bottom: 1px solid $color_separation;
 			}
 
+<<<<<<< HEAD
+=======
+			.card-snapshots {
+				position: relative;
+
+				&> img {
+					height: 7rem;
+					width: 7rem;
+					margin-top: 0.75rem;
+				}
+
+				&> span {
+					position: absolute;
+					right: 1rem;
+					top: 2.75rem;
+					line-height: 1.3rem;
+					font-size: 1.3rem;
+					display: inline-block;
+					padding: 0.7rem;
+					border: 1px solid $color_separation;
+					background-color: $color_background_grey;
+			  	-webkit-border-radius: 50px;
+			       -moz-border-radius: 50px;
+			            border-radius: 50px;
+				}
+			}
+
+>>>>>>> front-end
 			.card-body {
 				padding: 1.5rem;
 				text-align: left;
 				word-wrap: break-word;
+<<<<<<< HEAD
 				height: 170px;
+=======
+				height: 162px;
+>>>>>>> front-end
 				overflow: hidden;
 
 				&> h4 {
 					margin: 0;
 					margin-bottom: 1rem;
 					padding: 0;
+<<<<<<< HEAD
 					font-size: 1.7rem;
+=======
+					font-size: 2rem;
+					font-weight: bold;
+			    overflow: hidden;
+			    white-space: nowrap;
+			    text-overflow: ellipsis;
+>>>>>>> front-end
 				}
 
 				&> p {
@@ -300,6 +576,7 @@ header {
 				}
 			}
 
+<<<<<<< HEAD
 			.card-snapshots {
 				&> img {
 					height: 7rem;
@@ -308,6 +585,8 @@ header {
 				}
 			}
 
+=======
+>>>>>>> front-end
 			.card-footer {
 				padding: 1.5rem;
 				padding-top: 0;
@@ -333,6 +612,10 @@ header {
 
 				.card-item-count {
 					font-size: 1.2rem;
+<<<<<<< HEAD
+=======
+					font-weight: bold;
+>>>>>>> front-end
 				}
 
 				.card-item-count-opt {
@@ -341,9 +624,16 @@ header {
 
 				.card-price {
 					text-align: right;
+<<<<<<< HEAD
 					font-size: 2rem;
 					vertical-align: bottom;
 					line-height: 2rem;
+=======
+					font-size: 2.5rem;
+					line-height: 2.5rem;
+					vertical-align: bottom;
+					font-weight: bold;
+>>>>>>> front-end
 				}
 			}
 
@@ -354,16 +644,24 @@ header {
 				background-color: transparent;
 				font-size: 1.6rem;
 				color: $color_link_hover;
+<<<<<<< HEAD
 				border-top: 1px solid $color_separation;
 
 				&:hover {
 					background-color: $color_link_hover;
 					color: $color_text_white;
+=======
+
+				&:hover {
+					background-color: $color_background_grey;
+					color: $color_text;
+>>>>>>> front-end
 				}
 			}
 
 			// Add to cart button
 			button:last-child {
+<<<<<<< HEAD
 				color: $color_link_alt_hover;
 
 				&:hover {
@@ -373,6 +671,44 @@ header {
 			}
 		}
 	}
+=======
+				color: $color_text_white;
+				background-color: $color_background_red;
+			}
+		}
+	}
+
+	.list-detail {
+		max-width: 600px;
+		margin: auto;
+
+		.list-header {
+
+			h1 {
+				margin-bottom: 0;
+
+				div {
+					float: right;
+				}
+			}
+
+			h5 {
+				color: $color_text_grey;
+				margin-top: 0;
+				margin-left: 1rem;
+
+				button {
+					float: right;
+					background-color: $color_background_red;
+					color: $color_text_white;
+					margin-top: 1rem;
+					padding: 0.75rem 0.75rem;
+					border: 0;
+				}
+			}
+		}
+	} // list-detail
+>>>>>>> front-end
 }
 
 .star-ratings-sprite {
@@ -402,10 +738,21 @@ footer {
 	position: absolute;
 	bottom: 0;
 	width: 100%;
+<<<<<<< HEAD
 	height: 61px; /* Set the fixed height of the footer here */
 	line-height: 60px; /* Vertically center the text there */
 	background-color: $color_background_grey;
 	border-top: 1px solid $color_separation;
+=======
+	height: 60px; /* Set the fixed height of the footer here */
+	line-height: 60px; /* Vertically center the text there */
+	@media screen and (max-width: $bootstrap-sm) {
+		height: 120px;
+		line-height: 40px;
+	}
+	background-color: $color_background_dark;
+	color: $color_text_white;
+>>>>>>> front-end
 	text-align: center;
 	font-family: 'Lato', sans-serif;
 	font-size: 1.2rem;
@@ -419,6 +766,7 @@ footer {
 			margin: 0 0 0 0.5rem;
 
 			&> a {
+<<<<<<< HEAD
 				color: $color_text;
 
 				&:hover, &:active, &:focus {
@@ -430,13 +778,39 @@ footer {
 				margin-right: 1rem;
 
 				&> img { // social media
+=======
+				color: $color_text_white;
+
+				&:hover, &:active, &:focus {
+					color: $color_text_white;
+				}
+			}
+
+			&> a.footer-partners-link {
+				margin-right: 1rem;
+
+				&> img {
+					background-color: $color_background_grey;
+					height: 32px;
+				}
+			}
+
+			&> a.footer-social-media-link {
+				margin-right: 1rem;
+
+				&> img {
+>>>>>>> front-end
 					width: 32px;
 					height: 32px;
 				}
 			}
 
 			& + li:before {
+<<<<<<< HEAD
 				content: "-";
+=======
+				content: ""; // potential separator
+>>>>>>> front-end
 				margin-right: 0.5rem;
 			}
 		}
