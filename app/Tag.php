@@ -11,4 +11,9 @@ class Tag extends Model
     }
 
 
+    public static function getByIdsTag($array_ids){
+        return static::all()->whereIn('idTag', $array_ids);
+    }
+
+
 }
