@@ -1,9 +1,7 @@
 {
     "/js/app.js": "/js/app.js",
-<<<<<<< HEAD
     "/css/app.css": "/css/app.css",
+    "/css/theme.css": "/css/theme.css",
+    "/js/all.js": "/js/all.js",
     "/css/all.css": "/css/all.css"
-=======
-    "/css/app.css": "/css/app.css"
->>>>>>> theo
 }
