@@ -11,13 +11,12 @@
 |
 */
 
-Route::get('/', 'HomeController@index');
+//Route::get('/', 'HomeController@index');
 
 
 Route::get('/lists/user/{id}', 'ListController@getListsByIdAccount');
 Route::get('/lists', 'ListController@getAllLists');
 Route::get('/list/{id}', 'ListController@getListById');
-
 
 Route::post('/tags', 'TagsController@getTags');
 
@@ -73,9 +72,3 @@ Route::get('/sitemap', function () {
 Route::get('/contact', function () {
     return view('contact');
 });
-
-// Services
-
-Route::get('/liste/{id}/json', 'ListController@getList');
-
-Route::get('/tags', 'TagsController@getTags');
