@@ -19,6 +19,8 @@ Route::get('/list/{id}', 'ListController@getListById');
 
 Route::post('/tags', 'TagsController@getTags');
 
+Route::get('/', 'HomeController@index');
+
 Route::get('/auth/login', 'Authentication@login');
 
 Route::post('/auth/login', 'Authentication@checkLogin');
