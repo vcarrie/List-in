@@ -11,13 +11,8 @@ let mix = require('laravel-mix');
  |
  */
 
-mix.js(['resources/assets/js/app.js',
-    'resources/assets/js/mCustomScrollbar.min.js',
-    'resources/assets/js/modernizr-3.5.0.min.js',
-    'resources/assets/js/main.js',
-    'resources/assets/js/plugins.js',
-    'resources/assets/js/typeahead.bundle.min.js'
-], 'public/js');
+mix.js(['resources/assets/js/ajax.js'
+], 'public/js/app.js');
 
 mix.sass('resources/assets/sass/app.scss', 'public/css');
 

@@ -24,7 +24,7 @@ class ApiCdiscountSearchByKeywordRequest extends FormRequest
     public function rules()
     {
         return [
-            //'search' => 'bail|required'
+            'search' => 'bail|required'
         ];
     }
 }

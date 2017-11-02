@@ -16,6 +16,8 @@ class ApiCdiscountSearchByKeywordController extends Controller
         $data = $apiRepository->searchWithKeyword($request->search);
         $result = json_decode($data, true);
 
+        var_dump($result);
+
         return view('api.apiresponse', compact('result'));
     }
 }
