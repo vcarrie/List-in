@@ -1,0 +1,20 @@
+{
+  "ApiKey": "c9dcd6cc-8908-4039-a91f-0f27ef9615b6",
+  "SearchRequest": {
+    "Keyword": "$1",
+    "SortBy": "relevance",
+    "Pagination": {
+      "ItemsPerPage": 10,
+      "PageNumber": 0
+    },
+    "Filters": {
+      "Price": {
+        "Min": 0,
+        "Max": 0
+      },
+      "Navigation": "",
+      "IncludeMarketPlace": false,
+      "Condition": null
+    }
+  }
+}

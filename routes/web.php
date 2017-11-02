@@ -11,14 +11,15 @@
 |
 */
 
-use App\Tag;
+Route::get('/', 'HomeController@index');
 
-Route::get('/tag', function () {
 
-    $tag = Tag::find(1);
+Route::get('/lists/user/{id}', 'ListController@getListsByIdAccount');
+Route::get('/lists', 'ListController@getAllLists');
+Route::get('/list/{id}', 'ListController@getListById');
 
-    return view('welcome', compact("tag"));
-});
+
+Route::post('/tags', 'TagsController@getTags');
 
 Route::get('/auth/login', 'Authentication@login');
 
@@ -27,8 +28,11 @@ Route::post('/auth/login', 'Authentication@checkLogin');
 Route::get('/auth/register', 'Authentication@register');
 
 Route::get('/marceau', function (){
-    return view('layouts.base');
+    return view('layouts.mid-content-catalogue');
 });
+
+Route::get('/getproductbykeyword', 'ApiCdiscountSearchByKeywordController@get');
+Route::post('/getproductbykeyword', 'ApiCdiscountSearchByKeywordController@post');
 Route::get('/liste', function () {
     return view('list');
 });

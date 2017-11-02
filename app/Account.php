@@ -14,4 +14,11 @@ class Account extends Model
         return static::where('mail', '=', $mail);
     }
 
+    public static function email_exists($mail){
+        $exists = false;
+        if(self::getByMail($mail)){ $exists = true; }
+
+        return $exists;
+    }
+
 }

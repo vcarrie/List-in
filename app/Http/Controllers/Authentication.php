@@ -14,8 +14,8 @@ class Authentication extends Controller
 
     public function checkLogin(){
 
-        $auth = Account::getByIdAccount(1)->get();
-        //if($auth->mail() == )
+        //$auth = Account::getByMail('')->get(['email']);
+        if(Account::email_exists('sdhujhsu')){ $auth = 'zsfjkherufez'; }else{ $auth = 'tret'; }
 
         return view('auth.connection', compact("auth", $auth ));
     }

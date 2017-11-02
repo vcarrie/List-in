@@ -1,3 +1,4 @@
+var $ = require("jquery");
 $(function () {
 
     /* Tags Manager
@@ -99,7 +100,7 @@ $(function () {
     /* PREVIEW CARD BODY & SLIDESHOW SCROLL
     –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
-    $("#lists-preview").mCustomScrollbar({
+    $("#listController-preview").mCustomScrollbar({
         axis: "x",
         theme: "dark-3",
         scrollButtons: {
@@ -118,15 +119,15 @@ $(function () {
             onTotalScrollOffset: 260,
             onTotalScroll: function() {
                 // load and queue 2 more cards when the end is reached
-                $(".preview-card:first-child").clone().appendTo("#lists-preview>div>div.mCSB_container");
-                $(".preview-card:first-child").clone().appendTo("#lists-preview>div>div.mCSB_container");
+                $(".preview-card:first-child").clone().appendTo("#listController-preview>div>div.mCSB_container");
+                $(".preview-card:first-child").clone().appendTo("#listController-preview>div>div.mCSB_container");
             }
         }
     });
 
     // simulation
     for (var i = 1; i < 9; i++) {
-      $(".preview-card:first-child").clone().appendTo("#lists-preview>div>div.mCSB_container");
+      $(".preview-card:first-child").clone().appendTo("#listController-preview>div>div.mCSB_container");
     }
 
     $(".card-body").mCustomScrollbar({
@@ -192,7 +193,7 @@ $(function () {
         $(newRow).click(function() {
 
         });
-        $("#lists-preview > tbody").append(newRow);
+        $("#listController-preview > tbody").append(newRow);
     });
 */
 
