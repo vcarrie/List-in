@@ -26,22 +26,14 @@ Route::post('/auth/login', 'Authentication@checkLogin');
 
 Route::get('/auth/register', 'Authentication@register');
 
-Route::get('/marceau', function (){
-    return view('layouts.mid-content-catalogue');
-});
 
 Route::get('/getproductbykeyword', 'ApiCdiscountSearchByKeywordController@get');
 Route::post('/getproductbykeyword', 'ApiCdiscountSearchByKeywordController@post');
-Route::get('/liste', function () {
-    return view('list');
-});
 
 
 // Official routes
 
-Route::get('/', function () {
-    return view('catalogue');
-});
+    Route::get('/', 'HomeController@index');
 
 Route::get('/catalogue', function () {
     return view('catalogue');
