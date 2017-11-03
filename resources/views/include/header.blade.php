@@ -12,7 +12,7 @@
                 <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="#">
-              <img class="logo img-responsive" src="images/Logo_V4_transparent.png" alt="logo listin" />
+              <img class="logo img-responsive" src="../../../public/images/Logo_V4_transparent.png" alt="logo listin" />
             </a>
           </div>
 
@@ -20,25 +20,25 @@
             <ul class="nav navbar-nav navbar-right">
               <li>
                 <a tabindex="1" href="/catalogue">
-                  <img alt="catalogue" src="images/icon-catalogue.png"/>
+                  <img alt="catalogue" src="../../../public/images/icon-catalogue.png"/>
                   <h5>Catalogue</h5>
                 </a>
               </li>
               <li>
                 <a tabindex="1" href="#">
-                  <img alt="créer une liste" src="images/icon-new-list.png"/>
+                  <img alt="créer une liste" src="../../../public/images/icon-new-list.png"/>
                   <h5>Créer une liste</h5>
                 </a>
               </li>
               <li>
                 <a tabindex="1" href="#">
-                  <img alt="mon compte" src="images/icon-account.png"/>
+                  <img alt="mon compte" src="../../../public/images/icon-account.png"/>
                   <h5>Mon Compte</h5>
                 </a>
               </li>
               <li>
                 <a tabindex="1" href="#">
-                  <img alt="mon panier" src="images/icon-basket.png"/>
+                  <img alt="mon panier" src="../../../public/images/icon-basket.png"/>
                   <h5>Mon Panier</h5>
                 </a>
               </li>
