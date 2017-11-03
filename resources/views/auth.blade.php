@@ -3,7 +3,7 @@
 @section('title', 'Authentifiez-vous')
 
 @section('main')
-<div class="col-xs-12">
-	
-</div>
+    <div class="col-xs-12">
+
+    </div>
 @endsection

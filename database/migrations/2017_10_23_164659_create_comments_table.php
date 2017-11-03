@@ -19,7 +19,7 @@ class CreateCommentsTable extends Migration
             $table->text('remark');
             $table->timestamps();
             $table->foreign('idAccount')->references('idAccount')->on('accounts');
-            $table->foreign('idList')->references('idList')->on('lists');
+            $table->foreign('idList')->references('idList')->on('listController');
             $table->primary(['idAccount', 'idList', 'created_at']);
         });
     }
