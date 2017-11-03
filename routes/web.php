@@ -27,9 +27,6 @@ Route::get('/auth/register', 'Authentication@register');
 
 Route::get('/getproductbykeyword', 'ApiCdiscountSearchByKeywordController@get');
 Route::post('/getproductbykeyword', 'ApiCdiscountSearchByKeywordController@post');
-Route::get('/liste', function () {
-    return view('list');
-});
 
 
 
