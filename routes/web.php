@@ -11,13 +11,12 @@
 |
 */
 
-Route::get('/', 'HomeController@index');
+//Route::get('/', 'HomeController@index');
 
 
 Route::get('/lists/user/{id}', 'ListController@getListsByIdAccount');
 Route::get('/lists', 'ListController@getAllLists');
 Route::get('/list/{id}', 'ListController@getListById');
-
 
 Route::post('/tags', 'TagsController@getTags');
 
@@ -27,22 +26,14 @@ Route::post('/auth/login', 'Authentication@checkLogin');
 
 Route::get('/auth/register', 'Authentication@register');
 
-Route::get('/marceau', function (){
-    return view('layouts.mid-content-catalogue');
-});
 
 Route::get('/getproductbykeyword', 'ApiCdiscountSearchByKeywordController@get');
 Route::post('/getproductbykeyword', 'ApiCdiscountSearchByKeywordController@post');
-Route::get('/liste', function () {
-    return view('list');
-});
 
 
 // Official routes
 
-Route::get('/', function () {
-    return view('catalogue');
-});
+    Route::get('/', 'HomeController@index');
 
 Route::get('/catalogue', function () {
     return view('catalogue');
@@ -73,9 +64,3 @@ Route::get('/sitemap', function () {
 Route::get('/contact', function () {
     return view('contact');
 });
-
-// Services
-
-Route::get('/liste/{id}/json', 'ListController@getList');
-
-Route::get('/tags', 'TagsController@getTags');

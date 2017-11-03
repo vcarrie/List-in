@@ -1,20 +1,11 @@
 @import 'config';
-<<<<<<< HEAD
-@import 'typography';
-@import 'reset';
-=======
->>>>>>> front-end
 
 * {
 	box-sizing: border-box;
 }
 
 html, body {
-<<<<<<< HEAD
-	min-width: 50rem;
-=======
 	min-width: 0rem;
->>>>>>> front-end
 }
 
 html {
@@ -24,14 +15,10 @@ html {
 
 body {
 	background-color: $color_background;
-<<<<<<< HEAD
-	margin-bottom: 61px; /* Margin bottom by footer height */
-=======
 	margin-bottom: 60px; /* Margin bottom by footer height */
 	@media screen and (max-width: $bootstrap-sm) {
 		margin-bottom: 120px;
 	}
->>>>>>> front-end
 }
 
 main {
@@ -42,74 +29,6 @@ main {
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
 header {
-<<<<<<< HEAD
-	padding: 1rem;
-	border-bottom: 1px solid $color_separation;
-	background-color: $color_background_white;
-
-	&> div > div {
-
-		&> div {
-
-			&> a {
-				display: inline-block;
-
-				&> img {
-					max-height: 8rem;
-					min-width: 9rem;
-				}
-			}
-		}
-
-		&> nav {
-
-			&> ul {
-				margin: 0.75rem 0;
-				height: 7rem;
-				text-align: right;
-
-				@media screen and (max-width: 768px) {
-					height: 4rem;
-				}
-
-				&> li {
-					height: 100%;
-					display: inline-block;
-					list-style-type: none;
-	  				vertical-align: top;
-
-					&> a {
-						height: 100%;
-						padding: 0 2rem;
-						display: inline-block;
-						color: $color_link;
-						text-align: center;
-
-						&> img {
-							width: 38px;
-							margin-bottom: 0.75rem;
-						}
-
-						&> h5 {
-							font-size: 2rem;
-							margin: 0;
-							font-family: Lato, sans-serif;
-
-							@media screen and (max-width: 768px) {
-								display: none;
-							}
-						}
-
-						&:hover, &:active, &:focus {
-							color: $color_link_hover;
-						}
-
-					}
-
-					@media screen and (min-width: 768px) {
-						&+ li {
-							border-left: 1px solid $color_separation;
-=======
 	border-top: 4px solid $color_background_red;
 	border-bottom: 1px solid $color_separation;
 	background-color: $color_background_white;
@@ -179,30 +98,10 @@ header {
 
 						@media screen and (max-width: $bootstrap-sm) {
 							display: inline;
->>>>>>> front-end
 						}
 					}
 				}
 			}
-<<<<<<< HEAD
-
-		}
-
-	}
-}
-
-/* LISTS FILTER
-–––––––––––––––––––––––––––––––––––––––––––––––––– */
-
-#lists-filter {
-	margin-bottom: 2rem;
-	background-color: $color_background_dark;
-	font-family: 'Lato', sans-serif;
-
-	&> h1 {
-		margin: 3rem 0;
-		text-align: center;
-=======
 		}
 
 		.navbar-collapse {
@@ -225,29 +124,18 @@ header {
 
 	h1 {
 		margin: 0;
->>>>>>> front-end
 		color: $color_text_white;
 		font-family: 'Quicksand', sans-serif;
 	}
 
-<<<<<<< HEAD
-	span.popular-tag {
-		cursor: pointer;
-=======
 	h4 {
 		margin: 1rem 0;
 		color: $color_text_white;
 		font-family: 'Quicksand', sans-serif;
->>>>>>> front-end
 	}
 
 	form {
 
-<<<<<<< HEAD
-		.bootstrap-tagsinput {
-			width: 88%;
-			padding: 1.2rem;
-=======
 		/* default style for when the plugins haven't loaded yet */
 		> .tags-input {
 			display: inline-block;
@@ -257,9 +145,9 @@ header {
 			padding: 1.2rem;
 			padding-left: 1.8rem;
 			border: 0px solid transparent;
-		  	-webkit-border-radius: 24px;
-		       -moz-border-radius: 24px;
-		            border-radius: 24px;
+			-webkit-border-radius: 24px;
+			-moz-border-radius: 24px;
+			border-radius: 24px;
 			text-align: left;
 		}
 
@@ -268,42 +156,27 @@ header {
 			max-width: 800px;
 			padding: 1.2rem;
 			padding-top: 0.2rem;
->>>>>>> front-end
 			border: 0px solid transparent;
-		  	-webkit-border-radius: 24px;
-		       -moz-border-radius: 24px;
-		            border-radius: 24px;
-<<<<<<< HEAD
-=======
+			-webkit-border-radius: 24px;
+			-moz-border-radius: 24px;
+			border-radius: 24px;
 			text-align: left;
->>>>>>> front-end
 
 			span.label-info {
 				background-color: $color_input_tags_background;
 				letter-spacing: 0.5px;
-			  	-webkit-border-radius: 50px;
-			       -moz-border-radius: 50px;
-			            border-radius: 50px;
-<<<<<<< HEAD
-			    padding: 0.3rem 0.8rem;
-			    vertical-align: middle;
-=======
-			    padding: 0.7rem 0.8rem;
-			    vertical-align: middle;
+				-webkit-border-radius: 50px;
+				-moz-border-radius: 50px;
+				border-radius: 50px;
+				padding: 0.7rem 0.8rem;
+				vertical-align: middle;
 				margin-top: 1rem;
 				display: inline-block;
->>>>>>> front-end
 			}
 
 			div.tt-menu div.tt-suggestion:hover {
 				background-color: $color_input_tags_background;
 			}
-<<<<<<< HEAD
-		}
-
-		button {
-			padding: 0.6rem 1.2rem;
-=======
 
 			.tt-empty {
 				padding: 3px 20px;
@@ -330,28 +203,22 @@ header {
 				margin-top: 0.8rem;
 				width: 70%;
 			}
->>>>>>> front-end
 			font-size: 2rem;
 			border: 0px solid $color_input_border;
 			background-color: $color_link_hover;
 			color: $color_text_white;
 			vertical-align: middle;
-		  	-webkit-border-radius: 50px;
-		       -moz-border-radius: 50px;
-		            border-radius: 50px;
-		    outline-color: $color_background_grey;
+			-webkit-border-radius: 50px;
+			-moz-border-radius: 50px;
+			border-radius: 50px;
+			outline-color: $color_background_grey;
 		}
 
 	}
 
 	h6 {
-<<<<<<< HEAD
-		margin-bottom: 4rem;
-		margin-left: 5%;
-=======
 		margin-left: 15%;
 		text-align: left;
->>>>>>> front-end
 		color: $color_text_white;
 
 		span.label-default {
@@ -359,18 +226,18 @@ header {
 			color: $color_text_white;
 			border: 1px solid $color_separation;
 			background-color: transparent;
-		  	-webkit-border-radius: 50px;
-		       -moz-border-radius: 50px;
-		            border-radius: 50px;
-		    display: inline-block;
-		    margin-bottom: 0.33rem;
-		    padding: 0.66rem 0.66rem;
+			-webkit-border-radius: 50px;
+			-moz-border-radius: 50px;
+			border-radius: 50px;
+			display: inline-block;
+			margin-bottom: 0.33rem;
+			padding: 0.66rem 0.66rem;
 
-		    &:hover {
+			&:hover {
 				color: $color_text_white;
 				border: 1px solid $color_input_tags_background;
 				background-color: $color_input_tags_background;
-		    }
+			}
 		}
 	}
 
@@ -384,61 +251,55 @@ header {
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
 .tt-query {
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-     -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+	-moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
 }
 
 .tt-hint {
-  color: #999
+	color: #999
 }
 
 .tt-menu {    /* used to be tt-dropdown-menu in older versions */
-  width: 422px;
-  margin-top: 4px;
-  padding: 4px 0;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  -webkit-border-radius: 4px;
-     -moz-border-radius: 4px;
-          border-radius: 4px;
-  -webkit-box-shadow: 0 5px 10px rgba(0,0,0,.2);
-     -moz-box-shadow: 0 5px 10px rgba(0,0,0,.2);
-          box-shadow: 0 5px 10px rgba(0,0,0,.2);
+	width: 422px;
+	margin-top: 4px;
+	padding: 4px 0;
+	background-color: #fff;
+	border: 1px solid #ccc;
+	border: 1px solid rgba(0, 0, 0, 0.2);
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	-webkit-box-shadow: 0 5px 10px rgba(0,0,0,.2);
+	-moz-box-shadow: 0 5px 10px rgba(0,0,0,.2);
+	box-shadow: 0 5px 10px rgba(0,0,0,.2);
 
-  max-height: 200px;
-  overflow-y: auto;
+	max-height: 200px;
+	overflow-y: auto;
 }
 
 .tt-suggestion {
-  padding: 3px 20px;
-  line-height: 24px;
-  cursor: pointer;
+	padding: 3px 20px;
+	line-height: 24px;
+	cursor: pointer;
 }
 
 .tt-suggestion.tt-cursor,.tt-suggestion:hover {
-  color: #fff;
-  background-color: #0097cf;
+	color: #fff;
+	background-color: #0097cf;
 }
 
 .tt-suggestion p {
-  margin: 0;
+	margin: 0;
 }
 
 /* LISTS PREVIEW
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
-<<<<<<< HEAD
-#mid-content {
-	background-color: $color_background;
-	font-family: 'Lato', sans-serif;
-=======
 .mid-content {
 	background-color: $color_background;
 	font-family: 'Lato', sans-serif;
 	padding: 0;
->>>>>>> front-end
 
 	&> aside {
 		margin-left: 2rem;
@@ -446,27 +307,6 @@ header {
 		h3 {
 			margin-top: 0;
 		}
-<<<<<<< HEAD
-	}
-
-	#lists-preview {
-		text-align: left;
-		white-space: nowrap;
-
-		.preview-card {
-			width: 250px;
-			display: inline-block;
-			margin: 1rem;
-			background-color: white;
-			border: 1px solid $color_separation;
-		  	-webkit-border-radius: 1px;
-		       -moz-border-radius: 1px;
-		            border-radius: 1px;
-		    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075);
-		       -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075);
-		            box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075);
-		    vertical-align: top;
-=======
 
 		.pagination-box {
 			width: 100%;
@@ -486,7 +326,7 @@ header {
 				}
 			}
 		}
-		
+
 	}
 
 	.cards-container {
@@ -500,14 +340,13 @@ header {
 			margin-bottom: 1rem;
 			background-color: white;
 			border: 0px solid $color_separation;
-	  	-webkit-border-radius: 1px;
-	       -moz-border-radius: 1px;
-	            border-radius: 1px;
-	    -webkit-box-shadow: 10px 10px 0px $color_background_dark;
-	       -moz-box-shadow: 10px 10px 0px $color_background_dark;
-	            box-shadow: 10px 10px 0px $color_background_dark;
-	    vertical-align: top;
->>>>>>> front-end
+			-webkit-border-radius: 1px;
+			-moz-border-radius: 1px;
+			border-radius: 1px;
+			-webkit-box-shadow: 10px 10px 0px $color_background_dark;
+			-moz-box-shadow: 10px 10px 0px $color_background_dark;
+			box-shadow: 10px 10px 0px $color_background_dark;
+			vertical-align: top;
 			white-space: normal;
 
 			.card-header {
@@ -515,8 +354,6 @@ header {
 				border-bottom: 1px solid $color_separation;
 			}
 
-<<<<<<< HEAD
-=======
 			.card-snapshots {
 				position: relative;
 
@@ -536,37 +373,28 @@ header {
 					padding: 0.7rem;
 					border: 1px solid $color_separation;
 					background-color: $color_background_grey;
-			  	-webkit-border-radius: 50px;
-			       -moz-border-radius: 50px;
-			            border-radius: 50px;
+					-webkit-border-radius: 50px;
+					-moz-border-radius: 50px;
+					border-radius: 50px;
 				}
 			}
 
->>>>>>> front-end
 			.card-body {
 				padding: 1.5rem;
 				text-align: left;
 				word-wrap: break-word;
-<<<<<<< HEAD
-				height: 170px;
-=======
 				height: 162px;
->>>>>>> front-end
 				overflow: hidden;
 
 				&> h4 {
 					margin: 0;
 					margin-bottom: 1rem;
 					padding: 0;
-<<<<<<< HEAD
-					font-size: 1.7rem;
-=======
 					font-size: 2rem;
 					font-weight: bold;
-			    overflow: hidden;
-			    white-space: nowrap;
-			    text-overflow: ellipsis;
->>>>>>> front-end
+					overflow: hidden;
+					white-space: nowrap;
+					text-overflow: ellipsis;
 				}
 
 				&> p {
@@ -576,17 +404,6 @@ header {
 				}
 			}
 
-<<<<<<< HEAD
-			.card-snapshots {
-				&> img {
-					height: 7rem;
-					width: 7rem;
-					margin: 0.75rem 0.25rem 0rem 0.25rem;
-				}
-			}
-
-=======
->>>>>>> front-end
 			.card-footer {
 				padding: 1.5rem;
 				padding-top: 0;
@@ -612,10 +429,7 @@ header {
 
 				.card-item-count {
 					font-size: 1.2rem;
-<<<<<<< HEAD
-=======
 					font-weight: bold;
->>>>>>> front-end
 				}
 
 				.card-item-count-opt {
@@ -624,16 +438,10 @@ header {
 
 				.card-price {
 					text-align: right;
-<<<<<<< HEAD
-					font-size: 2rem;
-					vertical-align: bottom;
-					line-height: 2rem;
-=======
 					font-size: 2.5rem;
 					line-height: 2.5rem;
 					vertical-align: bottom;
 					font-weight: bold;
->>>>>>> front-end
 				}
 			}
 
@@ -644,34 +452,15 @@ header {
 				background-color: transparent;
 				font-size: 1.6rem;
 				color: $color_link_hover;
-<<<<<<< HEAD
-				border-top: 1px solid $color_separation;
-
-				&:hover {
-					background-color: $color_link_hover;
-					color: $color_text_white;
-=======
 
 				&:hover {
 					background-color: $color_background_grey;
 					color: $color_text;
->>>>>>> front-end
 				}
 			}
 
 			// Add to cart button
 			button:last-child {
-<<<<<<< HEAD
-				color: $color_link_alt_hover;
-
-				&:hover {
-					background-color: $color_link_alt_hover;
-					color: $color_text_white;
-				}
-			}
-		}
-	}
-=======
 				color: $color_text_white;
 				background-color: $color_background_red;
 			}
@@ -708,7 +497,6 @@ header {
 			}
 		}
 	} // list-detail
->>>>>>> front-end
 }
 
 .star-ratings-sprite {
@@ -728,7 +516,7 @@ header {
 	float: left;
 	height: 2rem;
 	display: block;
-  	background-size: 2rem;
+	background-size: 2rem;
 }
 
 /* FOOTER
@@ -738,12 +526,6 @@ footer {
 	position: absolute;
 	bottom: 0;
 	width: 100%;
-<<<<<<< HEAD
-	height: 61px; /* Set the fixed height of the footer here */
-	line-height: 60px; /* Vertically center the text there */
-	background-color: $color_background_grey;
-	border-top: 1px solid $color_separation;
-=======
 	height: 60px; /* Set the fixed height of the footer here */
 	line-height: 60px; /* Vertically center the text there */
 	@media screen and (max-width: $bootstrap-sm) {
@@ -752,7 +534,6 @@ footer {
 	}
 	background-color: $color_background_dark;
 	color: $color_text_white;
->>>>>>> front-end
 	text-align: center;
 	font-family: 'Lato', sans-serif;
 	font-size: 1.2rem;
@@ -766,19 +547,6 @@ footer {
 			margin: 0 0 0 0.5rem;
 
 			&> a {
-<<<<<<< HEAD
-				color: $color_text;
-
-				&:hover, &:active, &:focus {
-					color: $color_link_hover;
-				}
-			}
-
-			&> a.social-media-link {
-				margin-right: 1rem;
-
-				&> img { // social media
-=======
 				color: $color_text_white;
 
 				&:hover, &:active, &:focus {
@@ -799,18 +567,13 @@ footer {
 				margin-right: 1rem;
 
 				&> img {
->>>>>>> front-end
 					width: 32px;
 					height: 32px;
 				}
 			}
 
 			& + li:before {
-<<<<<<< HEAD
-				content: "-";
-=======
 				content: ""; // potential separator
->>>>>>> front-end
 				margin-right: 0.5rem;
 			}
 		}
