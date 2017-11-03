@@ -10,6 +10,7 @@ class Liste extends Model
         return static::where('idList', '=', $idList);
     }
 
+
     public static function getByIdCreator($idCreator){
         return static::where('idCreator', '=', $idCreator);
     }
