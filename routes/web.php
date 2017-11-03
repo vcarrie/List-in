@@ -16,9 +16,8 @@
 
 Route::get('/lists/user/{id}', 'ListController@getListsByIdAccount');
 Route::get('/lists', 'ListController@getAllLists');
-Route::get('/list/{id}', 'ListController@getListById');
 
-Route::post('/tags', 'TagsController@getTags');
+Route::get('/list/{id}', 'ListController@getListById');
 
 Route::get('/auth/login', 'Authentication@login');
 
@@ -26,18 +25,19 @@ Route::post('/auth/login', 'Authentication@checkLogin');
 
 Route::get('/auth/register', 'Authentication@register');
 
-
 Route::get('/getproductbykeyword', 'ApiCdiscountSearchByKeywordController@get');
 Route::post('/getproductbykeyword', 'ApiCdiscountSearchByKeywordController@post');
 
 
-// Official routes
 
-    Route::get('/', 'HomeController@index');
+Route::get('/', 'HomeController@index');
 
-Route::get('/catalogue', function () {
-    return view('catalogue');
-});
+Route::get('/catalogue', 'HomeController@index');
+
+Route::get('/tags', 'TagsController@getTags');
+
+
+//
 
 Route::get('/liste/{id}', 'ListController@show');
 

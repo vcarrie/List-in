@@ -9,12 +9,14 @@
                 <h4>Saisissez des termes en rapport avec ce qu'il vous faut.</h4>
                 <form>
                     <input type="text" class="tags-input form-control" placeholder="Entrez un tag..."/>
-                    <button tabindex="1" title="Rechercher des listes en fonction des tags entrés"><span
-                                class='glyphicon glyphicon-search'></span></button>
+                    <button tabindex="1" title="Rechercher des listes en fonction des tags entrés">
+                        <span class='glyphicon glyphicon-search'></span>
+                    </button>
                 </form>
                 <h6>Tags populaires :
-                    <span class="label label-default popular-tag">Cocktail</span>
-                    <span class="label label-default popular-tag">Sport</span>
+                    @foreach ($tags_final_tab as $tag)
+                        <span class="label label-default popular-tag">{{ $tag->tagName }}</span>
+                    @endforeach
                 </h6>
             </div>
         </div>
