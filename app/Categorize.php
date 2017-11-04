@@ -14,6 +14,10 @@ class Categorize extends Model
         return static::all()->whereIn('idTag', $array);
     }
 
+    public function scopeAddTagCondition($query, $id){
+        return $query->where('idTag', '=', $id);
+    }
+
     public static function getByIdTag($idTag){
         return static::where('$idTag', '=', $idTag);
     }
