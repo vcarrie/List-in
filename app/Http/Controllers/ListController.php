@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ValidateCreateListRequest;
 use App\Repositories\ApiCdiscount\ApiCdiscountSearchByIdProductRepository;
 use App\Liste;
 use App\Belong;
+use App\Repositories\Liste\ValidateCreateListRepository;
 use App\Tag;
 use App\Categorize;
 use App\Account;
@@ -66,6 +68,15 @@ class ListController extends Controller
         $tags_final_tab = Tag::getByIdsTag($top_5_ids);
 
         return view('list', compact('listjson', 'tags_final_tab'));
+    }
+
+    public function createList()
+    {
+        //return the view
+    }
+
+    public function validateCreateList(ValidateCreateListRequest $request, ValidateCreateListRepository $repository){
+        $repository->createList($request);
     }
 
 }

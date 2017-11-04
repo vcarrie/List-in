@@ -3,7 +3,6 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Tag;
 
 class Liste extends Model
 {
@@ -26,6 +25,17 @@ class Liste extends Model
 
     public function creator(){
         return $this->belongsTo('App\Account', 'idCreator');
+    }
+
+    public static function createList($name, $description, $idCreator){
+
+        $list = new Liste;
+
+        $list->listName = $name;
+        $list->description = $description;
+        $list->idCreator = $idCreator;
+
+        $list->save();
     }
 
 }
