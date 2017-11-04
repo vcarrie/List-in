@@ -4,11 +4,16 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+
 class Liste extends Model
 {
 
     public static function getByIdCreator($idCreator){
         return static::where('idCreator', '=', $idCreator);
+    }
+
+    public static function getByIdsList($array){
+        return static::all()->whereIn('id', $array);
     }
 
     public function tags(){

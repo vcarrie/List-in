@@ -6,6 +6,7 @@ use App\Account;
 use App\Belong;
 use App\Categorize;
 use App\Liste;
+use App\Rate;
 use Illuminate\Http\Request;
 use App\Tag;
 
@@ -22,9 +23,30 @@ class HomeController extends Controller
     }
 
     public function research(){
-        $tags = [12, 13, 14];
+        $tags = [14, 13];
 
-        $lists_full_tags = Categorize::getByIdsTag($tags);
-        return $lists_full_tags;
+        $nb_list = 0;
+
+
+        $intersect = Tag::find($tags[0])->lists;
+        foreach ($tags as $tag){
+           $intersect = $intersect->intersect(Tag::find($tag)->lists);
+        }
+
+        $list_id = $intersect->pluck('id');
+        $sorted_lists = array();
+
+        foreach ($list_id as $id) {
+
+            $average = Rate::averageForList($id);
+            $sorted_lists[] = [$average, $id];
+        }
+
+        rsort($sorted_lists);
+
+        $sorted_ids = array_column($sorted_lists, 1);
+        $final_lists = Liste::getByIdsList($sorted_ids);
+
+        return $final_lists;
     }
 }
