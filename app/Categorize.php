@@ -10,6 +10,9 @@ class Categorize extends Model
         return static::where('idList', '=', $idList);
     }
 
+    public static function getByIdsTag($array){
+        return static::all()->whereIn('idTag', $array);
+    }
 
     public static function getByIdTag($idTag){
         return static::where('$idTag', '=', $idTag);

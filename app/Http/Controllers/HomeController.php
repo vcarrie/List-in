@@ -23,8 +23,11 @@ class HomeController extends Controller
 
     public function research(){
         $tags = [12, 13, 14];
-
-        $lists_full_tags = Categorize::getByIdsTag($tags);
+        $lists_full_tags = new \Illuminate\Database\Eloquent\Collection;
+        foreach ($tags as $tag) {
+            $list = Categorize::getByIdsTag($tag);
+            $lists_full_tags = $lists_full_tags->merge($list);
+        }
         return $lists_full_tags;
     }
 }
