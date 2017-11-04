@@ -13,7 +13,7 @@
             </h5>
             <h6>
                 @foreach ($listjson['Tags'] as $tag)
-                    <span class="label label-default">{{ $tag[0]['tagName'] }}</span>
+                    <span class="label label-default">{{ $tag['tagName'] }}</span>
                 @endforeach
             </h6>
             <p>
@@ -21,7 +21,6 @@
             </p>
         </div>
         <section class="cards-container">
-
             @foreach ($listjson['Items'] as $item)
                 <div class="card">
                     <div class="card-snapshots">

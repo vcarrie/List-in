@@ -25,14 +25,10 @@ class ListController extends Controller
     public function getListById($id, ApiCdiscountSearchByIdProductRepository $apiCdiscountSearchByIdProduct)
     {
         $products = Belong::getByIdList($id)->get();//Contains all the associated products ids
-        $list = Liste::getByIdList($id)->get();
-        $creator = Account::getByIdAccount($list[0]['idCreator'])->get();
-        $Tags_ids = Categorize::getByIdList($id)->get();
+        $list = Liste::find($id);
+        $creator = $list->creator->get();
+        $Tags = $list->tags;
 
-        $Tags = array();
-        foreach ($Tags_ids as $idTag){
-            $Tags[] = Tag::getByIdTag($idTag['idTag'])->get();
-        }
         $rawlistjson = [];
 
         foreach ($products as $product) {
@@ -56,8 +52,8 @@ class ListController extends Controller
 
         $listjson = array(
             'Id' => $id,
-            'Name' => $list[0]['listName'],
-            'Description' => $list[0]['description'],
+            'Name' => $list->listName,
+            'Description' => $list->description,
             'Creator' => $creator,
             'Tags' => $Tags,
             'TotalPrice' => $totalprice,

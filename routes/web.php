@@ -32,35 +32,11 @@ Route::post('/getproductbykeyword', 'ApiCdiscountSearchByKeywordController@post'
 
 Route::get('/', 'HomeController@index');
 
+Route::get('/', 'HomeController@research');
+
+
 Route::get('/catalogue', 'HomeController@index');
 
 Route::get('/tags', 'TagsController@getTags');
 
 
-//
-
-Route::get('/liste/{id}', 'ListController@show');
-
-Route::get('/auth', function() {
-    return view('auth');
-});
-
-Route::get('/a-propos', function () {
-    return view('about');
-});
-
-Route::get('/mentions-legales', function () {
-    return view('legal');
-});
-
-Route::get('/cgu', function () {
-    return view('cgu');
-});
-
-Route::get('/sitemap', function () {
-    return view('sitemap');
-});
-
-Route::get('/contact', function () {
-    return view('contact');
-});
