@@ -32,7 +32,7 @@ Route::post('/getproductbykeyword', 'ApiCdiscountSearchByKeywordController@post'
 
 Route::get('/', 'HomeController@index');
 
-Route::get('/', 'HomeController@research');
+Route::get('/research', 'HomeController@research');
 
 
 Route::get('/catalogue', 'HomeController@index');
