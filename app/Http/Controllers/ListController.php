@@ -7,6 +7,7 @@ use App\Liste;
 use App\Belong;
 use App\Tag;
 use App\Categorize;
+use App\Account;
 
 class ListController extends Controller
 {
@@ -24,6 +25,9 @@ class ListController extends Controller
     public function getListById($id, ApiCdiscountSearchByIdProductRepository $apiCdiscountSearchByIdProduct)
     {
         $products = Belong::getByIdList($id)->get();//Contains all the associated products ids
+        $list = Liste::find($id);
+        $creator = $list->creator->get();
+        $Tags = $list->tags;
 
         $rawlistjson = [];
 
@@ -46,15 +50,12 @@ class ListController extends Controller
             $totalprice += $obj->BestOffer->SalePrice;
         }
 
-        // needs implementation
-        $listdata = Liste::getByIdList($id);
-
         $listjson = array(
             'Id' => $id,
-            'Name' => "Liste",
-            'Description' => "Description",
-            'Creator' => "Creator",
-            'Tags' => array("tag1", "tag2"),
+            'Name' => $list->listName,
+            'Description' => $list->description,
+            'Creator' => $creator,
+            'Tags' => $Tags,
             'TotalPrice' => $totalprice,
             'ItemAmount' => count($itemsjson),
             'Items' => $itemsjson

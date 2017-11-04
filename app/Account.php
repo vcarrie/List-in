@@ -6,9 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Account extends Model
 {
-    public static function getByIdAccount($idAccount){
-        return static::where('idAccount', '=', $idAccount);
-    }
 
     public static function getByMail($mail){
         return static::where('mail', '=', $mail);
@@ -19,6 +16,18 @@ class Account extends Model
         if(self::getByMail($mail)){ $exists = true; }
 
         return $exists;
+    }
+
+    public function rates(){
+        return $this->belongsToMany('App\Liste', 'rates', 'idAccount', 'idList');
+    }
+
+    public function comments(){
+        return $this->belongsToMany('App\Liste', 'comments', 'idAccount', 'idList');
+    }
+
+    public function createdList(){
+        return $this->hasMany('App\Liste', 'idCreator', 'id');
     }
 
 }
