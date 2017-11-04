@@ -8,12 +8,12 @@
             <h1>{{ $listjson['Name'] }}
                 <div>{{ $listjson['TotalPrice'] }} €</div>
             </h1>
-            <h5>par {{ $listjson['Creator'] }}
+            <h5>par {{ $listjson['Creator'][0]['pseudo'] }}
                 <button class="btn btn-default">Ajouter au panier</button>
             </h5>
             <h6>
                 @foreach ($listjson['Tags'] as $tag)
-                    <span class="label label-default">{{ $tag }}</span>
+                    <span class="label label-default">{{ $tag['tagName'] }}</span>
                 @endforeach
             </h6>
             <p>
@@ -21,7 +21,6 @@
             </p>
         </div>
         <section class="cards-container">
-
             @foreach ($listjson['Items'] as $item)
                 <div class="card">
                     <div class="card-snapshots">
