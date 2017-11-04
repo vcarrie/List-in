@@ -4,12 +4,17 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Tag;
+use App\Rate;
 
 class Liste extends Model
 {
 
     public static function getByIdCreator($idCreator){
         return static::where('idCreator', '=', $idCreator);
+    }
+
+    public static function getByIdsList($array){
+        return static::all()->whereIn('id', $array);
     }
 
     public function tags(){
@@ -27,6 +32,7 @@ class Liste extends Model
     public function creator(){
         return $this->belongsTo('App\Account', 'idCreator');
     }
+
 
 }
 
