@@ -45,7 +45,13 @@ class HomeController extends Controller
         rsort($sorted_lists);
 
         $sorted_ids = array_column($sorted_lists, 1);
-        $final_lists = Liste::getByIdsList($sorted_ids);
+        $final_lists = array();
+
+
+        foreach ($sorted_ids as $id){
+            $final_lists[] = Liste::find($id);
+        }
+
 
         return $final_lists;
     }
