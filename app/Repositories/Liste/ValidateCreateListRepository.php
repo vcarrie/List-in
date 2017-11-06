@@ -2,6 +2,8 @@
 
 namespace App\Repositories\Liste;
 
+use App\Belong;
+use App\Categorize;
 use App\Liste;
 
 class ValidateCreateListRepository
@@ -10,8 +12,13 @@ class ValidateCreateListRepository
     {
         $title = $form->title; //à changer en fonction des values="" données
         $description = $form->description;
-        $idcreator = $form->idCreator;
+        $idCreator = $form->idCreator;
+        $tags = $form->tags;
+        $products = $form->products;
 
-        Liste::createList($title, $description, $idcreator);
+        $idList = Liste::createList($title, $description, $idCreator);
+        Belong::createList($idList, $products);
+        Categorize::createList($idList, $tags);
+
     }
 }

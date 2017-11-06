@@ -41,6 +41,8 @@ class Liste extends Model
         $list->idCreator = $idCreator;
 
         $list->save();
+
+        return $list->id;
     }
 
 }
