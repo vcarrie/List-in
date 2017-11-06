@@ -52,7 +52,34 @@ class HomeController extends Controller
             $final_lists[] = Liste::find($id);
         }
 
+        $idList_at_least_1_tag = Categorize::getByIdsTag($tags);
+        $List_at_least_1_tag = array();
+        foreach ($idList_at_least_1_tag as $categorize){
+            $List_at_least_1_tag[] = Liste::find($categorize['idList']);
+        }
 
-        return $final_lists;
+        $diff = array_diff($List_at_least_1_tag, $final_lists);
+
+        $ids_1_tag_lists = array();
+
+        foreach ($diff as $list){
+
+            $average = Rate::averageForList($list['id']);
+            $ids_1_tag_lists[] = [$average, $list['id']];
+
+        }
+
+        rsort($ids_1_tag_lists);
+
+        $sorted_ids_1_tag = array_column($ids_1_tag_lists, 1);
+        $final_lists_1_tag = array();
+
+        foreach ($sorted_ids_1_tag as $id){
+            $final_lists_1_tag[] = Liste::find($id);
+        }
+
+        $final_tab_lists_sorted = array_merge($final_lists, $final_lists_1_tag);
+
+        return $final_tab_lists_sorted;
     }
 }
