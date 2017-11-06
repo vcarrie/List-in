@@ -35,7 +35,7 @@ class ListController extends Controller
             $rawlistjson[] = $apiCdiscountSearchByIdProduct->searchWithIdProduct($product->idCdiscount);
         }
 
-        // we need to refactor the json to help its integration into the view
+
         $itemsjson = [];
         $totalprice = 0;
         foreach ($rawlistjson as $item) {
@@ -50,12 +50,19 @@ class ListController extends Controller
             $totalprice += $obj->BestOffer->SalePrice;
         }
 
+//        $listjson = array(
+//            'Id' => $id,
+//            'Name' => $list->listName,
+//            'Description' => $list->description,
+//            'Creator' => $creator,
+//            'Tags' => $Tags,
+//            'TotalPrice' => $totalprice,
+//            'ItemAmount' => count($itemsjson),
+//            'Items' => $itemsjson
+//        );
+
         $listjson = array(
-            'Id' => $id,
-            'Name' => $list->listName,
-            'Description' => $list->description,
-            'Creator' => $creator,
-            'Tags' => $Tags,
+            'list' => $list,
             'TotalPrice' => $totalprice,
             'ItemAmount' => count($itemsjson),
             'Items' => $itemsjson
@@ -66,6 +73,7 @@ class ListController extends Controller
         $tags_final_tab = Tag::getByIdsTag($top_5_ids);
 
         return view('list', compact('listjson', 'tags_final_tab'));
+
     }
 
 }
