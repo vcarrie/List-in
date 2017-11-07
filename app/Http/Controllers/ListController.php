@@ -26,17 +26,11 @@ class ListController extends Controller
 
     public function getListById($id, ApiCdiscountSearchByIdProductRepository $apiCdiscountSearchByIdProduct)
     {
-        $products = Belong::getByIdList($id)->get();//Contains all the associated products ids
         $list = Liste::find($id);
         $creator = $list->creator->get();
         $Tags = $list->tags;
 
-        $rawlistjson = [];
-
-        foreach ($products as $product) {
-            $rawlistjson[] = $apiCdiscountSearchByIdProduct->searchWithIdProduct($product->idCdiscount);
-        }
-
+        $rawlistjson = Belong::getProductsByIdList($id, $apiCdiscountSearchByIdProduct);
 
         $itemsjson = [];
         $totalprice = 0;
