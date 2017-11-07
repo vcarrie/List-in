@@ -34,7 +34,6 @@ Route::get('/', 'HomeController@index');
 
 Route::get('/research', 'HomeController@research');
 
-
 Route::get('/catalogue', 'HomeController@index');
 
 Route::get('/tags', 'TagsController@getTags');
