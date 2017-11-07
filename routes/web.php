@@ -11,23 +11,26 @@
 |
 */
 
-//Route::get('/', 'HomeController@index');
-
+Auth::routes();
 
 Route::get('/lists/user/{id}', 'ListController@getListsByIdAccount');
 Route::get('/lists', 'ListController@getAllLists');
-
 Route::get('/list/{id}', 'ListController@getListById');
 
+Route::middleware('auth')->group(function () { //ou du moins celui crée
+    Route::get('/list/create', 'ListController@createList');
+    Route::post('/list/create', 'ListController@validateCreateList');
+});
+
+
+
 Route::get('/auth/login', 'Authentication@login');
-
 Route::post('/auth/login', 'Authentication@checkLogin');
-
 Route::get('/auth/register', 'Authentication@register');
+
 
 Route::get('/getproductbykeyword', 'ApiCdiscountSearchByKeywordController@get');
 Route::post('/getproductbykeyword', 'ApiCdiscountSearchByKeywordController@post');
-
 
 
 Route::get('/', 'HomeController@index');

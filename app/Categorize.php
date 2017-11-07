@@ -50,4 +50,14 @@ class Categorize extends Model
 
         return $ids_most_used;
     }
+
+    public static function createList($idList, $tags){
+        foreach ($tags as $tag){
+            $categorize = new Categorize;
+            $categorize->idTag = $tag;
+            $categorize->idList = $idList;
+            $categorize->save();
+            unset($categorize);
+        }
+    }
 }

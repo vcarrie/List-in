@@ -14,13 +14,13 @@ class CreateCommentsTable extends Migration
     public function up()
     {
         Schema::create('comments', function (Blueprint $table) {
-            $table->integer('idAccount')->unsigned();
+            $table->integer('idUser')->unsigned();
             $table->integer('idList')->unsigned();
             $table->text('remark');
             $table->timestamps();
-            $table->foreign('idAccount')->references('idAccount')->on('accounts');
-            $table->foreign('idList')->references('idList')->on('listController');
-            $table->primary(['idAccount', 'idList', 'created_at']);
+            $table->foreign('idUser')->references('id')->on('users');
+            $table->foreign('idList')->references('id')->on('lists');
+            $table->primary(['idUser', 'idList', 'created_at']);
         });
     }
 

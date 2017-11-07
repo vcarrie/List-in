@@ -7,13 +7,25 @@ use App\Repositories\ApiCdiscount\ApiCdiscountSearchByIdProductRepository;
 
 class Belong extends Model
 {
-    public static function getByIdList($idList){
+    public static function getByIdList($idList)
+    {
         return static::where('idList', '=', $idList);
     }
 
-    public static function getByIdCdiscount($idCdiscount){
+    public static function getByIdCdiscount($idCdiscount)
+    {
         return static::where('$idCdiscount', '=', $idCdiscount);
     }
+
+    public static function createList($idList, $products)
+    {
+        foreach ($products as $product) {
+            $belong = new Belong;
+            $belong->idList = $idList;
+            $belong->idCdiscount = $product;
+            $belong->save();
+            unset($belong);
+        }
 
     public static function getTotalByIdList($idList, ApiCdiscountSearchByIdProductRepository $apiCdiscountSearchByIdProduct){
         $products_ids = static::getByIdList($idList)->get();

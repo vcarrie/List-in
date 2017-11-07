@@ -3,8 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Tag;
-use App\Rate;
+
 
 class Liste extends Model
 {
@@ -22,17 +21,29 @@ class Liste extends Model
     }
 
     public function commentedBy(){
-        return $this->belongsToMany("App\Account", 'comments', 'idList', 'idAccount');
+        return $this->belongsToMany("App\User", 'comments', 'idList', 'idUser');
     }
 
     public function ratedBy(){
-        return $this->belongsToMany("App\Account", 'rates', 'idList', 'idAccount');
+        return $this->belongsToMany("App\User", 'rates', 'idList', 'idUser');
     }
 
     public function creator(){
-        return $this->belongsTo('App\Account', 'idCreator');
+        return $this->belongsTo('App\User', 'idCreator');
     }
 
+    public static function createList($name, $description, $idCreator){
+
+        $list = new Liste;
+
+        $list->listName = $name;
+        $list->description = $description;
+        $list->idCreator = $idCreator;
+
+        $list->save();
+
+        return $list->id;
+    }
 
 }
 
