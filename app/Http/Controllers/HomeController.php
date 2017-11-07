@@ -7,13 +7,15 @@ use App\Belong;
 use App\Categorize;
 use App\Liste;
 use App\Rate;
+use App\Repositories\ApiCdiscount\ApiCdiscountSearchByIdProductRepository;
 use Illuminate\Http\Request;
 use App\Tag;
 
 
 class HomeController extends Controller
 {
-    public function index(){
+    public function index()
+    {
 
         $top_5_ids = Categorize::top_5_most_used_tags();
 
@@ -22,64 +24,71 @@ class HomeController extends Controller
         return view('catalogue', compact('tags_final_tab'));
     }
 
-    public function research(){
+    public function research(ApiCdiscountSearchByIdProductRepository $apiCdiscountSearchByIdProduct)
+    {
+
+        ////////////////////////////////////Params received from request
         $tags = [14, 13];
 
-        $nb_list = 0;
+        $pagination = 0;
+
+        $sort_index = 2;
 
 
-        $intersect = Tag::find($tags[0])->lists;
-        foreach ($tags as $tag){
-           $intersect = $intersect->intersect(Tag::find($tag)->lists);
-        }
+        ////////////////////////////////////
 
-        $list_id = $intersect->pluck('id');
+
+
+
+        $all_lists_by_nb_tags = Categorize::getIdListsByNumberOfTags($tags)->get();
+
         $sorted_lists = array();
+        switch ($sort_index){
+            case 0://rating
 
-        foreach ($list_id as $id) {
+                foreach ($all_lists_by_nb_tags as $list) {
+                    $sorted_lists[] = [$list['NbTag'], Rate::averageForList($list['idList']), $list['idList']];
+                }
 
-            $average = Rate::averageForList($id);
-            $sorted_lists[] = [$average, $id];
+                rsort($sorted_lists);
+                break;
+
+            case 1://prix croissant
+                foreach ($all_lists_by_nb_tags as $list) {
+                    $sorted_lists[] = [$list['NbTag'], Belong::getTotalByIdList($list['idList'], $apiCdiscountSearchByIdProduct),  $list['idList']];
+                }
+
+                sort($sorted_lists);
+                break;
+
+            case 2://prix decroissant
+                foreach ($all_lists_by_nb_tags as $list) {
+                    $sorted_lists[] = [$list['NbTag'], Belong::getTotalByIdList($list['idList'], $apiCdiscountSearchByIdProduct),  $list['idList']];
+                }
+
+                rsort($sorted_lists);
+                break;
         }
 
-        rsort($sorted_lists);
 
-        $sorted_ids = array_column($sorted_lists, 1);
-        $final_lists = array();
+        $tab_to_return = array();
 
+        for ($i = 0; $i < 4; $i++) {
+            if (isset($sorted_lists[$pagination * 4 + $i])) {
+                //products
+                //prix total
+                //nb item
 
-        foreach ($sorted_ids as $id){
-            $final_lists[] = Liste::find($id);
+                $tab_to_return[] = [
+                    'list' => Liste::find($sorted_lists[$pagination * 4 + $i][2]),
+                    'avg' => $sorted_lists[$pagination * 4 + $i][1]
+                ];
+            }
         }
 
-        $idList_at_least_1_tag = Categorize::getByIdsTag($tags);
-        $List_at_least_1_tag = array();
-        foreach ($idList_at_least_1_tag as $categorize){
-            $List_at_least_1_tag[] = Liste::find($categorize['idList']);
-        }
+        return $tab_to_return;
 
-        $diff = array_diff($List_at_least_1_tag, $final_lists);
-
-        $ids_1_tag_lists = array();
-
-        foreach ($diff as $list){
-
-            $average = Rate::averageForList($list['id']);
-            $ids_1_tag_lists[] = [$average, $list['id']];
-
-        }
-
-        rsort($ids_1_tag_lists);
-
-        $sorted_ids_1_tag = array_column($ids_1_tag_lists, 1);
-        $final_lists_1_tag = array();
-
-        foreach ($sorted_ids_1_tag as $id){
-            $final_lists_1_tag[] = Liste::find($id);
-        }
-
-        $final_tab_lists_sorted = array_merge($final_lists, $final_lists_1_tag);
-
-        return $final_tab_lists_sorted;
     }
+
+
 }

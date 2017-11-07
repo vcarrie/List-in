@@ -14,12 +14,13 @@ class Categorize extends Model
         return static::all()->whereIn('idTag', $array);
     }
 
-    public function scopeAddTagCondition($query, $id){
-        return $query->where('idTag', '=', $id);
-    }
 
     public static function getByIdTag($idTag){
         return static::where('$idTag', '=', $idTag);
+    }
+
+    public static function getIdListsByNumberOfTags($tags){
+        return static::selectRaw('count(idTag) as NbTag, idList')->whereIn('idTag', $tags)->groupBy('idList')->orderBy(\DB::raw('count(idTag)'), 'DESC');
     }
 
     public static function most_used_tags(){
