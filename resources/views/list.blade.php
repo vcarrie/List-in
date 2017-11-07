@@ -5,19 +5,19 @@
 @section('mid-content')
     <div class="list-detail">
         <div class="list-header">
-            <h1>{{ $listjson['Name'] }}
+            <h1>{{ $listjson['list']['listName'] }}
                 <div>{{ $listjson['TotalPrice'] }} €</div>
             </h1>
-            <h5>par {{ $listjson['Creator'][0]['pseudo'] }}
+            <h5>par {{ $listjson['list']['creator']['pseudo'] }}
                 <button class="btn btn-default">Ajouter au panier</button>
             </h5>
             <h6>
-                @foreach ($listjson['Tags'] as $tag)
+                @foreach ($listjson['list']['Tags'] as $tag)
                     <span class="label label-default">{{ $tag['tagName'] }}</span>
                 @endforeach
             </h6>
             <p>
-                {{ $listjson['Description'] }}
+                {{ $listjson['list']['description'] }}
             </p>
         </div>
         <section class="cards-container">
