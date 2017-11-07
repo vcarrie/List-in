@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'firstName', 'lastName', 'email', 'password', 'admin',
     ];
 
     /**
@@ -26,4 +26,27 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public static function getByMail($mail){
+        return static::where('mail', '=', $mail);
+    }
+
+    public static function email_exists($mail){
+        $exists = false;
+        if(self::getByMail($mail)){ $exists = true; }
+
+        return $exists;
+    }
+
+    public function rates(){
+        return $this->belongsToMany('App\Liste', 'rates', 'idUser', 'idList');
+    }
+
+    public function comments(){
+        return $this->belongsToMany('App\Liste', 'comments', 'idUser', 'idList');
+    }
+
+    public function createdList(){
+        return $this->hasMany('App\Liste', 'idCreator', 'id');
+    }
 }

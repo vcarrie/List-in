@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Account;
+use App\User;
 use App\Belong;
 use App\Categorize;
 use App\Liste;

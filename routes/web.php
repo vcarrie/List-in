@@ -11,6 +11,7 @@
 |
 */
 
+Auth::routes();
 
 Route::get('/lists/user/{id}', 'ListController@getListsByIdAccount');
 Route::get('/lists', 'ListController@getAllLists');

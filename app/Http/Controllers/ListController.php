@@ -9,12 +9,12 @@ use App\Belong;
 use App\Repositories\Liste\ValidateCreateListRepository;
 use App\Tag;
 use App\Categorize;
-use App\Account;
+use App\User;
 
 class ListController extends Controller
 {
 
-    public function getListsByIdAccount($id)
+    public function getListsByIdUser($id)
     {
         return Liste::getByIdCreator($id)->get();
     }

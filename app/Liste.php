@@ -21,15 +21,15 @@ class Liste extends Model
     }
 
     public function commentedBy(){
-        return $this->belongsToMany("App\Account", 'comments', 'idList', 'idAccount');
+        return $this->belongsToMany("App\User", 'comments', 'idList', 'idUser');
     }
 
     public function ratedBy(){
-        return $this->belongsToMany("App\Account", 'rates', 'idList', 'idAccount');
+        return $this->belongsToMany("App\User", 'rates', 'idList', 'idUser');
     }
 
     public function creator(){
-        return $this->belongsTo('App\Account', 'idCreator');
+        return $this->belongsTo('App\User', 'idCreator');
     }
 
     public static function createList($name, $description, $idCreator){
