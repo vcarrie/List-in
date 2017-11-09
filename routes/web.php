@@ -42,3 +42,6 @@ Route::get('/catalogue', 'HomeController@index');
 Route::get('/tags', 'TagsController@getTags');
 
 
+Route::get('/contact', 'ContactController@create');
+Route::post('/contact', 'ContactController@store');
+
