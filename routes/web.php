@@ -32,6 +32,9 @@ Route::get('/auth/register', 'Authentication@register');
 Route::get('/getproductbykeyword', 'ApiCdiscountSearchByKeywordController@get');
 Route::post('/getproductbykeyword', 'ApiCdiscountSearchByKeywordController@post');
 
+Route::get('/removefromcart', 'CartController@RemoveFromCart');
+Route::get('/addtocart', 'CartController@addToCart');
+
 
 Route::get('/', 'HomeController@index');
 
