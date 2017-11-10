@@ -44,6 +44,21 @@
                                 <h5>Mon Panier</h5>
                             </a>
                         </li>
+
+                            @guest
+                                <li><a href="{{ route('login') }}">Login</a></li>
+                                @else
+                                    <li>
+                                    <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                                        Logout {{ Auth::user()->pseudo }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        {{ csrf_field() }}
+                                    </form>
+                                    </li>
+
+                            @endguest
                     </ul>
                 </div>
 
