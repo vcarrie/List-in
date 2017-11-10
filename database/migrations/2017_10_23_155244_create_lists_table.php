@@ -18,7 +18,7 @@ class CreateListsTable extends Migration
             $table->string('listName', 255);
             $table->text('description');
             $table->integer('idCreator')->unsigned();
-            $table->foreign('idCreator')->references('idAccount')->on('accounts');
+            $table->foreign('idCreator')->references('id')->on('user');
             $table->timestamps();
         });
     }

@@ -2,17 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ValidateCreateListRequest;
 use App\Repositories\ApiCdiscount\ApiCdiscountSearchByIdProductRepository;
 use App\Liste;
 use App\Belong;
+use App\Repositories\Liste\ValidateCreateListRepository;
 use App\Tag;
 use App\Categorize;
-use App\Account;
+use App\User;
 
 class ListController extends Controller
 {
 
-    public function getListsByIdAccount($id)
+    public function getListsByIdUser($id)
     {
         return Liste::getByIdCreator($id)->get();
     }
@@ -24,17 +26,11 @@ class ListController extends Controller
 
     public function getListById($id, ApiCdiscountSearchByIdProductRepository $apiCdiscountSearchByIdProduct)
     {
-        $products = Belong::getByIdList($id)->get();//Contains all the associated products ids
         $list = Liste::find($id);
         $creator = $list->creator->get();
         $Tags = $list->tags;
 
-        $rawlistjson = [];
-
-        foreach ($products as $product) {
-            $rawlistjson[] = $apiCdiscountSearchByIdProduct->searchWithIdProduct($product->idCdiscount);
-        }
-
+        $rawlistjson = Belong::getProductsByIdList($id, $apiCdiscountSearchByIdProduct);
 
         $itemsjson = [];
         $totalprice = 0;
@@ -74,6 +70,15 @@ class ListController extends Controller
 
         return view('list', compact('listjson', 'tags_final_tab'));
 
+    }
+
+    public function createList()
+    {
+        //return the view
+    }
+
+    public function validateCreateList(ValidateCreateListRequest $request, ValidateCreateListRepository $repository){
+        $repository->createList($request);
     }
 
 }

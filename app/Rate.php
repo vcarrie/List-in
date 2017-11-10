@@ -10,8 +10,8 @@ class Rate extends Model
         return static::where('idList', '=', $idList);
     }
 
-    public static function getByIdAccount($idAccount){
-        return static::where('idAccount', '=', $idAccount);
+    public static function getByIdUser($idUser){
+        return static::where('idUser', '=', $idUser);
     }
 
     public static function averageForList($id){

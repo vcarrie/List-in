@@ -8,7 +8,7 @@ use App\Tag;
 class TagsController extends Controller
 {
     public function getTags(){
-        $tags = Tag::all()->toJson();
+        $tags = Tag::all();
         return $tags;
     }
 }
