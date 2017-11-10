@@ -23,12 +23,6 @@ Route::middleware('auth')->group(function () { //ou du moins celui crée
 });
 
 
-
-Route::get('/auth/login', 'Authentication@login');
-Route::post('/auth/login', 'Authentication@checkLogin');
-Route::get('/auth/register', 'Authentication@register');
-
-
 Route::get('/getproductbykeyword', 'ApiCdiscountSearchByKeywordController@get');
 Route::post('/getproductbykeyword', 'ApiCdiscountSearchByKeywordController@post');
 
