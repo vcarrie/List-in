@@ -26,6 +26,7 @@ class Belong extends Model
             $belong->save();
             unset($belong);
         }
+    }
 
     public static function getTotalByIdList($idList, ApiCdiscountSearchByIdProductRepository $apiCdiscountSearchByIdProduct){
         $products_ids = static::getByIdList($idList)->get();

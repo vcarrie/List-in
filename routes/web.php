@@ -23,12 +23,6 @@ Route::middleware('auth')->group(function () { //ou du moins celui crée
 });
 
 
-
-Route::get('/auth/login', 'Authentication@login');
-Route::post('/auth/login', 'Authentication@checkLogin');
-Route::get('/auth/register', 'Authentication@register');
-
-
 Route::get('/getproductbykeyword', 'ApiCdiscountSearchByKeywordController@get');
 Route::post('/getproductbykeyword', 'ApiCdiscountSearchByKeywordController@post');
 
@@ -41,4 +35,7 @@ Route::get('/catalogue', 'HomeController@index');
 
 Route::get('/tags', 'TagsController@getTags');
 
+
+Route::get('/contact', 'ContactController@create');
+Route::post('/contact', 'ContactController@store');
 
