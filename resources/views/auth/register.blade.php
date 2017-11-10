@@ -169,16 +169,14 @@
                                         Se connecter
                                     </button>
 
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        Mot de passe oublié ?
+                                    <a class="btn btn-link" href="{{ route('password.request') }}">Mot de passe oublié ?
                                     </a>
                                 </div>
                             </div>
                         </form>
                     </div>
                 </div>
-            </div>
-            </div>
+            </div></div>
 
         </div>
     </div>
