@@ -26,6 +26,9 @@ Route::middleware('auth')->group(function () { //ou du moins celui crée
 Route::get('/getproductbykeyword', 'ApiCdiscountSearchByKeywordController@get');
 Route::post('/getproductbykeyword', 'ApiCdiscountSearchByKeywordController@post');
 
+Route::get('/removefromcart', 'CartController@RemoveFromCart');
+Route::get('/addtocart', 'CartController@addToCart');
+
 
 Route::get('/', 'HomeController@index');
 
