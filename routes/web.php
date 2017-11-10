@@ -18,8 +18,8 @@ Route::get('/lists', 'ListController@getAllLists');
 Route::get('/list/{id}', 'ListController@getListById');
 
 Route::middleware('auth')->group(function () { //ou du moins celui crée
-    Route::get('/list/create', 'ListController@createList');
-    Route::post('/list/create', 'ListController@validateCreateList');
+    Route::get('/create/list', 'ListController@createList');
+    Route::post('/create/list', 'ListController@validateCreateList');
 });
 
 
