@@ -331,7 +331,6 @@ header {
 
 	.cards-container {
 		text-align: left;
-		white-space: nowrap;
 
 		.card {
 			width: 250px;
@@ -383,7 +382,7 @@ header {
 				padding: 1.5rem;
 				text-align: left;
 				word-wrap: break-word;
-				height: 162px;
+				height: 160px;
 				overflow: hidden;
 
 				&> h4 {
@@ -471,6 +470,10 @@ header {
 		max-width: 600px;
 		margin: auto;
 
+		.cards-container {
+			text-align: center;
+		}
+
 		.list-header {
 
 			h1 {
@@ -496,11 +499,22 @@ header {
 				}
 			}
 		}
+
+		.list-images {
+			width: 100%;
+			text-align: center;
+
+			img {
+				cursor: pointer;
+				height: 7rem;
+				width: 7rem;
+			}
+		}
 	} // list-detail
 }
 
 .star-ratings-sprite {
-	background: url("../images/rating_empty.png") repeat-x;
+	background: url("../../../public/images/rating_empty.png") repeat-x;
 	font-size: 0;
 	height: 2rem;
 	line-height: 0;
@@ -511,7 +525,7 @@ header {
 }
 
 .star-ratings-sprite-rating {
-	background: url("../images/rating_filled.png") repeat-x;
+	background: url("../../../public/images/rating_filled.png") repeat-x;
 	background-position: 0 100%;
 	float: left;
 	height: 2rem;
