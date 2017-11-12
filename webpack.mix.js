@@ -11,8 +11,6 @@ let mix = require('laravel-mix');
  |
  */
 
-mix.sass('resources/assets/sass/theme.scss', 'public/css/theme.css')
-
 mix.scripts([
 	'resources/assets/js/vendor/jquery-3.2.1.min.js',
 	'resources/assets/js/vendor/modernizr-3.5.0.min.js',
@@ -27,7 +25,8 @@ mix.scripts([
 
 //mix.copyDirectory('resources/assets/images', 'public/images');
 
-mix.styles([
+mix.sass('resources/assets/sass/theme.scss', 'public/css/')
+   .styles([
 	'resources/assets/css/typography.css',
 	'resources/assets/css/browserfix.css',
 	'resources/assets/css/normalize.css',

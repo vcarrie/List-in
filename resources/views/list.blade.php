@@ -20,9 +20,18 @@
                 {{ $listjson['list']['description'] }}
             </p>
         </div>
+        <div class="list-images">
+            @foreach ($listjson['Items'] as $item)
+                <img data-bind="item-{{ $item['Id'] }}" src="{{ $item['Image'] }}" alt="{{ $item['Name'] }}" />
+            @endforeach
+        </div>
         <section class="cards-container">
             @foreach ($listjson['Items'] as $item)
-                <div class="card">
+                @if ($loop->first)
+                <div id="item-{{ $item['Id'] }}" class="card">
+                @else
+                <div id="item-{{ $item['Id'] }}" class="card hidden">
+                @endif
                     <div class="card-snapshots">
                         <img src="{{ $item['Image'] }}"/>
                     </div>
