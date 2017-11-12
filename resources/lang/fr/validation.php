@@ -100,8 +100,8 @@ return [
     */
 
     'custom'               => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'cgu' => [
+            'accepted' => 'Veuillez accepter nos conditions d\'utilisation',
         ],
     ],
 
