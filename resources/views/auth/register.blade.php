@@ -112,8 +112,21 @@
                                             </label>
                                             @if ($errors->has('cgu'))
                                                 <span class="help-block">
-                                          <strong>{{ $errors->first('cgu') }}</strong>
-                                        </span>
+                                                    <strong>{{ $errors->first('cgu') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group{{ $errors->has('g-recaptcha-response') ? ' has-error' : '' }}">
+                                    <div class="col-md-8 col-md-offset-3">
+                                        <div class="checkbox">
+                                            {!! Recaptcha::render() !!}
+                                            @if ($errors->has('g-recaptcha-response'))
+                                                <span class="help-block">
+                                                    <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
+                                                </span>
                                             @endif
                                         </div>
                                     </div>
