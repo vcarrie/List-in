@@ -7,13 +7,12 @@
     <aside>
         <h3>Il y a 12 listes associées aux tags "..."</h3>
         <p>Trier par
-            <select class="selectpicker">
-                <option>Meilleures notes</option>
-                <option>Popularité</option>
-                <option>Prix croissant</option>
-                <option>Prix décroissant</option>
-                <option>Moins d'articles</option>
-                <option>Plus d'articles</option>
+            <select name="sorting_mode" class="selectpicker">
+                <option value="0">Meilleures notes</option>
+                <option value="1">Prix croissant</option>
+                <option value="2">Prix décroissant</option>
+                <option value="3">Moins d'articles</option>
+                <option value="4">Plus d'articles</option>
             </select>
         </p>
     </aside>

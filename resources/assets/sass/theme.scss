@@ -194,24 +194,21 @@ header {
 			}
 		}
 
-		button {
+		input[type="submit"] {
+			height: 4.6rem;
 			padding: 0.9rem 2rem;
-			@media screen and (max-width: $bootstrap-sm) {
-				padding: 0.9rem 1.5rem;
-			}
+			width: 15%;
 			@media screen and (max-width: 320px) {
 				margin-top: 0.8rem;
 				width: 70%;
 			}
-			font-size: 2rem;
 			border: 0px solid $color_input_border;
-			background-color: $color_link_hover;
-			color: $color_text_white;
-			vertical-align: middle;
 			-webkit-border-radius: 50px;
 			-moz-border-radius: 50px;
 			border-radius: 50px;
 			outline-color: $color_background_grey;
+			background: $color_link_hover url('/public/images/icon-search.png') no-repeat center;
+			background-size: 2rem;
 		}
 
 	}
@@ -514,7 +511,7 @@ header {
 }
 
 .star-ratings-sprite {
-	background: url("../../../public/images/rating_empty.png") repeat-x;
+	background: url("/public/images/rating_empty.png") repeat-x;
 	font-size: 0;
 	height: 2rem;
 	line-height: 0;
@@ -525,7 +522,7 @@ header {
 }
 
 .star-ratings-sprite-rating {
-	background: url("../../../public/images/rating_filled.png") repeat-x;
+	background: url("/public/images/rating_filled.png") repeat-x;
 	background-position: 0 100%;
 	float: left;
 	height: 2rem;
