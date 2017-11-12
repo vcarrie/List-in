@@ -27,8 +27,6 @@ class ListController extends Controller
     public function getListById($id, ApiCdiscountSearchByIdProductRepository $apiCdiscountSearchByIdProduct)
     {
         $list = Liste::find($id);
-        $creator = $list->creator->get();
-        $Tags = $list->tags;
 
         $rawlistjson = Belong::getProductsByIdList($id, $apiCdiscountSearchByIdProduct);
 
@@ -39,6 +37,8 @@ class ListController extends Controller
 
             $itemsjson[] = array(
                 'Price' => $obj->BestOffer->SalePrice,
+                'Id' => $obj->Id,
+                'Price' => str_replace('.',',',round($obj->BestOffer->SalePrice,2)),
                 'Name' => $obj->Name,
                 'Description' => $obj->Description,
                 'Image' => $obj->MainImageUrl
@@ -46,20 +46,9 @@ class ListController extends Controller
             $totalprice += $obj->BestOffer->SalePrice;
         }
 
-//        $listjson = array(
-//            'Id' => $id,
-//            'Name' => $list->listName,
-//            'Description' => $list->description,
-//            'Creator' => $creator,
-//            'Tags' => $Tags,
-//            'TotalPrice' => $totalprice,
-//            'ItemAmount' => count($itemsjson),
-//            'Items' => $itemsjson
-//        );
-
         $listjson = array(
             'list' => $list,
-            'TotalPrice' => $totalprice,
+            'TotalPrice' => str_replace('.',',',round($totalprice,2)),
             'ItemAmount' => count($itemsjson),
             'Items' => $itemsjson
         );
