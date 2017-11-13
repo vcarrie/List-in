@@ -104,11 +104,11 @@
                                 </div>
 
                                 <div class="form-group{{ $errors->has('cgu') ? ' has-error' : '' }}">
-                                    <div class="col-md-8 col-md-offset-3">
+                                    <div class="col-md-offset-3">
                                         <div class="checkbox">
                                             <label>
                                                 <input type="checkbox" name="cgu" {{ old('cgu') ? 'checked' : '' }}>
-                                                J'accepte les <a href="/cgu">conditions d'utilisation</a>
+                                                J'accepte les <a href="/cgu"style="color:#e03913">conditions d'utilisation</a>
                                             </label>
                                             @if ($errors->has('cgu'))
                                                 <span class="help-block">
@@ -120,7 +120,7 @@
                                 </div>
 
                                 <div class="form-group{{ $errors->has('g-recaptcha-response') ? ' has-error' : '' }}">
-                                    <div class="col-md-8 col-md-offset-3">
+                                    <div class="col-md-offset-2">
                                         <div class="checkbox">
                                             {!! Recaptcha::render() !!}
                                             @if ($errors->has('g-recaptcha-response'))
@@ -134,7 +134,7 @@
 
                                 <div class="form-group">
                                     <div class="col-md-6 col-md-offset-4">
-                                        <button type="submit" class="btn btn-primary">
+                                        <button type="submit" class="btn btn-primary"style="background:#e03913; border: none">
                                             S'enregistrer
                                         </button>
                                     </div>
@@ -191,7 +191,7 @@
                                 <div class="form-group">
                                     <div class="col-md-6 col-md-offset-4">
                                         <div class="checkbox">
-                                            <label>
+                                            <label style="color:#e03913;">
                                                 <input type="checkbox"
                                                        name="remember" {{ old('remember') ? 'checked' : '' }}> Se
                                                 souvenir de moi
@@ -201,12 +201,12 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <div class="col-md-8 col-md-offset-4">
-                                        <button type="submit" class="btn btn-primary">
+                                    <div class="col-md-8">
+                                        <button type="submit" class="btn btn-primary  col-md-offset-7" style="background:#e03913; border: none">
                                             Se connecter
                                         </button>
 
-                                        <a class="btn btn-link" href="{{ route('password.request') }}">Mot de passe
+                                        <a class="btn btn-link  col-md-offset-6" href="{{ route('password.request') }}" style="color:#e03913">Mot de passe
                                             oublié ?
                                         </a>
                                     </div>
