@@ -17,12 +17,13 @@ class Belong extends Model
         return static::where('$idCdiscount', '=', $idCdiscount);
     }
 
-    public static function createList($idList, $products)
+    public static function createList($idList, $products, $quantity)
     {
         foreach ($products as $product) {
             $belong = new Belong;
             $belong->idList = $idList;
             $belong->idCdiscount = $product;
+            $belong->quantity = $quantity;
             $belong->save();
             unset($belong);
         }
@@ -35,7 +36,7 @@ class Belong extends Model
             $theprod = $apiCdiscountSearchByIdProduct->searchWithIdProduct($product->idCdiscount);
 
             if(isset($theprod->Products[0])){
-                $total += $theprod->Products[0]->BestOffer->SalePrice;
+                $total += $theprod->Products[0]->BestOffer->SalePrice * $products_ids->quantity;
             }
         }
 
@@ -48,7 +49,7 @@ class Belong extends Model
         $products = array();
 
         foreach ($products_ids as $product) {
-            $products[] = $apiCdiscountSearchByIdProduct->searchWithIdProduct($product->idCdiscount);
+            $products[] = [$apiCdiscountSearchByIdProduct->searchWithIdProduct($product->idCdiscount), $product->quantity];
         }
 
 

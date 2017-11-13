@@ -16,6 +16,7 @@ class CreateBelongsTable extends Migration
         Schema::create('belongs', function (Blueprint $table) {
             $table->integer('idList')->unsigned();
             $table->string('idCdiscount');
+            $table->integer('quantity');
             $table->primary(['idList', 'idCdiscount']);
             $table->foreign('idList')->references('id')->on('lists');
             $table->foreign('idCdiscount')->references('idCdiscount')->on('products');
