@@ -4,8 +4,8 @@
 
 @section('main')
 
-    <div class="row" style="margin-top: 2%">
-        <div class="col-md-8 col-md-offset-2" style="padding: 30px; background-color: #FFFFFF">
+    <div class="row cgu">
+        <div class="col-md-8 col-md-offset-2">
             <h1>Conditions Générales d'Utilisat ion : listin.fr</h1></br>
 
 
@@ -46,7 +46,8 @@
                     Utilisateur sur le site. L'identifiant et le mot de passe permettent à l'Utilisateur d'accéder à des
                     services réservés aux membres du site. Le mot de passe est confidentiel.
                 </li>
-            </ul></br>
+            </ul>
+            </br>
 
 
             <h2>Article 4 : Accès aux services</h2>
@@ -132,7 +133,8 @@
                 <li>son espace personnel</li>
                 <li>un formulaire de contact</li>
                 <li>par mail à listincontact@gmail.com</li>
-            </ul></br>
+            </ul>
+            </br>
 
 
             <h2>Article 7 : Responsabilité et force majeure</h2>
@@ -221,7 +223,7 @@
                 La société éditrice s'engage à faire figurer le nom du membre à proximité de chaque utilisation de sa
                 publication.
             </p>
-            <div>
-                <div>
+        </div>
+    </div>
 
 @endsection

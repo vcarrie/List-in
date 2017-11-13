@@ -4,8 +4,8 @@
 
 @section('main')
 
-    <div class="row" style="margin-top: 2%">
-        <div class="col-md-8 col-md-offset-2" style="padding: 30px; background-color: #FFFFFF">
+    <div class="row ml" >
+        <div class="col-md-8 col-md-offset-2">
             <h1>Mentions légales du site List'In</h1></br>
 
             <p>
@@ -118,6 +118,6 @@
                 Pour tout signalement de contenus ou d'activités illicites, l'Utilisateur peut contacter l'Editeur à
                 l'adresse suivante : listincontact@gmail.com.
             </p>
-            <div>
-                <div>
+        </div>
+    </div>
 @endsection

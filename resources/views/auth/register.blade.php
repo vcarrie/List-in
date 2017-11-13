@@ -9,7 +9,7 @@
                 <!-- PARTIE INSCRIPTION -->
                 <div class="col-md-5 col-md-offset-1">
                     <div class="panel panel-default">
-                        <div class="panel-heading">S'inscrire</div>
+                        <div class="panel-heading"><strong>Inscrivez-vous pour profiter de tout notre site !</strong></div>
                         @if (session('confirmation-success'))
                             <div class="alert alert-success">
                                 {{ session('confirmation-success') }}
@@ -108,7 +108,7 @@
                                         <div class="checkbox">
                                             <label>
                                                 <input type="checkbox" name="cgu" {{ old('cgu') ? 'checked' : '' }}>
-                                                J'accepte les <a href="/cgu"style="color:#e03913">conditions d'utilisation</a>
+                                                J'accepte les <a href="/cgu">conditions d'utilisation</a>
                                             </label>
                                             @if ($errors->has('cgu'))
                                                 <span class="help-block">
@@ -134,7 +134,7 @@
 
                                 <div class="form-group">
                                     <div class="col-md-6 col-md-offset-4">
-                                        <button type="submit" class="btn btn-primary"style="background:#e03913; border: none">
+                                        <button class="btn btn-primary">
                                             S'enregistrer
                                         </button>
                                     </div>
@@ -148,7 +148,7 @@
                 <!-- PARTIE CONNEXION -->
                 <div class="col-md-5">
                     <div class="panel panel-default">
-                        <div class="panel-heading">Connexion</div>
+                        <div class="panel-heading"><strong>Déjà inscrit? connectez-vous !</strong></div>
                         <div class="panel-body">
                             @if (session('confirmation-danger'))
                                 <div class="alert alert-danger">
@@ -202,11 +202,11 @@
 
                                 <div class="form-group">
                                     <div class="col-md-8">
-                                        <button type="submit" class="btn btn-primary  col-md-offset-7" style="background:#e03913; border: none">
+                                        <button type="submit" class="btn btn-primary  col-md-offset-7">
                                             Se connecter
                                         </button>
 
-                                        <a class="btn btn-link  col-md-offset-6" href="{{ route('password.request') }}" style="color:#e03913">Mot de passe
+                                        <a class="btn btn-link  col-md-offset-6" href="{{ route('password.request') }}">Mot de passe
                                             oublié ?
                                         </a>
                                     </div>
