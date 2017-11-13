@@ -100,9 +100,14 @@ return [
     */
 
     'custom'               => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'cgu' => [
+            'accepted' => 'Veuillez accepter nos conditions d\'utilisation',
         ],
+        'g-recaptcha-response' => [
+            'required' => 'Veuillez confirmer que vous n\'êtes pas un robot.',
+            'recaptcha' => 'Veuillez confirmer que vous n\'êtes pas un robot.',
+        ],
+
     ],
 
     /*
