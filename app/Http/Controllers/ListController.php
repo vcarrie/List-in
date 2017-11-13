@@ -63,7 +63,7 @@ class ListController extends Controller
 
     public function createList()
     {
-        //return the view
+        return view("createList");
     }
 
     public function validateCreateList(ValidateCreateListRequest $request, ValidateCreateListRepository $repository){
