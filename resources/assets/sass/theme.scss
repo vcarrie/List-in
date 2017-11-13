@@ -23,6 +23,7 @@ body {
 
 main {
 	margin-bottom: 2rem;
+	text-align: -moz-center;
 }
 
 /* HEADER
@@ -380,7 +381,7 @@ header {
 
 			.card-body {
 				padding: 1.5rem;
-				text-align: left;
+				text-align: center;
 				word-wrap: break-word;
 				height: 160px;
 				overflow: hidden;
