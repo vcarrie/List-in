@@ -1,12 +1,25 @@
-function Catalogue(elemForm, elemContainer) {
+function Catalogue() {
 
-	this.elemForm = $(elemForm);
-	this.elemContainer = $(elemContainer);
-	this.elemTagsInput = $(elemForm).find('input.tags-input');
-	this.jsonTagsRoute = '/tags';
-	this.suggestedTagsLimit = 6;
+    this.ready = false;
+
+	this.elemForm = $('#search-region form');
+	this.elemContainer = $('.mid-content .cards-container');
+	this.elemTagsInput = $(this.elemForm).find('input.tags-input');
+	this.elemSortSelect = $('select[name="sorting_mode"]');
+    this.jsonTagsRoute = '/tags';
+    this.jsonListsRoute = '/research';
+	this.typeaheadSuggestedTagsLimit = 6;
 	this.tagsMap = {};
 	this.tags = [];
+
+    this.setReady = function() {
+        this.ready = true;
+        console.log("Catalogue initialized.");
+    };
+
+    this.isReady = function() {
+        return this.ready;
+    };
 
     this.init = function() {
 		if (this.elemForm && this.elemContainer && this.elemTagsInput) {
@@ -19,14 +32,14 @@ function Catalogue(elemForm, elemContainer) {
 		        success: this.ajaxJsonTagsSuccess
 		    });
 
-		    this.elemForm.submit(this.submitTags);
+		    this.elemForm.submit(this.submitTags.bind(this));
 		} else {
 			this.initError();
 		}
     };
 
     this.initError = function() {
-
+        console.warn('No catalogue found on this page.');
     };
 
     this.ajaxJsonTagsError = function(result, status, error) {
@@ -36,12 +49,18 @@ function Catalogue(elemForm, elemContainer) {
     this.ajaxJsonTagsSuccess = function(jsonTags, status) {
     	for (var i in jsonTags) {
     		var tag = jsonTags[i];
-    		this.tagsMap[tag.tagName] = tag.idTag;
+    		this.tagsMap[tag.tagName] = tag.id;
     		this.tags.push(tag.tagName);
     	}
 
-    	this.buildTagsinput();
-    	this.buildTypeahead();
+        try {
+    	   this.buildTagsinput();
+    	   this.buildTypeahead();
+
+           this.setReady();
+        } catch (e) {
+            console.log(e);
+        }
     };
 
     this.typeaheadSubstringMatcher = function(strs) {
@@ -91,7 +110,7 @@ function Catalogue(elemForm, elemContainer) {
     this.buildTagsinput = function() {
     	this.elemTagsInput.tagsinput();
 
-    	// here we have a beautiful function which brilliantly uses 2 contexts --'
+    	//  double context
     	var context = this;
     	$('span.popular-tag').click(function() {
             context.elemTagsInput.tagsinput('add', $(this).text());
@@ -108,7 +127,7 @@ function Catalogue(elemForm, elemContainer) {
             minLength: 1,
             autoselect: true
         },{
-            limit: this.suggestedTagsLimit,
+            limit: this.typeaheadSuggestedTagsLimit,
             name: 'availableTags',
             displayKey: 'value',
             source: this.typeaheadSubstringMatcher(this.tags),
@@ -134,8 +153,105 @@ function Catalogue(elemForm, elemContainer) {
         });
     };
 
+    // bootstrap tagsinput 'obj as tags' is too messy so I use my own
+    this.tagsNameToId = function(tags) {
+        var ids = [];
+        for (var i in tags) {
+            ids.push(this.tagsMap[tags[i]]);
+        }
+        return ids;
+    };
+
+    this.getSearchTagsName = function() {
+        return this.elemTagsInput.val().split(',');
+    };
+
+    this.getSearchTagsIds = function() {
+        return this.tagsNameToId(this.getSearchTagsName());
+    };
+
+    this.getSearchSort = function() {
+        return this.elemSortSelect ? this.elemSortSelect.val() : 0;
+    };
+
     this.submitTags = function(e) {
     	e.preventDefault();
-    }
+        if (this.isReady()) {
+
+            var tags = this.getSearchTagsIds();
+            var sort = this.getSearchSort();
+            if (tags.length > 0) {
+                this.fetchLists(tags, 0, sort);
+            }
+
+        }
+        return false;
+    };
+
+    this.fetchLists = function(tags, pagination, sort) {
+        console.log('Fetch Lists: '+tags+' &'+pagination+' &'+sort);
+        $.ajax({
+            url: this.jsonListsRoute,
+            type: 'GET',
+            dataType: 'json',
+            data: {
+                tags: tags,
+                pagination: pagination,
+                sort: sort
+            },
+            context: this,
+            error: this.fetchListsError,
+            success: this.updateDisplayedLists
+        });
+    };
+
+    this.fetchListsError = function(result, status, error) {
+        console.error('Error 500: lists couldn\'t be retrieved.');
+    };
+
+    this.updateDisplayedLists = function(listsJson) {
+        console.log(listsJson);
+        $(this.elemContainer).html("");
+
+        for (var i in listsJson) {
+            var cardHtml = this.templateListCard(listsJson[i]);
+            $(this.elemContainer).append($(cardHtml));
+        }
+    };
+
+    this.templateListCard = function(listJson) {
+        var card = ''
+        +'<div class="card">'
+        +    '<div class="card-header">'
+        +        '<div class="star-ratings-sprite"><span style="width: 55%" class="star-ratings-sprite-rating"></span>'
+        +        '</div>'
+        +    '</div>'
+        +    '<div class="card-snapshots">'
+        +        '<img src="../../public/images/content/Cocktails_Gin/indian-tonic.jpg"/>'
+        +        '<img src="../../public/images/content/Cocktails_Gin/gin-37-5deg-gordon-s-london-dry-70cl.jpg"/>'
+        +        '<img src="../../public/images/content/Cocktails_Gin/bjorg-pur-jus-de-citrons-de-sicile-25cl.jpg"/>'
+        +        '<span>+2</span>'
+        +    '</div>'
+        +    '<div class="card-body">'
+        +        '<h4 title="'+listJson.list.listName+'">'+listJson.list.listName+'</h4>'
+        +        '<p>'+listJson.list.description+'</p>'
+        +    '</div>'
+        +    '<div class="card-footer">'
+        +        '<table>'
+        +            '<tr>'
+        +                '<td class="card-item-count">3 articles</td>'
+        +                '<td class="card-price" rowspan="2">'+listJson.avg+' €</td>'
+        +            '</tr>'
+        +            '<tr>'
+        +                '<td class="card-item-count-opt">dont 1 optionnel</td>'
+        +            '</tr>'
+        +        '</table>'
+        +    '</div>'
+        +    '<button>Voir la liste</button>'
+        +    '<button>Ajouter au panier</button>'
+        +'</div>';
+
+        return card;
+    };
 
 }

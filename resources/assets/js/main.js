@@ -1,6 +1,6 @@
 $(function () {
 
-    var catalogue = new Catalogue('#search-region form', '.mid-content .cards-container');
+    var catalogue = new Catalogue();
     catalogue.init();
 
     $('.list-images img').click(function() {
