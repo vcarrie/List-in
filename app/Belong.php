@@ -36,7 +36,7 @@ class Belong extends Model
             $theprod = $apiCdiscountSearchByIdProduct->searchWithIdProduct($product->idCdiscount);
 
             if(isset($theprod->Products[0])){
-                $total += $theprod->Products[0]->BestOffer->SalePrice * $products_ids->quantity;
+                $total += $theprod->Products[0]->BestOffer->SalePrice * $product->quantity;
             }
         }
 
