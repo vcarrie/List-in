@@ -10,8 +10,17 @@ class Categorize extends Model
         return static::where('idList', '=', $idList);
     }
 
+    public static function getByIdsTag($array){
+        return static::all()->whereIn('idTag', $array);
+    }
+
+
     public static function getByIdTag($idTag){
         return static::where('$idTag', '=', $idTag);
+    }
+
+    public static function getIdListsByNumberOfTags($tags){
+        return static::selectRaw('count(idTag) as NbTag, idList')->whereIn('idTag', $tags)->groupBy('idList')->orderBy(\DB::raw('count(idTag)'), 'DESC');
     }
 
     public static function most_used_tags(){
@@ -40,5 +49,15 @@ class Categorize extends Model
         }
 
         return $ids_most_used;
+    }
+
+    public static function createList($idList, $tags){
+        foreach ($tags as $tag){
+            $categorize = new Categorize;
+            $categorize->idTag = $tag;
+            $categorize->idList = $idList;
+            $categorize->save();
+            unset($categorize);
+        }
     }
 }

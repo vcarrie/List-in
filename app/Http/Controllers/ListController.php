@@ -2,16 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ValidateCreateListRequest;
 use App\Repositories\ApiCdiscount\ApiCdiscountSearchByIdProductRepository;
 use App\Liste;
 use App\Belong;
+use App\Repositories\Liste\ValidateCreateListRepository;
 use App\Tag;
 use App\Categorize;
+use App\User;
 
 class ListController extends Controller
 {
 
-    public function getListsByIdAccount($id)
+    public function getListsByIdUser($id)
     {
         return Liste::getByIdCreator($id)->get();
     }
@@ -23,15 +26,10 @@ class ListController extends Controller
 
     public function getListById($id, ApiCdiscountSearchByIdProductRepository $apiCdiscountSearchByIdProduct)
     {
-        $products = Belong::getByIdList($id)->get();//Contains all the associated products ids
+        $list = Liste::find($id);
 
-        $rawlistjson = [];
+        $rawlistjson = Belong::getProductsByIdList($id, $apiCdiscountSearchByIdProduct);
 
-        foreach ($products as $product) {
-            $rawlistjson[] = $apiCdiscountSearchByIdProduct->searchWithIdProduct($product->idCdiscount);
-        }
-
-        // we need to refactor the json to help its integration into the view
         $itemsjson = [];
         $totalprice = 0;
         foreach ($rawlistjson as $item) {
@@ -39,6 +37,8 @@ class ListController extends Controller
 
             $itemsjson[] = array(
                 'Price' => $obj->BestOffer->SalePrice,
+                'Id' => $obj->Id,
+                'Price' => str_replace('.',',',round($obj->BestOffer->SalePrice,2)),
                 'Name' => $obj->Name,
                 'Description' => $obj->Description,
                 'Image' => $obj->MainImageUrl
@@ -46,16 +46,9 @@ class ListController extends Controller
             $totalprice += $obj->BestOffer->SalePrice;
         }
 
-        // needs implementation
-        $listdata = Liste::getByIdList($id);
-
         $listjson = array(
-            'Id' => $id,
-            'Name' => "Liste",
-            'Description' => "Description",
-            'Creator' => "Creator",
-            'Tags' => array("tag1", "tag2"),
-            'TotalPrice' => $totalprice,
+            'list' => $list,
+            'TotalPrice' => str_replace('.',',',round($totalprice,2)),
             'ItemAmount' => count($itemsjson),
             'Items' => $itemsjson
         );
@@ -65,6 +58,16 @@ class ListController extends Controller
         $tags_final_tab = Tag::getByIdsTag($top_5_ids);
 
         return view('list', compact('listjson', 'tags_final_tab'));
+
+    }
+
+    public function createList()
+    {
+        //return the view
+    }
+
+    public function validateCreateList(ValidateCreateListRequest $request, ValidateCreateListRepository $repository){
+        $repository->createList($request);
     }
 
 }

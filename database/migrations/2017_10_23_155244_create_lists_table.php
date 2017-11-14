@@ -14,11 +14,11 @@ class CreateListsTable extends Migration
     public function up()
     {
         Schema::create('listes', function (Blueprint $table) {
-            $table->increments('idList');
+            $table->increments('id');
             $table->string('listName', 255);
             $table->text('description');
             $table->integer('idCreator')->unsigned();
-            $table->foreign('idCreator')->references('idAccount')->on('accounts');
+            $table->foreign('idCreator')->references('id')->on('user');
             $table->timestamps();
         });
     }

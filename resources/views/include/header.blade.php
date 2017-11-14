@@ -27,15 +27,9 @@
                             </a>
                         </li>
                         <li>
-                            <a tabindex="1" href="#">
+                            <a tabindex="1" href="/create/list">
                                 <img alt="créer une liste" src="../../../public/images/icon-new-list.png"/>
                                 <h5>Créer une liste</h5>
-                            </a>
-                        </li>
-                        <li>
-                            <a tabindex="1" href="#">
-                                <img alt="mon compte" src="../../../public/images/icon-account.png"/>
-                                <h5>Mon Compte</h5>
                             </a>
                         </li>
                         <li>
@@ -44,6 +38,35 @@
                                 <h5>Mon Panier</h5>
                             </a>
                         </li>
+
+
+
+                            @guest
+                                <li>
+                                    <a href="{{ route('login') }}" tabindex="1">
+                                        <img alt="connexion" src="../../../public/images/icon-account.png"/>
+                                        <h5>Se connecter</h5>
+                                    </a>
+
+                                </li>
+                                @else
+                                    <li>
+                                        <a tabindex="1" href="#">
+                                            <img alt="mon compte" src="../../../public/images/icon-account.png"/>
+                                            <h5>Mon Compte</h5>
+                                        </a>
+                                    </li>
+                                    <li>
+                                     <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                                         <img alt="mon compte" src="../../../public/images/icon-deconnexion.png"/>
+                                         <h5>Se déconnecter</h5>
+                                     </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        {{ csrf_field() }}
+                                    </form>
+                                    </li>
+                            @endguest
                     </ul>
                 </div>
 

@@ -1,7 +1,14 @@
 $(function () {
 
-    var catalogue = new Catalogue('#search-region form', '.mid-content .cards-container');
+    var catalogue = new Catalogue();
     catalogue.init();
+
+    $('.list-images img').click(function() {
+    	var item_id = $(this).attr('data-bind');
+    	$('.list-detail .card').addClass('hidden');
+    	$('#'+item_id).removeClass('hidden');
+    });
+
 
     /* ACCESSIBILITY CORRECTIONS
     –––––––––––––––––––––––––––––––––––––––––––––––––– */

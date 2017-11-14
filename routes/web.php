@@ -11,59 +11,40 @@
 |
 */
 
-//Route::get('/', 'HomeController@index');
-
+Auth::routes();
 
 Route::get('/lists/user/{id}', 'ListController@getListsByIdAccount');
 Route::get('/lists', 'ListController@getAllLists');
-
 Route::get('/list/{id}', 'ListController@getListById');
 
-Route::get('/auth/login', 'Authentication@login');
-
-Route::post('/auth/login', 'Authentication@checkLogin');
-
-Route::get('/auth/register', 'Authentication@register');
-
-Route::get('/getproductbykeyword', 'ApiCdiscountSearchByKeywordController@get');
-Route::post('/getproductbykeyword', 'ApiCdiscountSearchByKeywordController@post');
-Route::get('/liste', function () {
-    return view('list');
+Route::middleware('auth')->group(function () { //ou du moins celui crée
+    Route::get('/create/list', 'ListController@createList');
+    Route::post('/create/list', 'ListController@validateCreateList');
 });
 
 
+Route::get('/getproductbykeyword', 'ApiCdiscountSearchByKeywordController@get');
+Route::post('/getproductbykeyword', 'ApiCdiscountSearchByKeywordController@post');
+
+Route::get('/removefromcart', 'CartController@RemoveFromCart');
+Route::get('/addtocart', 'CartController@addToCart');
+
 
 Route::get('/', 'HomeController@index');
+
+Route::get('/research', 'HomeController@research');
 
 Route::get('/catalogue', 'HomeController@index');
 
 Route::get('/tags', 'TagsController@getTags');
 
 
-//
+Route::get('/contact', 'ContactController@create');
+Route::post('/contact', 'ContactController@store');
 
-Route::get('/liste/{id}', 'ListController@show');
+Route::get('/user/{id}', 'UserController@show');
+Route::get('/myaccount', 'UserController@myAccount');
 
-Route::get('/auth', function() {
-    return view('auth');
-});
+Route::get('/cgu', 'FooterController@CGU');
+Route::get('/mentionslegales', 'FooterController@mentionsLegales');
 
-Route::get('/a-propos', function () {
-    return view('about');
-});
-
-Route::get('/mentions-legales', function () {
-    return view('legal');
-});
-
-Route::get('/cgu', function () {
-    return view('cgu');
-});
-
-Route::get('/sitemap', function () {
-    return view('sitemap');
-});
-
-Route::get('/contact', function () {
-    return view('contact');
-});
