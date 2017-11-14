@@ -9,7 +9,7 @@
                 <!-- PARTIE INSCRIPTION -->
                 <div class="col-md-5 col-md-offset-1">
                     <div class="panel panel-default">
-                        <div class="panel-heading">S'inscrire</div>
+                        <div class="panel-heading"><strong>Inscrivez-vous pour profiter de tout notre site !</strong></div>
                         @if (session('confirmation-success'))
                             <div class="alert alert-success">
                                 {{ session('confirmation-success') }}
@@ -104,7 +104,7 @@
                                 </div>
 
                                 <div class="form-group{{ $errors->has('cgu') ? ' has-error' : '' }}">
-                                    <div class="col-md-8 col-md-offset-3">
+                                    <div class="col-md-offset-3">
                                         <div class="checkbox">
                                             <label>
                                                 <input type="checkbox" name="cgu" {{ old('cgu') ? 'checked' : '' }}>
@@ -120,7 +120,7 @@
                                 </div>
 
                                 <div class="form-group{{ $errors->has('g-recaptcha-response') ? ' has-error' : '' }}">
-                                    <div class="col-md-8 col-md-offset-3">
+                                    <div class="col-md-offset-2">
                                         <div class="checkbox">
                                             {!! Recaptcha::render() !!}
                                             @if ($errors->has('g-recaptcha-response'))
@@ -134,7 +134,7 @@
 
                                 <div class="form-group">
                                     <div class="col-md-6 col-md-offset-4">
-                                        <button type="submit" class="btn btn-primary">
+                                        <button class="btn btn-primary">
                                             S'enregistrer
                                         </button>
                                     </div>
@@ -148,7 +148,7 @@
                 <!-- PARTIE CONNEXION -->
                 <div class="col-md-5">
                     <div class="panel panel-default">
-                        <div class="panel-heading">Connexion</div>
+                        <div class="panel-heading"><strong>Déjà inscrit? connectez-vous !</strong></div>
                         <div class="panel-body">
                             @if (session('confirmation-danger'))
                                 <div class="alert alert-danger">
@@ -191,7 +191,7 @@
                                 <div class="form-group">
                                     <div class="col-md-6 col-md-offset-4">
                                         <div class="checkbox">
-                                            <label>
+                                            <label style="color:#e03913;">
                                                 <input type="checkbox"
                                                        name="remember" {{ old('remember') ? 'checked' : '' }}> Se
                                                 souvenir de moi
@@ -201,12 +201,12 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <div class="col-md-8 col-md-offset-4">
-                                        <button type="submit" class="btn btn-primary">
+                                    <div class="col-md-8">
+                                        <button type="submit" class="btn btn-primary  col-md-offset-7">
                                             Se connecter
                                         </button>
 
-                                        <a class="btn btn-link" href="{{ route('password.request') }}">Mot de passe
+                                        <a class="btn btn-link  col-md-offset-6" href="{{ route('password.request') }}">Mot de passe
                                             oublié ?
                                         </a>
                                     </div>
