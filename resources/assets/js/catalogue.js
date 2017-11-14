@@ -153,7 +153,7 @@ function Catalogue() {
         });
     };
 
-    // bootstrap tagsinput 'obj as tags' is too messy so I use my own
+    // bootstrap tagsinput 'obj as tags' is too messy so I use a map
     this.tagsNameToId = function(tags) {
         var ids = [];
         for (var i in tags) {

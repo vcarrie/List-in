@@ -12,7 +12,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">
+                    <a class="navbar-brand" href="/">
                         <img class="logo img-responsive" src="../../../public/images/Logo_V4_transparent.png"
                              alt="logo listin"/>
                     </a>
@@ -56,6 +56,7 @@
                                             <h5>Mon Compte</h5>
                                         </a>
                                     </li>
+                                    <!--
                                     <li>
                                      <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                                          <img alt="mon compte" src="../../../public/images/icon-deconnexion.png"/>
@@ -66,6 +67,7 @@
                                         {{ csrf_field() }}
                                     </form>
                                     </li>
+                                    -->
                             @endguest
                     </ul>
                 </div>
