@@ -52,3 +52,9 @@ Route::get('/mentionslegales', 'FooterController@mentionsLegales');
 Route::get('/confirmation/resend', 'Auth\RegisterController@resend');
 Route::get('/confirmation/{id}/{token}', 'Auth\RegisterController@confirm');
 
+
+//Special Route
+Route::get('/dunsparce', function(){
+    return view('hidden.dunsparce');
+});
+

@@ -33,17 +33,16 @@ class ListController extends Controller
         $itemsjson = [];
         $totalprice = 0;
         foreach ($rawlistjson as $item) {
-            $obj = $item->Products[0];
+            $obj = $item[0]->Products[0];
 
             $itemsjson[] = array(
-                'Price' => $obj->BestOffer->SalePrice,
                 'Id' => $obj->Id,
                 'Price' => str_replace('.',',',round($obj->BestOffer->SalePrice,2)),
                 'Name' => $obj->Name,
                 'Description' => $obj->Description,
                 'Image' => $obj->MainImageUrl
             );
-            $totalprice += $obj->BestOffer->SalePrice;
+            $totalprice += $obj->BestOffer->SalePrice * $item[1];
         }
 
         $listjson = array(
