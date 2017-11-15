@@ -17,8 +17,8 @@ class CreateCategorizesTable extends Migration
             $table->integer('idTag')->unsigned();
             $table->integer('idList')->unsigned();
             $table->primary(['idTag', 'idList']);
-            $table->foreign('idTag')->references('idTag')->on('tags');
-            $table->foreign('idList')->references('idList')->on('lists');
+            $table->foreign('idTag')->references('id')->on('tags');
+            $table->foreign('idList')->references('id')->on('lists');
             $table->timestamps();
         });
     }

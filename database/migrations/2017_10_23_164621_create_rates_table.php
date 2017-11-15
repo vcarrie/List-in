@@ -14,14 +14,14 @@ class CreateRatesTable extends Migration
     public function up()
     {
         Schema::create('rates', function (Blueprint $table) {
-            $table->integer('idAccount')->unsigned();
+            $table->integer('idUser')->unsigned();
             $table->integer('idList')->unsigned();
             $table->smallInteger('rating');
             $table->timestamps();
 
-            $table->foreign('idAccount')->references('idAccount')->on('accounts');
-            $table->foreign('idList')->references('idList')->on('lists');
-            $table->primary(['idAccount', 'idList']);
+            $table->foreign('idUser')->references('id')->on('users');
+            $table->foreign('idList')->references('id')->on('lists');
+            $table->primary(['idUser', 'idList']);
         });
     }
 

@@ -6,7 +6,11 @@
 
     <div class="row cgu">
         <div class="col-md-8 col-md-offset-2">
+<<<<<<< HEAD
             <h1>Conditions Générales d'Utilisation : listin.fr</h1></br>
+=======
+            <h1>Conditions Générales d'Utilisat ion : listin.fr</h1></br>
+>>>>>>> c07aa3407985a91a834d7bcdcee7a3cc88e90768
 
 
             <h2>Article 1 : Objet</h2>

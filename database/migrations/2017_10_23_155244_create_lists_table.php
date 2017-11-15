@@ -13,12 +13,12 @@ class CreateListsTable extends Migration
      */
     public function up()
     {
-        Schema::create('lists', function (Blueprint $table) {
-            $table->increments('idList');
+        Schema::create('listes', function (Blueprint $table) {
+            $table->increments('id');
             $table->string('listName', 255);
             $table->text('description');
             $table->integer('idCreator')->unsigned();
-            $table->foreign('idCreator')->references('idAccount')->on('accounts');
+            $table->foreign('idCreator')->references('id')->on('user');
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ class CreateListsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('lists');
+        Schema::dropIfExists('listController');
     }
 }

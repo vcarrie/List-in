@@ -47,4 +47,8 @@
                     @endforeach
         </section>
     </div>
+<<<<<<< HEAD
 @endsection
+=======
+@endsection
+>>>>>>> c07aa3407985a91a834d7bcdcee7a3cc88e90768
