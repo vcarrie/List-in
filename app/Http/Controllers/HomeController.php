@@ -10,6 +10,7 @@ use App\Rate;
 use App\Repositories\ApiCdiscount\ApiCdiscountSearchByIdProductRepository;
 use Illuminate\Http\Request;
 use App\Tag;
+use Illuminate\Support\Facades\Input;
 
 
 class HomeController extends Controller
@@ -24,15 +25,15 @@ class HomeController extends Controller
         return view('catalogue', compact('tags_final_tab'));
     }
 
-    public function research(ApiCdiscountSearchByIdProductRepository $apiCdiscountSearchByIdProduct)
+    public function research(Request $request, ApiCdiscountSearchByIdProductRepository $apiCdiscountSearchByIdProduct)
     {
 
         ////////////////////////////////////Params received from request
-        $tags = [14, 13];
+        $tags = Input::get('tags');
 
-        $pagination = 0;
+        $pagination = Input::get('pagination');
 
-        $sort_index = 2;
+        $sort_index = Input::get('sort');
 
 
         ////////////////////////////////////
@@ -75,13 +76,17 @@ class HomeController extends Controller
 
         for ($i = 0; $i < 4; $i++) {
             if (isset($sorted_lists[$pagination * 4 + $i])) {
-                //products
-                //prix total
-                //nb item
-
+                $theList = Liste::find($sorted_lists[$pagination * 4 + $i][2]);
+                $theBelong = Belong::getProductsByIdList($sorted_lists[$pagination * 4 + $i][2], $apiCdiscountSearchByIdProduct);
+                $total = Belong::getTotalByIdList($sorted_lists[$pagination * 4 + $i][2],  $apiCdiscountSearchByIdProduct);
                 $tab_to_return[] = [
-                    'list' => Liste::find($sorted_lists[$pagination * 4 + $i][2]),
-                    'avg' => $sorted_lists[$pagination * 4 + $i][1]
+                    'list' => $theList,
+                    'products'=> $theBelong,
+                    'rating' => $sorted_lists[$pagination * 4 + $i][1] / 5,
+                    'nb_products' => count($theBelong),
+                    'total_price' => $total,
+                    'nb_list_total' => count($sorted_lists)
+
                 ];
             }
         }
