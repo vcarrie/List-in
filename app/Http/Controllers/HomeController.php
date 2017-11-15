@@ -33,7 +33,7 @@ class HomeController extends Controller
 
         $pagination = Input::get('pagination');
 
-        $sort_index = Input::get('sort_index');
+        $sort_index = Input::get('sort');
 
 
         ////////////////////////////////////
@@ -82,9 +82,10 @@ class HomeController extends Controller
                 $tab_to_return[] = [
                     'list' => $theList,
                     'products'=> $theBelong,
-                    'avg' => $sorted_lists[$pagination * 4 + $i][1],
+                    'rating' => $sorted_lists[$pagination * 4 + $i][1] / 5,
                     'nb_products' => count($theBelong),
-                    'total' => $total
+                    'total_price' => $total,
+                    'nb_list_total' => count($sorted_lists)
 
                 ];
             }
