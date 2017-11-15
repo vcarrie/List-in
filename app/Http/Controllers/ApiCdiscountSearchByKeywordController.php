@@ -13,6 +13,6 @@ class ApiCdiscountSearchByKeywordController extends Controller
     }
 
     public function post(Request $request, ApiCdiscountSearchByKeywordRepository $apiRepository){
-        return $apiRepository->searchWithKeyword($request('search'));
+        return $apiRepository->searchWithKeyword($request->input('search'));
     }
 }

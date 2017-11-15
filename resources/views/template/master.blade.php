@@ -5,6 +5,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>List'In - @yield('title')</title>
 
@@ -36,5 +37,6 @@
     </footer>
 </div>
 <script type="text/javascript" src="../../../public/js/all.js"></script>
+<script type="text/javascript" src="../../../public/js/article-search.js"></script>
 </body>
 </html>
