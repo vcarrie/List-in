@@ -153,7 +153,7 @@ function Catalogue() {
         });
     };
 
-    // bootstrap tagsinput 'obj as tags' is too messy so I use a map
+    // bootstrap tagsinput 'obj as tags' is too messy so I use my own
     this.tagsNameToId = function(tags) {
         var ids = [];
         for (var i in tags) {
@@ -214,44 +214,36 @@ function Catalogue() {
         $(this.elemContainer).html("");
 
         for (var i in listsJson) {
-            var cardHtml = this.templateListCard(listsJson[i]);
-            $(this.elemContainer).append($(cardHtml));
+            var $cardHtml = this.templateListCard(listsJson[i]);
+            $(this.elemContainer).append($cardHtml);
         }
     };
 
     this.templateListCard = function(listJson) {
-        var card = ''
-        +'<div class="card">'
-        +    '<div class="card-header">'
-        +        '<div class="star-ratings-sprite"><span style="width: 55%" class="star-ratings-sprite-rating"></span>'
-        +        '</div>'
-        +    '</div>'
-        +    '<div class="card-snapshots">'
-        +        '<img src="../../public/images/content/Cocktails_Gin/indian-tonic.jpg"/>'
-        +        '<img src="../../public/images/content/Cocktails_Gin/gin-37-5deg-gordon-s-london-dry-70cl.jpg"/>'
-        +        '<img src="../../public/images/content/Cocktails_Gin/bjorg-pur-jus-de-citrons-de-sicile-25cl.jpg"/>'
-        +        '<span>+2</span>'
-        +    '</div>'
-        +    '<div class="card-body">'
-        +        '<h4 title="'+listJson.list.listName+'">'+listJson.list.listName+'</h4>'
-        +        '<p>'+listJson.list.description+'</p>'
-        +    '</div>'
-        +    '<div class="card-footer">'
-        +        '<table>'
-        +            '<tr>'
-        +                '<td class="card-item-count">3 articles</td>'
-        +                '<td class="card-price" rowspan="2">'+listJson.avg+' €</td>'
-        +            '</tr>'
-        +            '<tr>'
-        +                '<td class="card-item-count-opt">dont 1 optionnel</td>'
-        +            '</tr>'
-        +        '</table>'
-        +    '</div>'
-        +    '<button>Voir la liste</button>'
-        +    '<button>Ajouter au panier</button>'
-        +'</div>';
+        var $card = $('<div class="card"></div>');
+        var $card_header = $('<div class="card-header"><div class="star-ratings-sprite"><span style="width: '+(listJson.rating*100)+'%" class="star-ratings-sprite-rating"></span></div></div>');
 
-        return card;
+        var $card_snapshots = $('<div class="card-snapshots"></div>');
+        if (listJson.products_count > 0) {
+          $card_snapshots.append($('<img alt="" src="'+listJson.products[0].MainImageURL+'"/>'));
+          if (listJson.products_count > 1) {
+            $card_snapshots.append($('<img alt="" src="'+listJson.products[1].MainImageURL+'"/>'));
+            if (listJson.products_count > 2) {
+              $card_snapshots.append($('<img alt="" src="'+listJson.products[2].MainImageURL+'"/>'));
+              if (listJson.products_count > 3) {
+                $card_snapshots.append($('<span>+'+(listJson.products_count-3)+'</span>'));
+              }
+            }
+          }
+        }
+
+        var $card_body = $('<div class="card-body"><h4 title="'+listJson.list.listName+'">'+listJson.list.listName+'</h4><p>'+listJson.list.description+'</p></div>');
+        var $card_footer = $('<div class="card-footer"><table><tr><td class="card-item-count">'+listJson.nb_products+' articles</td><td class="card-price" rowspan="2">'+listJson.total_price+' €</td></tr><tr><td class="card-item-count-opt">dont 1 optionnel</td></tr></table></div>');
+        var $button_see_more = $('<button>Voir la liste</button>');
+        var $button_add_to_cart = $('<button>Ajouter au panier</button>');
+
+        $card.append($card_header).append($card_snapshots).append($card_body).append($card_footer).append($button_see_more).append($button_add_to_cart);
+        return $card;
     };
 
 }
