@@ -83,7 +83,7 @@ class HomeController extends Controller
                 $theBelong = Belong::getProductsByIdList($sorted_lists[$i][2], $apiCdiscountSearchByIdProduct);
                 $total = Belong::getTotalByIdList($sorted_lists[$i][2],  $apiCdiscountSearchByIdProduct);
                 if(Rate::averageForList($sorted_lists[$i][2]) != 0){ $avg = Rate::averageForList($sorted_lists[$i][2]); }else{ $avg = 0;}
-                $tab_to_return[] = [
+                $tab_to_return['lists'][] = [
                     'list' => $theList,
                     'products'=> $theBelong,
                     'rating' => round($avg / 5, 2),
@@ -93,9 +93,7 @@ class HomeController extends Controller
                 ];
             }
 
-        $tab_to_return[] = [
-            'nb_list_total' => count($sorted_lists)
-        ];
+        $tab_to_return['nb_list_total'] = count($sorted_lists);
 
         return $tab_to_return;
 

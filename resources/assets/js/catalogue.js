@@ -218,8 +218,8 @@ function Catalogue() {
         console.log(listsJson);
         $(this.elemContainer).html("");
 
-        for (var i in listsJson) {
-            var $cardHtml = this.templateListCard(listsJson[i]);
+        for (var i in listsJson.lists) {
+            var $cardHtml = this.templateListCard(listsJson.lists[i]);
             $(this.elemContainer).append($cardHtml);
         }
     };
