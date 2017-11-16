@@ -4,7 +4,7 @@
 
 @section('mid-content')
 
-    <aside>
+    <aside class="mid-content-header">
         <h3>Il y a 12 listes associées aux tags "..."</h3>
         <p>Trier par
             <select name="sorting_mode" class="selectpicker">
@@ -53,11 +53,11 @@
     <aside>
         <div class="pagination-box">
             <ul class="pagination pagination-lg">
-                <li class="disabled"><a href="#">&laquo;</a></li>
-                <li><a href="#">&lsaquo;</a></li>
-                <li class="active"><a href="#">1</a></li>
-                <li><a href="#">&rsaquo;</a></li>
-                <li><a href="#">&raquo;</a></li>
+                <li class="disabled"><a title="Début" href="#">&laquo;</a></li>
+                <li class="disabled"><a title="Précédent" href="#">&lsaquo;</a></li>
+                <li class="active"><a title="Page 1" href="#">1</a></li>
+                <li><a title="Suivant" href="#">&rsaquo;</a></li>
+                <li><a title="Fin" href="#">&raquo;</a></li>
             </ul>
         </div>
     </aside>

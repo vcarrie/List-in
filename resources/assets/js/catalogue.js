@@ -4,10 +4,14 @@ function Catalogue() {
 
 	this.elemForm = $('#search-region form');
 	this.elemContainer = $('.mid-content .cards-container');
-	this.elemTagsInput = $(this.elemForm).find('input.tags-input');
-	this.elemSortSelect = $('select[name="sorting_mode"]');
-    this.jsonTagsRoute = '/tags';
-    this.jsonListsRoute = '/research';
+	this.elemTagsInput = $(this.elemForm).find('.tags-input');
+  this.elemContainerHeader = $('.mid-content-header');
+	this.elemSortSelect = $(this.elemContainerHeader).find('select[name="sorting_mode"]');
+  this.elemContainerHeaderTitle = $(this.elemContainerHeader).find('h3');
+  this.elemPagination = $('.pagination');
+  this.jsonTagsRoute = '/tags';
+  this.jsonListsRoute = '/research';
+  this.addToCartRoute = '/addtocart';
 	this.typeaheadSuggestedTagsLimit = 6;
 	this.tagsMap = {};
 	this.tags = [];
@@ -22,20 +26,20 @@ function Catalogue() {
     };
 
     this.init = function() {
-		if (this.elemForm && this.elemContainer && this.elemTagsInput) {
-	    	$.ajax({
-		        url: this.jsonTagsRoute,
-		        type: 'GET',
-		        dataType: 'json',
-		        context: this,
-		        error: this.ajaxJsonTagsError,
-		        success: this.ajaxJsonTagsSuccess
-		    });
+    		if (this.elemForm && this.elemContainer && this.elemTagsInput) {
+    	    	$.ajax({
+    		        url: this.jsonTagsRoute,
+    		        type: 'GET',
+    		        dataType: 'json',
+    		        context: this,
+    		        error: this.ajaxJsonTagsError,
+    		        success: this.ajaxJsonTagsSuccess
+    		    });
 
-		    this.elemForm.submit(this.submitTags.bind(this));
-		} else {
-			this.initError();
-		}
+    		    this.elemForm.submit(this.submitTags.bind(this));
+    		} else {
+    			  this.initError();
+    		}
     };
 
     this.initError = function() {
@@ -56,7 +60,6 @@ function Catalogue() {
         try {
     	   this.buildTagsinput();
     	   this.buildTypeahead();
-           this.populateDefault();
 
            this.setReady();
         } catch (e) {
@@ -189,8 +192,8 @@ function Catalogue() {
         return false;
     };
 
-    this.populateDefault = function() {
-        //this.fetchLists([], 0, 0);
+    this.displayLoadingScreen = function() {
+        $(this.elemContainer).html('<img src="../images/loading_icon.gih"/>')
     };
 
     this.fetchLists = function(tags, pagination, sort) {
@@ -205,6 +208,7 @@ function Catalogue() {
                 sort: sort
             },
             context: this,
+            beforeSend: this.displayLoadingScreen,
             error: this.fetchListsError,
             success: this.updateDisplayedLists
         });
@@ -215,8 +219,8 @@ function Catalogue() {
     };
 
     this.updateDisplayedLists = function(listsJson) {
-        console.log(listsJson);
         $(this.elemContainer).html("");
+        $(this.elemContainerHeaderTitle).text('Il y a '+listsJson.nb_list_total+' listes associées aux tags "'+$(this.elemTagInput).val().join(', ')+'"');
 
         for (var i in listsJson.lists) {
             var $cardHtml = this.templateListCard(listsJson.lists[i]);
@@ -244,11 +248,48 @@ function Catalogue() {
 
         var $card_body = $('<div class="card-body"><h4 title="'+listJson.list.listName+'">'+listJson.list.listName+'</h4><p>'+listJson.list.description+'</p></div>');
         var $card_footer = $('<div class="card-footer"><table><tr><td class="card-item-count">'+listJson.nb_products+' articles</td><td class="card-price" rowspan="2">'+listJson.total_price+' €</td></tr><tr><td class="card-item-count-opt">dont 1 optionnel</td></tr></table></div>');
-        var $button_see_more = $('<button>Voir la liste</button>');
-        var $button_add_to_cart = $('<button>Ajouter au panier</button>');
+        var $action_see_more = $('<button>Voir la liste</button>');
+        var $action_add_to_cart = $('<button>Ajouter au panier</button>');
+        $action_add_to_cart.click(function(e) {
+          this.addToCart(listJson.id);
+          return false;
+        });
 
-        $card.append($card_header).append($card_snapshots).append($card_body).append($card_footer).append($button_see_more).append($button_add_to_cart);
+        $card.append($card_header).append($card_snapshots).append($card_body).append($card_footer).append($action_see_more).append($action_add_to_cart);
         return $card;
+    };
+
+    this.updatePagination = function(currentPage, totalPage) {
+      /*
+      var $pageFirst = $('<li class="disabled"><a title="Première page" href="#">&laquo;</a></li>');
+      var $pagePrevious = $('<li class="disabled"><a title="Page précédente" href="#">&lsaquo;</a></li>');
+      var $pageCurrent = $('<li class="active"><a title="Page 1" href="#">1</a></li>');
+      var $pageNext = $('<li class="disabled"><a title="Page suivante" href="#">&rsaquo;</a></li>');
+      var $pageLast = $('<li class="disabled"><a title="Dernière page" href="#">&raquo;</a></li>');
+      */
+    };
+
+    this.addToCart = function(listId) {
+      console.log('"AddToCart" action for list '+listId);
+      $.ajax({
+          url: this.addToCartRoute,
+          type: 'POST',
+          dataType: 'json',
+          data: {
+              listId: listId
+          },
+          context: this,
+          error: this.addToCartError,
+          success: this.addToCartSuccess
+      });
+    };
+
+    this.addToCartError = function(result, status, error) {
+      console.error('Error 500: list couldn\'t be added to cart.');
+    };
+
+    this.addToCartSuccess = function(response) {
+      console.log('List added to cart!')
     };
 
 }
