@@ -10,7 +10,7 @@
     <div id="step-one">
       <h1 style="text-align: center">Etape 1 : Sélectionnez vos produits</h1>
       <div id="articles-container"class="col-md-6 col-md-offset-3" style="padding: 10px; background-color: #FFFFFF">
-        <h2 class="no-articles">Pas encore de produits</h2>
+        <h2 class="no-article">Pas encore de produits</h2>
         <div id="selected-articles">
 
         </div>
