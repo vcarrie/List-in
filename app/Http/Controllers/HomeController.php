@@ -10,6 +10,7 @@ use App\Rate;
 use App\Repositories\ApiCdiscount\ApiCdiscountSearchByIdProductRepository;
 use Illuminate\Http\Request;
 use App\Tag;
+use Illuminate\Support\Facades\Input;
 
 
 class HomeController extends Controller
@@ -24,15 +25,17 @@ class HomeController extends Controller
         return view('catalogue', compact('tags_final_tab'));
     }
 
-    public function research(ApiCdiscountSearchByIdProductRepository $apiCdiscountSearchByIdProduct)
+    public function research(Request $request, ApiCdiscountSearchByIdProductRepository $apiCdiscountSearchByIdProduct)
     {
 
         ////////////////////////////////////Params received from request
-        $tags = [14, 13];
+        $tags = Input::get('tags');
 
-        $pagination = 0;
+        $pagination = Input::get('pagination');
 
-        $sort_index = 2;
+        $sort_index = Input::get('sort');
+
+
 
 
         ////////////////////////////////////
@@ -72,19 +75,25 @@ class HomeController extends Controller
 
 
         $tab_to_return = array();
+        $sorted_lists_length = count($sorted_lists);
 
-        for ($i = 0; $i < 4; $i++) {
-            if (isset($sorted_lists[$pagination * 4 + $i])) {
-                //products
-                //prix total
-                //nb item
+        for ($i = 0; $i < $sorted_lists_length; $i++) {
 
-                $tab_to_return[] = [
-                    'list' => Liste::find($sorted_lists[$pagination * 4 + $i][2]),
-                    'avg' => $sorted_lists[$pagination * 4 + $i][1]
+                $theList = Liste::find($sorted_lists[$i][2]);
+                $theBelong = Belong::getProductsByIdList($sorted_lists[$i][2], $apiCdiscountSearchByIdProduct);
+                $total = Belong::getTotalByIdList($sorted_lists[$i][2],  $apiCdiscountSearchByIdProduct);
+                if(Rate::averageForList($sorted_lists[$i][2]) != 0){ $avg = Rate::averageForList($sorted_lists[$i][2]); }else{ $avg = 0;}
+                $tab_to_return['lists'][] = [
+                    'list' => $theList,
+                    'products'=> $theBelong,
+                    'rating' => round($avg / 5, 2),
+                    'nb_products' => count($theBelong),
+                    'total_price' => $total,
+
                 ];
             }
-        }
+
+        $tab_to_return['nb_list_total'] = count($sorted_lists);
 
         return $tab_to_return;
 
