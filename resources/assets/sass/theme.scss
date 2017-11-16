@@ -326,6 +326,11 @@ header {
 
 	}
 
+	.loading_box {
+		width: 100%;
+		text-align: center;
+	}
+
 	.cards-container {
 		text-align: left;
 
@@ -352,6 +357,7 @@ header {
 
 			.card-snapshots {
 				position: relative;
+				text-align: center;
 
 				&> img {
 					height: 7rem;
