@@ -56,6 +56,7 @@ function Catalogue() {
         try {
     	   this.buildTagsinput();
     	   this.buildTypeahead();
+           this.populateDefault();
 
            this.setReady();
         } catch (e) {
@@ -153,7 +154,7 @@ function Catalogue() {
         });
     };
 
-    // bootstrap tagsinput 'obj as tags' is too messy so I use my own
+    // bootstrap tagsinput 'obj as tags' is too messy so I use a map
     this.tagsNameToId = function(tags) {
         var ids = [];
         for (var i in tags) {
@@ -186,6 +187,10 @@ function Catalogue() {
 
         }
         return false;
+    };
+
+    this.populateDefault = function() {
+        //this.fetchLists([], 0, 0);
     };
 
     this.fetchLists = function(tags, pagination, sort) {
