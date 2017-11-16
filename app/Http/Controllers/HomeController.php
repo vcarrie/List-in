@@ -36,6 +36,8 @@ class HomeController extends Controller
         $sort_index = Input::get('sort');
 
 
+
+
         ////////////////////////////////////
 
 
@@ -73,23 +75,27 @@ class HomeController extends Controller
 
 
         $tab_to_return = array();
+        $sorted_lists_length = count($sorted_lists);
 
-        for ($i = 0; $i < 4; $i++) {
-            if (isset($sorted_lists[$pagination * 4 + $i])) {
-                $theList = Liste::find($sorted_lists[$pagination * 4 + $i][2]);
-                $theBelong = Belong::getProductsByIdList($sorted_lists[$pagination * 4 + $i][2], $apiCdiscountSearchByIdProduct);
-                $total = Belong::getTotalByIdList($sorted_lists[$pagination * 4 + $i][2],  $apiCdiscountSearchByIdProduct);
+        for ($i = 0; $i < $sorted_lists_length; $i++) {
+
+                $theList = Liste::find($sorted_lists[$i][2]);
+                $theBelong = Belong::getProductsByIdList($sorted_lists[$i][2], $apiCdiscountSearchByIdProduct);
+                $total = Belong::getTotalByIdList($sorted_lists[$i][2],  $apiCdiscountSearchByIdProduct);
+                if(Rate::averageForList($sorted_lists[$i][2]) != 0){ $avg = Rate::averageForList($sorted_lists[$i][2]); }else{ $avg = 0;}
                 $tab_to_return[] = [
                     'list' => $theList,
                     'products'=> $theBelong,
-                    'rating' => $sorted_lists[$pagination * 4 + $i][1] / 5,
+                    'rating' => round($avg / 5, 2),
                     'nb_products' => count($theBelong),
                     'total_price' => $total,
-                    'nb_list_total' => count($sorted_lists)
 
                 ];
             }
-        }
+
+        $tab_to_return[] = [
+            'nb_list_total' => count($sorted_lists)
+        ];
 
         return $tab_to_return;
 
