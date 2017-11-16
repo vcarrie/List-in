@@ -166,8 +166,12 @@ function Catalogue() {
         return ids;
     };
 
+    this.getSearchTagsChained = function() {
+        return this.elemTagsInput.val();
+    };
+
     this.getSearchTagsName = function() {
-        return this.elemTagsInput.val().split(',');
+        return this.getSearchTagsChained().split(',');
     };
 
     this.getSearchTagsIds = function() {
@@ -193,7 +197,7 @@ function Catalogue() {
     };
 
     this.displayLoadingScreen = function() {
-        $(this.elemContainer).html('<img src="../images/loading_icon.gih"/>')
+        $(this.elemContainer).html('<div class="loading_box"><img src="/public/images/loading_icon.gif"/></div>')
     };
 
     this.fetchLists = function(tags, pagination, sort) {
@@ -219,13 +223,15 @@ function Catalogue() {
     };
 
     this.updateDisplayedLists = function(listsJson) {
-        $(this.elemContainer).html("");
-        $(this.elemContainerHeaderTitle).text('Il y a '+listsJson.nb_list_total+' listes associées aux tags "'+$(this.elemTagInput).val().join(', ')+'"');
+        $(this.elemContainer).html("").hide();
+        $(this.elemContainerHeaderTitle).text('Il y a '+listsJson.nb_list_total+' listes associées aux tags "'+this.getSearchTagsChained().replace(',',', ')+'"');
 
         for (var i in listsJson.lists) {
             var $cardHtml = this.templateListCard(listsJson.lists[i]);
             $(this.elemContainer).append($cardHtml);
         }
+
+        $(this.elemContainer).fadeIn(500);
     };
 
     this.templateListCard = function(listJson) {
@@ -233,21 +239,22 @@ function Catalogue() {
         var $card_header = $('<div class="card-header"><div class="star-ratings-sprite"><span style="width: '+(listJson.rating*100)+'%" class="star-ratings-sprite-rating"></span></div></div>');
 
         var $card_snapshots = $('<div class="card-snapshots"></div>');
-        if (listJson.products_count > 0) {
-          $card_snapshots.append($('<img alt="" src="'+listJson.products[0].MainImageURL+'"/>'));
-          if (listJson.products_count > 1) {
-            $card_snapshots.append($('<img alt="" src="'+listJson.products[1].MainImageURL+'"/>'));
-            if (listJson.products_count > 2) {
-              $card_snapshots.append($('<img alt="" src="'+listJson.products[2].MainImageURL+'"/>'));
-              if (listJson.products_count > 3) {
-                $card_snapshots.append($('<span>+'+(listJson.products_count-3)+'</span>'));
+        if (listJson.nb_products > 0) {
+          $card_snapshots.append($('<img alt="" src="'+listJson.products[0][0].Products[0].MainImageUrl+'"/>'));
+          if (listJson.nb_products > 1) {
+            $card_snapshots.append($('<img alt="" src="'+listJson.products[1][0].Products[0].MainImageUrl+'"/>'));
+            if (listJson.nb_products > 2) {
+              $card_snapshots.append($('<img alt="" src="'+listJson.products[2][0].Products[0].MainImageUrl+'"/>'));
+              if (listJson.nb_products > 3) {
+                $card_snapshots.append($('<span>+'+(listJson.nb_products-3)+'</span>'));
+                $card_snapshots.css('text-align', 'left');
               }
             }
           }
         }
 
         var $card_body = $('<div class="card-body"><h4 title="'+listJson.list.listName+'">'+listJson.list.listName+'</h4><p>'+listJson.list.description+'</p></div>');
-        var $card_footer = $('<div class="card-footer"><table><tr><td class="card-item-count">'+listJson.nb_products+' articles</td><td class="card-price" rowspan="2">'+listJson.total_price+' €</td></tr><tr><td class="card-item-count-opt">dont 1 optionnel</td></tr></table></div>');
+        var $card_footer = $('<div class="card-footer"><table><tr><td></td><td class="card-price" rowspan="2">'+listJson.total_price+' €</td></tr><tr><td class="card-item-count">'+listJson.nb_products+' articles</td></tr></table></div>');
         var $action_see_more = $('<button>Voir la liste</button>');
         var $action_add_to_cart = $('<button>Ajouter au panier</button>');
         $action_add_to_cart.click(function(e) {
