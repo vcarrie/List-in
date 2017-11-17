@@ -43,12 +43,12 @@
         <label for="list_name">Nom de la liste :</label></br>
         <input id="list_name" type="text" name="list_name" placeholder="Nom de la liste..."></br>
         <label for="">Description :</label></br>
-        <textarea name="list_description" rows="6" cols="60"></textarea></br>
+        <textarea id="list_description" name="list_description" rows="6" cols="60"></textarea></br>
 
         <div id="tag-search" class="row form-group">
           <div class="col-md-6 ">
             <form>
-              <input type="text" class="tags-input form-control" placeholder="Entrez un tag..."/>
+              <input id="selected_tag" type="text" class="tags-input form-control" placeholder="Entrez un tag..."/>
               <input id="add_tag" type="submit" tabindex="1" title="Ajouter un tag" value="Ajouter" />
             </form>
           </div>

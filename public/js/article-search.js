@@ -31,7 +31,7 @@
           desc.appendChild(desc_value);
 
           var price = document.createElement('p');
-          var price_value = document.createTextNode(results[i].BestOffer.SalePrice + " €");
+          var price_value = document.createTextNode(parseFloat(results[i].BestOffer.SalePrice).toFixed(2) + " €");
           price.appendChild(price_value);
 
           var add_button = document.createElement('button');
@@ -104,7 +104,7 @@
             selected_desc.appendChild(selected_desc_value);
 
             var selected_price = document.createElement('p');
-            var selected_price_value = document.createTextNode(selected_article.BestOffer.SalePrice + " €");
+            var selected_price_value = document.createTextNode(parseFloat(selected_article.BestOffer.SalePrice).toFixed(2) + " €");
             selected_price.appendChild(selected_price_value);
 
 
