@@ -21,7 +21,7 @@
                         </div>
                     </div>
                 </div>
-                </br>
+                <br>
 
                 <div class="col-md-6 col-md-offset-3" style="padding: 10px; margin-top: 3%; background-color: #FFFFFF">
                     <div class="col-xs-12">
@@ -44,10 +44,10 @@
                 <h1 style="text-align: center;">Etape 2 : Validez votre liste</h1>
                 <div id="info-container" class="col-md-6 col-md-offset-3"
                      style="padding: 10px; background-color: #FFFFFF">
-                    <label for="list_name">Nom de la liste :</label></br>
-                    <input id="list_name" type="text" name="list_name" placeholder="Nom de la liste..."></br>
-                    <label for="">Description :</label></br>
-                    <textarea id="list_description" name="list_description" rows="6" cols="60"></textarea></br>
+                    <label for="list_name">Nom de la liste :</label><br>
+                    <input id="list_name" type="text" name="list_name" placeholder="Nom de la liste..."><br>
+                    <label for="">Description :</label><br>
+                    <label for="list_description"></label><textarea id="list_description" name="list_description" rows="6" cols="60"></textarea><br>
 
                     <div id="tag-search" class="row form-group">
                         <div class="col-md-6 ">
