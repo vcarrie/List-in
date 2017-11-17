@@ -536,15 +536,6 @@ header {
 	background-size: 2rem;
 }
 
-<<<<<<< HEAD
-
-/* CGU / Mentions Legales
-–––––––––––––––––––––––––––––––––––––––––––––––––– */
-
-
-
-=======
->>>>>>> c07aa3407985a91a834d7bcdcee7a3cc88e90768
 /* FOOTER
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
@@ -604,8 +595,33 @@ footer {
 			}
 		}
 	}
-<<<<<<< HEAD
 }
-=======
+
+/* Contact Page */
+.card-header-contact {
+	font-weight: bold;
 }
->>>>>>> c07aa3407985a91a834d7bcdcee7a3cc88e90768
+
+.container-contact {
+	margin: 2rem;
+	text-align: center;
+	padding-left: 4rem;
+	padding-right: 4rem;
+	max-width: 500px;
+	margin: 0px auto;
+}
+
+.form-control-contact {
+	height: 275px;
+	width: 100%;
+	padding: 6px 12px;
+	color: #555;
+	border: 1px solid #CCC;
+	border-radius: 4px;
+
+}
+
+.btn.btn-secondary{
+	background-color: #e03913;
+	color: #FFF;
+}
