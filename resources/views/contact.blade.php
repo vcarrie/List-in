@@ -23,9 +23,9 @@
                         {!! $errors->first('email', '<div class="invalid-feedback">:message</div>') !!}
                     </div>
                     <div class="form-group">
-                      <textarea class="form-control-contact {{ $errors->has('message') ? 'is-invalid' : '' }}" name="message" id="message" placeholder="Votre message">{{ old('message') }}</textarea>
-                      {!! $errors->first('message', '<div class="invalid-feedback">:message</div>') !!}
-                      </div>
+                        <textarea class="form-control-contact {{ $errors->has('message') ? 'is-invalid' : '' }}" name="message" id="message" placeholder="Votre message">{{ old('message') }}</textarea>
+                        {!! $errors->first('message', '<div class="invalid-feedback">:message</div>') !!}
+                    </div>
 
                     <div class="form-group{{ $errors->has('g-recaptcha-response') ? ' has-error' : '' }}">
                         <div class="col-md-8 col-md-offset-3">

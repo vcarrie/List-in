@@ -6,8 +6,7 @@
 
     <div class="row cgu">
         <div class="col-md-8 col-md-offset-2">
-            <h1>Conditions Générales d'Utilisat ion : listin.fr</h1></br>
-
+            <h1>Conditions Générales d'Utilisation : listin.fr</h1><br>
 
             <h2>Article 1 : Objet</h2>
             <p>
@@ -17,7 +16,7 @@
                 Les conditions générales d'utilisation doivent être acceptées par tout Utilisateur souhaitant accéder au
                 site. Elles constituent le contrat entre le site et l'Utilisateur. L’accès au site par l’Utilisateur
                 signifie son acceptation des présentes conditions générales d’utilisation.
-            </p></br>
+            </p><br>
 
 
             <h2>Article 2 : Mentions légales</h2>
@@ -29,7 +28,7 @@
             </p>
             <p>
                 L'hébergeur du site est l’IUT Informatique de Bordeaux situé au 15 Rue de Naudet, 33 175 Gradignan.
-            </p></br>
+            </p><br>
 
 
             <h2>Article 3 : Définitions</h2>
@@ -47,7 +46,7 @@
                     services réservés aux membres du site. Le mot de passe est confidentiel.
                 </li>
             </ul>
-            </br>
+            <br>
 
 
             <h2>Article 4 : Accès aux services</h2>
@@ -82,7 +81,7 @@
             <p>
                 L'Utilisateur a la possibilité de contacter le site par messagerie électronique à l’adresse
                 listincontact@gmail.com.
-            </p></br>
+            </p><br>
 
 
             <h2>Article 5 : Propriété intellectuelle</h2>
@@ -110,7 +109,7 @@
                 Le contenu de l'Utilisateur peut être à tout moment et pour n'importe quelle raison supprimé ou modifié
                 par le site. L'Utilisateur ne reçoit aucune justification et notification préalablement à la suppression
                 ou à la modification du contenu Utilisateur.
-            </p></br>
+            </p><br>
 
 
             <h2>Article 6 : Données personnelles</h2>
@@ -134,7 +133,7 @@
                 <li>un formulaire de contact</li>
                 <li>par mail à listincontact@gmail.com</li>
             </ul>
-            </br>
+            <br>
 
 
             <h2>Article 7 : Responsabilité et force majeure</h2>
@@ -164,7 +163,7 @@
             <p>
                 La responsabilité du site ne peut être engagée en cas de force majeure ou du fait imprévisible et
                 insurmontable d'un tiers.
-            </p></br>
+            </p><br>
 
 
             <h2>Article 8 : Liens hypertextes</h2>
@@ -175,13 +174,13 @@
             <p>
                 L'Utilisateur s'interdit donc à engager la responsabilité du site concernant le contenu et les
                 ressources relatives à ces liens hypertextes sortants.
-            </p></br>
+            </p><br>
 
 
             <h2>Article 9 : Évolution du contrat</h2>
             <p>
                 Le site se réserve à tout moment le droit de modifier les clauses stipulées dans le présent contrat.
-            </p></br>
+            </p><br>
 
 
             <h2>Article 10 : Durée</h2>
@@ -189,13 +188,13 @@
                 La durée du présent contrat est indéterminée. Celle-ci couvrira néanmoins la période nécessaire au
                 développement et présentation du projet dont le site fait l’objet. Le contrat produit ses effets à
                 l'égard de l'Utilisateur à compter de l'utilisation du service.
-            </p></br>
+            </p><br>
 
 
             <h2>Article 11 : Droit applicable et juridiction compétente</h2>
             <p>
                 La législation française s'applique au présent contrat.
-            </p></br>
+            </p><br>
 
 
             <h2>Article 12 : Publication par l’Utilisateur</h2>
