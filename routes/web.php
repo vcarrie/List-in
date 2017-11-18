@@ -11,6 +11,9 @@
 |
 */
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+
 Auth::routes();
 
 Route::get('/lists/user/{id}', 'ListController@getListsByIdAccount');
