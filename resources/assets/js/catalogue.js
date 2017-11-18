@@ -16,6 +16,11 @@ function Catalogue() {
     this.tagsMap = {};
     this.tags = [];
 
+    this.cardWidth = 280; // gathered from css
+    this.lists = [];
+    this.currentPage = 0; // 0 for page number 1
+    this.amountOfListsDisplayableAtOnce = undefined; // calculated once so resizing the window doesn't disturb the pagination
+
     this.setReady = function () {
         this.ready = true;
         console.log("Catalogue initialized.");
@@ -214,7 +219,7 @@ function Catalogue() {
             context: this,
             beforeSend: this.displayLoadingScreen,
             error: this.fetchListsError,
-            success: this.updateDisplayedLists
+            success: this.fetchListsSuccess
         });
     };
 
@@ -222,16 +227,119 @@ function Catalogue() {
         console.error('Error 500: lists couldn\'t be retrieved.');
     };
 
-    this.updateDisplayedLists = function (listsJson) {
-        $(this.elemContainer).html("").hide();
-        $(this.elemContainerHeaderTitle).text('Il y a ' + listsJson.nb_list_total + ' listes associées aux tags "' + this.getSearchTagsChained().replace(',', ', ') + '"');
+    this.fetchListsSuccess = function(listsJson) {
+        this.lists = listsJson.lists;
+        this.amountOfListsDisplayableAtOnce = this.getAmountOfListsDisplayableAtOnce()
+        this.createPagination();
+        this.displayPage(0);
+    };
 
-        for (var i in listsJson.lists) {
-            var $cardHtml = this.templateListCard(listsJson.lists[i]);
+    this.getContainerWidth = function() {
+        return $(this.elemContainer).width();
+    };
+
+    this.getAmountOfListsDisplayableAtOnce = function() {
+        return Math.floor(this.getContainerWidth() / this.cardWidth);
+    };
+
+    this.getAmoutOfPages = function() {
+        return Math.ceil(this.lists.length / this.amountOfListsDisplayableAtOnce);
+    };
+
+    this.getDisplayableLists = function(page) {
+        var x = this.amountOfListsDisplayableAtOnce;
+        return this.lists.slice(page*x, page*x+x);
+    };
+
+    this.updateDisplayedLists = function (listsToDisplay, listsTotalAmount) {
+        $(this.elemContainer).html("").hide();
+        $(this.elemContainerHeaderTitle).text('Il y a ' + listsTotalAmount + ' listes associées aux tags "' + this.getSearchTagsChained().replace(',', ', ') + '"');
+
+        for (var i in listsToDisplay) {
+            var $cardHtml = this.templateListCard(listsToDisplay[i]);
             $(this.elemContainer).append($cardHtml);
         }
 
         $(this.elemContainer).fadeIn(500);
+    };
+
+    this.createPagination = function() {
+        var $paginationBox = $(this.elemPagination);
+        if (!$paginationBox.attr('data-ready')) {
+            var $pageFirst = $('<li class="disabled"><a title="Première page" href="#">&laquo;</a></li>');
+            $pageFirst.click(this.goToFirstPage.bind(this));
+            var $pagePrevious = $('<li class="disabled"><a title="Page précédente" href="#">&lsaquo;</a></li>');
+            $pagePrevious.click(this.goToPreviousPage.bind(this));
+            var $pageCurrent = $('<li class="active"><a title="Page 1" href="#">1</a></li>');
+            var $pageNext = $('<li class="disabled"><a title="Page suivante" href="#">&rsaquo;</a></li>');
+            $pageNext.click(this.goToNextPage.bind(this));
+            var $pageLast = $('<li class="disabled"><a title="Dernière page" href="#">&raquo;</a></li>');
+            $pageLast.click(this.goToLastPage.bind(this));
+
+            $paginationBox.append($pageFirst).append($pagePrevious).append($pageCurrent).append($pageNext).append($pageLast);
+            $paginationBox.attr('data-ready', true);
+        }
+    };
+
+    this.goToFirstPage = function() {
+        if (this.currentPage > 0) {
+            this.displayPage(0);
+        }
+        return false;
+    };
+
+    this.goToPreviousPage = function() {
+        if (this.currentPage > 0) {
+            this.displayPage(this.currentPage-1);
+        }
+        return false;
+    };
+
+    this.goToNextPage = function() {
+        if (this.currentPage < this.getAmoutOfPages()-1) {
+            this.displayPage(this.currentPage+1);
+        }
+        return false;
+    };
+
+    this.goToLastPage = function() {
+        if (this.currentPage < this.getAmoutOfPages()-1) {
+            this.displayPage(this.getAmoutOfPages()-1);
+        }
+        return false;
+    };
+
+    this.updatePagination = function() {
+        var $paginationBox = $(this.elemPagination);
+
+        var $pageCurrent = $paginationBox.find('li:nth-child(3)');
+        $pageCurrent.find('a').attr('title', this.currentPage).text(this.currentPage+1);
+
+        var $pageFirst = $paginationBox.find('li:nth-child(1)');
+        var $pagePrevious = $paginationBox.find('li:nth-child(2)');
+        if (this.currentPage === 0) {
+            $pageFirst.addClass('disabled');
+            $pagePrevious.addClass('disabled');
+        } else {
+            $pageFirst.removeClass('disabled');
+            $pagePrevious.removeClass('disabled');
+        }
+
+        var $pageLast = $paginationBox.find('li:nth-child(4)');
+        var $pageNext = $paginationBox.find('li:nth-child(5)');
+        if (this.currentPage === this.getAmoutOfPages()-1) {
+            $pageLast.addClass('disabled');
+            $pageNext.addClass('disabled');
+        } else {
+            $pageLast.removeClass('disabled');
+            $pageNext.removeClass('disabled');
+        }
+    };
+
+    this.displayPage = function(page) {
+        this.currentPage = page;
+        this.updateDisplayedLists(this.getDisplayableLists(this.currentPage), this.lists.length);
+        this.updatePagination();
     };
 
     this.templateListCard = function (listJson) {
@@ -264,16 +372,6 @@ function Catalogue() {
 
         $card.append($card_header).append($card_snapshots).append($card_body).append($card_footer).append($action_see_more).append($action_add_to_cart);
         return $card;
-    };
-
-    this.updatePagination = function (currentPage, totalPage) {
-        /*
-        var $pageFirst = $('<li class="disabled"><a title="Première page" href="#">&laquo;</a></li>');
-        var $pagePrevious = $('<li class="disabled"><a title="Page précédente" href="#">&lsaquo;</a></li>');
-        var $pageCurrent = $('<li class="active"><a title="Page 1" href="#">1</a></li>');
-        var $pageNext = $('<li class="disabled"><a title="Page suivante" href="#">&rsaquo;</a></li>');
-        var $pageLast = $('<li class="disabled"><a title="Dernière page" href="#">&raquo;</a></li>');
-        */
     };
 
     this.addToCart = function (listId) {

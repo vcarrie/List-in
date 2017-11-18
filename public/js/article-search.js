@@ -82,7 +82,7 @@
 
                         var quantity = document.createElement('select');
                         quantity.setAttribute("name", "product[" + selected_article.Id + "][quantity]");
-                        for (var j = 1; i < 21; j++) {
+                        for (var j = 1; j < 21; j++) {
                             var option = document.createElement('option');
                             option.setAttribute("id", j);
                             option.text = j;
