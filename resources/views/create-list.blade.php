@@ -6,7 +6,8 @@
 
     <div class="row creation">
 
-        <form id="list-creation" action="/sdgh" method="post">
+        <form id="list-creation" method="post">
+            {{ csrf_field() }}
             <div id="step-one">
                 <h1 style="text-align: center">Etape 1 : Sélectionnez vos produits</h1>
                 <div id="articles-container" class="col-md-6 col-md-offset-3"

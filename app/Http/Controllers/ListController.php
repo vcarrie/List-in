@@ -9,7 +9,6 @@ use App\Belong;
 use App\Repositories\Liste\ValidateCreateListRepository;
 use App\Tag;
 use App\Categorize;
-use App\User;
 
 class ListController extends Controller
 {
