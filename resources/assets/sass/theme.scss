@@ -306,6 +306,7 @@ header {
 
         .pagination-box {
             width: 100%;
+            margin-top: 2rem;
             text-align: center;
 
             .pagination {
@@ -337,7 +338,7 @@ header {
             width: 250px;
             display: inline-block;
             margin-right: 3rem;
-            margin-bottom: 1rem;
+            margin-bottom: 2rem;
             background-color: white;
             border: 0px solid $color_separation;
             -webkit-border-radius: 1px;
