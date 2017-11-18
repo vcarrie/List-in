@@ -15,7 +15,7 @@ class ContactController extends Controller
 
     public function store(ContactRequest $request)
     {
-        Mail::to('carrie.valentin33@gmail.com')
+        Mail::to('listincontact@gmail.com')
             ->send(new Contact($request->except('_token')));
 
         return view('confirm');

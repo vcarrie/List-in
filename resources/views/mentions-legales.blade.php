@@ -4,24 +4,24 @@
 
 @section('main')
 
-    <div class="row ml" >
+    <div class="row ml">
         <div class="col-md-8 col-md-offset-2">
-            <h1>Mentions légales du site List'In</h1></br>
+            <h1>Mentions légales du site List'In</h1><br>
 
             <p>
                 Conformément aux dispositions des Articles 6-III de la Loi n°2004-575 du 21 Juin 2004 pour la Confiance
                 dans l'économie numérique, dite L.C.E.N, il est porté à la connaissance des utilisateurs et visiteurs du
                 site List'In les présentes mentions légales.
-            </p></br>
+            </p><br>
             <p>
                 Le site list'In est accessible à l'adresse suivante : www.listin.fr. L'accès et l'utilisation du site
                 sont soumis aux présentes mentions légales détaillées ci-après ainsi qu'aux lois et règlements
                 applicables.
-            </p></br>
+            </p><br>
             <p>
                 La connexion, l'utilisation et l'accès à ce site impliquent l'acceptation intégrale et sans réseve de
                 l'internaute de toutes les dispositions des présentes mentions légales.
-            </p></br>
+            </p><br>
 
 
             <h2>Article 1 : Informations légales</h2>
@@ -29,7 +29,7 @@
                 En vertu de l'article 6 de la Loi n°2004-575 du 21 Juin 2004 pour la Confiance dans l'économie
                 numérique, il est précisé dans cet article l'identité des différents intervenants dans le cadre de sa
                 réalisation et de son suivi.
-            </p></br>
+            </p><br>
             <p>
                 Le site List'In est édité par : List'In SAS
             </p>
@@ -41,13 +41,13 @@
             </p>
             <p>
                 Adresse e-mail : listincontact@gmail.com
-            </p></br>
+            </p><br>
             <p>
                 Le Directeur de publication est : Marceau JEANJEAN
             </p>
             <p>
                 Adresse e-mail de contact : marceau.jeanjean@u-bordeaux.fr
-            </p></br>
+            </p><br>
             <p>
                 le site List'In est hebergé par l'IUT de Bordeaux
             </p>
@@ -59,11 +59,11 @@
             </p>
             <p>
                 Adresse e-mail : journet@labri.fr
-            </p></br>
+            </p><br>
             <p>
                 Sont considérés comme utilisateurs tout les internautes qui naviguent, lisent, visionnent et utilisent
                 le site List'In
-            </p></br>
+            </p><br>
 
 
             <h2>Article 2 : Accessibilité</h2>
@@ -75,7 +75,7 @@
                 En cas d'impossibilité d'accès au site, celui-ci s'engage à faire son maximum afin d'en rétablir
                 l'accès. Le site ne saurait être tenu pour responsable de tout dommage, quelle qu'en soit la nature,
                 résultant de son indisponibilité.
-            </p></br>
+            </p><br>
 
 
             <h2>Article 3 : Collecte de données et loi informatique et libertés</h2>
@@ -91,7 +91,7 @@
             <p>
                 Pour faire usage de celui-ci, l'Utilisateur doit s'adresser à l'Editeur en le contactant à l'adresse
                 suivante : listincontact@gmail.com.
-            </p></br>
+            </p><br>
 
 
             <h2>Article 4 : Politique de cookies</h2>
@@ -104,13 +104,13 @@
                 Conformément à la legislation européenne, le site List'In a mis à jour, sa politique de confidentialité
                 en matière de cookie. L'Utilisateur est libre d'accepter ou de refuser les cookies de tous les sites
                 internet en modifiant les paramètres de son navigateur internet.
-            </p></br>
+            </p><br>
 
 
             <h2>Article 5 : Loi applicable et juridiction</h2>
             <p>
                 la legislation française s'applique aux présentes mentions légales.
-            </p></br>
+            </p><br>
 
 
             <h2>Article 6 : Contact</h2>

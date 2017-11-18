@@ -4,9 +4,11 @@
 
 @section('main')
     <br>
-    <div class="container">
+    <div class="container-contact">
         <div class="row card text-white bg-dark">
-            <h4 class="card-header">Contactez-moi</h4>
+            <h1 class="card-header-contact">Contactez-nous</h1>
+            <h4 class="card-header">Des idées, des remarques, des questions ?</h4>
+            <h4 class="card-header">Faites-nous en part !</h4>
             <div class="card-body">
                 <form action="{{ url('contact') }}" method="POST">
                     {{ csrf_field() }}
@@ -21,8 +23,7 @@
                         {!! $errors->first('email', '<div class="invalid-feedback">:message</div>') !!}
                     </div>
                     <div class="form-group">
-                        <textarea class="form-control {{ $errors->has('message') ? 'is-invalid' : '' }}" name="message"
-                                  id="message" placeholder="Votre message">{{ old('message') }}</textarea>
+                        <textarea class="form-control-contact {{ $errors->has('message') ? 'is-invalid' : '' }}" name="message" id="message" placeholder="Votre message">{{ old('message') }}</textarea>
                         {!! $errors->first('message', '<div class="invalid-feedback">:message</div>') !!}
                     </div>
 
@@ -38,8 +39,7 @@
                             </div>
                         </div>
                     </div>
-
-                    <button type="submit" class="btn btn-secondary">Envoyer !</button>
+                    <button type="submit" class="btn btn-secondary">Envoyer</button>
                 </form>
             </div>
         </div>

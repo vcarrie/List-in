@@ -12,7 +12,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">
+                    <a class="navbar-brand" href="/">
                         <img class="logo img-responsive" src="../../../public/images/Logo_V4_transparent.png"
                              alt="logo listin"/>
                     </a>
@@ -40,22 +40,22 @@
                         </li>
 
 
+                        @guest
+                            <li>
+                                <a href="{{ route('login') }}" tabindex="1">
+                                    <img alt="connexion" src="../../../public/images/icon-account.png"/>
+                                    <h5>Se connecter</h5>
+                                </a>
 
-                            @guest
+                            </li>
+                        @else
                                 <li>
-                                    <a href="{{ route('login') }}" tabindex="1">
-                                        <img alt="connexion" src="../../../public/images/icon-account.png"/>
-                                        <h5>Se connecter</h5>
+                                    <a tabindex="1" href="#">
+                                        <img alt="mon compte" src="../../../public/images/icon-account.png"/>
+                                        <h5>Mon Compte</h5>
                                     </a>
-
                                 </li>
-                                @else
-                                    <li>
-                                        <a tabindex="1" href="#">
-                                            <img alt="mon compte" src="../../../public/images/icon-account.png"/>
-                                            <h5>Mon Compte</h5>
-                                        </a>
-                                    </li>
+                            <!--
                                     <li>
                                      <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                                          <img alt="mon compte" src="../../../public/images/icon-deconnexion.png"/>
@@ -66,12 +66,11 @@
                                         {{ csrf_field() }}
                                     </form>
                                     </li>
-                            @endguest
+                                -->
+                        @endguest
                     </ul>
                 </div>
-
             </div>
         </nav>
-
     </div>
 </div>
