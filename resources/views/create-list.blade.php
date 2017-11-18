@@ -9,7 +9,7 @@
         <form id="list-creation" method="post">
             {{ csrf_field() }}
             <div id="step-one">
-                <h1 style="text-align: center">Etape 1 : Sélectionnez vos produits</h1>
+                <h1 class="title-create-list">Etape 1 : Sélectionnez vos produits</h1>
                 <div id="articles-container" class="col-md-6 col-md-offset-3"
                      style="padding: 10px; background-color: #FFFFFF">
                     <h2 class="no-article">Pas encore de produits</h2>
