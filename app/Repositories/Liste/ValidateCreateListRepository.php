@@ -5,21 +5,33 @@ namespace App\Repositories\Liste;
 use App\Belong;
 use App\Categorize;
 use App\Liste;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 
 class ValidateCreateListRepository
 {
     public function createList($form)
     {
-        $title = $form->title; //à changer en fonction des values="" données
-        $description = $form->description;
+        $title = $form->list_name;
+        $description = $form->list_description;
         $idCreator = Auth::user()->id;
-        $tags = $form->tags;
-        $products = $form->products;
-        $quantity = $form->products->quantity;
+
+        $tags = array();
+        $tags[0] = 12;
+
+        $products = array();
+        $quantities = array();
+
+        foreach ($form->product as $product){
+            array_push($products, $product['id']);
+        }
+
+        foreach ($form->product as $product){
+            array_push($quantities, $product['quantity']);
+        }
+
 
         $idList = Liste::createList($title, $description, $idCreator);
-        Belong::createList($idList, $products, $quantity);
+        Belong::createList($idList, $products, $quantities);
         Categorize::createList($idList, $tags);
 
     }

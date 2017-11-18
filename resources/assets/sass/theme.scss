@@ -600,3 +600,35 @@ footer {
         }
     }
 }
+
+/* CONTACT PAGE
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+.card-header-contact {
+    font-weight: bold;
+}
+
+.container-contact {
+    margin: 2rem;
+    text-align: center;
+    padding-left: 4rem;
+    padding-right: 4rem;
+    max-width: 500px;
+    margin: 0px auto;
+}
+
+.form-control-contact {
+    height: 275px;
+    width: 100%;
+    padding: 6px 12px;
+    color: #555;
+    border: 1px solid #CCC;
+    border-radius: 4px;
+
+}
+
+.btn.btn-secondary {
+    background-color: #e03913;
+    color: #FFF;
+}
+

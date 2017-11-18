@@ -24,8 +24,12 @@ class ValidateCreateListRequest extends FormRequest
     public function rules()
     {
         return [
-            //mettre les conditions (si nom est pas null ect)
-            //à faire en fonctions des values="" données
+
+            'list_name' => 'bail|required',
+            'list_description' => 'bail|required',
+            //'selected_tag' => 'bail|required|array',
+            'product' => 'bail|required|array',
+
         ];
     }
 }

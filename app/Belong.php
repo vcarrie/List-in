@@ -17,16 +17,21 @@ class Belong extends Model
         return static::where('$idCdiscount', '=', $idCdiscount);
     }
 
-    public static function createList($idList, $products, $quantity)
+    public static function createList($idList, $products, $quantities)
     {
-        foreach ($products as $product) {
-            $belong = new Belong;
-            $belong->idList = $idList;
-            $belong->idCdiscount = $product;
-            $belong->quantity = $quantity;
-            $belong->save();
-            unset($belong);
+        if (sizeof($products) == sizeof($quantities)){
+            $sizeProducts = sizeof($products);
+
+            for ($i = 0; $i < $sizeProducts; $i++) {
+                $belong = new Belong;
+                $belong->idList = $idList;
+                $belong->idCdiscount = $products[$i];
+                $belong->quantity = $quantities[$i];
+                $belong->save();
+                unset($belong);
+            }
         }
+
     }
 
     public static function getTotalByIdList($idList, ApiCdiscountSearchByIdProductRepository $apiCdiscountSearchByIdProduct){
