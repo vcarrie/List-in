@@ -313,7 +313,7 @@ function Catalogue() {
         var $paginationBox = $(this.elemPagination);
 
         var $pageCurrent = $paginationBox.find('li:nth-child(3)');
-        $pageCurrent.find('a').attr('title', this.currentPage).text(this.currentPage+1);
+        $pageCurrent.find('a').attr('title', 'Page '+this.currentPage+1).text(this.currentPage+1);
 
         var $pageFirst = $paginationBox.find('li:nth-child(1)');
         var $pagePrevious = $paginationBox.find('li:nth-child(2)');
@@ -363,10 +363,10 @@ function Catalogue() {
 
         var $card_body = $('<div class="card-body"><h4 title="' + listJson.list.listName + '">' + listJson.list.listName + '</h4><p>' + listJson.list.description + '</p></div>');
         var $card_footer = $('<div class="card-footer"><table><tr><td></td><td class="card-price" rowspan="2">' + listJson.total_price + ' €</td></tr><tr><td class="card-item-count">' + listJson.nb_products + ' articles</td></tr></table></div>');
-        var $action_see_more = $('<button>Voir la liste</button>');
+        var $action_see_more = $('<a href="/list/'+listJson.list.id+'">Voir la liste</a>');
         var $action_add_to_cart = $('<button>Ajouter au panier</button>');
         $action_add_to_cart.click(function (e) {
-            this.addToCart(listJson.id);
+            this.addToCart(listJson.list.id);
             return false;
         });
 
