@@ -635,6 +635,80 @@ footer {
 /* CREATE LIST PAGE
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
-.title-create-list {
-  text-align: center;
+#articles-container{
+	padding: 10px;
+	background-color: #ffffff;
+}
+
+#info-container{
+	padding: 10px;
+	background-color: #ffffff;
+}
+
+.btn.btn-next-step {
+	background-color: #e03913;
+	color: #FFFFFF;
+	border: 1px solid #FFF;
+	border-radius: 4px;
+}
+
+.search-bar{
+	margin-top: 2rem;
+	margin-bottom: 2rem;
+}
+
+.btn.btn-go-search{
+	background-color: #e03913;
+	color: #FFFFFF;
+	border: 1px solid #FFF;
+	border-radius: 4px;
+}
+
+.title-create-list{
+	text-align: center;
+}
+
+.name-list{
+	margin-bottom: 0.5rem;
+}
+
+.name_list{
+	margin-bottom: 2rem;
+	border: 1px solid #d6d6d6;
+	border-radius: 4px;
+	padding: 6px 12px;
+}
+
+.description-list{
+	margin-bottom: 0.5rem;
+}
+
+.description_list{
+	margin-bottom: 2rem;
+}
+
+.tags-input.form-control {
+	margin-bottom: 2rem;
+}
+
+.previous-step{
+	padding: 6px 12px;
+	background-color: #333;
+	color: #FFF;
+	border: 1px solid #FFF;
+	border-radius: 4px;
+}
+
+.research-product{
+	padding: 10px;
+	margin-top: 3%;
+	background-color: #FFFFFF;
+}
+
+.btn.btn-add-tags{
+	color: #fff;
+	background-color: #e03913;
+	border: 1px solid #fff;
+	border-radius: 4px;
+	padding: 6px 12px;
 }
