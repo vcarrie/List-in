@@ -25,6 +25,11 @@ class HomeController extends Controller
         return view('catalogue', compact('tags_final_tab'));
     }
 
+    public function struct()
+    {
+        return view('include.catalogue-struct');
+    }
+
     public function research(Request $request, ApiCdiscountSearchByIdProductRepository $apiCdiscountSearchByIdProduct)
     {
 
