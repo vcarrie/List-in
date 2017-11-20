@@ -1,6 +1,8 @@
+var catalogue = undefined;
+
 $(function () {
 
-    var catalogue = new Catalogue();
+    catalogue = new Catalogue();
     catalogue.init();
 
     $('.list-images img').click(function() {

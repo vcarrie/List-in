@@ -55,7 +55,6 @@
                                     <label for="list_tag" class="tag">Tags de la liste :</label><br>
                                     <input id="selected_tag" type="text" class="tags-input form-control"
                                            placeholder="Entrez un tag..."/>
-                                    <input id="add_tag" class="btn btn-secondary" type="submit" tabindex="1" title="Ajouter un tag" value="Ajouter"/>
                                 </form>
                             </div>
                         </div>
@@ -67,10 +66,12 @@
 
                     <div class="col-md-offset-4">
                         <button id="previous-step" class="btn btn-secondary"type="button">Etape précédente</button>
-                        <input class="btn btn-secondary" type="submit" name="create_list" value="Valider">
+                        <input id="list_validate" class="btn btn-secondary" type="submit" name="create_list" value="Valider">
                     </div>
                 </div>
+                <div id="hidden-container">
 
+                </div>
 
             </div>
         </form>
