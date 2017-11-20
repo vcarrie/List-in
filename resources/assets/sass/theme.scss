@@ -112,22 +112,8 @@ header {
     }
 }
 
-/* CREATE LIST PAGE
+/* SEARCH REGION
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
-
-
-#search-bar{
-    margin-top: 15px;
-}
-
-#tag-search{
-    margin-right: 0px;
-    margin-left: 0px;
-}
-
-.l_name, .desc, .tag{
-    margin-top: 2rem;
-}
 
 #search-region {
     margin-bottom: 2rem;
@@ -607,6 +593,22 @@ header {
     height: 2rem;
     display: block;
     background-size: 2rem;
+}
+
+/* CREATE LIST PAGE
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+#search-bar{
+    margin-top: 15px;
+}
+
+#tag-search{
+    margin-right: 0px;
+    margin-left: 0px;
+}
+
+.l_name, .desc, .tag{
+    margin-top: 2rem;
 }
 
 /* CGU / Mentions Legales
