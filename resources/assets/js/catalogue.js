@@ -49,19 +49,32 @@ function Catalogue() {
     this.init = function () {
         this.queryDOM();
 
-        if (this.elemForm && this.elemContainer && this.elemTagsInput) {
-            $.ajax({
-                url: this.jsonTagsRoute,
-                type: 'GET',
-                dataType: 'json',
-                context: this,
-                error: this.ajaxJsonTagsError,
-                success: this.ajaxJsonTagsSuccess
-            });
+        $.ajax({
+            url: this.jsonTagsRoute,
+            type: 'GET',
+            dataType: 'json',
+            context: this,
+            error: this.ajaxJsonTagsError,
+            success: this.ajaxJsonTagsSuccess
+        });
 
+        if (this.elemForm.length > 0 && this.elemTagsInput) {
             this.elemForm.submit(this.submitTags.bind(this));
         } else {
             this.initError();
+        }
+
+        // if the page is /list/{id}
+        if ($('.list-detail').length > 0) {
+            var $addToCartBtn = $('.list-options button');
+            $addToCartBtn.click(function() {
+                this.addToCart($addToCartBtn.attr('data-listId'), $addToCartBtn);
+            }.bind(this));
+        }
+
+        // if the page is /create/list
+        if ($('#list-creation').length > 0) {
+            this.elemTagsInput = $('#list-creation').find('.tags-input');
         }
     };
 
@@ -105,7 +118,7 @@ function Catalogue() {
             substrRegex_lazySearch = new RegExp(q, 'i');
 
             // we don't want to suggest tags already in the input
-            var flagsAlreadyUsed = $('#search-region .tags-input').tagsinput('items');
+            var flagsAlreadyUsed = $('#search-region .tags-input').tagsinput('items') || $('.tags-input').tagsinput('items');
 
             // iterate through the pool of strings and for any string that
             // contains the substring `q`, add it to the `matches` array
@@ -303,7 +316,7 @@ function Catalogue() {
 
     this.updateDisplayedLists = function (listsToDisplay, listsTotalAmount) {
         $(this.elemContainer).html("").hide();
-        $(this.elemContainerHeaderTitle).text('Il y a ' + listsTotalAmount + ' listes associées aux tags "' + this.getSearchTagsChained().replace(',', ', ') + '"');
+        $(this.elemContainerHeaderTitle).text('Il y a ' + listsTotalAmount + ' listes associées aux tags "' + this.getSearchTagsChained().replace(/,/g, ', ') + '"');
 
         for (var i in listsToDisplay) {
             var $cardHtml = this.templateListCard(listsToDisplay[i]);
@@ -416,7 +429,7 @@ function Catalogue() {
         var $action_see_more = $('<a href="/list/'+listJson.list.id+'">Voir la liste</a>');
         var $action_add_to_cart = $('<button>Ajouter au panier</button>');
         $action_add_to_cart.click(function (e) {
-            this.addToCart(listJson.list.id);
+            this.addToCart(listJson.list.id, $action_add_to_cart);
             return false;
         }.bind(this));
 
@@ -424,16 +437,13 @@ function Catalogue() {
         return $card;
     };
 
-    this.addToCart = function (listId) {
+    this.addToCart = function (listId, btnClicked) {
         console.log('"AddToCart" action for list ' + listId);
         $.ajax({
-            url: this.addToCartRoute,
-            type: 'POST',
+            url: this.addToCartRoute + '/' + listId,
+            type: 'GET',
             dataType: 'json',
-            data: {
-                listId: listId
-            },
-            context: this,
+            context: btnClicked,
             error: this.addToCartError,
             success: this.addToCartSuccess
         });
@@ -444,7 +454,8 @@ function Catalogue() {
     };
 
     this.addToCartSuccess = function (response) {
-        console.log('List added to cart!')
+        console.log('Cart contains lists '+response.join(", "));
+        $(this).text('Liste ajoutée').addClass('btn-activated');
     };
 
 }

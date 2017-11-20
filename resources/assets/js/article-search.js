@@ -19,44 +19,77 @@
                     var article = document.createElement('div');
                     article.setAttribute("id", "article" + i);
 
+                    var table_container = document.createElement('table');
+                    var my_tr = document.createElement('tr');
+                    var td_img = document.createElement('td');
+                    var td_name = document.createElement('td');
+                    var td_price = document.createElement('td');
+                    var td_add = document.createElement('td');
+                    var td_link = document.createElement('td');
+
+                    var td_blank = document.createElement('td');
+                    td_blank.setAttribute("width", "20px");
+                    var td_blank2 = document.createElement('td');
+                    td_blank2.setAttribute("width", "20px");
+                    var td_blank3 = document.createElement('td');
+                    td_blank3.setAttribute("width", "20px");
+
                     var image = document.createElement('img');
                     image.setAttribute("src", results[i].MainImageUrl);
                     image.setAttribute("alt", "imageProduit");
+                    image.setAttribute('width', "75px");
+                    td_img.appendChild(image);
+                    td_img.setAttribute('width', "100px");
 
-                    var name = document.createElement('strong');
+                    var name = document.createElement('p');
                     var name_value = document.createTextNode(results[i].Name);
+                    name.setAttribute("class", "article_name");
                     name.appendChild(name_value);
-
-                    var desc = document.createElement('p');
-                    var desc_value = document.createTextNode(results[i].Description);
-                    desc.appendChild(desc_value);
+                    td_name.appendChild(name);
+                    td_name.setAttribute('width', "530px");
 
                     var price = document.createElement('p');
                     var price_value = document.createTextNode(parseFloat(results[i].BestOffer.SalePrice).toFixed(2) + " €");
                     price.appendChild(price_value);
+                    td_price.appendChild(price);
+                    td_price.setAttribute('width', "80px");
 
                     var add_button = document.createElement('button');
                     var add_button_value = document.createTextNode("+");
                     add_button.setAttribute("id", i);
                     add_button.setAttribute("class", "resultToSelection");
                     add_button.appendChild(add_button_value);
+                    td_add.appendChild(add_button);
 
                     var link = document.createElement('a');
                     var link_value = document.createTextNode("Lien CDiscount");
                     link.setAttribute("href", results[i].BestOffer.ProductURL);
                     link.setAttribute("target", "blank");
                     link.appendChild(link_value);
+                    td_link.appendChild(link);
 
-                    article.append(image);
-                    article.append(name);
-                    article.append(desc);
-                    article.append(price);
-                    article.append(add_button);
-                    article.append(link);
+
+                    my_tr.appendChild(td_img);
+                    my_tr.appendChild(td_name);
+                    my_tr.appendChild(td_blank);///////
+                    my_tr.appendChild(td_price);
+                    my_tr.appendChild(td_blank2);//////
+                    my_tr.appendChild(td_add);
+                    my_tr.appendChild(td_blank3);//////
+                    my_tr.appendChild(td_link);
+                    table_container.appendChild(my_tr);
+
+                    article.append(table_container);
                     $('#result-region').append(article);
+                    $('#result-region div').css({"border-style": "solid", "border-width": "1px 1px 1px 1px"});
+                    if(i%2==0)
+                      $('#result-region #article'+i).css({"background-color": "#D5D5D5"});
+                    else
+                      $('#result-region #article'+i).css({"background-color": "#F8F8F8"});
+
                 }
 
-                // Ajout produit sélectionné dans div selection
+                // Ajout produit sÃ©lectionnÃ© dans div selection
                 $('.resultToSelection').click(function () {
                     var article_count = 0;
                     var button_index = $(this).attr('id');
@@ -140,8 +173,18 @@
         $('#step-two').css("display", "none");
     });
 
-    $('#add_tag').click(function () {
-        console.log($('.tags-input').val());
+    $('#list_validate').click(function(){
+        console.log(catalogue);
+        var selected_tags = catalogue.getSearchTagsIds();
+        var content = document.getElementById('hidden-container');
+        for(var i = 0; i < selected_tags.length; i++){
+          var hidden = document.createElement('input');
+          hidden.setAttribute("id", "tag" + selected_tags[i]);
+          hidden.setAttribute("type", "hidden");
+          hidden.setAttribute("name", "selected_tags[]");
+          hidden.value = selected_tags[i];
+          content.appendChild(hidden);
+        }
         return false;
-    });
+    })
 })();

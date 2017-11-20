@@ -20,6 +20,7 @@ mix.scripts([
 	'resources/assets/js/vendor/typeahead.bundle.min.js',
 	'resources/assets/js/plugins.js',
 	'resources/assets/js/catalogue.js',
+	'resources/assets/js/article-search.js',
 	'resources/assets/js/main.js'
 ], 'public/js/all.js');
 

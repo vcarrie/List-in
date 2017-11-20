@@ -25,7 +25,7 @@
                 <h1>
                     {{ $listjson['TotalPrice'] }} €
                 </h1>
-                <button class="btn btn-default">Ajouter au panier</button>
+                <button data-listId="{{ $listjson['list']['id'] }}" class="btn btn-default">Ajouter au panier</button>
             </div>
         </div>
         <div class="list-images">

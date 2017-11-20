@@ -14,14 +14,12 @@ class UserController extends Controller
         $user = User::find($id);
 
         return $user;
-        //return view('userProfile');
     }
 
     public function myAccount(){
         $user = Auth::user();
 
-        return $user;
-        //return view('userProfile');
+        return view('account', compact($user));
     }
 
     public function deleteUser($id){
