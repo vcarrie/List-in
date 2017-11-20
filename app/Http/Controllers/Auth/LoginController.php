@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Bestmomo\LaravelEmailConfirmation\Traits\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
+use Lang;
 
 class LoginController extends Controller
 {
@@ -30,7 +33,6 @@ class LoginController extends Controller
     /**
      * Create a new controller instance.
      *
-     * @return void
      */
     public function __construct()
     {
@@ -42,4 +44,25 @@ class LoginController extends Controller
     {
         return view('auth.register');
     }
+
+
+    protected function sendFailedLoginResponse(Request $request)
+    {
+        throw ValidationException::withMessages([
+            'emailLogin' => [trans('auth.failed')],
+        ]);
+    }
+
+    protected function sendLockoutResponse(Request $request)
+    {
+        $seconds = $this->limiter()->availableIn(
+            $this->throttleKey($request)
+        );
+
+        throw ValidationException::withMessages([
+            'emailLogin' => [Lang::get('auth.throttle', ['seconds' => $seconds])],
+        ])->status(423);
+    }
+
+
 }
