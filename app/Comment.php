@@ -13,4 +13,11 @@ class Comment extends Model
     public static function getByIdUser($idUser){
         return static::where('idUser', '=', $idUser);
     }
+
+    public static function deleteProductbyIdList($idList){
+
+        self::getByIdList($idList)->delete();
+
+
+    }
 }

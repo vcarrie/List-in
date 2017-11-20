@@ -55,4 +55,11 @@ class Belong extends Model
 
         return $products;
     }
+
+    public static function deleteProductbyIdList($idList){
+
+        self::getByIdList($idList)->delete();
+
+
+    }
 }
