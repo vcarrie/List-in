@@ -21,6 +21,7 @@
 
                     var image = document.createElement('img');
                     image.setAttribute("src", results[i].MainImageUrl);
+                    image.setAttribute("alt", "imageProduit");
 
                     var name = document.createElement('strong');
                     var name_value = document.createTextNode(results[i].Name);
@@ -31,7 +32,7 @@
                     desc.appendChild(desc_value);
 
                     var price = document.createElement('p');
-                    var price_value = document.createTextNode(parseFloat(results[i].BestOffer.SalePrice).toFixed(2) + " €");
+                    var price_value = document.createTextNode(parseFloat(results[i].BestOffer.SalePrice).toFixed(2) + " â‚¬");
                     price.appendChild(price_value);
 
                     var add_button = document.createElement('button');
@@ -55,7 +56,7 @@
                     $('#result-region').append(article);
                 }
 
-                // Ajout produit sélectionné dans div selection
+                // Ajout produit sÃ©lectionnÃ© dans div selection
                 $('.resultToSelection').click(function () {
                     var article_count = 0;
                     var button_index = $(this).attr('id');
@@ -104,7 +105,7 @@
                         selected_desc.appendChild(selected_desc_value);
 
                         var selected_price = document.createElement('p');
-                        var selected_price_value = document.createTextNode(parseFloat(selected_article.BestOffer.SalePrice).toFixed(2) + " €");
+                        var selected_price_value = document.createTextNode(parseFloat(selected_article.BestOffer.SalePrice).toFixed(2) + " â‚¬");
                         selected_price.appendChild(selected_price_value);
 
 
