@@ -11,8 +11,6 @@
 |
 */
 
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
@@ -20,7 +18,7 @@ Route::get('/lists/user/{id}', 'ListController@getListsByIdAccount');
 Route::get('/lists', 'ListController@getAllLists');
 Route::get('/list/{id}', 'ListController@getListById');
 
-Route::middleware('auth')->group(function () { //ou du moins celui crée
+Route::middleware('auth')->group(function () {
     Route::get('/create/list', 'ListController@createList');
     Route::post('/create/list', 'ListController@validateCreateList');
 });
@@ -29,11 +27,15 @@ Route::middleware('auth')->group(function () { //ou du moins celui crée
 Route::get('/getproductbykeyword', 'ApiCdiscountSearchByKeywordController@get');
 Route::post('/getproductbykeyword', 'ApiCdiscountSearchByKeywordController@post');
 
-Route::get('/removefromcart', 'CartController@RemoveFromCart');
-Route::get('/addtocart', 'CartController@addToCart');
+Route::get('/removefromcart/{id}', 'CartController@RemoveListFromCart');
+Route::get('/addtocart/{id}', 'CartController@addListToCart');
+Route::get('/emptycart', 'CartController@empty_cart');
 
 
 Route::get('/', 'HomeController@index');
+
+Route::get('/delete/list/{id}', 'ListController@deleteList');
+
 
 Route::get('/research', 'HomeController@research');
 
@@ -63,3 +65,9 @@ Route::get('/dunsparce', function(){
     return view('hidden.dunsparce');
 });
 
+
+//Delete
+Route::delete('/delete/rate/{id}', 'DeleteController@deleteRate');
+Route::delete('/delete/categorize/{id}', 'DeleteController@deleteCategorize');
+Route::delete('/delete/comment/{id}', 'DeleteController@deleteComment');
+Route::delete('/delete/belong/{id}','DeleteController@deleteBelong');

@@ -6,16 +6,26 @@ use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
-    public function addToCart(Request $request){
+    public function addListToCart($id, Request $request){
 
-        $request->session()->push('cart', 3);
+        $cart = session('cart');
+        $add_is_okay = true;
+        foreach ($cart as $key=>$idList){
+            if($idList==$id){
+                $add_is_okay = false;
+            }
+        }
+        if ($add_is_okay){
+            $request->session()->push('cart', $id);
+        }
+
         return session('cart');
     }
 
-    public function RemoveFromCart(Request $request){
+    public function RemoveListFromCart($id, Request $request){
         $cart = session('cart');
-            foreach ($cart as $key=>$id){
-                if($id==3){
+            foreach ($cart as $key=>$idList){
+                if($idList==$id){
                 unset($cart[$key]);
             }
         }
@@ -24,5 +34,8 @@ class CartController extends Controller
 
         session(['cart' => $cart]);
         return session('cart');
+    }
+    public function empty_cart(){
+        session()->get('cart')->flush();
     }
 }
