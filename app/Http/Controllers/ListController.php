@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Comment;
 use App\Http\Requests\ValidateCreateListRequest;
+use App\Rate;
 use App\Repositories\ApiCdiscount\ApiCdiscountSearchByIdProductRepository;
 use App\Liste;
 use App\Belong;
@@ -66,6 +68,16 @@ class ListController extends Controller
 
     public function validateCreateList(ValidateCreateListRequest $request, ValidateCreateListRepository $repository){
         $repository->createList($request);
+    }
+
+    public function deleteList($id){
+        Belong::deleteProductbyIdList($id);
+        Rate::deleteRateByIdList($id);
+        Comment::deleteCommentbyIdList($id);
+        Categorize::deleteCategorizeByIdList($id);
+
+        Liste::find($id)->delete();
+
     }
 
 }
