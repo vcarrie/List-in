@@ -418,7 +418,7 @@ function Catalogue() {
         $action_add_to_cart.click(function (e) {
             this.addToCart(listJson.list.id);
             return false;
-        });
+        }.bind(this));
 
         $card.append($card_header).append($card_snapshots).append($card_body).append($card_footer).append($action_see_more).append($action_add_to_cart);
         return $card;

@@ -5,7 +5,7 @@
 @section('mid-content')
     <div class="list-detail">
         <div class="list-header row">
-            <div class="col-md-8">
+            <div class="col-xs-8">
                 <h1>
                     {{ $listjson['list']['listName'] }}
                 </h1>
@@ -21,7 +21,7 @@
                     {{ $listjson['list']['description'] }}
                 </p>
             </div>
-            <div class="col-md-4">
+            <div class="list-options col-xs-4">
                 <h1>
                     {{ $listjson['TotalPrice'] }} €
                 </h1>
@@ -53,5 +53,35 @@
                 </div>
             @endforeach
         </section>
+    </div>
+    <div class="comments-master row">
+        <div class="comments-header">
+            <h2>Commentaires</h2>
+        </div>
+        <form class="comments-form" method="post" action="/">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Titre"/>
+            </div>
+            <div class="form-group">
+                <textarea class="form-control" placeholder="Commentaire"></textarea>
+            </div>
+            <button type="submit" class="btn btn-default pull-right">Envoyer</button>
+        </form>
+        <div class="comments">
+            <div class="comment col-md-10 col-md-offset-1">
+                <h3>adieu</h3>
+                <h5>Par amélie le 30/02/2017</h5>
+                <p>
+                    déçue, je ne reviendrai pas ici.
+                </p>
+            </div>
+            <div class="comment col-md-10 col-md-offset-1">
+                <h3>un délice</h3>
+                <h5>Par charlie le 10/12/2017</h5>
+                <p>
+                    ai passé de très bons moments grâce à "list'in". recommande chaudement!!
+                </p>
+            </div>
+        </div>
     </div>
 @endsection
