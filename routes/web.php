@@ -35,6 +35,9 @@ Route::get('/addtocart', 'CartController@addToCart');
 
 Route::get('/', 'HomeController@index');
 
+
+
+
 Route::get('/research', 'HomeController@research');
 
 Route::get('/catalogue', 'HomeController@index');
