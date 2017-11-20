@@ -477,6 +477,14 @@ header {
         max-width: 600px;
         margin: auto;
 
+    	@media screen and (max-width: 600px) {
+    		.list-header {
+    			& > div {
+    				width: 100% !important;
+    			}
+    		}
+    	}
+
         .cards-container {
             text-align: center;
         }
@@ -495,7 +503,7 @@ header {
                 margin-left: 1rem;
             }
 
-            .col-md-4 {
+            .list-options {
             	text-align: center;
 
             	h1 {
@@ -527,6 +535,42 @@ header {
         }
     }
     // list-detail
+
+    .comments-master {
+        max-width: 600px;
+        margin: auto;
+
+    	.comments-header {
+    		text-align: center;
+    	}
+
+    	.comments-form {
+
+    	}
+
+    	.comments {
+    		clear: both;
+
+	        .comment {
+
+	        	& + .comment {
+	        		border-top: 1px solid $color_separation;
+	        	}
+
+	            h3 {
+
+	            }
+
+	            h5 {
+	            	font-style: italic;
+	            }
+
+	            p {
+
+	            }
+	        }
+    	}
+    }
 }
 
 .star-ratings-sprite {
