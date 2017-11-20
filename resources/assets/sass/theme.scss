@@ -209,6 +209,7 @@ header {
             outline-color: $color_background_grey;
             background: $color_link_hover url('/public/images/icon-search.png') no-repeat center;
             background-size: 2rem;
+            vertical-align: middle;
         }
 
     }
@@ -477,34 +478,50 @@ header {
         max-width: 600px;
         margin: auto;
 
+    	@media screen and (max-width: 600px) {
+    		.list-header {
+    			& > div {
+    				width: 100% !important;
+    			}
+    		}
+    	}
+
         .cards-container {
             text-align: center;
         }
 
         .list-header {
+        	margin-bottom: 2rem;
 
             h1 {
                 margin-bottom: 0;
-
-                div {
-                    float: right;
-                }
+                overflow-wrap: break-word;
             }
 
             h5 {
                 color: $color_text_grey;
                 margin-top: 0;
                 margin-left: 1rem;
-
-                button {
-                    float: right;
-                    background-color: $color_background_red;
-                    color: $color_text_white;
-                    margin-top: 1rem;
-                    padding: 0.75rem 0.75rem;
-                    border: 0;
-                }
             }
+
+            .list-options {
+            	text-align: center;
+
+            	h1 {
+            		text-align: center;
+                	overflow-wrap: none;
+            	}
+
+            	button {
+	            	font-size: 2rem;
+	                background-color: $color_background_red;
+	                color: $color_text_white;
+	                margin-top: 1rem;
+	                padding: 0.75rem 0.75rem;
+	                border: 0;
+	            }
+            }
+            
         }
 
         .list-images {
@@ -519,6 +536,42 @@ header {
         }
     }
     // list-detail
+
+    .comments-master {
+        max-width: 600px;
+        margin: auto;
+
+    	.comments-header {
+    		text-align: center;
+    	}
+
+    	.comments-form {
+
+    	}
+
+    	.comments {
+    		clear: both;
+
+	        .comment {
+
+	        	& + .comment {
+	        		border-top: 1px solid $color_separation;
+	        	}
+
+	            h3 {
+
+	            }
+
+	            h5 {
+	            	font-style: italic;
+	            }
+
+	            p {
+
+	            }
+	        }
+    	}
+    }
 }
 
 .star-ratings-sprite {
@@ -540,6 +593,22 @@ header {
     height: 2rem;
     display: block;
     background-size: 2rem;
+}
+
+/* CREATE LIST PAGE
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+#search-bar{
+    margin-top: 15px;
+}
+
+#tag-search{
+    margin-right: 0px;
+    margin-left: 0px;
+}
+
+.l_name, .desc, .tag{
+    margin-top: 2rem;
 }
 
 /* CGU / Mentions Legales
@@ -597,11 +666,6 @@ footer {
                     height: 32px;
                 }
             }
-
-            & + li:before {
-                content: ""; // potential separator
-                margin-right: 0.5rem;
-            }
         }
     }
 }
@@ -633,6 +697,7 @@ footer {
 }
 
 .btn.btn-secondary {
+    margin: 15px 0px 15px 0px;
     background-color: #e03913;
     color: #FFF;
 }

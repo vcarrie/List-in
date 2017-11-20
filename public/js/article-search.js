@@ -21,6 +21,7 @@
 
                     var image = document.createElement('img');
                     image.setAttribute("src", results[i].MainImageUrl);
+                    image.setAttribute("alt", "imageProduit");
 
                     var name = document.createElement('strong');
                     var name_value = document.createTextNode(results[i].Name);

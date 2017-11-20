@@ -1,17 +1,12 @@
 function Catalogue() {
 
     this.ready = false;
+    this.busy = true;
 
-    this.elemForm = $('#search-region form');
-    this.elemContainer = $('.mid-content .cards-container');
-    this.elemTagsInput = $(this.elemForm).find('.tags-input');
-    this.elemContainerHeader = $('.mid-content-header');
-    this.elemSortSelect = $(this.elemContainerHeader).find('select[name="sorting_mode"]');
-    this.elemContainerHeaderTitle = $(this.elemContainerHeader).find('h3');
-    this.elemPagination = $('.pagination');
     this.jsonTagsRoute = '/tags';
     this.jsonListsRoute = '/research';
     this.addToCartRoute = '/addtocart';
+    this.catalogueStructRoute = '/catalogue-struct';
     this.typeaheadSuggestedTagsLimit = 6;
     this.tagsMap = {};
     this.tags = [];
@@ -21,6 +16,7 @@ function Catalogue() {
     this.currentPage = 0; // 0 for page number 1
     this.amountOfListsDisplayableAtOnce = undefined; // calculated once so resizing the window doesn't disturb the pagination
 
+    // initialized
     this.setReady = function () {
         this.ready = true;
         console.log("Catalogue initialized.");
@@ -30,7 +26,29 @@ function Catalogue() {
         return this.ready;
     };
 
+    // request pending
+    this.setBusy = function (status) {
+        this.busy = status;
+    };
+
+    this.isBusy = function () {
+        return this.busy;
+    };
+
+    this.queryDOM = function() {
+        this.elemForm = $('#search-region form');
+        this.elemMaster = $('.mid-content');
+        this.elemContainer = $(this.elemMaster).find('.cards-container');
+        this.elemTagsInput = $(this.elemForm).find('.tags-input');
+        this.elemContainerHeader = $('.mid-content-header');
+        this.elemSortSelect = $(this.elemContainerHeader).find('select[name="sorting_mode"]');
+        this.elemContainerHeaderTitle = $(this.elemContainerHeader).find('h3');
+        this.elemPagination = $('.pagination');
+    };
+
     this.init = function () {
+        this.queryDOM();
+
         if (this.elemForm && this.elemContainer && this.elemTagsInput) {
             $.ajax({
                 url: this.jsonTagsRoute,
@@ -67,6 +85,7 @@ function Catalogue() {
             this.buildTypeahead();
 
             this.setReady();
+            this.setBusy(false);
         } catch (e) {
             console.log(e);
         }
@@ -184,7 +203,7 @@ function Catalogue() {
     };
 
     this.getSearchSort = function () {
-        return this.elemSortSelect ? this.elemSortSelect.val() : 0;
+        return this.elemSortSelect ? this.elemSortSelect.val() || 0 : 0;
     };
 
     this.submitTags = function (e) {
@@ -205,22 +224,51 @@ function Catalogue() {
         $(this.elemContainer).html('<div class="loading_box"><img src="/public/images/loading_icon.gif"/></div>')
     };
 
+    this.fetchListsBeforeSend = function() {
+        if (this.elemPagination.length === 0) {
+            console.log('Loading catalogue structure...');
+
+            $.ajax({
+                url: this.catalogueStructRoute,
+                type: 'GET',
+                dataType: 'html',
+                context: this,
+                error: function(result, status, error) {
+                    console.log('[Failed]');
+                },
+                success: function(data) {
+                    this.elemMaster.html(data);
+                    this.queryDOM();
+                    this.elemSortSelect.selectpicker();
+                    this.displayLoadingScreen();
+                }
+            });
+        } else {
+            this.displayLoadingScreen();
+        }
+    };
+
     this.fetchLists = function (tags, pagination, sort) {
-        console.log('Fetch Lists: ' + tags + ' &' + pagination + ' &' + sort);
-        $.ajax({
-            url: this.jsonListsRoute,
-            type: 'GET',
-            dataType: 'json',
-            data: {
-                tags: tags,
-                pagination: pagination,
-                sort: sort
-            },
-            context: this,
-            beforeSend: this.displayLoadingScreen,
-            error: this.fetchListsError,
-            success: this.fetchListsSuccess
-        });
+        if (tags[0] !== undefined && !this.isBusy()) {
+            console.log('Fetch Lists: ' + tags + ' &' + pagination + ' &' + sort);
+            this.setBusy(true);
+
+            $.ajax({
+                url: this.jsonListsRoute,
+                type: 'GET',
+                dataType: 'json',
+                data: {
+                    tags: tags,
+                    pagination: pagination,
+                    sort: sort
+                },
+                context: this,
+                beforeSend: this.fetchListsBeforeSend,
+                error: this.fetchListsError,
+                success: this.fetchListsSuccess
+            });
+        }
+
     };
 
     this.fetchListsError = function (result, status, error) {
@@ -232,6 +280,8 @@ function Catalogue() {
         this.amountOfListsDisplayableAtOnce = this.getAmountOfListsDisplayableAtOnce()
         this.createPagination();
         this.displayPage(0);
+
+        this.setBusy(false);
     };
 
     this.getContainerWidth = function() {
@@ -239,7 +289,7 @@ function Catalogue() {
     };
 
     this.getAmountOfListsDisplayableAtOnce = function() {
-        return Math.floor(this.getContainerWidth() / this.cardWidth);
+        return Math.floor(this.getContainerWidth() / this.cardWidth) || 1;
     };
 
     this.getAmoutOfPages = function() {
@@ -253,7 +303,7 @@ function Catalogue() {
 
     this.updateDisplayedLists = function (listsToDisplay, listsTotalAmount) {
         $(this.elemContainer).html("").hide();
-        $(this.elemContainerHeaderTitle).text('Il y a ' + listsTotalAmount + ' listes associées aux tags "' + this.getSearchTagsChained().replace(',', ', ') + '"');
+        $(this.elemContainerHeaderTitle).text('Il y a ' + listsTotalAmount + ' listes associées aux tags "' + this.getSearchTagsChained().replace(/,/g, ', ') + '"');
 
         for (var i in listsToDisplay) {
             var $cardHtml = this.templateListCard(listsToDisplay[i]);
@@ -313,7 +363,7 @@ function Catalogue() {
         var $paginationBox = $(this.elemPagination);
 
         var $pageCurrent = $paginationBox.find('li:nth-child(3)');
-        $pageCurrent.find('a').attr('title', 'Page '+this.currentPage+1).text(this.currentPage+1);
+        $pageCurrent.find('a').attr('title', 'Page '+(this.currentPage+1)).text(this.currentPage+1);
 
         var $pageFirst = $paginationBox.find('li:nth-child(1)');
         var $pagePrevious = $paginationBox.find('li:nth-child(2)');
@@ -368,7 +418,7 @@ function Catalogue() {
         $action_add_to_cart.click(function (e) {
             this.addToCart(listJson.list.id);
             return false;
-        });
+        }.bind(this));
 
         $card.append($card_header).append($card_snapshots).append($card_body).append($card_footer).append($action_see_more).append($action_add_to_cart);
         return $card;
@@ -377,12 +427,9 @@ function Catalogue() {
     this.addToCart = function (listId) {
         console.log('"AddToCart" action for list ' + listId);
         $.ajax({
-            url: this.addToCartRoute,
-            type: 'POST',
+            url: this.addToCartRoute + '/' + listId,
+            type: 'GET',
             dataType: 'json',
-            data: {
-                listId: listId
-            },
             context: this,
             error: this.addToCartError,
             success: this.addToCartSuccess
@@ -394,7 +441,7 @@ function Catalogue() {
     };
 
     this.addToCartSuccess = function (response) {
-        console.log('List added to cart!')
+        console.log('Cart contains lists '+response.join(", "));
     };
 
 }
