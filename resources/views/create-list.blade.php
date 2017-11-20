@@ -64,7 +64,7 @@
 
                 <div id="recap-container" class="panel panel-default col-md-6 col-md-offset-3">
                     <div class="panel-heading"><strong>Récapitulatif de la liste</strong></div>
-                    rejdhbsjbn
+
                     <div class="col-md-offset-4">
                         <button id="previous-step" class="btn btn-secondary"type="button">Etape précédente</button>
                         <input class="btn btn-secondary" type="submit" name="create_list" value="Valider">
