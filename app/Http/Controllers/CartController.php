@@ -7,8 +7,13 @@ use Illuminate\Http\Request;
 class CartController extends Controller
 {
     public function addListToCart($id, Request $request){
+        if (!$request->session()->has('cart')) {
+            $cart = array();
+        }else{
+            $cart = session('cart');
+        }
 
-        $cart = session('cart');
+
         $add_is_okay = true;
         foreach ($cart as $key=>$idList){
             if($idList==$id){
@@ -23,7 +28,12 @@ class CartController extends Controller
     }
 
     public function RemoveListFromCart($id, Request $request){
-        $cart = session('cart');
+
+        if (!$request->session()->has('cart')) {
+            $cart = array();
+        }else{
+            $cart = session('cart');
+        }
             foreach ($cart as $key=>$idList){
                 if($idList==$id){
                 unset($cart[$key]);
@@ -36,6 +46,7 @@ class CartController extends Controller
         return session('cart');
     }
     public function empty_cart(){
-        session()->get('cart')->flush();
+        $cart = null;
+        session(['cart' => $cart]);
     }
 }
