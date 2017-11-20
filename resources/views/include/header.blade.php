@@ -55,7 +55,7 @@
                                         <h5>Mon Compte</h5>
                                     </a>
                                 </li>
-                            <!--
+
                                     <li>
                                      <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                                          <img alt="mon compte" src="../../../public/images/icon-deconnexion.png"/>
@@ -66,7 +66,7 @@
                                         {{ csrf_field() }}
                                     </form>
                                     </li>
-                                -->
+
                         @endguest
                     </ul>
                 </div>
