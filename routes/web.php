@@ -39,6 +39,8 @@ Route::get('/research', 'HomeController@research');
 
 Route::get('/catalogue', 'HomeController@index');
 
+Route::get('/catalogue-struct', 'HomeController@struct');
+
 Route::get('/tags', 'TagsController@getTags');
 
 
@@ -74,3 +76,4 @@ Route::delete('/delete/comment/{id}',  ['middleware' => ['auth', 'admin'], 'uses
 Route::delete('/delete/belong/{id}', ['middleware' => ['auth', 'admin'], 'uses' => 'DeleteController@deleteBelong']);
 Route::get('/delete/list/{id}', ['middleware' => ['auth', 'admin'], 'uses' => 'ListController@deleteList']);
 
+Route::get('/delete/user/{id}', ['middleware' => ['auth', 'admin'], 'uses' => 'UserController@deleteUser']);

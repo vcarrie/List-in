@@ -15,8 +15,7 @@ class ValidateCreateListRepository
         $description = $form->list_description;
         $idCreator = Auth::user()->id;
 
-        $tags = array();
-        $tags[0] = 12;
+        $tags = $form->selected_tags;
 
         $products = array();
         $quantities = array();

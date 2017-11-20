@@ -27,7 +27,7 @@ class ValidateCreateListRequest extends FormRequest
 
             'list_name' => 'bail|required',
             'list_description' => 'bail|required',
-            //'selected_tag' => 'bail|required|array',
+            'selected_tags' => 'bail|required|array',
             'product' => 'bail|required|array',
 
         ];

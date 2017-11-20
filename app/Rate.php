@@ -35,5 +35,10 @@ class Rate extends Model
         self::getByIdList($idList)->delete();
     }
 
+    public static function deleteRateByIdUser($idUser)
+    {
+        self::getByIdUser($idUser)->delete();
+    }
+
 }
 

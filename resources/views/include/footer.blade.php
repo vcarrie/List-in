@@ -12,8 +12,12 @@
     <li>
         <a tabindex="1" class="footer-social-media-link" href="/contact" target="blank"><img
                     src="../../../public/images/icon-contact.png" alt="contact"/></a>
+    </li>
+    <li>
         <a tabindex="1" class="footer-social-media-link" href="http://facebook.com/listinofficial"><img
                     src="../../../public/images/facebook.png" alt="facebook"/></a>
+    </li>
+    <li>
         <a tabindex="1" class="footer-social-media-link" href="http://twitter.com/listin_official" target="blank"><img
                     src="../../../public/images/twitter.png" alt="twitter"/></a>
     </li>
