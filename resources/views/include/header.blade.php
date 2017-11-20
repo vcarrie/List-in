@@ -50,7 +50,7 @@
                             </li>
                         @else
                                 <li>
-                                    <a tabindex="1" href="#">
+                                    <a tabindex="1" href="/account">
                                         <img alt="mon compte" src="../../../public/images/icon-account.png"/>
                                         <h5>Mon Compte</h5>
                                     </a>

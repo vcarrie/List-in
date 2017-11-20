@@ -303,7 +303,7 @@ function Catalogue() {
 
     this.updateDisplayedLists = function (listsToDisplay, listsTotalAmount) {
         $(this.elemContainer).html("").hide();
-        $(this.elemContainerHeaderTitle).text('Il y a ' + listsTotalAmount + ' listes associées aux tags "' + this.getSearchTagsChained().replace(',', ', ') + '"');
+        $(this.elemContainerHeaderTitle).text('Il y a ' + listsTotalAmount + ' listes associées aux tags "' + this.getSearchTagsChained().replace(/,/g, ', ') + '"');
 
         for (var i in listsToDisplay) {
             var $cardHtml = this.templateListCard(listsToDisplay[i]);
@@ -427,12 +427,9 @@ function Catalogue() {
     this.addToCart = function (listId) {
         console.log('"AddToCart" action for list ' + listId);
         $.ajax({
-            url: this.addToCartRoute,
-            type: 'POST',
+            url: this.addToCartRoute + '/' + listId,
+            type: 'GET',
             dataType: 'json',
-            data: {
-                listId: listId
-            },
             context: this,
             error: this.addToCartError,
             success: this.addToCartSuccess
@@ -444,7 +441,7 @@ function Catalogue() {
     };
 
     this.addToCartSuccess = function (response) {
-        console.log('List added to cart!')
+        console.log('Cart contains lists '+response.join(", "));
     };
 
 }
