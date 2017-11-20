@@ -32,7 +32,7 @@
                             <button id="go-search" class="btn btn-secondary" tabindex="1" title="Rechercher des produits">Rechercher</button>
                         </div>
                     </div>
-                    <div id="result-region">
+                    <div id="result-region" class="col-md-12">
 
                     </div>
                 </div>
@@ -55,7 +55,6 @@
                                     <label for="list_tag" class="tag">Tags de la liste :</label><br>
                                     <input id="selected_tag" type="text" class="tags-input form-control"
                                            placeholder="Entrez un tag..."/>
-                                    <input id="add_tag" class="btn btn-secondary" type="submit" tabindex="1" title="Ajouter un tag" value="Ajouter"/>
                                 </form>
                             </div>
                         </div>
@@ -64,13 +63,15 @@
 
                 <div id="recap-container" class="panel panel-default col-md-6 col-md-offset-3">
                     <div class="panel-heading"><strong>Récapitulatif de la liste</strong></div>
-                    rejdhbsjbn
+
                     <div class="col-md-offset-4">
                         <button id="previous-step" class="btn btn-secondary"type="button">Etape précédente</button>
-                        <input class="btn btn-secondary" type="submit" name="create_list" value="Valider">
+                        <input id="list_validate" class="btn btn-secondary" type="submit" name="create_list" value="Valider">
                     </div>
                 </div>
+                <div id="hidden-container">
 
+                </div>
 
             </div>
         </form>
@@ -78,4 +79,3 @@
     </div>
 
 @endsection
-
