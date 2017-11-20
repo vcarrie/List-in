@@ -60,6 +60,11 @@ Route::get('/confirmation/resend', 'Auth\RegisterController@resend');
 Route::get('/confirmation/{id}/{token}', 'Auth\RegisterController@confirm');
 
 
+Route::get('protected', ['middleware' => ['auth', 'admin'], function() {
+    return "this page requires that you be logged in and an Admin";
+}]);
+
+
 //Special Route
 Route::get('/dunsparce', function(){
     return view('hidden.dunsparce');

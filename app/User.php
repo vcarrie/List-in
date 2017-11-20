@@ -38,6 +38,11 @@ class User extends Authenticatable
         return $exists;
     }
 
+    public function isAdmin()
+    {
+        return $this->admin; // this looks for an admin column in your users table
+    }
+
     public function rates(){
         return $this->belongsToMany('App\Liste', 'rates', 'idUser', 'idList');
     }
