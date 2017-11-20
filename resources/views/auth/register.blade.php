@@ -24,7 +24,7 @@
 
                                     <div class="col-md-6">
                                         <input id="pseudo" type="text" class="form-control" name="pseudo"
-                                               value="{{ old('pseudo') }}" required autofocus>
+                                               value="{{ old('pseudo') }}" required>
 
                                         @if ($errors->has('pseudo'))
                                             <span class="help-block">
@@ -158,31 +158,31 @@
                             <form class="form-horizontal" method="POST" action="{{ route('login') }}">
                                 {{ csrf_field() }}
 
-                                <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                                    <label for="email" class="col-md-4 control-label">Adresse e-mail</label>
+                                <div class="form-group{{ $errors->has('emailLogin') ? ' has-error' : '' }}">
+                                    <label for="emailLogin" class="col-md-4 control-label">Adresse e-mail</label>
 
                                     <div class="col-md-6">
-                                        <input id="email" type="email" class="form-control" name="email"
+                                        <input id="emailLogin" type="email" class="form-control" name="email"
                                                value="{{ old('email') }}" required autofocus>
 
-                                        @if ($errors->has('email'))
+                                        @if ($errors->has('emailLogin'))
                                             <span class="help-block">
-                                            <strong>{{ $errors->first('email') }}</strong>
+                                            <strong>{{ $errors->first('emailLogin') }}</strong>
                                         </span>
                                         @endif
                                     </div>
                                 </div>
 
-                                <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                                    <label for="password" class="col-md-4 control-label">Mot de passe</label>
+                                <div class="form-group{{ $errors->has('passwordLogin') ? ' has-error' : '' }}">
+                                    <label for="passwordLogin" class="col-md-4 control-label">Mot de passe</label>
 
                                     <div class="col-md-6">
-                                        <input id="password" type="password" class="form-control" name="password"
+                                        <input id="passwordLogin" type="password" class="form-control" name="password"
                                                required>
 
-                                        @if ($errors->has('password'))
+                                        @if ($errors->has('passwordLogin'))
                                             <span class="help-block">
-                                            <strong>{{ $errors->first('password') }}</strong>
+                                            <strong>{{ $errors->first('passwordLogin') }}</strong>
                                         </span>
                                         @endif
                                     </div>

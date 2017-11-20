@@ -107,7 +107,6 @@ return [
             'required' => 'Veuillez confirmer que vous n\'êtes pas un robot.',
             'recaptcha' => 'Veuillez confirmer que vous n\'êtes pas un robot.',
         ],
-
     ],
 
     /*
