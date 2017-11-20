@@ -458,11 +458,17 @@ header {
                 color: $color_link_hover;
                 text-align: center;
                 text-decoration: none;
+                outline: none;
 
-                &:hover, &:active, &:focus {
+                &:hover, &:focus {
                     background-color: $color_background_grey;
                     color: $color_text;
                 	text-decoration: none;
+                }
+
+                &:active {
+                	color: $color_link_hover;
+                	background-color: $color_background_grey;
                 }
             }
 
@@ -470,6 +476,11 @@ header {
             button:last-child {
                 color: $color_text_white;
                 background-color: $color_background_red;
+
+                &:active {
+                	color: $color_link_hover;
+                	background-color: $color_background_grey;
+                }
             }
         }
     }
@@ -482,6 +493,10 @@ header {
     		.list-header {
     			& > div {
     				width: 100% !important;
+    			}
+
+    			h1 {
+    				margin-top: 0;
     			}
     		}
     	}
@@ -496,6 +511,7 @@ header {
             h1 {
                 margin-bottom: 0;
                 overflow-wrap: break-word;
+                text-align: left;
             }
 
             h5 {
@@ -513,12 +529,17 @@ header {
             	}
 
             	button {
-	            	font-size: 2rem;
+	            	font-size: 1.8rem;
 	                background-color: $color_background_red;
 	                color: $color_text_white;
 	                margin-top: 1rem;
 	                padding: 0.75rem 0.75rem;
 	                border: 0;
+
+	                &:active {
+	                	background-color: $color_background_grey;
+	                	color: $color_link_hover;
+	                }
 	            }
             }
             
@@ -533,6 +554,15 @@ header {
                 height: 7rem;
                 width: 7rem;
             }
+        }
+
+        .cards-container {
+	        .card-snapshots {
+		    	img {
+		    		width: 12rem;
+		    		height: 12rem;
+		    	}
+		    }
         }
     }
     // list-detail
@@ -593,6 +623,12 @@ header {
     height: 2rem;
     display: block;
     background-size: 2rem;
+}
+
+// utility classes can use !important
+.btn-activated {
+	background-color: $color_background_grey !important;
+	color: $color_text !important;
 }
 
 /* CREATE LIST PAGE
