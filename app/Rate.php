@@ -29,4 +29,11 @@ class Rate extends Model
 
         return $cumul;
     }
+
+    public static function deleteRateByIdList($idList)
+    {
+        self::getByIdList($idList)->delete();
+    }
+
 }
+

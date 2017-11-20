@@ -11,8 +11,6 @@
 |
 */
 
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
@@ -20,7 +18,7 @@ Route::get('/lists/user/{id}', 'ListController@getListsByIdAccount');
 Route::get('/lists', 'ListController@getAllLists');
 Route::get('/list/{id}', 'ListController@getListById');
 
-Route::middleware('auth')->group(function () { //ou du moins celui crée
+Route::middleware('auth')->group(function () {
     Route::get('/create/list', 'ListController@createList');
     Route::post('/create/list', 'ListController@validateCreateList');
 });
