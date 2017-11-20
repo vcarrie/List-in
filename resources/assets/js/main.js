@@ -9,7 +9,6 @@ $(function () {
     	$('#'+item_id).removeClass('hidden');
     });
 
-
     /* ACCESSIBILITY CORRECTIONS
     –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
