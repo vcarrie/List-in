@@ -32,7 +32,7 @@
                             <button id="go-search" class="btn btn-secondary" tabindex="1" title="Rechercher des produits">Rechercher</button>
                         </div>
                     </div>
-                    <div id="result-region">
+                    <div id="result-region" class="col-md-12">
 
                     </div>
                 </div>

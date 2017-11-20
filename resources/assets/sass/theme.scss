@@ -26,7 +26,7 @@ main {
 }
 
 /* HEADER
-–––––––––––––––––––––––––––––––––––––––––––––––––– */
+â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“ */
 
 header {
     border-top: 4px solid $color_background_red;
@@ -112,8 +112,7 @@ header {
     }
 }
 
-/* SEARCH REGION
-–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
 
 #search-region {
     margin-bottom: 2rem;
@@ -244,7 +243,7 @@ header {
 }
 
 /* DEFAULT TYPEAHEAD DROPDOWN MENU
-–––––––––––––––––––––––––––––––––––––––––––––––––– */
+ */
 
 .tt-query {
     -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
@@ -290,7 +289,7 @@ header {
 }
 
 /* LISTS PREVIEW
-–––––––––––––––––––––––––––––––––––––––––––––––––– */
+â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“ */
 
 .mid-content {
     background-color: $color_background;
@@ -306,7 +305,6 @@ header {
 
         .pagination-box {
             width: 100%;
-            margin-top: 2rem;
             text-align: center;
 
             .pagination {
@@ -338,7 +336,7 @@ header {
             width: 250px;
             display: inline-block;
             margin-right: 3rem;
-            margin-bottom: 2rem;
+            margin-bottom: 1rem;
             background-color: white;
             border: 0px solid $color_separation;
             -webkit-border-radius: 1px;
@@ -447,21 +445,17 @@ header {
                 }
             }
 
-            button, a {
-            	display: inline-block;
+            button {
                 width: 100%;
                 border: 0;
                 padding: 0.75rem;
                 background-color: transparent;
                 font-size: 1.6rem;
                 color: $color_link_hover;
-                text-align: center;
-                text-decoration: none;
 
-                &:hover, &:active, &:focus {
+                &:hover {
                     background-color: $color_background_grey;
                     color: $color_text;
-                	text-decoration: none;
                 }
             }
 
@@ -542,11 +536,52 @@ header {
     background-size: 2rem;
 }
 
+/* CREATE LIST PAGE
+â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“ */
+
+#articles-container, #search-products{
+  padding: 0px;
+  -webkit-box-shadow: 5px 5px 0px $color_background_dark;
+  -moz-box-shadow: 5px 5px 0px $color_background_dark;
+  box-shadow: 5px 5px 0px $color_background_dark;
+}
+
+#result-region{
+  margin: 0px;
+  padding-bottom: 15px;
+}
+
+#search-bar{
+    margin-top: 15px;
+}
+
+#tag-search{
+    margin-right: 0px;
+    margin-left: 0px;
+}
+
+.l_name, .desc, .tag{
+    margin-top: 2rem;
+}
+
+.article_name{
+  font-weight: bold;
+}
+
+.resultToSelection{
+  border-radius: 25px;
+  padding: 10px 15px 10px 15px;
+}
+
+.add_button_sprite{
+  border-radius: 25px;
+}
+
 /* CGU / Mentions Legales
-–––––––––––––––––––––––––––––––––––––––––––––––––– */
+â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“ */
 
 /* FOOTER
-–––––––––––––––––––––––––––––––––––––––––––––––––– */
+â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“ */
 
 footer {
     position: absolute;
@@ -607,7 +642,7 @@ footer {
 }
 
 /* CONTACT PAGE
-–––––––––––––––––––––––––––––––––––––––––––––––––– */
+â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“ */
 
 .card-header-contact {
     font-weight: bold;
@@ -633,6 +668,7 @@ footer {
 }
 
 .btn.btn-secondary {
+    margin: 15px 0px 15px 0px;
     background-color: #e03913;
     color: #FFF;
 }
