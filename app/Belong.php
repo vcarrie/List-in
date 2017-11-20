@@ -65,6 +65,5 @@ class Belong extends Model
 
         self::getByIdList($idList)->delete();
 
-
     }
 }

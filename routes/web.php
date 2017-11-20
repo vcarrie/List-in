@@ -62,3 +62,9 @@ Route::get('/dunsparce', function(){
     return view('hidden.dunsparce');
 });
 
+
+//Delete
+Route::delete('/delete/rate/{id}', 'DeleteController@deleteRate');
+Route::delete('/delete/categorize/{id}', 'DeleteController@deleteCategorize');
+Route::delete('/delete/comment/{id}', 'DeleteController@deleteComment');
+Route::delete('/delete/belong/{id}','DeleteController@deleteBelong');
