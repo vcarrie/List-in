@@ -209,6 +209,7 @@ header {
             outline-color: $color_background_grey;
             background: $color_link_hover url('/public/images/icon-search.png') no-repeat center;
             background-size: 2rem;
+            vertical-align: middle;
         }
 
     }
@@ -648,11 +649,6 @@ footer {
                     width: 32px;
                     height: 32px;
                 }
-            }
-
-            & + li:before {
-                content: ""; // potential separator
-                margin-right: 0.5rem;
             }
         }
     }
