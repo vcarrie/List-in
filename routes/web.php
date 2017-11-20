@@ -34,7 +34,7 @@ Route::get('/emptycart', 'CartController@empty_cart');
 
 Route::get('/', 'HomeController@index');
 
-Route::get('/delete/list/{id}', 'ListController@deleteList');
+Route::get('/delete/list/{id}', ['middleware' => ['auth', 'admin'], 'uses' => 'ListController@deleteList']);
 
 
 Route::get('/research', 'HomeController@research');
