@@ -33,7 +33,7 @@ Route::get('/addtocart', 'CartController@addToCart');
 
 Route::get('/', 'HomeController@index');
 
-
+Route::get('/delete/list/{id}', 'ListController@deleteList');
 
 
 Route::get('/research', 'HomeController@research');
