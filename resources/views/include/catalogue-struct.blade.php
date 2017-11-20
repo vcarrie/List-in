@@ -5,8 +5,6 @@
             <option value="0">Meilleures notes</option>
             <option value="1">Prix croissant</option>
             <option value="2">Prix décroissant</option>
-            <option value="3">Moins d'articles</option>
-            <option value="4">Plus d'articles</option>
         </select>
     </p>
 </aside>

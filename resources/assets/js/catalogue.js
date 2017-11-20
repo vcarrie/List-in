@@ -49,16 +49,16 @@ function Catalogue() {
     this.init = function () {
         this.queryDOM();
 
-        if (this.elemForm && this.elemContainer && this.elemTagsInput) {
-            $.ajax({
-                url: this.jsonTagsRoute,
-                type: 'GET',
-                dataType: 'json',
-                context: this,
-                error: this.ajaxJsonTagsError,
-                success: this.ajaxJsonTagsSuccess
-            });
+        $.ajax({
+            url: this.jsonTagsRoute,
+            type: 'GET',
+            dataType: 'json',
+            context: this,
+            error: this.ajaxJsonTagsError,
+            success: this.ajaxJsonTagsSuccess
+        });
 
+        if (this.elemForm.length > 0 && this.elemTagsInput) {
             this.elemForm.submit(this.submitTags.bind(this));
         } else {
             this.initError();
@@ -70,6 +70,11 @@ function Catalogue() {
             $addToCartBtn.click(function() {
                 this.addToCart($addToCartBtn.attr('data-listId'), $addToCartBtn);
             }.bind(this));
+        }
+
+        // if the page is /create/list
+        if ($('#list-creation').length > 0) {
+            this.elemTagsInput = $('#list-creation').find('.tags-input');
         }
     };
 
@@ -113,7 +118,7 @@ function Catalogue() {
             substrRegex_lazySearch = new RegExp(q, 'i');
 
             // we don't want to suggest tags already in the input
-            var flagsAlreadyUsed = $('#search-region .tags-input').tagsinput('items');
+            var flagsAlreadyUsed = $('#search-region .tags-input').tagsinput('items') || $('.tags-input').tagsinput('items');
 
             // iterate through the pool of strings and for any string that
             // contains the substring `q`, add it to the `matches` array
