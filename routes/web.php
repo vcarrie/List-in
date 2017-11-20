@@ -34,8 +34,6 @@ Route::get('/emptycart', 'CartController@empty_cart');
 
 Route::get('/', 'HomeController@index');
 
-Route::get('/delete/list/{id}', 'ListController@deleteList');
-
 
 Route::get('/research', 'HomeController@research');
 
@@ -60,6 +58,11 @@ Route::get('/confirmation/resend', 'Auth\RegisterController@resend');
 Route::get('/confirmation/{id}/{token}', 'Auth\RegisterController@confirm');
 
 
+Route::get('protected', ['middleware' => ['auth', 'admin'], function() {
+    return "this page requires that you be logged in and an Admin";
+}]);
+
+
 //Special Route
 Route::get('/dunsparce', function(){
     return view('hidden.dunsparce');
@@ -67,7 +70,9 @@ Route::get('/dunsparce', function(){
 
 
 //Delete
-Route::delete('/delete/rate/{id}', 'DeleteController@deleteRate');
-Route::delete('/delete/categorize/{id}', 'DeleteController@deleteCategorize');
-Route::delete('/delete/comment/{id}', 'DeleteController@deleteComment');
-Route::delete('/delete/belong/{id}','DeleteController@deleteBelong');
+Route::delete('/delete/rate/{id}',  ['middleware' => ['auth', 'admin'], 'uses' => 'DeleteController@deleteRate']);
+Route::delete('/delete/categorize/{id}',  ['middleware' => ['auth', 'admin'], 'uses' => 'DeleteController@deleteCategorize']);
+Route::delete('/delete/comment/{id}',  ['middleware' => ['auth', 'admin'], 'uses' => 'DeleteController@deleteComment']);
+Route::delete('/delete/belong/{id}', ['middleware' => ['auth', 'admin'], 'uses' => 'DeleteController@deleteBelong']);
+Route::get('/delete/list/{id}', ['middleware' => ['auth', 'admin'], 'uses' => 'ListController@deleteList']);
+
