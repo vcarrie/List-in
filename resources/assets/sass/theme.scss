@@ -112,8 +112,22 @@ header {
     }
 }
 
-/* SEARCH REGION
+/* CREATE LIST PAGE
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+
+#search-bar{
+    margin-top: 15px;
+}
+
+#tag-search{
+    margin-right: 0px;
+    margin-left: 0px;
+}
+
+.l_name, .desc, .tag{
+    margin-top: 2rem;
+}
 
 #search-region {
     margin-bottom: 2rem;
@@ -628,6 +642,7 @@ footer {
 }
 
 .btn.btn-secondary {
+    margin: 15px 0px 15px 0px;
     background-color: #e03913;
     color: #FFF;
 }

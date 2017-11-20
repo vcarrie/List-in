@@ -27,8 +27,9 @@ Route::middleware('auth')->group(function () {
 Route::get('/getproductbykeyword', 'ApiCdiscountSearchByKeywordController@get');
 Route::post('/getproductbykeyword', 'ApiCdiscountSearchByKeywordController@post');
 
-Route::get('/removefromcart', 'CartController@RemoveFromCart');
-Route::get('/addtocart', 'CartController@addToCart');
+Route::get('/removefromcart/{id}', 'CartController@RemoveListFromCart');
+Route::get('/addtocart/{id}', 'CartController@addListToCart');
+Route::get('/emptycart', 'CartController@empty_cart');
 
 
 Route::get('/', 'HomeController@index');
