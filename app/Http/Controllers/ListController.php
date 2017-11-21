@@ -67,7 +67,8 @@ class ListController extends Controller
     }
 
     public function validateCreateList(ValidateCreateListRequest $request, ValidateCreateListRepository $repository){
-        $repository->createList($request);
+        $idList = $repository->createList($request);
+        return redirect()->action('ListController@getListById', ['id' => $idList]);
     }
 
     public function deleteList($id){
