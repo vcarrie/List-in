@@ -15,17 +15,16 @@ class ValidateCreateListRepository
         $description = $form->list_description;
         $idCreator = Auth::user()->id;
 
-        $tags = array();
-        $tags[0] = 12;
+        $tags = $form->selected_tags;
 
         $products = array();
         $quantities = array();
 
-        foreach ($form->product as $product){
+        foreach ($form->product as $product) {
             array_push($products, $product['id']);
         }
 
-        foreach ($form->product as $product){
+        foreach ($form->product as $product) {
             array_push($quantities, $product['quantity']);
         }
 
@@ -34,5 +33,6 @@ class ValidateCreateListRepository
         Belong::createList($idList, $products, $quantities);
         Categorize::createList($idList, $tags);
 
+        return $idList;
     }
 }

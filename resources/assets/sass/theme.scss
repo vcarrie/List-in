@@ -26,7 +26,7 @@ main {
 }
 
 /* HEADER
-â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“ */
+__________________________________________________ */
 
 header {
   border-top: 4px solid $color_background_red;
@@ -295,7 +295,7 @@ header {
 }
 
 /* LISTS PREVIEW
-â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“ */
+__________________________________________________ */
 
 .mid-content {
   background-color: $color_background;
@@ -790,3 +790,60 @@ header {
       }
     }
   }
+
+/* ACCOUNT
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+.account-master {
+
+  nav {
+    margin-top: 2rem;
+
+    ul.nav-pills {
+
+      li {
+
+        a {
+          background-color: transparent;
+          color: $color_link_hover;
+        }
+
+        &.active {
+          a {
+            background-color: $color_background_red;
+            color: $color_text_white;
+          }
+        }
+      }
+    }
+  }
+
+  section {
+    .list-resume {
+      min-height: 10rem;
+      border-bottom: 1px solid $color_separation;
+      padding: 1rem 0;
+
+      .list-figures {
+        figure {
+          display: inline-block;
+          max-width: 10rem;
+          margin-right: 1rem;
+
+          figcaption {
+            overflow: ellipsis;
+          }
+        }
+      }
+
+      button {
+        margin-top: 3.3rem;
+
+        @media screen and (max-width: $bootstrap-sm) {
+          margin-top: 0;
+        }
+      }
+    }
+  }
+
+}

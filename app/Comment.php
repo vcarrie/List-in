@@ -17,4 +17,9 @@ class Comment extends Model
     public static function deleteCommentByIdList($idList){
         self::getByIdList($idList)->delete();
     }
+
+    public static function deleteCommentByIdUser($idUser)
+    {
+        self::getByIdUser($idUser)->delete();
+    }
 }
