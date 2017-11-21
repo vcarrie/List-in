@@ -4,7 +4,7 @@
 
 @section('main')
 
-<div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+<div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-offset-3">
 	<div class="row mid-content account-master">
 
 		<nav class="col-sm-3">
@@ -12,7 +12,7 @@
 				<li class="active"><a data-toggle="tab" href="#account-section-1">Informations</a></li>
 				<li><a data-toggle="tab" href="#account-section-2">Sécurité</a></li>
 				<li><a data-toggle="tab" href="#account-section-3">Mes listes</a></li>
-				<li><a data-toggle="tab" href="#account-section-4">Historique</a></li>
+				<!--<li><a data-toggle="tab" href="#account-section-4">Historique</a></li>-->
 			</ul>
 		</nav>
 
@@ -47,7 +47,7 @@
 								<input class="form-control" type="password" name="new_pwd1" />
 							</div>
 							<div class="form-group">
-								<label>Confirmez votre nouveau mot de passe:</label>
+								<label>Confirmez le mot de passe:</label>
 								<input class="form-control" type="password" name="new_pwd1" />
 							</div>
 							<input class="btn btn-default pull-right" type="submit" value="Confirmer"/>
@@ -67,7 +67,7 @@
 								<input class="form-control" type="password" name="new_email1" />
 							</div>
 							<div class="form-group">
-								<label>Confirmez votre nouvel email:</label>
+								<label>Confirmez l'email:</label>
 								<input class="form-control" type="password" name="new_email2" />
 							</div>
 							<input class="btn btn-default pull-right" type="submit" value="Confirmer"/>
@@ -126,11 +126,11 @@
 				</div>
 			</section>
 
-			<section class="row tab-pane fade" id="account-section-4">
+			<!--<section class="row tab-pane fade" id="account-section-4">
 				<div class="col-xs-12">
 					<h2>Historique</h2>
 				</div>
-			</section>
+			</section>-->
 
 		</div>
 

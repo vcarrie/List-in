@@ -819,6 +819,13 @@ __________________________________________________ */
   }
 
   section {
+    max-width: 70rem;
+
+    form {
+      max-width: 30rem;
+      margin-top: 2rem;
+    }
+
     .list-resume {
       min-height: 10rem;
       border-bottom: 1px solid $color_separation;
