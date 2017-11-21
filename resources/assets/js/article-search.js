@@ -1,4 +1,5 @@
 (function () {
+    document.getElementById("list-creation").reset();
     $('#go-search').click(function (e) {
         e.preventDefault();
         $.ajax({
@@ -91,9 +92,10 @@
 
                 }
 
-                // Ajout produit sÃ©lectionnÃ© dans div selection
+                // Ajout produit sélectionné dans div selection
                 $('.resultToSelection').click(function () {
                     var article_count = 0;
+                    $("#next-step").prop('disabled', false);
                     var button_index = $(this).attr('id');
                     var selected_article = results[button_index];
 
@@ -117,17 +119,24 @@
                         id_cdiscount.value = selected_article.Id;
 
                         var quantity = $('<select></select>');
+                        quantity.attr("id", "quantity-"+selected_article.Id);
+                        quantity.attr("class", "quantity_select");
+                        quantity.attr("data-id", selected_article.Id);
                         quantity.attr("name", "product[" + selected_article.Id + "][quantity]");
                         for (var j = 1; j < 21; j++) {
                             var option = $('<option></option>');
-                            option.attr("id", j);
+                            option.attr("value", j);
                             option.html(j);
                             quantity.append(option);
                         }
 
-                        /*quantity.change(function(){
-                          $("#")
-                        })*/
+                        quantity.change(function(){
+                            var new_quantity = quantity.val();
+                            $('#value_quantity'+selected_article.Id).html(new_quantity);
+                            var old_cost = $('#td_unity_price'+selected_article.Id).text();
+                            var unit_price = parseFloat(selected_article.BestOffer.SalePrice);
+                            $('#td_unity_price'+selected_article.Id).text((unit_price * parseFloat(new_quantity)).toFixed(2) + " €");
+                        });
 
                         var $article_cardHtml = templateProductCard(selected_article);
                         $('#selected-articles').append($article_cardHtml);
@@ -138,7 +147,7 @@
 
 
                         var recap_article = document.createElement('div');
-                        recap_article.setAttribute("id", selected_article.Id);
+                        recap_article.setAttribute("id", "recap-"+selected_article.Id);
 
                         var table_recap_container = document.createElement('table');
                         var recap_tr = document.createElement('tr');
@@ -147,10 +156,6 @@
                         var recap_td_price = document.createElement('td');
                         var recap_td_quantity = document.createElement('td');
 
-                        var recap_td_blank = document.createElement('td');
-                        recap_td_blank.setAttribute("width", "20px");
-                        var recap_td_blank2 = document.createElement('td');
-                        recap_td_blank2.setAttribute("width", "20px");
 
                         var recap_image = document.createElement('img');
                         recap_image.setAttribute("src", selected_article.MainImageUrl);
@@ -166,31 +171,23 @@
                         recap_td_name.appendChild(recap_name);
                         recap_td_name.setAttribute('width', "530px");
 
-                        var la_valeur = 1;
-                        var recap_quantity = document.createElement('p');
-                        var recap_quantity_value = document.createTextNode(la_valeur);
-                        recap_quantity.setAttribute("class", "article_quantity");
-                        recap_quantity.appendChild(recap_quantity_value);
-                        recap_td_quantity.appendChild(recap_quantity);
-                        recap_td_quantity.setAttribute('width', "150px");
 
-                        var total_node = document.createElement('p');
-                        var total_node_value = document.createTextNode("Total :");
-                        var recap_price = document.createElement('strong');
-                        var recap_price_value = document.createTextNode(parseFloat(selected_article.BestOffer.SalePrice).toFixed(2) + " €");
-                        total_node.appendChild(total_node_value);
-                        recap_price.appendChild(recap_price_value);
-                        recap_td_price.appendChild(total_node);
-                        recap_td_price.appendChild(recap_price);
+                        recap_td_quantity.textContent = 1;
+                        recap_td_quantity.setAttribute("id", "value_quantity"+selected_article.Id);
+                        recap_td_quantity.setAttribute('width', "150px");
+                        recap_td_quantity.style.textAlign = "center";
+
+
+                        recap_td_price.textContent = parseFloat(selected_article.BestOffer.SalePrice).toFixed(2) + " €";
+                        recap_td_price.setAttribute('id', 'td_unity_price'+selected_article.Id);
                         recap_td_price.setAttribute('width', "150px");
                         recap_td_price.style.textAlign = "center";
 
 
                         recap_tr.appendChild(recap_td_img);
                         recap_tr.appendChild(recap_td_name);
-                        recap_tr.appendChild(recap_td_blank);
+                        recap_tr.appendChild(recap_td_quantity);
                         recap_tr.appendChild(recap_td_price);
-                        recap_tr.appendChild(recap_td_blank2);
                         table_recap_container.appendChild(recap_tr);
                         recap_article.append(table_recap_container);
 
@@ -198,7 +195,6 @@
                         $('#recap-articles').append(recap_article);
                         $('#recap-articles div').css({"border-style": "solid", "border-width": "1px 1px 1px 1px"});
                     }
-
                     return false;
                 });
             },
@@ -209,6 +205,7 @@
         });
         return false;
     });
+
 
     $('#next-step').click(function () {
         $('#step-one').css("display", "none");
@@ -249,6 +246,11 @@
         var $action_delete_from_cart = $('<button id="button-'+ productJson.Id +'">Supprimer</button>');
         $action_delete_from_cart.click(function (e) {
             $('#container-'+ productJson.Id).remove();
+            $('#recap-'+productJson.Id).remove();
+
+            if(document.getElementsByClassName('id_cdiscount').length == 0){
+              $("#next-step").prop('disabled', true);
+            }
             return false;
         })
 

@@ -18,7 +18,7 @@
                     </div>
                     <div class="form-steps">
                         <div class="col-md-offset-5">
-                            <button id="next-step" class="btn btn-secondary" type="button">Etape suivante</button>
+                            <button id="next-step" class="btn btn-secondary" type="button" disabled="true">Etape suivante</button>
                         </div>
                     </div>
                 </div>
@@ -50,7 +50,7 @@
                         <label for="list_description"></label><textarea id="list_description" name="list_description" rows="6" cols="60"></textarea><br>
 
                         <div id="tag-search" class="row form-group">
-                            <div class="col-md-6 ">
+                            <div class="col-md-6 " style="padding: 0%">
                                 <form>
                                     <label for="list_tag" class="tag">Tags de la liste :</label><br>
                                     <input id="selected_tag" type="text" class="tags-input form-control"
