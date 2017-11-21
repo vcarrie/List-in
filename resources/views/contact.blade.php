@@ -28,7 +28,7 @@
                     </div>
 
                     <div class="form-group{{ $errors->has('g-recaptcha-response') ? ' has-error' : '' }}">
-                        <div class="col-md-8 col-md-offset-3">
+                        <div class="captcha-contact">
                             <div class="checkbox">
                                 {!! Recaptcha::render() !!}
                                 @if ($errors->has('g-recaptcha-response'))
