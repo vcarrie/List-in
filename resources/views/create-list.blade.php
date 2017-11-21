@@ -10,10 +10,10 @@
             {{ csrf_field() }}
             <div id="step-one">
                 <h1>Etape 1 : Sélectionnez vos produits</h1>
-                <div id="articles-container" class="panel panel-default col-md-6 col-md-offset-3">
+                <div id="articles-container" class="panel panel-default col-md-6 col-md-offset-3 mid-content">
                     <div class="panel-heading"><strong>Vos produits</strong></div>
                     <h2 class="no-article">Pas encore de produits</h2>
-                    <div id="selected-articles">
+                    <div id="selected-articles" class="cards-container">
 
                     </div>
                     <div class="form-steps">
@@ -63,7 +63,9 @@
 
                 <div id="recap-container" class="panel panel-default col-md-6 col-md-offset-3">
                     <div class="panel-heading"><strong>Récapitulatif de la liste</strong></div>
+                    <div id="recap-articles">
 
+                    </div>
                     <div class="col-md-offset-4">
                         <button id="previous-step" class="btn btn-secondary"type="button">Etape précédente</button>
                         <input id="list_validate" class="btn btn-secondary" type="submit" name="create_list" value="Valider">

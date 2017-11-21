@@ -354,6 +354,9 @@ header {
       box-shadow: 10px 10px 0px $color_background_dark;
       vertical-align: top;
       white-space: normal;
+      border-style: solid;
+      border-width: 1px;
+      border-color: #2f2d2d;
 
       .card-header {
         padding: 1.5rem;
@@ -413,7 +416,6 @@ header {
 
       .card-footer {
         padding: 1.5rem;
-        padding-top: 0;
         text-align: left;
 
         table {
@@ -445,8 +447,8 @@ header {
 
         .card-price {
           text-align: right;
-          font-size: 2.5rem;
-          line-height: 2.5rem;
+          font-size: 2rem;
+          line-height: 2rem;
           vertical-align: bottom;
           font-weight: bold;
         }
@@ -661,8 +663,23 @@ header {
     margin-left: 0px;
   }
 
+  #selected-articles{
+    width: 100%;
+    overflow: auto;
+    white-space: nowrap;
+    padding: 1%;
+  }
+
+  #recap-articles{
+    margin: 15px;
+  }
+
   .l_name, .desc, .tag{
     margin-top: 2rem;
+  }
+
+  #selected-articles>div{
+    background-color: #f4f4f4;
   }
 
   .article_name{
