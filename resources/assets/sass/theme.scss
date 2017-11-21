@@ -173,8 +173,10 @@ header {
         display: inline-block;
       }
 
-      div.tt-menu div.tt-suggestion:hover {
-        background-color: $color_input_tags_background;
+      div.tt-menu {
+        div.tt-suggestion:hover, .tt-cursor {
+          background-color: $color_input_tags_background;
+        }
       }
 
       .tt-empty {
