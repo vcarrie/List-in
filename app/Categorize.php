@@ -19,7 +19,7 @@ class Categorize extends Model
 
     public static function getByIdTag($idTag)
     {
-        return static::where('$idTag', '=', $idTag);
+        return static::where('idTag', '=', $idTag);
     }
 
     public static function getIdListsByNumberOfTags($tags)
@@ -73,4 +73,10 @@ class Categorize extends Model
     {
         self::getByIdList($idList)->delete();
     }
+
+    public static function deleteCategorizeByIdTag($idTag)
+    {
+        self::getByIdTag($idTag)->delete();
+    }
+
 }
