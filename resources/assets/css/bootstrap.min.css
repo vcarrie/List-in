@@ -5859,7 +5859,7 @@ a.list-group-item-danger.active, a.list-group-item-danger.active:focus, a.list-g
 
 .panel {
     margin-bottom: 20px;
-    background-color: #fff;
+    background-color: #fff !important;
     border: 1px solid transparent;
     border-radius: 4px;
     -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
@@ -7211,5 +7211,3 @@ button.close {
         display: none !important
     }
 }
-
-/*# sourceMappingURL=bootstrap.min.css.map */

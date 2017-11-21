@@ -49,20 +49,22 @@ function Catalogue() {
     this.init = function () {
         this.queryDOM();
 
-        if (this.elemForm && this.elemContainer && this.elemTagsInput) {
-            $.ajax({
-                url: this.jsonTagsRoute,
-                type: 'GET',
-                dataType: 'json',
-                context: this,
-                error: this.ajaxJsonTagsError,
-                success: this.ajaxJsonTagsSuccess
-            });
+        $.ajax({
+            url: this.jsonTagsRoute,
+            type: 'GET',
+            dataType: 'json',
+            context: this,
+            error: this.ajaxJsonTagsError,
+            success: this.ajaxJsonTagsSuccess
+        });
 
+        if (this.elemForm.length > 0 && this.elemTagsInput) {
             this.elemForm.submit(this.submitTags.bind(this));
         } else {
             this.initError();
         }
+
+        this.listenToSortSelect();
 
         // if the page is /list/{id}
         if ($('.list-detail').length > 0) {
@@ -70,6 +72,11 @@ function Catalogue() {
             $addToCartBtn.click(function() {
                 this.addToCart($addToCartBtn.attr('data-listId'), $addToCartBtn);
             }.bind(this));
+        }
+
+        // if the page is /create/list
+        if ($('#list-creation').length > 0) {
+            this.elemTagsInput = $('#list-creation').find('.tags-input');
         }
     };
 
@@ -113,7 +120,7 @@ function Catalogue() {
             substrRegex_lazySearch = new RegExp(q, 'i');
 
             // we don't want to suggest tags already in the input
-            var flagsAlreadyUsed = $('#search-region .tags-input').tagsinput('items');
+            var flagsAlreadyUsed = $('#search-region .tags-input').tagsinput('items') || $('.tags-input').tagsinput('items');
 
             // iterate through the pool of strings and for any string that
             // contains the substring `q`, add it to the `matches` array
@@ -232,6 +239,18 @@ function Catalogue() {
         $(this.elemContainer).html('<div class="loading_box"><img src="/public/images/loading_icon.gif"/></div>')
     };
 
+    this.listenToSortSelect = function() {
+        var context = this;
+        $('.mid-content .dropdown-menu li').mouseup(function() {
+            if (!context.isBusy()) {
+                context.sortDisplayedLists($(this).attr('data-original-index'));
+            } else {
+                console.warn('[Catalogue not ready to be sorted]');
+            }
+        });
+        console.log('Listening to changes on sort select.');
+    };
+
     this.fetchListsBeforeSend = function() {
         if (this.elemPagination.length === 0) {
             console.log('Loading catalogue structure...');
@@ -249,6 +268,7 @@ function Catalogue() {
                     this.queryDOM();
                     this.elemSortSelect.selectpicker();
                     this.displayLoadingScreen();
+                    this.listenToSortSelect();
                 }
             });
         } else {
@@ -395,9 +415,42 @@ function Catalogue() {
     };
 
     this.displayPage = function(page) {
-        this.currentPage = page;
-        this.updateDisplayedLists(this.getDisplayableLists(this.currentPage), this.lists.length);
-        this.updatePagination();
+        if (this.lists.length !== 0) {
+            this.currentPage = page;
+            this.updateDisplayedLists(this.getDisplayableLists(this.currentPage), this.lists.length);
+            this.updatePagination();
+        }
+    };
+
+    this.sortDisplayedLists = function(sortMode) {
+        console.log('Sorting lists: mode '+sortMode);
+
+        sortMode = parseInt(sortMode, 10);
+
+        switch(sortMode) {
+            // by rating asc
+            case 0:
+                this.lists.sort(function(a, b) {
+                    return a.rating - b.rating;
+                });
+                break;
+
+            // by price asc
+            case 1:
+                this.lists.sort(function(a, b) {
+                    return a.total_price - b.total_price;
+                });
+                break;
+
+            // by price desc
+            case 2:
+                this.lists.sort(function(a, b) {
+                    return b.total_price - a.total_price;
+                });
+                break;
+        }
+
+        this.displayPage(0);
     };
 
     this.templateListCard = function (listJson) {

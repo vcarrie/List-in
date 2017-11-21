@@ -34,8 +34,6 @@ Route::get('/emptycart', 'CartController@empty_cart');
 
 Route::get('/', 'HomeController@index');
 
-Route::get('/delete/list/{id}', 'ListController@deleteList');
-
 
 Route::get('/research', 'HomeController@research');
 
@@ -74,7 +72,10 @@ Route::get('/dunsparce', function(){
 
 
 //Delete
-Route::delete('/delete/rate/{id}', 'DeleteController@deleteRate');
-Route::delete('/delete/categorize/{id}', 'DeleteController@deleteCategorize');
-Route::delete('/delete/comment/{id}', 'DeleteController@deleteComment');
-Route::delete('/delete/belong/{id}','DeleteController@deleteBelong');
+Route::delete('/delete/rate/{id}',  ['middleware' => ['auth', 'admin'], 'uses' => 'DeleteController@deleteRate']);
+Route::delete('/delete/categorize/{id}',  ['middleware' => ['auth', 'admin'], 'uses' => 'DeleteController@deleteCategorize']);
+Route::delete('/delete/comment/{id}',  ['middleware' => ['auth', 'admin'], 'uses' => 'DeleteController@deleteComment']);
+Route::delete('/delete/belong/{id}', ['middleware' => ['auth', 'admin'], 'uses' => 'DeleteController@deleteBelong']);
+Route::get('/delete/list/{id}', ['middleware' => ['auth', 'admin'], 'uses' => 'ListController@deleteList']);
+
+Route::get('/delete/user/{id}', ['middleware' => ['auth', 'admin'], 'uses' => 'UserController@deleteUser']);
