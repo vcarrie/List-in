@@ -174,7 +174,6 @@
     });
 
     $('#list_validate').click(function(){
-        console.log(catalogue);
         var selected_tags = catalogue.getSearchTagsIds();
         var content = document.getElementById('hidden-container');
         for(var i = 0; i < selected_tags.length; i++){
@@ -185,6 +184,6 @@
           hidden.value = selected_tags[i];
           content.appendChild(hidden);
         }
-        return false;
+        $('#list-creation').submit();
     })
 })();

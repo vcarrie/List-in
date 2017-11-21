@@ -20,11 +20,11 @@ class ValidateCreateListRepository
         $products = array();
         $quantities = array();
 
-        foreach ($form->product as $product){
+        foreach ($form->product as $product) {
             array_push($products, $product['id']);
         }
 
-        foreach ($form->product as $product){
+        foreach ($form->product as $product) {
             array_push($quantities, $product['quantity']);
         }
 
@@ -33,5 +33,6 @@ class ValidateCreateListRepository
         Belong::createList($idList, $products, $quantities);
         Categorize::createList($idList, $tags);
 
+        return $idList;
     }
 }
