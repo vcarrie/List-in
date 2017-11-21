@@ -49,24 +49,23 @@
 
                             </li>
                         @else
-                                <li>
-                                    <a tabindex="1" href="/account">
-                                        <img alt="mon compte" src="../../../public/images/icon-account.png"/>
-                                        <h5>Mon Compte</h5>
-                                    </a>
-                                </li>
-
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" tabindex="1" href="#" id="dropdown-account" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <img alt="mon compte" src="../../../public/images/icon-account.png"/>
+                                    <h5>Mon Compte</h5>
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="dropdown-account">
                                     <li>
-                                     <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-                                         <img alt="mon compte" src="../../../public/images/icon-deconnexion.png"/>
-                                         <h5>Se déconnecter</h5>
-                                     </a>
-
+                                        <a href="/account">Paramètres</a>
+                                    </li>
+                                    <li>
+                                        <a onclick="event.preventDefault();document.getElementById('logout-form').submit();" class="dropdown-item" href="{{ route('logout') }}">Déconnexion</a>
+                                    </li>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         {{ csrf_field() }}
                                     </form>
-                                    </li>
-
+                                </ul>
+                            </li>
                         @endguest
                     </ul>
                 </div>
