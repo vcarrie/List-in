@@ -107,6 +107,27 @@ return [
             'required' => 'Veuillez confirmer que vous n\'êtes pas un robot.',
             'recaptcha' => 'Veuillez confirmer que vous n\'êtes pas un robot.',
         ],
+        'old_pwd' => [
+            'required' => 'Ce champ est obligatoire.',
+            'min' => 'Le mot de passe doit faire au minimum six caractères.',
+            'correct_password' => 'Le mot de passe entré ne correspond pas à votre mot de passe actuel.',
+        ],
+        'new_pwd' => [
+            'required' => 'Ce champ est obligatoire.',
+            'min' => 'Le mot de passe doit faire au minimum six caractères.',
+            'confirmed' => 'Les mots de passe ne sont pas identiques.',
+        ],
+        'old_email' => [
+            'required' => 'Ce champ est obligatoire.',
+            'email' => 'Ce champ doit contenir un email.',
+            'correct_email' => 'L\'email entré ne correspond pas à votre email actuel.',
+        ],
+        'new_email' => [
+            'required' => 'Ce champ est obligatoire.',
+            'email' => 'Ce champ doit contenir un email.',
+            'confirmed' => 'Les emails ne sont pas identiques.',
+            'correct_new_email' => 'Cette adresse existe déjà !'
+        ]
     ],
 
     /*

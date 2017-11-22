@@ -4,17 +4,17 @@
 
 @section('main')
 
-<div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-offset-3">
-	<div class="row mid-content account-master">
+    <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-offset-3">
+        <div class="row mid-content account-master">
 
-		<nav class="col-sm-3">
-			<ul class="nav nav-pills nav-stacked">
-				<li class="active"><a data-toggle="tab" href="#account-section-1">Informations</a></li>
-				<li><a data-toggle="tab" href="#account-section-2">Sécurité</a></li>
-				<li><a data-toggle="tab" href="#account-section-3">Mes listes</a></li>
-				<!--<li><a data-toggle="tab" href="#account-section-4">Historique</a></li>-->
-			</ul>
-		</nav>
+            <nav class="col-sm-3">
+                <ul class="nav nav-pills nav-stacked" id="tabAccount">
+                    <li class="active"><a data-toggle="tab" href="#account-section-1">Informations</a></li>
+                    <li><a data-toggle="tab" href="#account-section-2">Sécurité</a></li>
+                    <li><a data-toggle="tab" href="#account-section-3">Mes listes</a></li>
+                    <!--<li><a data-toggle="tab" href="#account-section-4">Historique</a></li>-->
+                </ul>
+            </nav>
 
 		<div class="col-sm-9 tab-content">
 			
@@ -30,52 +30,89 @@
 				</div>
 			</section>
 
-			<section class="row tab-pane fade" id="account-section-2">
-				<div class="col-xs-12">
-					<h2>Sécurité</h2>
-				</div>
-				<div class="col-xs-12">
-					<form>
-						<fieldset>
-							<legend>Changer votre mot de passe</legend>
-							<div class="form-group">
-								<label>Mot de passe actuel:</label>
-								<input class="form-control" type="password" name="old_pwd" />
-							</div>
-							<div class="form-group">
-								<label>Nouveau mot de passe:</label>
-								<input class="form-control" type="password" name="new_pwd1" />
-							</div>
-							<div class="form-group">
-								<label>Confirmez le mot de passe:</label>
-								<input class="form-control" type="password" name="new_pwd1" />
-							</div>
-							<input class="btn btn-default pull-right" type="submit" value="Confirmer"/>
-						</fieldset>
-					</form>
-				</div>
-				<div class="col-xs-12">
-					<form>
-						<fieldset>
-							<legend>Changer votre email</legend>
-							<div class="form-group">
-								<label>Email actuel:</label>
-								<input class="form-control" type="password" name="old_email" />
-							</div>
-							<div class="form-group">
-								<label>Nouvel email:</label>
-								<input class="form-control" type="password" name="new_email1" />
-							</div>
-							<div class="form-group">
-								<label>Confirmez l'email:</label>
-								<input class="form-control" type="password" name="new_email2" />
-							</div>
-							<input class="btn btn-default pull-right" type="submit" value="Confirmer"/>
-						</fieldset>
-					</form>
-				</div>
-			</section>
+                <section class="row tab-pane fade in active" id="account-section-1">
+                    <div class="col-xs-12">
+                        <h2>Informations</h2>
+                    </div>
+                    <div class="col-xs-12">
+                        <p>Nom Prénom</p>
+                        <p>Adresse mail</p>
+                        <p>Inscrit le : date</p>
+                        <p>Dernière connexion : date</p>
+                    </div>
+                </section>
 
+                <section class="row tab-pane fade" id="account-section-2">
+                    <div class="col-xs-12">
+                        <h2>Sécurité</h2>
+                    </div>
+                    <div class="col-xs-12">
+                        <form method="post" action="{{url('/update/user/password')}}">
+                            {{csrf_field()}}
+                            <fieldset>
+                                <legend>Changer votre mot de passe</legend>
+                                <div class="form-group {{ $errors->has('old_pwd') ? 'has-error' : '' }}">
+                                    <label for="old_pwd">Mot de passe actuel: </label>
+                                    <input class="form-control"
+                                           type="password" name="old_pwd" id="old_pwd"/>
+                                    @if ($errors->has('old_pwd'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('old_pwd') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                                <div class="form-group {{ $errors->has('new_pwd') ? 'has-error' : '' }}">
+                                    <label for="new_pwd">Nouveau mot de passe: </label>
+                                    <input class="form-control"
+                                           type="password" name="new_pwd" id="new_pwd"/>
+                                    @if ($errors->has('new_pwd'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('new_pwd') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                                <div class="form-group">
+                                    <label for="new_pwd_confirmation">Confirmez le mot de passe: </label>
+                                    <input class="form-control" type="password" id="new_pwd_confirmation"
+                                           name="new_pwd_confirmation"/>
+                                </div>
+                                <input class="btn btn-default pull-right" type="submit" value="Confirmer"/>
+                            </fieldset>
+                        </form>
+                    </div>
+                    <div class="col-xs-12">
+                        <form method="post" action="{{url('/update/user/email')}}">
+                            {{csrf_field()}}
+                            <fieldset>
+                                <legend>Changer votre email</legend>
+                                <div class="form-group {{ $errors->has('old_email') ? 'has-error' : '' }}">
+                                    <label for="old_email">Email actuel:</label>
+                                    <input class="form-control" type="text" id="old_email" name="old_email"/>
+                                    @if ($errors->has('old_email'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('old_email') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                                <div class="form-group {{ $errors->has('new_email') ? 'has-error' : '' }}">
+                                    <label for="new_email">Nouvel email:</label>
+                                    <input class="form-control" type="text" id="new_email" name="new_email"/>
+                                    @if ($errors->has('new_email'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('new_email') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                                <div class="form-group">
+                                    <label for="new_email_confirmation">Confirmez l'email:</label>
+                                    <input class="form-control" type="text" id="new_email_confirmation"
+                                           name="new_email_confirmation"/>
+                                </div>
+                                <input class="btn btn-default pull-right" type="submit" value="Confirmer"/>
+                            </fieldset>
+                        </form>
+                    </div>
+                </section>
 			<section class="row tab-pane fade" id="account-section-3">
 				<div class="col-xs-12">
 					<h2>Mes listes ({{ count($to_return[1]) }})</h2>
@@ -111,16 +148,16 @@
 				@endif
 			</section>
 
-			<!--<section class="row tab-pane fade" id="account-section-4">
-				<div class="col-xs-12">
-					<h2>Historique</h2>
-				</div>
-			</section>-->
+                <!--<section class="row tab-pane fade" id="account-section-4">
+                    <div class="col-xs-12">
+                        <h2>Historique</h2>
+                    </div>
+                </section>-->
 
-		</div>
+            </div>
 
-	</div>
-</div>
+        </div>
+    </div>
 @endSection
 <!--
 <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
@@ -130,6 +167,6 @@
 
 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
 {{ csrf_field() }}
-</form>
+        </form>
 -->
 

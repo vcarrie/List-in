@@ -24,18 +24,21 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',  'admin',
+        'password', 'remember_token', 'admin',
     ];
 
-    public static function getByMail($mail){
-        return static::where('mail', '=', $mail);
+    public static function getByMail($mail)
+    {
+        return static::where('email', '=', $mail);
     }
 
-    public static function email_exists($mail){
-        $exists = false;
-        if(self::getByMail($mail)){ $exists = true; }
+    public static function email_exists($mail)
+    {
+        if (sizeof(self::getByMail($mail)->get()) == 1) {
+            return true;
+        }
 
-        return $exists;
+        return false;
     }
 
     public function isAdmin()
@@ -43,15 +46,18 @@ class User extends Authenticatable
         return $this->admin; // this looks for an admin column in your users table
     }
 
-    public function rates(){
+    public function rates()
+    {
         return $this->belongsToMany('App\Liste', 'rates', 'idUser', 'idList');
     }
 
-    public function comments(){
+    public function comments()
+    {
         return $this->belongsToMany('App\Liste', 'comments', 'idUser', 'idList');
     }
 
-    public function createdList(){
+    public function createdList()
+    {
         return $this->hasMany('App\Liste', 'idCreator', 'id');
     }
 }
