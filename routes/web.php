@@ -78,5 +78,6 @@ Route::delete('/delete/categorize/{id}',  ['middleware' => ['auth', 'admin'], 'u
 Route::delete('/delete/comment/{id}',  ['middleware' => ['auth', 'admin'], 'uses' => 'DeleteController@deleteComment']);
 Route::delete('/delete/belong/{id}', ['middleware' => ['auth', 'admin'], 'uses' => 'DeleteController@deleteBelong']);
 Route::get('/delete/list/{id}', ['middleware' => ['auth', 'admin'], 'uses' => 'ListController@deleteList']);
+Route::get('/delete/userlist/{id}', 'ListController@deleteUserList');
 
 Route::get('/delete/user/{id}', ['middleware' => ['auth', 'admin'], 'uses' => 'UserController@deleteUser']);
