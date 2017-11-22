@@ -37,6 +37,5 @@
     </footer>
 </div>
 <script type="text/javascript" src="../../../public/js/all.js"></script>
-<!--<script type="text/javascript" src="../../../public/js/article-search.js"></script>-->
 </body>
 </html>

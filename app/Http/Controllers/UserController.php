@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Belong;
 use App\Comment;
 use App\Rate;
+use App\Repositories\ApiCdiscount\ApiCdiscountSearchByIdProductRepository;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -16,11 +18,26 @@ class UserController extends Controller
         return $user;
     }
 
-    public function myAccount(){
+    public function myAccount(ApiCdiscountSearchByIdProductRepository $api){
         $user = Auth::user();
 
-        return view('account', compact($user));
+        $my_lists = $user->createdList()->get();
+        $complete_lists = array();
+
+        $to_return = array(
+            $user,
+        );
+        foreach ($my_lists as $list){
+            $products = Belong::getProductsByIdList($list['id'], $api);
+            $complete_lists[] = array($list, $products);
+
+        }
+        $to_return[] = $complete_lists;
+
+
+        return view('account', compact($to_return));
     }
+
 
     public function deleteUser($id){
 

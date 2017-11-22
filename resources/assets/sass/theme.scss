@@ -26,7 +26,7 @@ main {
 }
 
 /* HEADER
-â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“ */
+__________________________________________________ */
 
 header {
   border-top: 4px solid $color_background_red;
@@ -173,8 +173,10 @@ header {
         display: inline-block;
       }
 
-      div.tt-menu div.tt-suggestion:hover {
-        background-color: $color_input_tags_background;
+      div.tt-menu {
+        div.tt-suggestion:hover, .tt-cursor {
+          background-color: $color_input_tags_background;
+        }
       }
 
       .tt-empty {
@@ -295,7 +297,7 @@ header {
 }
 
 /* LISTS PREVIEW
-â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“â€“ */
+__________________________________________________ */
 
 .mid-content {
   background-color: $color_background;
@@ -354,6 +356,9 @@ header {
       box-shadow: 10px 10px 0px $color_background_dark;
       vertical-align: top;
       white-space: normal;
+      border-style: solid;
+      border-width: 1px;
+      border-color: #2f2d2d;
 
       .card-header {
         padding: 1.5rem;
@@ -413,7 +418,6 @@ header {
 
       .card-footer {
         padding: 1.5rem;
-        padding-top: 0;
         text-align: left;
 
         table {
@@ -445,14 +449,14 @@ header {
 
         .card-price {
           text-align: right;
-          font-size: 2.5rem;
-          line-height: 2.5rem;
+          font-size: 2rem;
+          line-height: 2rem;
           vertical-align: bottom;
           font-weight: bold;
         }
       }
 
-      button, a{
+      button, a {
         width: 100%;
         border: 0;
         padding: 0.75rem;
@@ -462,181 +466,187 @@ header {
         text-align: center;
         text-decoration: none;
         outline: none;
+        display: inline-block;
 
         &:hover, &:focus {
-
-          &:hover {
-            background-color: $color_background_grey;
-            color: $color_text;
-            text-decoration: none;
-          }
-
-          &:active {
-            color: $color_link_hover;
-            background-color: $color_background_grey;
-          }
+          background-color: $color_background_grey;
+          color: $color_text;
+          text-decoration: none;
         }
 
-        // Add to cart button
-        button:last-child {
-          color: $color_text_white;
-          background-color: $color_background_red;
+        &:active {
+          color: $color_link_hover;
+          background-color: $color_background_grey;
+        }
 
-          &:active {
-            color: $color_link_hover;
-            background-color: $color_background_grey;
-          }
+      }
+
+      // Add to cart button
+      button:last-child {
+        color: $color_text_white;
+        background-color: $color_background_red;
+
+        &:active {
+          color: $color_link_hover;
+          background-color: $color_background_grey;
+        }
+      }
+    }
+  }
+
+  .list-detail {
+    max-width: 600px;
+    margin: auto;
+
+    @media screen and (max-width: 600px) {
+      .list-header {
+        & > div {
+          width: 100% !important;
+        }
+
+        h1 {
+          margin-top: 0;
         }
       }
     }
 
-    .list-detail {
-      max-width: 600px;
-      margin: auto;
+    .cards-container {
+      text-align: center;
+    }
 
-      @media screen and (max-width: 600px) {
-        .list-header {
-          & > div {
-            width: 100% !important;
-          }
+    .list-header {
+      margin-bottom: 2rem;
 
-          h1 {
-            margin-top: 0;
+      h1 {
+        margin-bottom: 0;
+        overflow-wrap: break-word;
+        text-align: left;
+      }
+
+      h5 {
+        color: $color_text_grey;
+        margin-top: 0;
+        margin-left: 1rem;
+      }
+
+      .list-options {
+        text-align: center;
+
+        h1 {
+          text-align: center;
+          overflow-wrap: none;
+        }
+
+        button {
+          font-size: 1.8rem;
+          background-color: $color_background_red;
+          color: $color_text_white;
+          margin-top: 1rem;
+          padding: 0.75rem 0.75rem;
+          border: 0;
+
+          &:active {
+            background-color: $color_background_grey;
+            color: $color_link_hover;
           }
         }
       }
 
-      .cards-container {
-        text-align: center;
+    }
+
+    .list-images {
+      width: 100%;
+      text-align: center;
+      margin-bottom: 1rem;
+
+      img {
+        cursor: pointer;
+        height: 7rem;
+        width: 7rem;
+        border: 1px dashed $color_separation;
+
+        &:hover {
+          border: 1px dashed $color_background_red;
+        }
       }
+    }
 
-      .list-header {
-        margin-bottom: 2rem;
+    .cards-container {
+      .card-snapshots {
+        img {
+          width: 12rem;
+          height: 12rem;
+        }
+      }
+    }
+  }
+    // list-detail
 
-        h1 {
-          margin-bottom: 0;
-          overflow-wrap: break-word;
-          text-align: left;
+  .comments-master {
+    max-width: 600px;
+    margin: auto;
+
+    .comments-header {
+      text-align: center;
+    }
+
+    .comments-form {
+
+    }
+
+    .comments {
+      clear: both;
+
+      .comment {
+
+        & + .comment {
+          border-top: 1px solid $color_separation;
+        }
+
+        h3 {
+
         }
 
         h5 {
-          color: $color_text_grey;
-          margin-top: 0;
-          margin-left: 1rem;
+          font-style: italic;
         }
 
-        .list-options {
-          text-align: center;
+        p {
 
-          h1 {
-            text-align: center;
-            overflow-wrap: none;
-          }
-
-          button {
-            font-size: 1.8rem;
-            background-color: $color_background_red;
-            color: $color_text_white;
-            margin-top: 1rem;
-            padding: 0.75rem 0.75rem;
-            border: 0;
-
-            &:active {
-              background-color: $color_background_grey;
-              color: $color_link_hover;
-            }
-          }
-        }
-
-      }
-
-      .list-images {
-        width: 100%;
-        text-align: center;
-
-        img {
-          cursor: pointer;
-          height: 7rem;
-          width: 7rem;
-        }
-      }
-
-      .cards-container {
-        .card-snapshots {
-          img {
-            width: 12rem;
-            height: 12rem;
-          }
         }
       }
     }
-    // list-detail
-
-    .comments-master {
-      max-width: 600px;
-      margin: auto;
-
-      .comments-header {
-        text-align: center;
-      }
-
-      .comments-form {
-
-      }
-
-      .comments {
-        clear: both;
-
-        .comment {
-
-          & + .comment {
-            border-top: 1px solid $color_separation;
-          }
-
-          h3 {
-
-          }
-
-          h5 {
-            font-style: italic;
-          }
-
-          p {
-
-          }
-        }
-      }
-    }
-  }
-
-  .star-ratings-sprite {
-    background: url("/public/images/rating_empty.png") repeat-x;
-    font-size: 0;
-    height: 2rem;
-    line-height: 0;
-    overflow: hidden;
-    text-indent: -999em;
-    width: 10rem;
-    margin: 0 auto;
-    background-size: 2rem;
-  }
-
-  .star-ratings-sprite-rating {
-    background: url("/public/images/rating_filled.png") repeat-x;
-    background-position: 0 100%;
-    float: left;
-    height: 2rem;
-    display: block;
-    background-size: 2rem;
-  }
-
-
-  // utility classes can use !important
-  .btn-activated {
-    background-color: $color_background_grey !important;
-    color: $color_text !important;
   }
 }
+
+.star-ratings-sprite {
+  background: url("/public/images/rating_empty.png") repeat-x;
+  font-size: 0;
+  height: 2rem;
+  line-height: 0;
+  overflow: hidden;
+  text-indent: -999em;
+  width: 10rem;
+  margin: 0 auto;
+  background-size: 2rem;
+}
+
+.star-ratings-sprite-rating {
+  background: url("/public/images/rating_filled.png") repeat-x;
+  background-position: 0 100%;
+  float: left;
+  height: 2rem;
+  display: block;
+  background-size: 2rem;
+}
+
+
+// utility classes can use !important
+.btn-activated {
+  background-color: $color_background_grey !important;
+  color: $color_text !important;
+}
+
   /* CREATE LIST PAGE
   –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
@@ -661,8 +671,23 @@ header {
     margin-left: 0px;
   }
 
+  #selected-articles{
+    width: 100%;
+    overflow: auto;
+    white-space: nowrap;
+    padding: 1%;
+  }
+
+  #recap-articles{
+    margin: 15px;
+  }
+
   .l_name, .desc, .tag{
     margin-top: 2rem;
+  }
+
+  #selected-articles>div{
+    background-color: #f4f4f4;
   }
 
   .article_name{
@@ -790,3 +815,139 @@ header {
       }
     }
   }
+
+/* ACCOUNT
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+.account-master {
+
+  nav {
+    margin-top: 2rem;
+
+    ul.nav-pills {
+
+      li {
+
+        a {
+          background-color: transparent;
+          color: $color_link_hover;
+        }
+
+        &.active {
+          a {
+            background-color: $color_background_red;
+            color: $color_text_white;
+          }
+        }
+      }
+    }
+  }
+
+  section {
+    max-width: 70rem;
+
+    form {
+      max-width: 30rem;
+      margin-top: 2rem;
+    }
+
+    .list-resume {
+      min-height: 10rem;
+      border-bottom: 1px solid $color_separation;
+      padding: 1rem 0;
+
+      .list-figures {
+        figure {
+          display: inline-block;
+          max-width: 10rem;
+          margin-right: 1rem;
+
+          figcaption {
+            overflow: ellipsis;
+          }
+        }
+      }
+
+      button {
+        margin-top: 3.3rem;
+
+        @media screen and (max-width: $bootstrap-sm) {
+          margin-top: 0;
+        }
+      }
+    }
+  }
+}
+.captcha-contact {
+    display: table;
+    margin: 0 auto;
+}
+
+
+/* A PROPOS PAGE
+________________________________________________________ */
+
+.content-team-part1 {
+  display: flex;
+}
+
+.val {
+  margin-right: 38%;
+}
+
+.val img {
+  display: table;
+  margin: 0 auto;
+  border : 1px solid #000;
+  height: 82px;
+  width: 82px;
+}
+
+.mat {
+  margin-right: 38%;
+}
+
+.mat img {
+  display: table;
+  margin: 0 auto;
+  border : 1px solid #000;
+  height: 82px;
+  width: 82px;
+}
+
+.ced {
+  margin-right: 38%;
+}
+
+.ced img {
+  display: table;
+  margin: 0 auto;
+  border : 1px solid #000;
+  height: 82px;
+  width: 82px;
+}
+
+.content-team-part2{
+  display: flex;
+}
+
+.the {
+  margin-left: 22%;
+  margin-right: 38%;
+}
+
+.the img {
+  display: table;
+  margin: 0 auto;
+  border : 1px solid #000;
+  height: 82px;
+  width: 82px;
+}
+
+.mar img {
+  display: table;
+  margin: 0 auto;
+  border : 1px solid #000;
+  height: 82px;
+  width: 82px;
+}

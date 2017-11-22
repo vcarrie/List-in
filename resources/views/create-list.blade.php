@@ -10,15 +10,15 @@
             {{ csrf_field() }}
             <div id="step-one">
                 <h1>Etape 1 : Sélectionnez vos produits</h1>
-                <div id="articles-container" class="panel panel-default col-md-6 col-md-offset-3">
+                <div id="articles-container" class="panel panel-default col-md-6 col-md-offset-3 mid-content">
                     <div class="panel-heading"><strong>Vos produits</strong></div>
                     <h2 class="no-article">Pas encore de produits</h2>
-                    <div id="selected-articles">
+                    <div id="selected-articles" class="cards-container">
 
                     </div>
                     <div class="form-steps">
                         <div class="col-md-offset-5">
-                            <button id="next-step" class="btn btn-secondary" type="button">Etape suivante</button>
+                            <button id="next-step" class="btn btn-secondary" type="button" disabled="true">Etape suivante</button>
                         </div>
                     </div>
                 </div>
@@ -50,7 +50,7 @@
                         <label for="list_description"></label><textarea id="list_description" name="list_description" rows="6" cols="60"></textarea><br>
 
                         <div id="tag-search" class="row form-group">
-                            <div class="col-md-6 ">
+                            <div class="col-md-6 " style="padding: 0%">
                                 <form>
                                     <label for="list_tag" class="tag">Tags de la liste :</label><br>
                                     <input id="selected_tag" type="text" class="tags-input form-control"
@@ -63,7 +63,9 @@
 
                 <div id="recap-container" class="panel panel-default col-md-6 col-md-offset-3">
                     <div class="panel-heading"><strong>Récapitulatif de la liste</strong></div>
+                    <div id="recap-articles">
 
+                    </div>
                     <div class="col-md-offset-4">
                         <button id="previous-step" class="btn btn-secondary"type="button">Etape précédente</button>
                         <input id="list_validate" class="btn btn-secondary" type="submit" name="create_list" value="Valider">
