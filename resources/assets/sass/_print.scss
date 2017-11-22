@@ -1,0 +1,9 @@
+@media print {
+	header, footer, button, .nav, #search-region, .comments-form {
+		display: none !important;
+	}
+
+	.bootstrap-select button {
+		display: inline-block !important;
+	}
+}
