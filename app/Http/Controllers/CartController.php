@@ -73,7 +73,7 @@ class CartController extends Controller
 
         }
 
-        return $to_return;
-        //return view('account', compact($to_return));
+
+        return view('cart', compact('to_return', 'to_return'));
     }
 }
