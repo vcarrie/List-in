@@ -64,8 +64,6 @@ function Catalogue() {
             this.initError();
         }
 
-        this.listenToSortSelect();
-
         // if the page is /list/{id}
         if ($('.list-detail').length > 0) {
             var $addToCartBtn = $('.list-options button');
@@ -98,6 +96,7 @@ function Catalogue() {
         try {
             this.buildTagsinput();
             this.buildTypeahead();
+            this.listenToSortSelect();
 
             this.setReady();
             this.setBusy(false);
@@ -240,6 +239,8 @@ function Catalogue() {
     };
 
     this.listenToSortSelect = function() {
+        console.log('Listening to changes on sort select.');
+        console.log($('.mid-content .dropdown-menu li'));
         var context = this;
         $('.mid-content .dropdown-menu li').mouseup(function() {
             if (!context.isBusy()) {
@@ -248,7 +249,6 @@ function Catalogue() {
                 console.warn('[Catalogue not ready to be sorted]');
             }
         });
-        console.log('Listening to changes on sort select.');
     };
 
     this.fetchListsBeforeSend = function() {
@@ -268,6 +268,7 @@ function Catalogue() {
                     this.queryDOM();
                     this.elemSortSelect.selectpicker();
                     this.displayLoadingScreen();
+                    console.log('[Loaded]');
                     this.listenToSortSelect();
                 }
             });
@@ -305,6 +306,7 @@ function Catalogue() {
 
     this.fetchListsSuccess = function(listsJson) {
         this.lists = listsJson.lists;
+        console.log(this.lists);
         this.amountOfListsDisplayableAtOnce = this.getAmountOfListsDisplayableAtOnce()
         this.createPagination();
         this.displayPage(0);
@@ -431,7 +433,7 @@ function Catalogue() {
             // by rating asc
             case 0:
                 this.lists.sort(function(a, b) {
-                    return a.rating - b.rating;
+                    return b.rating - a.rating;
                 });
                 break;
 

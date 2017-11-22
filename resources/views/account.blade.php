@@ -23,9 +23,9 @@
 					<h2>Informations</h2>
 				</div>
 				<div class="col-xs-12">
-					<p>Nom Prénom</p>
-					<p>Adresse mail</p>
-					<p>Inscrit le : date</p>
+					<p>{{ $to_return[0]->firstName }} {{ $to_return[0]->lastName }} ({{ $to_return[0]->pseudo }})</p>
+					<p>{{ $to_return[0]->email }}</p>
+					<p>Inscrit le : {{ $to_return[0]->created_at }}</p>
 					<p>Dernière connexion : date</p>
 				</div>
 			</section>
@@ -78,52 +78,37 @@
 
 			<section class="row tab-pane fade" id="account-section-3">
 				<div class="col-xs-12">
-					<h2>Mes listes</h2>
+					<h2>Mes listes ({{ count($to_return[1]) }})</h2>
 				</div>
-				<!-- @ -->
+				@if (count($to_return[1]) === 0)
 				<div class="col-xs-12">
 					<h3>Vous n'avez pas encore créé de liste.</h3>
 					<a href="/create/list">Créer une liste</a>
 				</div>
-				<!-- @ -->
+				@else
 				<div class="col-xs-12">
-					@for ($i = 0; $i < 5; $i++)
+					@for ($i = 0; $i < count($to_return[1]); $i++)
 					<div class="row list-resume">
 						<div class="col-sm-9">
-							<h4>Nom liste</h4>
+							<h4><a href="/list/{{ $to_return[1][$i][0]['id'] }}">{{ $to_return[1][$i][0]['listName'] }}</a></h4>
 							<div class="hidden-xs list-figures">
+								@foreach ($to_return[1][$i][1] as $product)
 								<figure>
-									<img src="" alt="produit"/>
+									<img src="{{ $product[0]->Products[0]->MainImageUrl }}" alt="produit"/>
 									<figcaption>
-										nom produit
+										{{ $product[0]->Products[0]->Name }}
 									</figcaption>
 								</figure>
-								<figure>
-									<img src="" alt="produit"/>
-									<figcaption>
-										nom produit
-									</figcaption>
-								</figure>
-								<figure>
-									<img src="" alt="produit"/>
-									<figcaption>
-										nom produit
-									</figcaption>
-								</figure>
-								<figure>
-									<img src="" alt="produit"/>
-									<figcaption>
-										nom produit
-									</figcaption>
-								</figure>
+								@endforeach
 							</div>
 						</div>
 						<div class="col-sm-3">
-							<button class="btn btn-danger">Supprimer</button>
+							<a href="/delete/userlist/{{ $to_return[1][$i][0]['id'] }}" class="btn btn-danger" title="Supprimer">Supprimer</a>
 						</div>
 					</div>
 					@endfor
 				</div>
+				@endif
 			</section>
 
 			<!--<section class="row tab-pane fade" id="account-section-4">
