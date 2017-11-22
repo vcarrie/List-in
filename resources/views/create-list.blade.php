@@ -66,6 +66,10 @@
                     <div id="recap-articles">
 
                     </div>
+                    <div id="total-price-container" class="col-md-offset-9">
+                      Total : </br>
+                      <strong id="total-price"></strong>
+                    </div>
                     <div class="col-md-offset-4">
                         <button id="previous-step" class="btn btn-secondary"type="button">Etape précédente</button>
                         <input id="list_validate" class="btn btn-secondary" type="submit" name="create_list" value="Valider">

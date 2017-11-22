@@ -357,8 +357,6 @@ __________________________________________________ */
       vertical-align: top;
       white-space: normal;
       border-style: solid;
-      border-width: 1px;
-      border-color: #2f2d2d;
 
       .card-header {
         padding: 1.5rem;
@@ -676,18 +674,31 @@ __________________________________________________ */
     overflow: auto;
     white-space: nowrap;
     padding: 1%;
+    border-width: 1px;
+    border-color: #2f2d2d;
+  }
+
+  #selected-articles .card{
+    border-width: 1px;
+    border-color: #2f2d2d;
   }
 
   #recap-articles{
     margin: 15px;
   }
 
-  .l_name, .desc, .tag{
-    margin-top: 2rem;
-  }
-
   #selected-articles>div{
     background-color: #f4f4f4;
+  }
+
+  #total-price-container{
+    font-size: 2rem;
+    text-align: center;
+    color: #e03913;
+  }
+
+  .l_name, .desc, .tag{
+    margin-top: 2rem;
   }
 
   .no-article{
