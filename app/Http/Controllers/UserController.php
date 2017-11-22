@@ -19,7 +19,26 @@ class UserController extends Controller
     public function myAccount(){
         $user = Auth::user();
 
-        return view('account', compact($user));
+        $my_lists = $user->createdList();
+
+        $to_return = array(
+            $user,
+            $my_lists
+        );
+
+
+
+        return view('account', compact($to_return));
+    }
+
+    public function update_logged_user(Request $request){
+        $user = Auth::user();
+        $user->pseudo = $request->input('');
+        $user->firstName = $request->input('');
+        $user->lastName = $request->input('');
+
+        $user->save();
+
     }
 
     public function deleteUser($id){
