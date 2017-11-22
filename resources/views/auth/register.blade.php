@@ -103,7 +103,7 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group{{ $errors->has('cgu') ? ' has-error' : '' }}">
+                                <div class="form-group {{ $errors->has('cgu') ? ' has-error' : '' }}">
                                     <div class="col-md-offset-3">
                                         <div class="checkbox">
                                             <label>

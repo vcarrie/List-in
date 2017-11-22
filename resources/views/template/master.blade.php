@@ -28,7 +28,7 @@
         @include('include.header')
     </header>
 
-    <main class="row">
+    <main role="main" class="row">
         @yield('main')
     </main>
 
