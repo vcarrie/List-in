@@ -35,7 +35,8 @@
 					<h2>Sécurité</h2>
 				</div>
 				<div class="col-xs-12">
-					<form>
+					<form method="post" action="{{url('/update/user/password')}}">
+						{{csrf_field()}}
 						<fieldset>
 							<legend>Changer votre mot de passe</legend>
 							<div class="form-group">
@@ -48,7 +49,7 @@
 							</div>
 							<div class="form-group">
 								<label>Confirmez le mot de passe:</label>
-								<input class="form-control" type="password" name="new_pwd1" />
+								<input class="form-control" type="password" name="new_pwd2" />
 							</div>
 							<input class="btn btn-default pull-right" type="submit" value="Confirmer"/>
 						</fieldset>
@@ -56,6 +57,7 @@
 				</div>
 				<div class="col-xs-12">
 					<form>
+						{{csrf_field()}}
 						<fieldset>
 							<legend>Changer votre email</legend>
 							<div class="form-group">

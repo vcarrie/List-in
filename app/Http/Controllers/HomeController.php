@@ -42,27 +42,31 @@ class HomeController extends Controller
                 foreach ($all_lists_by_nb_tags as $list) {
                     $sorted_lists[] = [$list['NbTag'], Rate::averageForList($list['idList']), $list['idList']];
                 }
+
+                rsort($sorted_lists);
                 break;
 
             case 1://prix croissant
                 foreach ($all_lists_by_nb_tags as $list) {
                     $sorted_lists[] = [$list['NbTag'], Belong::getTotalByIdList($list['idList'], $apiCdiscountSearchByIdProduct),  $list['idList']];
                 }
+
+                sort($sorted_lists);
                 break;
 
             case 2://prix decroissant
                 foreach ($all_lists_by_nb_tags as $list) {
                     $sorted_lists[] = [$list['NbTag'], Belong::getTotalByIdList($list['idList'], $apiCdiscountSearchByIdProduct),  $list['idList']];
                 }
+
+                rsort($sorted_lists);
                 break;
         }
 
-        rsort($sorted_lists);
         $tab_to_return = array();
         $sorted_lists_length = count($sorted_lists);
 
         for ($i = 0; $i < $sorted_lists_length; $i++) {
-            
             $idList = $sorted_lists[$i][2];
 
             $theList = Liste::find($idList);

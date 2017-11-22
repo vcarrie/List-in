@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Comment;
+use App\Http\Requests\ChangePasswordRequest;
 use App\Rate;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -37,5 +39,16 @@ class UserController extends Controller
 
         $user->delete();
 
+    }
+
+    public function updateUserPassword(ChangePasswordRequest $request){
+        $previousPwd = $request->old_pwd;
+
+        $idUser = Auth::id();
+        $user = User::find($idUser);
+
+        if (Hash::check($previousPwd, $user->password)){
+
+        }
     }
 }

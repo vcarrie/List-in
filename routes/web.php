@@ -82,3 +82,6 @@ Route::delete('/delete/belong/{id}', ['middleware' => ['auth', 'admin'], 'uses' 
 Route::get('/delete/list/{id}', ['middleware' => ['auth', 'admin'], 'uses' => 'ListController@deleteList']);
 
 Route::get('/delete/user/{id}', ['middleware' => ['auth', 'admin'], 'uses' => 'UserController@deleteUser']);
+
+//Update
+Route::post('/update/user/password', 'UserController@updateUserPassword');
