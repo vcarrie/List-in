@@ -33,6 +33,7 @@ Route::post('/getproductbykeyword', 'ApiCdiscountSearchByKeywordController@post'
 Route::get('/removefromcart/{id}', 'CartController@RemoveListFromCart');
 Route::get('/addtocart/{id}', 'CartController@addListToCart');
 Route::get('/emptycart', 'CartController@empty_cart');
+Route::get('/cart', 'CartController@show_cart')->name('cart');
 
 
 Route::get('/', 'HomeController@index');
@@ -58,20 +59,16 @@ Route::get('/mentionslegales', 'FooterController@mentionsLegales');
 
 Route::get('/apropos', 'FooterController@apropos');
 
+
+
 // Email confirmation
 Route::get('/confirmation/resend', 'Auth\RegisterController@resend');
 Route::get('/confirmation/{id}/{token}', 'Auth\RegisterController@confirm');
 
 
-Route::get('protected', ['middleware' => ['auth', 'admin'], function() {
-    return "this page requires that you be logged in and an Admin";
-}]);
 
 
-//Special Route
-Route::get('/dunsparce', function(){
-    return view('hidden.dunsparce');
-});
+
 
 
 //Delete
