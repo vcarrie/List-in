@@ -79,6 +79,8 @@ class ListController extends Controller
 
         Liste::find($id)->delete();
 
+        return redirect("/admin");
+
     }
 
 }
