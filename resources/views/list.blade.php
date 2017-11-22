@@ -41,7 +41,7 @@
                 <div id="item-{{ $item['Id'] }}" class="card hidden">
                 @endif
                         <div class="card-snapshots">
-                            <img src="{{ $item['Image'] }}"/>
+                            <img alt="{{ $item['Name'] }}" src="{{ $item['Image'] }}"/>
                         </div>
                         <div class="card-body">
                             <h4>{{ $item['Name'] }}</h4>

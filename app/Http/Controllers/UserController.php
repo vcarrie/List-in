@@ -43,7 +43,7 @@ class UserController extends Controller
         $to_return[] = $complete_lists;
 
 
-        return view('account', compact($to_return));
+        return view('account', compact('to_return'));
     }
 
 

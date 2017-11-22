@@ -1,4 +1,5 @@
 @import 'config';
+@import 'print';
 
 * {
   box-sizing: border-box;
@@ -356,9 +357,6 @@ __________________________________________________ */
       box-shadow: 10px 10px 0px $color_background_dark;
       vertical-align: top;
       white-space: normal;
-      border-style: solid;
-      border-width: 1px;
-      border-color: #2f2d2d;
 
       .card-header {
         padding: 1.5rem;
@@ -470,13 +468,12 @@ __________________________________________________ */
 
         &:hover, &:focus {
           background-color: $color_background_grey;
-          color: $color_text;
-          text-decoration: none;
+          color: $color_link_hover;
         }
 
         &:active {
-          color: $color_link_hover;
-          background-color: $color_background_grey;
+          background-color: transparent;
+          color: $color_text;
         }
 
       }
@@ -485,11 +482,6 @@ __________________________________________________ */
       button:last-child {
         color: $color_text_white;
         background-color: $color_background_red;
-
-        &:active {
-          color: $color_link_hover;
-          background-color: $color_background_grey;
-        }
       }
     }
   }
@@ -544,11 +536,6 @@ __________________________________________________ */
           margin-top: 1rem;
           padding: 0.75rem 0.75rem;
           border: 0;
-
-          &:active {
-            background-color: $color_background_grey;
-            color: $color_link_hover;
-          }
         }
       }
 
@@ -676,18 +663,35 @@ __________________________________________________ */
     overflow: auto;
     white-space: nowrap;
     padding: 1%;
+    border-width: 1px;
+    border-color: #2f2d2d;
+  }
+
+  #selected-articles .card{
+    border-width: 1px;
+    border-color: #2f2d2d;
   }
 
   #recap-articles{
     margin: 15px;
   }
 
-  .l_name, .desc, .tag{
-    margin-top: 2rem;
-  }
-
   #selected-articles>div{
     background-color: #f4f4f4;
+  }
+
+  #total-price-container{
+    font-size: 2rem;
+    text-align: center;
+    color: #e03913;
+  }
+
+  .next_step_button, .search_button, .validate-container, .no-article{
+    text-align: center;
+  }
+
+  .l_name, .desc, .tag{
+    margin-top: 2rem;
   }
 
   .article_name{
@@ -706,6 +710,14 @@ __________________________________________________ */
   /* CGU / Mentions Legales
   ___________________________________________________________________ */
 
+
+  .cgu > div, .ml > div{
+    background-color: #ffffff;
+    border: 1px;
+    border-style: solid;
+    margin-top: 1%;
+    padding: 1%;
+  }
   /* FOOTER
   ___________________________________________________________________ */
 
@@ -794,6 +806,10 @@ __________________________________________________ */
     color: #FFF;
   }
 
+  .btn-link, .checkbox a{
+    color: #e03913;
+  }
+
   #tag-search {
     .bootstrap-tagsinput {
       span.label-info {
@@ -856,11 +872,27 @@ __________________________________________________ */
       border-bottom: 1px solid $color_separation;
       padding: 1rem 0;
 
+      a:not(.btn) {
+        text-decoration: none;
+        color: $color_text;
+        font-size: 2rem;
+
+        &:hover {
+          color: $color_link_hover;
+        }
+      }
+
       .list-figures {
         figure {
           display: inline-block;
           max-width: 10rem;
           margin-right: 1rem;
+          vertical-align: top;
+
+          img {
+            width: 7rem;
+            height: 7rem;
+          }
 
           figcaption {
             overflow: ellipsis;
@@ -868,7 +900,7 @@ __________________________________________________ */
         }
       }
 
-      button {
+      a.btn {
         margin-top: 3.3rem;
 
         @media screen and (max-width: $bootstrap-sm) {
@@ -878,6 +910,65 @@ __________________________________________________ */
     }
   }
 }
+
+/* PANIER
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+.cart-master {
+  table {
+    width: 100%;
+
+    tr {
+      background-color: $color_background_grey;
+
+      td, th {
+        padding: 2rem;
+
+        @media screen and (max-width: $bootstrap-sm) {
+          padding: 0.2rem;
+        }
+      }
+    }
+
+    td {
+      &.cart-small {
+        width: 3rem;
+      }
+    }
+
+    thead {
+      th {
+        font-size: 2rem;
+      }
+    }
+
+    tbody {
+      tr:nth-child(2n+1) {
+        background-color: $color_background;
+      }
+    }
+
+    tfoot {
+      text-align: center;
+
+      a {
+        margin-right: 1rem;
+
+        &.btn-primary {
+          background-color: $color_background_dark_grey;
+          border: 1px solid $color_background_dark;
+
+          &:hover, &:focus, &:active {
+            background-color: $color_background_dark;
+          }
+        }
+      }
+    }
+  }
+}
+
+/* AUTRE
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
 
 .captcha-contact {
     display: table;
