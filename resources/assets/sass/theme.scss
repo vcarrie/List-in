@@ -981,22 +981,21 @@ ________________________________________________________ */
 
 .content-team-part1 {
   display: flex;
+  justify-content: space-around;
 }
 
-.val {
-  margin-right: 38%;
+.content-team-part1 figure{
+  text-align: center;
+}
+
+.content-team-part2 figure{
+  text-align: center;
 }
 
 .val img {
-  display: table;
-  margin: 0 auto;
   border : 1px solid #000;
   height: 82px;
   width: 82px;
-}
-
-.mat {
-  margin-right: 38%;
 }
 
 .mat img {
@@ -1005,10 +1004,6 @@ ________________________________________________________ */
   border : 1px solid #000;
   height: 82px;
   width: 82px;
-}
-
-.ced {
-  margin-right: 38%;
 }
 
 .ced img {
@@ -1021,11 +1016,7 @@ ________________________________________________________ */
 
 .content-team-part2{
   display: flex;
-}
-
-.the {
-  margin-left: 22%;
-  margin-right: 38%;
+  justify-content: space-evenly;
 }
 
 .the img {
@@ -1042,4 +1033,52 @@ ________________________________________________________ */
   border : 1px solid #000;
   height: 82px;
   width: 82px;
+}
+
+@media screen and (max-width: $bootstrap-sm) {
+
+
+.val img {
+    display: table;
+    margin: 0 auto;
+    border : 1px solid #000;
+    height: 41px;
+    width: 41px;
+}
+
+
+
+.mat img {
+    display: table;
+    margin: 0 auto;
+    border : 1px solid #000;
+    height: 41px;
+    width: 41px;
+}
+
+.ced img {
+  display: table;
+  margin: 0 auto;
+  border : 1px solid #000;
+  height: 41px;
+  width: 41px;
+}
+
+
+.the img {
+  display: table;
+  margin: 0 auto;
+  border : 1px solid #000;
+  height: 41px;
+  width: 41px;
+}
+
+.mar img {
+    display: table;
+    margin: 0 auto;
+    border : 1px solid #000;
+    height: 41px;
+    width: 41px;
+  }
+
 }
