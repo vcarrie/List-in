@@ -847,7 +847,7 @@ __________________________________________________ */
       border-bottom: 1px solid $color_separation;
       padding: 1rem 0;
 
-      a {
+      a:not(.btn) {
         text-decoration: none;
         color: $color_text;
         font-size: 2rem;
@@ -875,7 +875,7 @@ __________________________________________________ */
         }
       }
 
-      button {
+      a.btn {
         margin-top: 3.3rem;
 
         @media screen and (max-width: $bootstrap-sm) {
@@ -885,6 +885,65 @@ __________________________________________________ */
     }
   }
 }
+
+/* PANIER
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+.cart-master {
+  table {
+    width: 100%;
+
+    tr {
+      background-color: $color_background_grey;
+
+      td, th {
+        padding: 2rem;
+
+        @media screen and (max-width: $bootstrap-sm) {
+          padding: 0.2rem;
+        }
+      }
+    }
+
+    td {
+      &.cart-small {
+        width: 3rem;
+      }
+    }
+
+    thead {
+      th {
+        font-size: 2rem;
+      }
+    }
+
+    tbody {
+      tr:nth-child(2n+1) {
+        background-color: $color_background;
+      }
+    }
+
+    tfoot {
+      text-align: center;
+
+      a {
+        margin-right: 1rem;
+
+        &.btn-primary {
+          background-color: $color_background_dark_grey;
+          border: 1px solid $color_background_dark;
+
+          &:hover, &:focus, &:active {
+            background-color: $color_background_dark;
+          }
+        }
+      }
+    }
+  }
+}
+
+/* AUTRE
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
 
 .captcha-contact {
     display: table;

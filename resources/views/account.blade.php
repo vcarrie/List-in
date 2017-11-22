@@ -25,7 +25,7 @@
 				<div class="col-xs-12">
 					<p>{{ $to_return[0]->firstName }} {{ $to_return[0]->lastName }} ({{ $to_return[0]->pseudo }})</p>
 					<p>{{ $to_return[0]->email }}</p>
-					<p>Inscrit le : date</p>
+					<p>Inscrit le : {{ $to_return[0]->created_at }}</p>
 					<p>Dernière connexion : date</p>
 				</div>
 			</section>
@@ -103,7 +103,7 @@
 							</div>
 						</div>
 						<div class="col-sm-3">
-							<button class="btn btn-danger">Supprimer</button>
+							<a href="/delete/userlist/{{ $to_return[1][$i][0]['id'] }}" class="btn btn-danger" title="Supprimer">Supprimer</a>
 						</div>
 					</div>
 					@endfor
