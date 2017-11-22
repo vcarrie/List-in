@@ -33,7 +33,7 @@
                             </a>
                         </li>
                         <li>
-                            <a tabindex="1" href="#">
+                            <a tabindex="1" href="{{ route('cart') }}">
                                 <img alt="mon panier" src="../../../public/images/icon-basket.png"/>
                                 <h5>Mon Panier</h5>
                             </a>

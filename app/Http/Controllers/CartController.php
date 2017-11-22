@@ -49,4 +49,14 @@ class CartController extends Controller
         $cart = null;
         session(['cart' => $cart]);
     }
+
+    public function show_cart(Request $request){
+
+        if (!$request->session()->has('cart')) {
+            $cart = array();
+        }else{
+            $cart = session('cart');
+        }
+        return view('cart', compact('cart', 'cart'));
+    }
 }

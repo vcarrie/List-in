@@ -1,5 +1,4 @@
 (function () {
-    document.getElementById("list-creation").reset();
     $('#go-search').click(function (e) {
         e.preventDefault();
         $.ajax({
