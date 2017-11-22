@@ -23,8 +23,8 @@
 					<h2>Informations</h2>
 				</div>
 				<div class="col-xs-12">
-					<p>Nom Prénom</p>
-					<p>Adresse mail</p>
+					<p>{{ $to_return[0]->firstName }} {{ $to_return[0]->lastName }} ({{ $to_return[0]->pseudo }})</p>
+					<p>{{ $to_return[0]->email }}</p>
 					<p>Inscrit le : date</p>
 					<p>Dernière connexion : date</p>
 				</div>

@@ -10,15 +10,15 @@
     <li><a tabindex="1" href="/cgu">CGU</a></li>
     <li><a tabindex="1" href="/sitemap">Sitemap</a></li>
     <li>
-        <a tabindex="1" class="footer-social-media-link" href="/contact"><img
+        <a tabindex="1" class="footer-social-media-link" href="/contact" title="Vers le formulaire de contact"><img
                     src="../../../public/images/icon-contact.png" alt="contact"/></a>
     </li>
     <li>
-        <a tabindex="1" class="footer-social-media-link" href="http://facebook.com/listinofficial"><img
+        <a tabindex="1" class="footer-social-media-link" href="http://facebook.com/listinofficial" title="Vers notre page facebook" target="blank"><img
                     src="../../../public/images/facebook.png" alt="facebook"/></a>
     </li>
     <li>
-        <a tabindex="1" class="footer-social-media-link" href="http://twitter.com/listin_official" target="blank"><img
+        <a tabindex="1" class="footer-social-media-link" href="http://twitter.com/listin_official" title="Vers notre page twitter" target="blank"><img
                     src="../../../public/images/twitter.png" alt="twitter"/></a>
     </li>
 </ul>

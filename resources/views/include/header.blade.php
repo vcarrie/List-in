@@ -12,7 +12,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="/">
+                    <a class="navbar-brand" href="/" title="Accueil">
                         <img class="logo img-responsive" src="../../../public/images/Logo_V4_transparent.png"
                              alt="logo listin"/>
                     </a>
