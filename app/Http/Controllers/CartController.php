@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Belong;
+use App\Liste;
+use App\Repositories\ApiCdiscount\ApiCdiscountSearchByIdProductRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
 {
@@ -50,13 +54,26 @@ class CartController extends Controller
         session(['cart' => $cart]);
     }
 
-    public function show_cart(Request $request){
+    public function show_cart(Request $request, ApiCdiscountSearchByIdProductRepository $api){
 
         if (!$request->session()->has('cart')) {
             $cart = array();
         }else{
             $cart = session('cart');
         }
-        return view('cart', compact('cart', 'cart'));
+
+
+
+        $to_return = array();
+        foreach ($cart as $id){
+            $list = Liste::find($id);
+            $products = Belong::getProductsByIdList($id, $api);
+            $total = Belong::getTotalByIdList($id, $api);
+            $to_return[] = array($list, $products, count($products), $total);
+
+        }
+
+        return $to_return;
+        //return view('account', compact($to_return));
     }
 }
