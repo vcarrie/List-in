@@ -23,6 +23,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/create/list', 'ListController@validateCreateList');
 });
 
+Route::get('/admin',  ['middleware' => ['auth', 'admin'], 'uses' => 'adminController@panelAdmin']);
 Route::get('/manage/tag',  ['middleware' => ['auth', 'admin'], 'uses' => 'TagsController@manageTags']);
 Route::post('/delete/tag',  ['middleware' => ['auth', 'admin'], 'uses' => 'TagsController@deleteTags']);
 Route::post('/create/tag',  ['middleware' => ['auth', 'admin'], 'uses' => 'TagsController@createTags']);

@@ -134,7 +134,7 @@
 
                                 <div class="form-group">
                                     <div class="col-md-6 col-md-offset-4">
-                                        <button class="btn btn-primary">
+                                        <button class="btn btn-secondary">
                                             S'enregistrer
                                         </button>
                                     </div>
@@ -200,13 +200,13 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group">
-                                    <div class="col-md-8">
-                                        <button type="submit" class="btn btn-primary  col-md-offset-7">
+                                <div class="form-group" style="text-align: center">
+                                    <div class="col-md-8 col-md-offset-2">
+                                        <button type="submit" class="btn btn-secondary">
                                             Se connecter
                                         </button>
 
-                                        <a class="btn btn-link  col-md-offset-6" href="{{ route('password.request') }}">Mot de passe
+                                        <a class="btn btn-link" href="{{ route('password.request') }}">Mot de passe
                                             oublié ?
                                         </a>
                                     </div>

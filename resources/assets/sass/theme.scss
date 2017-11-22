@@ -663,22 +663,35 @@ __________________________________________________ */
     overflow: auto;
     white-space: nowrap;
     padding: 1%;
+    border-width: 1px;
+    border-color: #2f2d2d;
+  }
+
+  #selected-articles .card{
+    border-width: 1px;
+    border-color: #2f2d2d;
   }
 
   #recap-articles{
     margin: 15px;
   }
 
-  .l_name, .desc, .tag{
-    margin-top: 2rem;
-  }
-
   #selected-articles>div{
     background-color: #f4f4f4;
   }
 
-  .no-article{
+  #total-price-container{
+    font-size: 2rem;
     text-align: center;
+    color: #e03913;
+  }
+
+  .next_step_button, .search_button, .validate-container, .no-article{
+    text-align: center;
+  }
+
+  .l_name, .desc, .tag{
+    margin-top: 2rem;
   }
 
   .article_name{
@@ -697,6 +710,14 @@ __________________________________________________ */
   /* CGU / Mentions Legales
   ___________________________________________________________________ */
 
+
+  .cgu > div, .ml > div{
+    background-color: #ffffff;
+    border: 1px;
+    border-style: solid;
+    margin-top: 1%;
+    padding: 1%;
+  }
   /* FOOTER
   ___________________________________________________________________ */
 
@@ -783,6 +804,10 @@ __________________________________________________ */
     margin: 15px 0px 15px 0px;
     background-color: #e03913;
     color: #FFF;
+  }
+
+  .btn-link, .checkbox a{
+    color: #e03913;
   }
 
   #tag-search {

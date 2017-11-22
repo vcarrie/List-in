@@ -17,7 +17,7 @@
 
                     </div>
                     <div class="form-steps">
-                        <div class="col-md-offset-5">
+                        <div class="next_step_button">
                             <button id="next-step" class="btn btn-secondary" type="button" disabled="true">Etape suivante</button>
                         </div>
                     </div>
@@ -26,9 +26,9 @@
 
                 <div id="search-products" class="panel panel-default col-md-6 col-md-offset-3">
                     <div class="panel-heading"><strong>Recherchez des produits</strong></div>
-                    <div class="col-sm-10 col-sm-offset-1 col-md-6 col-md-offset-3">
+                    <div class="col-md-6 col-md-offset-3">
                         <input id="search-bar" type="text" class="form-control" placeholder="Entrez un nom de produit..."/>
-                        <div class="col-md-offset-4">
+                        <div class="search_button">
                             <button id="go-search" class="btn btn-secondary" tabindex="1" title="Rechercher des produits">Rechercher</button>
                         </div>
                     </div>
@@ -66,7 +66,11 @@
                     <div id="recap-articles">
 
                     </div>
-                    <div class="col-md-offset-4">
+                    <div id="total-price-container" class="col-md-offset-9">
+                      Total : </br>
+                      <strong id="total-price"></strong>
+                    </div>
+                    <div class="validate-container">
                         <button id="previous-step" class="btn btn-secondary"type="button">Etape précédente</button>
                         <input id="list_validate" class="btn btn-secondary" type="submit" name="create_list" value="Valider">
                     </div>
