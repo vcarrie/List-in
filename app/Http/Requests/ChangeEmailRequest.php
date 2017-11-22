@@ -4,28 +4,25 @@ namespace App\Http\Requests;
 
 use App\User;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Factory as ValidationFactory;
 
-class ChangePasswordRequest extends FormRequest
+class ChangeEmailRequest extends FormRequest
 {
+
     protected $redirect = '/account#account-section-2';
 
     public function __construct(ValidationFactory $validationFactory)
     {
         $validationFactory->extend(
-            'correct_password',
+            'correct_email',
             function ($attribute, $value, $parameters) {
+                return \Auth::user()->email === $value;
+            });
 
-                $idUser = Auth::id();
-                $user = User::find($idUser);
-
-                if (Hash::check($value, $user->password)) {
-                    return true;
-                }
-
-                return false;
+        $validationFactory->extend(
+            'correct_new_email',
+            function ($attribute, $value, $parameters) {
+                return !User::email_exists($value);
             });
     }
 
@@ -47,8 +44,8 @@ class ChangePasswordRequest extends FormRequest
     public function rules()
     {
         return [
-            'old_pwd' => 'required|string|min:6|correct_password',
-            'new_pwd' => 'required|string|min:6|confirmed',
+            'old_email' => 'required|email|correct_email',
+            'new_email' => 'required|email|confirmed|correct_new_email',
         ];
     }
 }

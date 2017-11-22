@@ -22,7 +22,8 @@ mix.scripts([
     'resources/assets/js/plugins.js',
 	'resources/assets/js/catalogue.js',
 	'resources/assets/js/article-search.js',
-    'resources/assets/js/admin.js'
+    'resources/assets/js/admin.js',
+    'resources/assets/js/account.js'
 ], 'public/js/all.js');
 
 //mix.copyDirectory('resources/assets/images', 'public/images');
