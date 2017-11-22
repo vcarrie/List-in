@@ -17,6 +17,8 @@
             dataType: "json",
             success: function (data) {
 
+
+
                 // Affichage des resultats de la recherche
                 $('#result-region').empty();
                 var results = data.Products;
@@ -109,6 +111,7 @@
                     if (article_count === 0) {
                         $('.no-article').css("display", "none");
                     }
+                    
 
                     var already_exists = false;
                     var double_article = document.getElementsByClassName('id_cdiscount');
@@ -254,6 +257,7 @@
         $action_delete_from_cart.click(function (e) {
             $('#container-'+ productJson.Id).remove();
             $('#recap-'+productJson.Id).remove();
+            console.log("probleme");
 
             if(document.getElementsByClassName('id_cdiscount').length == 0){
               $("#next-step").prop('disabled', true);
