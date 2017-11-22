@@ -2,6 +2,7 @@
 
     if(window.location.href.indexOf("create/list") > -1) {
       document.getElementById("list-creation").reset();
+      $("#next-step").prop('disabled', true);
     }
 
     $('#go-search').click(function (e) {
@@ -223,6 +224,16 @@
             total += parseFloat($(this).text());
         })
         $('#total-price').empty().append(total.toFixed(2) + " €");
+
+        var divList = $('#recap-articles').find('div');
+        var cpt = 0;
+        $('#recap-articles div').each(function(){
+            if(cpt%2 ==0)
+              $(this).css({"background-color": "#D5D5D5"});
+            else
+              $(this).css({"background-color": "#F8F8F8"});
+            cpt++;
+        });
     });
 
     $('#previous-step').click(function () {

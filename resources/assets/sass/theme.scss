@@ -697,12 +697,12 @@ __________________________________________________ */
     color: #e03913;
   }
 
-  .l_name, .desc, .tag{
-    margin-top: 2rem;
+  .next_step_button, .search_button, .validate-container, .no-article{
+    text-align: center;
   }
 
-  .no-article{
-    text-align: center;
+  .l_name, .desc, .tag{
+    margin-top: 2rem;
   }
 
   .article_name{
@@ -721,6 +721,14 @@ __________________________________________________ */
   /* CGU / Mentions Legales
   ___________________________________________________________________ */
 
+
+  .cgu > div, .ml > div{
+    background-color: #ffffff;
+    border: 1px;
+    border-style: solid;
+    margin-top: 1%;
+    padding: 1%;
+  }
   /* FOOTER
   ___________________________________________________________________ */
 
@@ -807,6 +815,10 @@ __________________________________________________ */
     margin: 15px 0px 15px 0px;
     background-color: #e03913;
     color: #FFF;
+  }
+
+  .btn-link, .checkbox a{
+    color: #e03913;
   }
 
   #tag-search {
