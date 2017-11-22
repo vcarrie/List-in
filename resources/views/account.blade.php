@@ -136,7 +136,7 @@
 
 	</div>
 </div>
-
+@endSection
 <!--
 <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
 	<img alt="mon compte" src="../../../public/images/icon-deconnexion.png"/>
@@ -148,4 +148,3 @@
 </form>
 -->
 
-@endsection
