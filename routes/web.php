@@ -23,6 +23,9 @@ Route::middleware('auth')->group(function () {
     Route::post('/create/list', 'ListController@validateCreateList');
 });
 
+Route::get('/manage/tag',  ['middleware' => ['auth', 'admin'], 'uses' => 'TagsController@manageTags']);
+Route::post('/delete/tag',  ['middleware' => ['auth', 'admin'], 'uses' => 'TagsController@deleteTags']);
+Route::post('/create/tag',  ['middleware' => ['auth', 'admin'], 'uses' => 'TagsController@createTags']);
 
 Route::get('/getproductbykeyword', 'ApiCdiscountSearchByKeywordController@get');
 Route::post('/getproductbykeyword', 'ApiCdiscountSearchByKeywordController@post');
@@ -53,6 +56,8 @@ Route::post('/account', 'UserController@update_logged_user');
 
 Route::get('/cgu', 'FooterController@CGU');
 Route::get('/mentionslegales', 'FooterController@mentionsLegales');
+
+Route::get('/apropos', 'FooterController@apropos');
 
 // Email confirmation
 Route::get('/confirmation/resend', 'Auth\RegisterController@resend');
