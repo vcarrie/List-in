@@ -243,7 +243,6 @@ function Catalogue() {
         console.log($('.mid-content .dropdown-menu li'));
         var context = this;
         $('.mid-content .dropdown-menu li').mouseup(function() {
-            console.log('* Attaching mouseup');
             if (!context.isBusy()) {
                 context.sortDisplayedLists($(this).attr('data-original-index'));
             } else {

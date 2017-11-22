@@ -10,7 +10,7 @@
     <li><a tabindex="1" href="/cgu">CGU</a></li>
     <li><a tabindex="1" href="/sitemap">Sitemap</a></li>
     <li>
-        <a tabindex="1" class="footer-social-media-link" href="/contact" target="blank"><img
+        <a tabindex="1" class="footer-social-media-link" href="/contact"><img
                     src="../../../public/images/icon-contact.png" alt="contact"/></a>
     </li>
     <li>
