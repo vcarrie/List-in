@@ -2,6 +2,7 @@
 
     if(window.location.href.indexOf("create/list") > -1) {
       document.getElementById("list-creation").reset();
+      $("#next-step").prop('disabled', true);
     }
 
     $('#go-search').click(function (e) {
@@ -16,8 +17,6 @@
             },
             dataType: "json",
             success: function (data) {
-
-
 
                 // Affichage des resultats de la recherche
                 $('#result-region').empty();
@@ -111,7 +110,7 @@
                     if (article_count === 0) {
                         $('.no-article').css("display", "none");
                     }
-                    
+
 
                     var already_exists = false;
                     var double_article = document.getElementsByClassName('id_cdiscount');
@@ -190,6 +189,7 @@
 
                         recap_td_price.textContent = parseFloat(selected_article.BestOffer.SalePrice).toFixed(2) + " €";
                         recap_td_price.setAttribute('id', 'td_unity_price'+selected_article.Id);
+                        recap_td_price.setAttribute('class', "td-price");
                         recap_td_price.setAttribute('width', "150px");
                         recap_td_price.style.textAlign = "center";
 
@@ -216,10 +216,24 @@
         return false;
     });
 
-
     $('#next-step').click(function () {
+        var total = 0;
         $('#step-one').css("display", "none");
         $('#step-two').css("display", "block");
+        $('.td-price').each(function(){
+            total += parseFloat($(this).text());
+        })
+        $('#total-price').empty().append(total.toFixed(2) + " €");
+
+        var divList = $('#recap-articles').find('div');
+        var cpt = 0;
+        $('#recap-articles div').each(function(){
+            if(cpt%2 ==0)
+              $(this).css({"background-color": "#D5D5D5"});
+            else
+              $(this).css({"background-color": "#F8F8F8"});
+            cpt++;
+        });
     });
 
     $('#previous-step').click(function () {
@@ -257,10 +271,10 @@
         $action_delete_from_cart.click(function (e) {
             $('#container-'+ productJson.Id).remove();
             $('#recap-'+productJson.Id).remove();
-            console.log("probleme");
 
             if(document.getElementsByClassName('id_cdiscount').length == 0){
               $("#next-step").prop('disabled', true);
+              $('.no-article').css("display", "block");
             }
             return false;
         })

@@ -14,7 +14,7 @@
                     src="../../../public/images/icon-contact.png" alt="contact"/></a>
     </li>
     <li>
-        <a tabindex="1" class="footer-social-media-link" href="http://facebook.com/listinofficial"><img
+        <a tabindex="1" class="footer-social-media-link" href="http://facebook.com/listinofficial" target="blank"><img
                     src="../../../public/images/facebook.png" alt="facebook"/></a>
     </li>
     <li>
