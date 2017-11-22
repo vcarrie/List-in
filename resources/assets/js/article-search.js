@@ -1,5 +1,9 @@
 (function () {
-    document.getElementById("list-creation").reset();
+
+    if(window.location.href.indexOf("create/list") > -1) {
+      document.getElementById("list-creation").reset();
+    }
+
     $('#go-search').click(function (e) {
         e.preventDefault();
         $.ajax({
@@ -53,7 +57,8 @@
                     var price_value = document.createTextNode(parseFloat(results[i].BestOffer.SalePrice).toFixed(2) + " €");
                     price.appendChild(price_value);
                     td_price.appendChild(price);
-                    td_price.setAttribute('width', "80px");
+                    td_price.style.width = "100px";
+                    td_price.style.textAlign = "center";
 
                     var add_button = document.createElement('button');
                     var add_button_value = document.createTextNode("+");
@@ -68,6 +73,8 @@
                     link.setAttribute("target", "blank");
                     link.appendChild(link_value);
                     td_link.appendChild(link);
+                    td_link.style.textAlign = "center";
+                    td_link.style.padding = "10px";
 
 
                     my_tr.appendChild(td_img);
