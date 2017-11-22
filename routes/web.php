@@ -52,7 +52,6 @@ Route::post('/contact', 'ContactController@store');
 
 Route::get('/user/{id}', 'UserController@show');
 Route::get('/account', 'UserController@myAccount');
-Route::post('/account', 'UserController@update_logged_user');
 
 Route::get('/cgu', 'FooterController@CGU');
 Route::get('/mentionslegales', 'FooterController@mentionsLegales');
