@@ -1,4 +1,9 @@
 (function () {
+
+    if(window.location.href.indexOf("create/list") > -1) {
+      document.getElementById("list-creation").reset();
+    }
+
     $('#go-search').click(function (e) {
         e.preventDefault();
         $.ajax({
@@ -11,6 +16,8 @@
             },
             dataType: "json",
             success: function (data) {
+
+
 
                 // Affichage des resultats de la recherche
                 $('#result-region').empty();
@@ -52,7 +59,8 @@
                     var price_value = document.createTextNode(parseFloat(results[i].BestOffer.SalePrice).toFixed(2) + " €");
                     price.appendChild(price_value);
                     td_price.appendChild(price);
-                    td_price.setAttribute('width', "80px");
+                    td_price.style.width = "100px";
+                    td_price.style.textAlign = "center";
 
                     var add_button = document.createElement('button');
                     var add_button_value = document.createTextNode("+");
@@ -67,6 +75,8 @@
                     link.setAttribute("target", "blank");
                     link.appendChild(link_value);
                     td_link.appendChild(link);
+                    td_link.style.textAlign = "center";
+                    td_link.style.padding = "10px";
 
 
                     my_tr.appendChild(td_img);
@@ -101,6 +111,7 @@
                     if (article_count === 0) {
                         $('.no-article').css("display", "none");
                     }
+                    
 
                     var already_exists = false;
                     var double_article = document.getElementsByClassName('id_cdiscount');
@@ -246,6 +257,7 @@
         $action_delete_from_cart.click(function (e) {
             $('#container-'+ productJson.Id).remove();
             $('#recap-'+productJson.Id).remove();
+            console.log("probleme");
 
             if(document.getElementsByClassName('id_cdiscount').length == 0){
               $("#next-step").prop('disabled', true);

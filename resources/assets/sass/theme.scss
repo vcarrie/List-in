@@ -356,9 +356,6 @@ __________________________________________________ */
       box-shadow: 10px 10px 0px $color_background_dark;
       vertical-align: top;
       white-space: normal;
-      border-style: solid;
-      border-width: 1px;
-      border-color: #2f2d2d;
 
       .card-header {
         padding: 1.5rem;
@@ -470,13 +467,12 @@ __________________________________________________ */
 
         &:hover, &:focus {
           background-color: $color_background_grey;
-          color: $color_text;
-          text-decoration: none;
+          color: $color_link_hover;
         }
 
         &:active {
-          color: $color_link_hover;
-          background-color: $color_background_grey;
+          background-color: transparent;
+          color: $color_text;
         }
 
       }
@@ -485,11 +481,6 @@ __________________________________________________ */
       button:last-child {
         color: $color_text_white;
         background-color: $color_background_red;
-
-        &:active {
-          color: $color_link_hover;
-          background-color: $color_background_grey;
-        }
       }
     }
   }
@@ -544,11 +535,6 @@ __________________________________________________ */
           margin-top: 1rem;
           padding: 0.75rem 0.75rem;
           border: 0;
-
-          &:active {
-            background-color: $color_background_grey;
-            color: $color_link_hover;
-          }
         }
       }
 
@@ -688,6 +674,10 @@ __________________________________________________ */
 
   #selected-articles>div{
     background-color: #f4f4f4;
+  }
+
+  .no-article{
+    text-align: center;
   }
 
   .article_name{
@@ -856,11 +846,27 @@ __________________________________________________ */
       border-bottom: 1px solid $color_separation;
       padding: 1rem 0;
 
+      a {
+        text-decoration: none;
+        color: $color_text;
+        font-size: 2rem;
+
+        &:hover {
+          color: $color_link_hover;
+        }
+      }
+
       .list-figures {
         figure {
           display: inline-block;
           max-width: 10rem;
           margin-right: 1rem;
+          vertical-align: top;
+
+          img {
+            width: 7rem;
+            height: 7rem;
+          }
 
           figcaption {
             overflow: ellipsis;
@@ -878,6 +884,7 @@ __________________________________________________ */
     }
   }
 }
+
 .captcha-contact {
     display: table;
     margin: 0 auto;
