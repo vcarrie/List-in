@@ -1,5 +1,7 @@
 (function () {
-    document.getElementById("list-creation").reset();
+    if (window.location.href.indexOf('create/list') > -1) {
+        document.getElementById("list-creation").reset();
+    }
     $('#go-search').click(function (e) {
         e.preventDefault();
         $.ajax({
