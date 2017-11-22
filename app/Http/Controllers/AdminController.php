@@ -6,7 +6,7 @@ use App\Liste;
 use App\User;
 use Illuminate\Http\Request;
 
-class adminController extends Controller
+class AdminController extends Controller
 {
     public function panelAdmin(){
 
