@@ -12,7 +12,7 @@
                 <h1>Etape 1 : Sélectionnez vos produits</h1>
                 <div id="articles-container" class="panel panel-default col-md-6 col-md-offset-3 mid-content">
                     <div class="panel-heading"><strong>Vos produits</strong></div>
-                    <h2 class="no-article">Pas encore de produits</h2>
+                    <h2 class="no-article">Aucun produit ajouté</h2>
                     <div id="selected-articles" class="cards-container">
 
                     </div>
@@ -45,7 +45,7 @@
                     <div class="panel-heading"><strong>Informations de la liste</strong></div>
                     <div class="col-md-offset-2">
                         <label for="list_name" class="l_name">Nom de la liste :</label><br>
-                        <input id="list_name" type="text" name="list_name" placeholder="Nom de la liste..."><br>
+                        <input id="list_name" class="bootstrap-tagsinput" type="text" name="list_name" placeholder="Nom de la liste..."><br>
                         <label for="" class="desc">Description :</label><br>
                         <label for="list_description"></label><textarea id="list_description" name="list_description" rows="6" cols="60"></textarea><br>
 
