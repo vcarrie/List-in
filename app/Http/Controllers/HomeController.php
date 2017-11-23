@@ -78,7 +78,7 @@ class HomeController extends Controller
                 'products'=> $theBelong,
                 'rating' => round($avg / 5, 2),
                 'nb_products' => count($theBelong),
-                'total_price' => $total,
+                'total_price' => round($total, 2),
             ];
         }
 
