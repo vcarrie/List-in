@@ -35,11 +35,20 @@ class ListController extends Controller
         $avg = Rate::averageForList($id);
         $user_rating = null;
         $listIsInCart = false;
-        if (count(Rate::getByIdListandListUser($id, Auth::user()->id)->get()) != 0){
-            $user_rating = Rate::getByIdListandListUser($id, Auth::user()->id)->rating->get();
+        $session = array();;
+
+        if (session()->has('cart')){
+            $session = session('cart');
         }
 
-        foreach ($request->session()->get('cart') as $key => $idList){
+        if (Auth::check()){
+            if (count(Rate::getByIdListandListUser($id, Auth::user()->id)->get()) != 0){
+                $user_rating = Rate::getByIdListandListUser($id, Auth::user()->id)->rating->get();
+            }
+        }
+
+
+        foreach ($session as $key => $idList){
             if ($id == $idList){
                 $listIsInCart = true;
             }
