@@ -22,7 +22,7 @@ $(function () {
                 url: "/registerrate",
                 type: 'GET',
                 data: {
-                    idList: $(this).data('id-list'),
+                    idList: $(this).data('list-id'),
                     rating: rating
                 },
                 dataType: 'json',
@@ -31,7 +31,7 @@ $(function () {
                     console.log('Error 500: couldn\'t rate list!');
                 },
                 success: function(data) {
-                    $('.list-rating > span').text('Vous avez noté cette liste le : '+ new Date().toISOString().slice(0, 10));
+                    $('.list-rating > span').hide().text('Vous avez noté cette liste le : '+ new Date().toISOString().slice(0, 10)).fadeIn(200);
                 }
             });
         }

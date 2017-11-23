@@ -87,30 +87,20 @@
         @else
         <form class="comments-form" method="post" action="/">
             <div class="form-group">
-                <input type="text" class="form-control" placeholder="Titre"/>
-            </div>
-            <div class="form-group">
                 <textarea class="form-control" placeholder="Commentaire"></textarea>
             </div>
             <button type="submit" class="btn btn-default pull-right">Envoyer</button>
         </form>
         @endguest
         <div class="comments">
-            <?php var_dump($listjson['Comments']); ?>
+            @foreach ($listjson['Comments'] as $comment)
             <div class="comment col-md-10 col-md-offset-1">
-                <h3>adieu</h3>
-                <h5>Par amélie le 30/02/2017</h5>
+                <h5>Par <span>{{ $comment['User']['pseudo'] }}</span> le {{ str_replace(' ', ' à ', $comment['created_at']) }}</h5>
                 <p>
-                    déçue, je ne reviendrai pas ici.
+                    {{ $comment['remark'] }}
                 </p>
             </div>
-            <div class="comment col-md-10 col-md-offset-1">
-                <h3>un délice</h3>
-                <h5>Par charlie le 10/12/2017</h5>
-                <p>
-                    ai passé de très bons moments grâce à "list'in". recommande chaudement!!
-                </p>
-            </div>
+            @endforeach
         </div>
     </div>
 @endsection
