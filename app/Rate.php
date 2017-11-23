@@ -10,6 +10,10 @@ class Rate extends Model
         return static::where('idList', '=', $idList);
     }
 
+    public static function getByIdListandListUser($idList, $idUser){
+        return static::where('idList', '=', $idList)->where('idUser', '=', $idUser);
+    }
+
     public static function getByIdUser($idUser){
         return static::where('idUser', '=', $idUser);
     }
@@ -39,6 +43,16 @@ class Rate extends Model
     {
         self::getByIdUser($idUser)->delete();
     }
+
+
+    public function List(){
+        return $this->belongsTo('App\List', 'idList');
+    }
+
+    public function User(){
+        return $this->belongsTo('App\User', 'idUser');
+    }
+
 
 }
 

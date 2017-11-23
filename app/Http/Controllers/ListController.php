@@ -29,6 +29,9 @@ class ListController extends Controller
     public function getListById($id, ApiCdiscountSearchByIdProductRepository $apiCdiscountSearchByIdProduct)
     {
         $list = Liste::find($id);
+        $comments = Comment::getByIdList($id)->get();
+        $rates = Rate::getByIdList($id)->get();
+        $avg = Rate::averageForList($id);
 
         $rawlistjson = Belong::getProductsByIdList($id, $apiCdiscountSearchByIdProduct);
 
@@ -47,11 +50,16 @@ class ListController extends Controller
             $totalprice += $obj->BestOffer->SalePrice * $item[1];
         }
 
+        $comment = array();
+
         $listjson = array(
             'list' => $list,
             'TotalPrice' => str_replace('.',',',round($totalprice,2)),
             'ItemAmount' => count($itemsjson),
-            'Items' => $itemsjson
+            'Items' => $itemsjson,
+            'Comments' => $comments,
+            'Rates' => $rates,
+            'Avg' => round($avg, 2),
         );
 
         // popular tags for the searchbar...

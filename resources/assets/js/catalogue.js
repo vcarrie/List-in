@@ -239,16 +239,17 @@ function Catalogue() {
     };
 
     this.listenToSortSelect = function() {
-        console.log('Listening to changes on sort select.');
-        console.log($('.mid-content .dropdown-menu li'));
-        var context = this;
-        $('.mid-content .dropdown-menu li').mouseup(function() {
-            if (!context.isBusy()) {
-                context.sortDisplayedLists($(this).attr('data-original-index'));
-            } else {
-                console.warn('[Catalogue not ready to be sorted]');
-            }
-        });
+        if ($('.mid-content .dropdown-menu li').length > 0) {
+            console.log('Listening to changes on sort select.');
+            var context = this;
+            $('.mid-content .dropdown-menu li').mouseup(function() {
+                if (!context.isBusy()) {
+                    context.sortDisplayedLists($(this).attr('data-original-index'));
+                } else {
+                    console.warn('[Catalogue not ready to be sorted]');
+                }
+            });
+        }
     };
 
     this.fetchListsBeforeSend = function() {
@@ -302,16 +303,38 @@ function Catalogue() {
 
     this.fetchListsError = function (result, status, error) {
         console.error('Error 500: lists couldn\'t be retrieved.');
+        
+        this.clearListsContainer();
+        this.setContainerHeaderTitle('Erreur interne (requête insoluble).');
+
+        this.setBusy(false);
     };
 
     this.fetchListsSuccess = function(listsJson) {
-        this.lists = listsJson.lists;
-        console.log(this.lists);
+        this.lists = this.filterCorruptedLists(listsJson.lists);
         this.amountOfListsDisplayableAtOnce = this.getAmountOfListsDisplayableAtOnce()
         this.createPagination();
         this.displayPage(0);
 
         this.setBusy(false);
+    };
+
+    // cdiscount sometimes returns corrupted lists
+    this.filterCorruptedLists = function(lists) {
+        var corruptedListsId = [];
+        var filteredLists = lists.filter(function(list) {
+            for (var i in list.products) {
+                if (!list.products[i][0].Products) {
+                    corruptedListsId.push(list.list.id);
+                    return false;
+                }
+            }
+            return true;
+        });
+        if (corruptedListsId.length > 0) {
+            console.log('Filtered out '+corruptedListsId.length+' corrupted lists: '+corruptedListsId.join(', '));
+        }
+        return filteredLists;
     };
 
     this.getContainerWidth = function() {
@@ -331,9 +354,18 @@ function Catalogue() {
         return this.lists.slice(page*x, page*x+x);
     };
 
+    this.clearListsContainer = function() {
+        $(this.elemContainer).html("");
+    };
+
+    this.setContainerHeaderTitle = function(t) {
+        $(this.elemContainerHeaderTitle).text(t);
+    };
+
     this.updateDisplayedLists = function (listsToDisplay, listsTotalAmount) {
-        $(this.elemContainer).html("").hide();
-        $(this.elemContainerHeaderTitle).text('Il y a ' + listsTotalAmount + ' listes associées aux tags "' + this.getSearchTagsChained().replace(/,/g, ', ') + '"');
+        this.clearListsContainer();
+        $(this.elemContainer).hide();
+        this.setContainerHeaderTitle('Il y a ' + listsTotalAmount + ' listes associées aux tags "' + this.getSearchTagsChained().replace(/,/g, ', ') + '"');
 
         for (var i in listsToDisplay) {
             var $cardHtml = this.templateListCard(listsToDisplay[i]);
@@ -457,7 +489,18 @@ function Catalogue() {
 
     this.templateListCard = function (listJson) {
         var $card = $('<div class="card"></div>');
-        var $card_header = $('<div class="card-header"><div class="star-ratings-sprite"><span style="width: ' + (listJson.rating * 100) + '%" class="star-ratings-sprite-rating"></span></div></div>');
+
+        var $card_header = $('<div class="card-header"></div>');
+        var $card_rating = $('<div title="'+listJson.rating*5+'" class="rateyo"></div>');
+        $card_rating.rateYo({
+            rating: listJson.rating,
+            maxValue: "1",
+            starWidth: "20px",
+            normalFill: "#DDDDDD",
+            ratedFill: "#E03913",
+            readOnly: true
+        });
+        $card_header.append($card_rating);
 
         var $card_snapshots = $('<div class="card-snapshots"></div>');
         if (listJson.nb_products > 0) {

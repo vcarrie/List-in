@@ -11,6 +11,32 @@ $(function () {
     	$('#'+item_id).removeClass('hidden');
     });
 
+    $('.list-rating .rateyo').rateYo({
+        starWidth: '30px',
+        normalFill: '#DDDDDD',
+        ratedFill: '#E03913',
+        fullStar: true,
+        maxValue: 5,
+        onSet: function (rating, rateYoInstance) {
+            $.ajax({
+                url: "/registerrate",
+                type: 'GET',
+                data: {
+                    idList: $(this).data('id-list'),
+                    rating: rating
+                },
+                dataType: 'json',
+                context: this,
+                error: function(result, status, error) {
+                    console.log('Error 500: couldn\'t rate list!');
+                },
+                success: function(data) {
+                    $('.list-rating > span').text('Vous avez noté cette liste le : '+ new Date().toISOString().slice(0, 10));
+                }
+            });
+        }
+    });
+
     /* ACCESSIBILITY CORRECTIONS
     –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
