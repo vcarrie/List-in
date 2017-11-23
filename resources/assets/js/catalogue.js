@@ -302,16 +302,40 @@ function Catalogue() {
 
     this.fetchListsError = function (result, status, error) {
         console.error('Error 500: lists couldn\'t be retrieved.');
+        
+        this.clearListsContainer();
+        this.setContainerHeaderTitle('Erreur interne (requête insoluble).');
+
+        this.setBusy(false);
     };
 
     this.fetchListsSuccess = function(listsJson) {
-        this.lists = listsJson.lists;
+        console.log(listsJson.lists);
+        this.lists = this.filterCorruptedLists(listsJson.lists);
         console.log(this.lists);
         this.amountOfListsDisplayableAtOnce = this.getAmountOfListsDisplayableAtOnce()
         this.createPagination();
         this.displayPage(0);
 
         this.setBusy(false);
+    };
+
+    // cdiscount sometimes returns corrupted lists
+    this.filterCorruptedLists = function(lists) {
+        var corruptedListsId = [];
+        var filteredLists = lists.filter(function(list) {
+            for (var i in list.products) {
+                if (!list.products[i][0].Products) {
+                    corruptedListsId.push(list.id);
+                    return false;
+                }
+            }
+            return true;
+        });
+        if (corruptedListsId.length > 0) {
+            console.log('Filtered out '+corruptedListsId.length+' corrupted lists: '+corruptedListsId.join(', '));
+        }
+        return filteredLists;
     };
 
     this.getContainerWidth = function() {
@@ -331,9 +355,18 @@ function Catalogue() {
         return this.lists.slice(page*x, page*x+x);
     };
 
+    this.clearListsContainer = function() {
+        $(this.elemContainer).html("");
+    };
+
+    this.setContainerHeaderTitle = function(t) {
+        $(this.elemContainerHeaderTitle).text(t);
+    };
+
     this.updateDisplayedLists = function (listsToDisplay, listsTotalAmount) {
-        $(this.elemContainer).html("").hide();
-        $(this.elemContainerHeaderTitle).text('Il y a ' + listsTotalAmount + ' listes associées aux tags "' + this.getSearchTagsChained().replace(/,/g, ', ') + '"');
+        this.clearListsContainer();
+        $(this.elemContainer).hide();
+        this.setContainerHeaderTitle('Il y a ' + listsTotalAmount + ' listes associées aux tags "' + this.getSearchTagsChained().replace(/,/g, ', ') + '"');
 
         for (var i in listsToDisplay) {
             var $cardHtml = this.templateListCard(listsToDisplay[i]);
