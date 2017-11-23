@@ -14,9 +14,21 @@
     ///     Pour les commentaires c'est la meme chose mais avec Comments à la place de Rates
     ///
     //////////////////////////////////////////////////////////////////////
+    /registercomment &idList &remark
+    /registerrate &idList &rating
 -->
     <div class="list-detail">
         <div class="list-header row">
+            <div class="col-xs-12">
+                <div class="list-rating">
+                    @guest
+                    <div class="rateyo" title="Note moyenne : {{ $listjson['Avg'] }}" data-rateyo-rating="{{ $listjson['Avg'] }}" data-rateyo-read-only="true"></div>
+                    @else
+                    <div class="rateyo" title="Note moyenne : {{ $listjson['Avg'] }}" data-rateyo-rating="{{ $listjson['Avg'] }}" data-list-id="{{ $listjson['list']['id'] }}"></div>
+                    @endguest
+                    <span>Pour {{ count($listjson['Rates']) }} notes</span>
+                </div>
+            </div>
             <div class="col-xs-8">
                 <h1>
                     {{ $listjson['list']['listName'] }}
@@ -70,6 +82,9 @@
         <div class="comments-header">
             <h2>Commentaires</h2>
         </div>
+        @guest
+        <h4>Connectez-vous pour commenter.</h4>
+        @else
         <form class="comments-form" method="post" action="/">
             <div class="form-group">
                 <input type="text" class="form-control" placeholder="Titre"/>
@@ -79,7 +94,9 @@
             </div>
             <button type="submit" class="btn btn-default pull-right">Envoyer</button>
         </form>
+        @endguest
         <div class="comments">
+            <?php var_dump($listjson['Comments']); ?>
             <div class="comment col-md-10 col-md-offset-1">
                 <h3>adieu</h3>
                 <h5>Par amélie le 30/02/2017</h5>

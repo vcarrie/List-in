@@ -239,16 +239,17 @@ function Catalogue() {
     };
 
     this.listenToSortSelect = function() {
-        console.log('Listening to changes on sort select.');
-        console.log($('.mid-content .dropdown-menu li'));
-        var context = this;
-        $('.mid-content .dropdown-menu li').mouseup(function() {
-            if (!context.isBusy()) {
-                context.sortDisplayedLists($(this).attr('data-original-index'));
-            } else {
-                console.warn('[Catalogue not ready to be sorted]');
-            }
-        });
+        if ($('.mid-content .dropdown-menu li').length > 0) {
+            console.log('Listening to changes on sort select.');
+            var context = this;
+            $('.mid-content .dropdown-menu li').mouseup(function() {
+                if (!context.isBusy()) {
+                    context.sortDisplayedLists($(this).attr('data-original-index'));
+                } else {
+                    console.warn('[Catalogue not ready to be sorted]');
+                }
+            });
+        }
     };
 
     this.fetchListsBeforeSend = function() {
@@ -310,9 +311,7 @@ function Catalogue() {
     };
 
     this.fetchListsSuccess = function(listsJson) {
-        console.log(listsJson.lists);
         this.lists = this.filterCorruptedLists(listsJson.lists);
-        console.log(this.lists);
         this.amountOfListsDisplayableAtOnce = this.getAmountOfListsDisplayableAtOnce()
         this.createPagination();
         this.displayPage(0);
@@ -326,7 +325,7 @@ function Catalogue() {
         var filteredLists = lists.filter(function(list) {
             for (var i in list.products) {
                 if (!list.products[i][0].Products) {
-                    corruptedListsId.push(list.id);
+                    corruptedListsId.push(list.list.id);
                     return false;
                 }
             }
@@ -490,7 +489,18 @@ function Catalogue() {
 
     this.templateListCard = function (listJson) {
         var $card = $('<div class="card"></div>');
-        var $card_header = $('<div class="card-header"><div class="star-ratings-sprite"><span style="width: ' + (listJson.rating * 100) + '%" class="star-ratings-sprite-rating"></span></div></div>');
+
+        var $card_header = $('<div class="card-header"></div>');
+        var $card_rating = $('<div title="'+listJson.rating*5+'" class="rateyo"></div>');
+        $card_rating.rateYo({
+            rating: listJson.rating,
+            maxValue: "1",
+            starWidth: "20px",
+            normalFill: "#DDDDDD",
+            ratedFill: "#E03913",
+            readOnly: true
+        });
+        $card_header.append($card_rating);
 
         var $card_snapshots = $('<div class="card-snapshots"></div>');
         if (listJson.nb_products > 0) {
