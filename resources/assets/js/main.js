@@ -37,6 +37,34 @@ $(function () {
         }
     });
 
+    $('form.comments-form').submit(function() {
+        var comment = $(this).find('[name="remark"]').val();
+        var username = $(this).find('[name="username"]').val();
+        var listid = $(this).find('[name="listid"]').val();
+
+        $.ajax({
+            url: "/registercomment",
+            type: 'GET',
+            data: {
+                idList: listid,
+                comment: comment
+            },
+            dataType: 'json',
+            context: this,
+            error: function(result, status, error) {
+                console.log('Error 500: couldn\'t comment!');
+            },
+            success: function(data) {
+                var $comment = $('<div class="comment col-md-10 col-md-offset-1"><h5>Par <span>'+username+'</span> le '+new Date().toISOString().slice(0, 10)+' à '+new Date().toTimeString().split(' ')[0]+'</h5><p>'+comment+'</p></div>');
+                $comment.hide();
+                $('.comments').prepend($comment);
+                $comment.fadeIn(500);
+            }
+        });
+
+        return false;
+    });
+
     /* ACCESSIBILITY CORRECTIONS
     –––––––––––––––––––––––––––––––––––––––––––––––––– */
 

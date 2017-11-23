@@ -16,6 +16,7 @@
     //////////////////////////////////////////////////////////////////////
     /registercomment &idList &remark
     /registerrate &idList &rating
+    Auth::user()
 -->
     <div class="list-detail">
         <div class="list-header row">
@@ -68,7 +69,7 @@
                             <img alt="{{ $item['Name'] }}" src="{{ $item['Image'] }}"/>
                         </div>
                         <div class="card-body">
-                            <h4>{{ $item['Name'] }}</h4>
+                            <h4 title="{{ $item['Name'] }}">{{ $item['Name'] }}</h4>
                             <p>{{ $item['Description'] }}</p>
                         </div>
                         <div class="card-footer">
@@ -85,10 +86,12 @@
         @guest
         <h4>Connectez-vous pour commenter.</h4>
         @else
-        <form class="comments-form" method="post" action="/">
+        <form class="comments-form" method="post" action="/list/{{ $listjson['list']['id'] }}">
             <div class="form-group">
-                <textarea class="form-control" placeholder="Commentaire"></textarea>
+                <textarea name="remark" class="form-control" placeholder="Commentaire"></textarea>
             </div>
+            <input type="hidden" name="username" value="{{ Auth::user()->pseudo }}" />
+            <input type="hidden" name="listid" value="{{ $listjson['list']['id'] }}" />
             <button type="submit" class="btn btn-default pull-right">Envoyer</button>
         </form>
         @endguest
