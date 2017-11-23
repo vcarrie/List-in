@@ -3,21 +3,6 @@
 @section('title', 'Nom de liste')
 
 @section('mid-content')
-    <!--
-    //////////////////////////////////////////////////////////////////////
-    ///
-    ///
-    ///     Acceder à la note -> $listjson['Rates'][indice]['rating']
-    ///
-    ///     Acceder à l'utilisateur ayant posté la note -> $listjson['Rates'][indice]['User'][laProprietéVoulueDeLaTableUser]
-    ///
-    ///     Pour les commentaires c'est la meme chose mais avec Comments à la place de Rates
-    ///
-    //////////////////////////////////////////////////////////////////////
-    /registercomment &idList &remark
-    /registerrate &idList &rating
-    Auth::user()
--->
     <div class="list-detail">
         <div class="list-header row">
             <div class="col-xs-12">
