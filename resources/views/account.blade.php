@@ -51,6 +51,11 @@
                             {{csrf_field()}}
                             <fieldset>
                                 <legend>Changer votre mot de passe</legend>
+                                @if (session('confirmation-success-password'))
+                                    <div class="alert alert-success">
+                                        {{ session('confirmation-success-password') }}
+                                    </div>
+                                @endif
                                 <div class="form-group {{ $errors->has('old_pwd') ? 'has-error' : '' }}">
                                     <label for="old_pwd">Mot de passe actuel: </label>
                                     <input class="form-control"
@@ -85,6 +90,11 @@
                             {{csrf_field()}}
                             <fieldset>
                                 <legend>Changer votre email</legend>
+                                @if (session('confirmation-success-email'))
+                                    <div class="alert alert-success">
+                                        {{ session('confirmation-success-email') }}
+                                    </div>
+                                @endif
                                 <div class="form-group {{ $errors->has('old_email') ? 'has-error' : '' }}">
                                     <label for="old_email">Email actuel:</label>
                                     <input class="form-control" type="text" id="old_email" name="old_email"/>
