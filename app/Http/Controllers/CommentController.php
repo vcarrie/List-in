@@ -68,6 +68,12 @@ class CommentController extends Controller
 
                 $rate->save();
             }else{
+                $rate = Rate::getByIdListandListUser($idList, $idUser);
+                $rate->idList = $idList;
+                $rate->idUser = $idUser;
+                $rate->rating = $rating;
+
+                $rate->save();
                 $response = 'Vous avez deja noté cette liste';
             }
 
