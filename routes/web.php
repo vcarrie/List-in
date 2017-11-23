@@ -23,7 +23,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/create/list', 'ListController@validateCreateList');
 });
 
-Route::get('/admin',  ['middleware' => ['auth', 'admin'], 'uses' => 'adminController@panelAdmin']);
+Route::get('/admin',  ['middleware' => ['auth', 'admin'], 'uses' => 'AdminController@panelAdmin']);
 Route::get('/manage/tag',  ['middleware' => ['auth', 'admin'], 'uses' => 'TagsController@manageTags']);
 Route::post('/delete/tag',  ['middleware' => ['auth', 'admin'], 'uses' => 'TagsController@deleteTags']);
 Route::post('/create/tag',  ['middleware' => ['auth', 'admin'], 'uses' => 'TagsController@createTags']);
@@ -39,7 +39,6 @@ Route::get('/cart', 'CartController@show_cart')->name('cart');
 
 Route::get('/', 'HomeController@index');
 
-
 Route::get('/research', 'HomeController@research');
 
 Route::get('/catalogue', 'HomeController@index');
@@ -54,6 +53,8 @@ Route::post('/contact', 'ContactController@store');
 
 Route::get('/user/{id}', 'UserController@show');
 Route::get('/account', 'UserController@myAccount');
+Route::get('/account/emailSuccess', 'ChangeEmailController@successChangeEmail');
+
 
 Route::get('/cgu', 'FooterController@CGU');
 Route::get('/mentionslegales', 'FooterController@mentionsLegales');
@@ -64,11 +65,8 @@ Route::get('/apropos', 'FooterController@apropos');
 
 // Email confirmation
 Route::get('/confirmation/resend', 'Auth\RegisterController@resend');
-Route::get('/confirmation/{id}/{token}', 'Auth\RegisterController@confirm');
-
-
-
-
+Route::get('/confirmation/{id}/{token}', ['middleware' => ['guest'], 'uses' => 'Auth\RegisterController@confirm']);
+Route::get('/confirmation/{id}/{token}', ['middleware' => ['auth'], 'uses' =>'ChangeEmailController@confirm']);
 
 
 
@@ -78,5 +76,10 @@ Route::delete('/delete/categorize/{id}',  ['middleware' => ['auth', 'admin'], 'u
 Route::delete('/delete/comment/{id}',  ['middleware' => ['auth', 'admin'], 'uses' => 'DeleteController@deleteComment']);
 Route::delete('/delete/belong/{id}', ['middleware' => ['auth', 'admin'], 'uses' => 'DeleteController@deleteBelong']);
 Route::get('/delete/list/{id}', ['middleware' => ['auth', 'admin'], 'uses' => 'ListController@deleteList']);
+Route::get('/delete/userlist/{id}', 'ListController@deleteUserList');
 
 Route::get('/delete/user/{id}', ['middleware' => ['auth', 'admin'], 'uses' => 'UserController@deleteUser']);
+
+//Update
+Route::post('/update/user/password', 'UserController@updateUserPassword');
+Route::post('/update/user/email', 'UserController@updateUserEmail');

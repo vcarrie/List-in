@@ -11,6 +11,7 @@ use App\Belong;
 use App\Repositories\Liste\ValidateCreateListRepository;
 use App\Tag;
 use App\Categorize;
+use Illuminate\Support\Facades\Auth;
 
 class ListController extends Controller
 {
@@ -80,6 +81,26 @@ class ListController extends Controller
         Liste::find($id)->delete();
 
         return redirect("/admin");
+
+    }
+
+    public function deleteUserList($id){
+
+        $list_is_of_user = false;
+        $list_of_user = Auth::user()->createdList->pluck('id');
+        foreach ($list_of_user as $item) {
+            if ($item == $id){ $list_is_of_user = true; }
+        }
+        if (!$list_is_of_user){ return redirect('/account'); }
+
+        Belong::deleteProductbyIdList($id);
+        Rate::deleteRateByIdList($id);
+        Comment::deleteCommentbyIdList($id);
+        Categorize::deleteCategorizeByIdList($id);
+
+        Liste::find($id)->delete();
+
+        return redirect("/account");
 
     }
 
