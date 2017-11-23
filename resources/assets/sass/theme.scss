@@ -514,6 +514,7 @@ __________________________________________________ */
       margin-bottom: 2rem;
 
       h1 {
+        margin-top: 1rem;
         margin-bottom: 0;
         overflow-wrap: break-word;
         text-align: left;
@@ -563,6 +564,7 @@ __________________________________________________ */
         height: 7rem;
         width: 7rem;
         border: 1px dashed $color_separation;
+        margin-bottom: 0.4rem;
 
         &:hover {
           border: 1px dashed $color_background_red;
@@ -595,6 +597,7 @@ __________________________________________________ */
 
     .comments {
       clear: both;
+      padding-top: 1rem;
 
       .comment {
 
@@ -602,43 +605,21 @@ __________________________________________________ */
           border-top: 1px solid $color_separation;
         }
 
-        h3 {
-
-        }
-
         h5 {
           font-style: italic;
+
+          span {
+            font-weight: bold;
+          }
         }
 
         p {
-
+          font-size: 18px;
         }
       }
     }
   }
 }
-/* TODO: delete
-.star-ratings-sprite {
-  background: url("/public/images/rating_empty_t.png") repeat-x;
-  font-size: 0;
-  height: 2rem;
-  line-height: 0;
-  overflow: hidden;
-  text-indent: -999em;
-  width: 10rem;
-  margin: 0 auto;
-  background-size: 2rem;
-}
-
-.star-ratings-sprite-rating {
-  background: url("/public/images/rating_filled_t.png") repeat-x;
-  background-position: 0 100%;
-  float: left;
-  height: 2rem;
-  display: block;
-  background-size: 2rem;
-}
-*/
 
 // utility classes can use !important
 .btn-activated {

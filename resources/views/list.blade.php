@@ -3,20 +3,6 @@
 @section('title', 'Nom de liste')
 
 @section('mid-content')
-    <!--
-    //////////////////////////////////////////////////////////////////////
-    ///
-    ///
-    ///     Acceder à la note -> $listjson['Rates'][indice]['rating']
-    ///
-    ///     Acceder à l'utilisateur ayant posté la note -> $listjson['Rates'][indice]['User'][laProprietéVoulueDeLaTableUser]
-    ///
-    ///     Pour les commentaires c'est la meme chose mais avec Comments à la place de Rates
-    ///
-    //////////////////////////////////////////////////////////////////////
-    /registercomment &idList &remark
-    /registerrate &idList &rating
--->
     <div class="list-detail">
         <div class="list-header row">
             <div class="col-xs-12">
@@ -68,7 +54,7 @@
                             <img alt="{{ $item['Name'] }}" src="{{ $item['Image'] }}"/>
                         </div>
                         <div class="card-body">
-                            <h4>{{ $item['Name'] }}</h4>
+                            <h4 title="{{ $item['Name'] }}">{{ $item['Name'] }}</h4>
                             <p>{{ $item['Description'] }}</p>
                         </div>
                         <div class="card-footer">
@@ -85,32 +71,24 @@
         @guest
         <h4>Connectez-vous pour commenter.</h4>
         @else
-        <form class="comments-form" method="post" action="/">
+        <form class="comments-form" method="post" action="/list/{{ $listjson['list']['id'] }}">
             <div class="form-group">
-                <input type="text" class="form-control" placeholder="Titre"/>
+                <textarea name="remark" class="form-control" placeholder="Commentaire"></textarea>
             </div>
-            <div class="form-group">
-                <textarea class="form-control" placeholder="Commentaire"></textarea>
-            </div>
+            <input type="hidden" name="username" value="{{ Auth::user()->pseudo }}" />
+            <input type="hidden" name="listid" value="{{ $listjson['list']['id'] }}" />
             <button type="submit" class="btn btn-default pull-right">Envoyer</button>
         </form>
         @endguest
         <div class="comments">
-            <?php var_dump($listjson['Comments']); ?>
+            @foreach ($listjson['Comments'] as $comment)
             <div class="comment col-md-10 col-md-offset-1">
-                <h3>adieu</h3>
-                <h5>Par amélie le 30/02/2017</h5>
+                <h5>Par <span>{{ $comment['User']['pseudo'] }}</span> le {{ str_replace(' ', ' à ', $comment['created_at']) }}</h5>
                 <p>
-                    déçue, je ne reviendrai pas ici.
+                    {{ $comment['remark'] }}
                 </p>
             </div>
-            <div class="comment col-md-10 col-md-offset-1">
-                <h3>un délice</h3>
-                <h5>Par charlie le 10/12/2017</h5>
-                <p>
-                    ai passé de très bons moments grâce à "list'in". recommande chaudement!!
-                </p>
-            </div>
+            @endforeach
         </div>
     </div>
 @endsection
