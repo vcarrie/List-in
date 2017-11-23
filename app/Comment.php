@@ -22,4 +22,12 @@ class Comment extends Model
     {
         self::getByIdUser($idUser)->delete();
     }
+
+    public function List(){
+        return $this->belongsTo('App\List', 'idList');
+    }
+
+    public function User(){
+        return $this->belongsTo('App\User', 'idUser');
+    }
 }
