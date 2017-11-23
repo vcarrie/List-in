@@ -10,6 +10,10 @@ class Rate extends Model
         return static::where('idList', '=', $idList);
     }
 
+    public static function getByIdListandListUser($idList, $idUser){
+        return static::where('idList', '=', $idList)->where('idUser', '=', $idUser);
+    }
+
     public static function getByIdUser($idUser){
         return static::where('idUser', '=', $idUser);
     }
