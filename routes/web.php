@@ -60,6 +60,10 @@ Route::get('/mentionslegales', 'FooterController@mentionsLegales');
 
 Route::get('/apropos', 'FooterController@apropos');
 
+Route::get('/registercomment', 'CommentController@registerComment');
+Route::get('/registerrate', 'CommentController@registerRate');
+
+
 
 
 // Email confirmation
