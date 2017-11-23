@@ -361,6 +361,10 @@ __________________________________________________ */
       .card-header {
         padding: 1.5rem;
         border-bottom: 1px solid $color_separation;
+
+        .rateyo {
+          margin: auto;
+        }
       }
 
       .card-snapshots {
@@ -510,6 +514,7 @@ __________________________________________________ */
       margin-bottom: 2rem;
 
       h1 {
+        margin-top: 1rem;
         margin-bottom: 0;
         overflow-wrap: break-word;
         text-align: left;
@@ -519,6 +524,14 @@ __________________________________________________ */
         color: $color_text_grey;
         margin-top: 0;
         margin-left: 1rem;
+      }
+
+      .list-rating {
+        font-style: italic;
+
+        &>* {
+          vertical-align: middle;
+        }
       }
 
       .list-options {
@@ -551,6 +564,7 @@ __________________________________________________ */
         height: 7rem;
         width: 7rem;
         border: 1px dashed $color_separation;
+        margin-bottom: 0.4rem;
 
         &:hover {
           border: 1px dashed $color_background_red;
@@ -583,6 +597,7 @@ __________________________________________________ */
 
     .comments {
       clear: both;
+      padding-top: 1rem;
 
       .comment {
 
@@ -590,43 +605,21 @@ __________________________________________________ */
           border-top: 1px solid $color_separation;
         }
 
-        h3 {
-
-        }
-
         h5 {
           font-style: italic;
+
+          span {
+            font-weight: bold;
+          }
         }
 
         p {
-
+          font-size: 18px;
         }
       }
     }
   }
 }
-
-.star-ratings-sprite {
-  background: url("/public/images/rating_empty.png") repeat-x;
-  font-size: 0;
-  height: 2rem;
-  line-height: 0;
-  overflow: hidden;
-  text-indent: -999em;
-  width: 10rem;
-  margin: 0 auto;
-  background-size: 2rem;
-}
-
-.star-ratings-sprite-rating {
-  background: url("/public/images/rating_filled.png") repeat-x;
-  background-position: 0 100%;
-  float: left;
-  height: 2rem;
-  display: block;
-  background-size: 2rem;
-}
-
 
 // utility classes can use !important
 .btn-activated {
@@ -981,22 +974,21 @@ ________________________________________________________ */
 
 .content-team-part1 {
   display: flex;
+  justify-content: space-around;
 }
 
-.val {
-  margin-right: 38%;
+.content-team-part1 figure{
+  text-align: center;
+}
+
+.content-team-part2 figure{
+  text-align: center;
 }
 
 .val img {
-  display: table;
-  margin: 0 auto;
   border : 1px solid #000;
   height: 82px;
   width: 82px;
-}
-
-.mat {
-  margin-right: 38%;
 }
 
 .mat img {
@@ -1005,10 +997,6 @@ ________________________________________________________ */
   border : 1px solid #000;
   height: 82px;
   width: 82px;
-}
-
-.ced {
-  margin-right: 38%;
 }
 
 .ced img {
@@ -1021,11 +1009,7 @@ ________________________________________________________ */
 
 .content-team-part2{
   display: flex;
-}
-
-.the {
-  margin-left: 22%;
-  margin-right: 38%;
+  justify-content: space-evenly;
 }
 
 .the img {
@@ -1042,4 +1026,52 @@ ________________________________________________________ */
   border : 1px solid #000;
   height: 82px;
   width: 82px;
+}
+
+@media screen and (max-width: $bootstrap-sm) {
+
+
+.val img {
+    display: table;
+    margin: 0 auto;
+    border : 1px solid #000;
+    height: 41px;
+    width: 41px;
+}
+
+
+
+.mat img {
+    display: table;
+    margin: 0 auto;
+    border : 1px solid #000;
+    height: 41px;
+    width: 41px;
+}
+
+.ced img {
+  display: table;
+  margin: 0 auto;
+  border : 1px solid #000;
+  height: 41px;
+  width: 41px;
+}
+
+
+.the img {
+  display: table;
+  margin: 0 auto;
+  border : 1px solid #000;
+  height: 41px;
+  width: 41px;
+}
+
+.mar img {
+    display: table;
+    margin: 0 auto;
+    border : 1px solid #000;
+    height: 41px;
+    width: 41px;
+  }
+
 }

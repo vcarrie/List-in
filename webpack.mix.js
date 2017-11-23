@@ -13,6 +13,7 @@ let mix = require('laravel-mix');
 
 mix.scripts([
 	'resources/assets/js/vendor/jquery-3.2.1.min.js',
+	'resources/assets/js/vendor/jquery.rateyo.min.js',
 	'resources/assets/js/vendor/modernizr-3.5.0.min.js',
 	'resources/assets/js/vendor/bootstrap.min.js',
 	'resources/assets/js/vendor/bootstrap-tagsinput.min.js',
@@ -36,5 +37,6 @@ mix.sass('resources/assets/sass/theme.scss', 'public/css/')
 	'resources/assets/css/bootstrap.min.css',
 	'resources/assets/css/bootstrap-select.min.css',
 	'resources/assets/css/bootstrap-tagsinput.min.css',
+	'resources/assets/css/jquery.rateyo.min.css',
 	'public/css/theme.css'
 ], 'public/css/all.css');
