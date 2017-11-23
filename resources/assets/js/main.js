@@ -18,15 +18,22 @@ $(function () {
         fullStar: true,
         maxValue: 5,
         onSet: function (rating, rateYoInstance) {
-            $('.list-rating > span').text('Vous avez noté cette liste le : fonctionnalité non implémentée.');
-            /*$.ajax({
-                url: this.jsonTagsRoute,
+            $.ajax({
+                url: "/registerrate",
                 type: 'GET',
+                data: {
+                    idList: $(this).data('id-list'),
+                    rating: rating
+                },
                 dataType: 'json',
                 context: this,
-                error: this.ajaxJsonTagsError,
-                success: this.ajaxJsonTagsSuccess
-            });*/
+                error: function(result, status, error) {
+                    console.log('Error 500: couldn\'t rate list!');
+                },
+                success: function(data) {
+                    $('.list-rating > span').text('Vous avez noté cette liste le : '+ new Date().toISOString().slice(0, 10));
+                }
+            });
         }
     });
 
