@@ -12,6 +12,7 @@ use App\Repositories\Liste\ValidateCreateListRepository;
 use App\Tag;
 use App\Categorize;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Request;
 
 class ListController extends Controller
 {
@@ -26,12 +27,23 @@ class ListController extends Controller
         return Liste::all();
     }
 
-    public function getListById($id, ApiCdiscountSearchByIdProductRepository $apiCdiscountSearchByIdProduct)
+    public function getListById($id, ApiCdiscountSearchByIdProductRepository $apiCdiscountSearchByIdProduct, Request $request)
     {
         $list = Liste::find($id);
-        $comments = Comment::getByIdList($id)->get();
+        $comments = Comment::getByIdList($id)->orderBy('created_at')->get();
         $rates = Rate::getByIdList($id)->get();
         $avg = Rate::averageForList($id);
+        $user_rating = null;
+        $listIsInCart = false;
+        if (count(Rate::getByIdListandListUser($id, Auth::user()->id)->get()) != 0){
+            $user_rating = Rate::getByIdListandListUser($id, Auth::user()->id)->rating->get();
+        }
+
+        foreach ($request->session()->get('cart') as $key => $idList){
+            if ($id == $idList){
+                $listIsInCart = true;
+            }
+        }
 
         $rawlistjson = Belong::getProductsByIdList($id, $apiCdiscountSearchByIdProduct);
 
@@ -60,6 +72,8 @@ class ListController extends Controller
             'Comments' => $comments,
             'Rates' => $rates,
             'Avg' => round($avg, 2),
+            'userRating' => $user_rating,
+            'listIsInCart' => $listIsInCart,
         );
 
         // popular tags for the searchbar...
