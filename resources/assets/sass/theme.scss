@@ -361,6 +361,10 @@ __________________________________________________ */
       .card-header {
         padding: 1.5rem;
         border-bottom: 1px solid $color_separation;
+
+        .rateyo {
+          margin: auto;
+        }
       }
 
       .card-snapshots {
@@ -521,6 +525,14 @@ __________________________________________________ */
         margin-left: 1rem;
       }
 
+      .list-rating {
+        font-style: italic;
+
+        &>* {
+          vertical-align: middle;
+        }
+      }
+
       .list-options {
         text-align: center;
 
@@ -605,9 +617,9 @@ __________________________________________________ */
     }
   }
 }
-
+/* TODO: delete
 .star-ratings-sprite {
-  background: url("/public/images/rating_empty.png") repeat-x;
+  background: url("/public/images/rating_empty_t.png") repeat-x;
   font-size: 0;
   height: 2rem;
   line-height: 0;
@@ -619,14 +631,14 @@ __________________________________________________ */
 }
 
 .star-ratings-sprite-rating {
-  background: url("/public/images/rating_filled.png") repeat-x;
+  background: url("/public/images/rating_filled_t.png") repeat-x;
   background-position: 0 100%;
   float: left;
   height: 2rem;
   display: block;
   background-size: 2rem;
 }
-
+*/
 
 // utility classes can use !important
 .btn-activated {

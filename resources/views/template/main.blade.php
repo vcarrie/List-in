@@ -5,7 +5,7 @@
     <div class="col-xs-12">
         <div id="search-region" class="row form-group">
             <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
-                <h1>Recherche de liste par tags</h1>
+                <h1>Recherche de listes par tags</h1>
                 <h4>Saisissez des termes en rapport avec ce qu'il vous faut.</h4>
                 <form>
                     <input type="text" class="tags-input form-control" placeholder="Entrez un tag..."/>
