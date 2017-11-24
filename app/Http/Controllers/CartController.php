@@ -54,6 +54,10 @@ class CartController extends Controller
         session(['cart' => $cart]);
     }
 
+    public function get_cart(){
+        return session('cart');
+    }
+
     public function show_cart(Request $request, ApiCdiscountSearchByIdProductRepository $api){
 
         if (!$request->session()->has('cart')) {
