@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Belong;
 use App\Liste;
+use App\Repositories\ApiCdiscount\ApiCdiscountPushToCart;
 use App\Repositories\ApiCdiscount\ApiCdiscountSearchByIdProductRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -58,13 +59,28 @@ class CartController extends Controller
         return session('cart');
     }
 
-    public function show_cart(Request $request, ApiCdiscountSearchByIdProductRepository $api){
+    public function show_cart(Request $request, ApiCdiscountSearchByIdProductRepository $api, ApiCdiscountPushToCart $apicreate){
 
         if (!$request->session()->has('cart')) {
             $cart = array();
         }else{
             $cart = session('cart');
+            $idproducts = Belong::getProductsByIdsList($cart);
+            $idproducts_lenght = count($idproducts);
+
+            $result = $apicreate->createCart($idproducts[0]['idCdiscount'], $idproducts[0]['quantity']);
+            $numCart = $result['CartGUID'];
+
+
+
+            for ($i=1;$i<$idproducts_lenght;$i++){
+                $request_result = $apicreate->pushToCart($idproducts[0]['idCdiscount'], $idproducts[0]['quantity'], $numCart);
+                $url = $request_result['CheckoutUrl'];
+            }
+
         }
+
+
 
 
 
@@ -73,7 +89,7 @@ class CartController extends Controller
             $list = Liste::find($id);
             $products = Belong::getProductsByIdList($id, $api);
             $total = Belong::getTotalByIdList($id, $api);
-            $to_return[] = array($list, $products, count($products), $total);
+            $to_return[] = array($list, $products, count($products), $total, $url);
 
         }
 
