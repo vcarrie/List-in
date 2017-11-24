@@ -15,11 +15,8 @@ class HomeController extends Controller
 {
     public function index()
     {
-
         $top_5_ids = Categorize::top_5_most_used_tags();
-
         $tags_final_tab = Tag::getByIdsTag($top_5_ids);
-
         return view('catalogue', compact('tags_final_tab'));
     }
 
@@ -35,58 +32,57 @@ class HomeController extends Controller
         $sort_index = Input::get('sort');
         $all_lists_by_nb_tags = Categorize::getIdListsByNumberOfTags($tags)->get();
 
-        $sorted_lists = array();
-        switch ($sort_index){
+        $tab_to_return = array();
+        $nbLists = count($all_lists_by_nb_tags);
+
+
+        for ($i = 0; $i < $nbLists; $i++) {
+
+            $list = $all_lists_by_nb_tags[$i];
+            $idList = $list->idList;
+
+            $theList = Liste::find($idList);
+
+            $theBelong = Belong::getProductsByIdList($idList, $apiCdiscountSearchByIdProduct);
+            $price = $theBelong[1];
+
+
+            if (Rate::averageForList($idList) != 0) {
+                $avg = Rate::averageForList($idList);
+            } else {
+                $avg = 0;
+            }
+
+
+            $tab_to_return['lists'][] = [
+                'list' => $theList,
+                'products' => $theBelong[0],
+                'rating' => round($avg / 5, 2),
+                'nb_products' => count($theBelong[0]),
+                'total_price' => round($price, 2),
+            ];
+
+        }
+
+        dd(\Log::info($tab_to_return['lists'][0]['rating']));
+
+        switch ($sort_index) {
             case 0://rating
-
-                foreach ($all_lists_by_nb_tags as $list) {
-                    $sorted_lists[] = [$list['NbTag'], Rate::averageForList($list['idList']), $list['idList']];
-                }
-
-                rsort($sorted_lists);
+                sort($tab_to_return['lists']['rating']);
                 break;
 
             case 1://prix croissant
-                foreach ($all_lists_by_nb_tags as $list) {
-                    $sorted_lists[] = [$list['NbTag'], Belong::getTotalByIdList($list['idList'], $apiCdiscountSearchByIdProduct),  $list['idList']];
-                }
-
-                sort($sorted_lists);
+                rsort($tab_to_return['lists']['total_price']);
                 break;
 
             case 2://prix decroissant
-                foreach ($all_lists_by_nb_tags as $list) {
-                    $sorted_lists[] = [$list['NbTag'], Belong::getTotalByIdList($list['idList'], $apiCdiscountSearchByIdProduct),  $list['idList']];
-                }
-
-                rsort($sorted_lists);
+                sort($tab_to_return['lists']['total_price']);
                 break;
         }
 
-        $tab_to_return = array();
-        $sorted_lists_length = count($sorted_lists);
+        $tab_to_return['nb_list_total'] = count($tab_to_return['lists']);
 
-        for ($i = 0; $i < $sorted_lists_length; $i++) {
-            $idList = $sorted_lists[$i][2];
-
-            $theList = Liste::find($idList);
-            $theBelong = Belong::getProductsByIdList($idList, $apiCdiscountSearchByIdProduct);
-            $total = Belong::getTotalByIdList($idList,  $apiCdiscountSearchByIdProduct);
-            if(Rate::averageForList($idList) != 0){ $avg = Rate::averageForList($idList); }else{ $avg = 0;}
-            $tab_to_return['lists'][] = [
-                'list' => $theList,
-                'products'=> $theBelong,
-                'rating' => round($avg / 5, 2),
-                'nb_products' => count($theBelong),
-                'total_price' => round($total, 2),
-            ];
-        }
-
-        $tab_to_return['nb_list_total'] = count($sorted_lists);
 
         return $tab_to_return;
-
     }
-
-
 }

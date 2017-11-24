@@ -37,6 +37,7 @@ class Belong extends Model
     public static function getTotalByIdList($idList, ApiCdiscountSearchByIdProductRepository $apiCdiscountSearchByIdProduct){
         $products_ids = static::getByIdList($idList)->get();
         $total = 0;
+
         foreach ($products_ids as $product) {
             $theprod = $apiCdiscountSearchByIdProduct->searchWithIdProduct($product->idCdiscount);
 
@@ -51,14 +52,27 @@ class Belong extends Model
 
     public static function getProductsByIdList($idList, ApiCdiscountSearchByIdProductRepository $apiCdiscountSearchByIdProduct){
         $products_ids = static::getByIdList($idList)->get();
+        $total = 0;
+
         $products = array();
 
         foreach ($products_ids as $product) {
-            $products[] = [$apiCdiscountSearchByIdProduct->searchWithIdProduct($product->idCdiscount), $product->quantity];
+
+            $list = $apiCdiscountSearchByIdProduct->searchWithIdProduct($product->idCdiscount);
+            $quantity = $product->quantity;
+
+            if(isset($list->Products[0])){
+                $total += $list->Products[0]->BestOffer->SalePrice * $quantity;
+            }
+            else{
+                $total = "Produit indisponible.";
+            }
+
+            $products[] = [$list, $quantity];
+
         }
 
-
-        return $products;
+        return [$products, $total];
     }
 
     public static function deleteProductbyIdList($idList){
