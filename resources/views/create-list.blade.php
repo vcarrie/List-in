@@ -46,7 +46,7 @@
                     <div class="col-md-offset-2">
                         <label for="list_name" class="l_name">Nom de la liste :</label><br>
                         <input id="list_name" class="bootstrap-tagsinput" type="text" name="list_name" placeholder="Nom de la liste..."><br>
-                        <label for="" class="desc">Description :</label><br>
+                        <label for="list" class="desc">Description :</label><br>
                         <label for="list_description"></label><textarea id="list_description" name="list_description" rows="6" cols="60"></textarea><br>
 
                         <div id="tag-search" class="row form-group">
