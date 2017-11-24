@@ -44,7 +44,11 @@
                 <h1>
                     {{ $listjson['TotalPrice'] }} €
                 </h1>
+                @if ($listjson['listIsInCart'] === false)
                 <button data-listId="{{ $listjson['list']['id'] }}" class="btn btn-default">Ajouter au panier</button>
+                @else
+                <button data-listId="{{ $listjson['list']['id'] }}" class="btn btn-default btn-activated">Liste ajoutée</button>
+                @endif
             </div>
         </div>
         <div class="list-images">

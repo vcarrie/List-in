@@ -85,7 +85,13 @@ function Catalogue() {
         if ($('.list-detail').length > 0) {
             var $addToCartBtn = $('.list-options button');
             $addToCartBtn.click(function() {
-                this.addToCart($addToCartBtn.attr('data-listId'), $addToCartBtn);
+                var listId = $addToCartBtn.attr('data-listId');
+                if (this.isListInCart(listId)) {
+                    this.removeFromCart(listId, $addToCartBtn);
+                } else {
+                    this.addToCart(listId, $addToCartBtn);
+                }
+                return false;
             }.bind(this));
         }
 
