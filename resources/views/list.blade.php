@@ -7,12 +7,21 @@
         <div class="list-header row">
             <div class="col-xs-12">
                 <div class="list-rating">
+                    <?php 
+                    if (is_null($listjson['userRating'])) {
+                        $ratingdesc = "Pour ".count($listjson['Rates'])." notes";
+                        $listrating = $listjson['Avg'];
+                    } else {
+                        $ratingdesc = "Vous avez noté cette liste le ".$listjson['userRating']->updated_at;
+                        $listrating = $listjson['userRating']->rating;
+                    }
+                    ?>
                     @guest
                     <div class="rateyo" title="Note moyenne : {{ $listjson['Avg'] }}" data-rateyo-rating="{{ $listjson['Avg'] }}" data-rateyo-read-only="true"></div>
                     @else
-                    <div class="rateyo" title="Note moyenne : {{ $listjson['Avg'] }}" data-rateyo-rating="{{ $listjson['Avg'] }}" data-list-id="{{ $listjson['list']['id'] }}"></div>
+                    <div class="rateyo" title="Note moyenne : {{ $listjson['Avg'] }}" data-rateyo-rating="{{ $listrating }}" data-list-id="{{ $listjson['list']['id'] }}"></div>
                     @endguest
-                    <span>Pour {{ count($listjson['Rates']) }} notes</span>
+                    <span>{{ $ratingdesc }}</span>
                 </div>
             </div>
             <div class="col-xs-8">
