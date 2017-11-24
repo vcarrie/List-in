@@ -14,7 +14,7 @@ class Belong extends Model
 
     public static function getByIdCdiscount($idCdiscount)
     {
-        return static::where('$idCdiscount', '=', $idCdiscount);
+        return static::where('idCdiscount', '=', $idCdiscount);
     }
 
     public static function createList($idList, $products, $quantities)
@@ -56,6 +56,14 @@ class Belong extends Model
         }
 
         return [$products, $total];
+    }
+
+    public static function getProductsByIdsList($array_ids){
+
+       $products = static::all()->whereIn('id', $array_ids)->get();
+
+
+        return $products;
     }
 
     public static function deleteProductbyIdList($idList){
