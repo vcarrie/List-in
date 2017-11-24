@@ -43,7 +43,7 @@ class ListController extends Controller
 
         if (Auth::check()){
             if (count(Rate::getByIdListandListUser($id, Auth::user()->id)->get()) != 0){
-                $user_rating = Rate::getByIdListandListUser($id, Auth::user()->id)->first()->rating;
+                $user_rating = Rate::getByIdListandListUser($id, Auth::user()->id)->first();
             }
         }
 
@@ -58,20 +58,32 @@ class ListController extends Controller
 
         $itemsjson = [];
         $totalprice = 0;
-        foreach ($rawlistjson as $item) {
+        foreach ($rawlistjson[0] as $item) {
+
             $obj = $item[0]->Products[0];
 
-            $itemsjson[] = array(
-                'Id' => $obj->Id,
-                'Price' => str_replace('.',',',round($obj->BestOffer->SalePrice,2)),
-                'Name' => $obj->Name,
-                'Description' => $obj->Description,
-                'Image' => $obj->MainImageUrl
-            );
-            $totalprice += $obj->BestOffer->SalePrice * $item[1];
-        }
+            if (isset($item[0]->Products[0]->BestOffer)){
 
-        $comment = array();
+                $itemsjson[] = array(
+                    'Id' => $obj->Id,
+                    'Price' => str_replace('.',',',round($obj->BestOffer->SalePrice,2)),
+                    'Name' => $obj->Name,
+                    'Description' => $obj->Description,
+                    'Image' => $obj->MainImageUrl
+                );
+                $totalprice += $obj->BestOffer->SalePrice * $item[1];
+            }
+
+            else{
+                $itemsjson[] = array(
+                    'Id' => $obj->Id,
+                    'Price' => 'Plus en stock !',
+                    'Name' => $obj->Name,
+                    'Description' => $obj->Description,
+                    'Image' => $obj->MainImageUrl
+                );
+            }
+        }
 
         $listjson = array(
             'list' => $list,

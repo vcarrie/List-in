@@ -61,11 +61,11 @@ class Belong extends Model
             $list = $apiCdiscountSearchByIdProduct->searchWithIdProduct($product->idCdiscount);
             $quantity = $product->quantity;
 
-            if(isset($list->Products[0])){
+            if(isset($list->Products[0]->BestOffer)){
                 $total += $list->Products[0]->BestOffer->SalePrice * $quantity;
             }
             else{
-                $total = "Produit indisponible.";
+                $total += 0;
             }
 
             $products[] = [$list, $quantity];
