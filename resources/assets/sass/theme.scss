@@ -700,9 +700,17 @@ __________________________________________________ */
     border-radius: 25px;
   }
 
-  /* CGU / Mentions Legales
+  /* Page ADMIN
   ___________________________________________________________________ */
 
+#admin_panel{
+  padding: 0%;
+  margin-top: 2%;
+  text-align: center;
+}
+
+  /* CGU / Mentions Legales
+  ___________________________________________________________________ */
 
   .cgu > div, .ml > div{
     background-color: #ffffff;

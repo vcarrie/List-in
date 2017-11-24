@@ -3,30 +3,39 @@
 @section('title', 'Admin gestion')
 
 @section('main')
-    <script>
+
+    <div id="admin_panel" class="panel panel-default col-md-4 col-md-offset-4">
+        <div class="panel-heading"><strong>Gestion administrateur</strong></div>
+        <div class="col-md-6 col-md-offset-3">
+          <input type="button" class="btn btn-secondary" value="Gérer les tags" OnClick="window.location.href='/manage/tag'" /></br></br>
 
 
-    </script>
+          <div id="list_deletion">
+            Liste à supprimer :</br>
+            <select id="id_list_to_delete">
+                @foreach($tab_final[0] as $id)
+                    <option id="{{ $id }}" value="{{ $id }}">{{ $id }}</option>
+                @endforeach
+            </select>
+            <input type="button" id="suppr_list" class="btn btn-secondary" value="Supprimer"></br>
+          </div></br>
 
 
-    -  <a href="/manage/tag">Gérer les tags</a><br>
-    -  <a href="#" id="suppr_list">Supprimer une liste</a>
+          <div id="user_deletion">
+            Utilisateur à supprimer :</br>
+            <select id="id_user_to_delete">
+                @foreach($tab_final[1] as $id)
+                    <option id="{{ $id }}" value="{{ $id }}">{{ $id }}</option>
+                @endforeach
+            </select>
+            <input type="button" id="suppr_user" class="btn btn-secondary" value="Supprimer"></br>
+          </div>
 
-    <select id="id_list_to_delete">
-        @foreach($tab_final[0] as $id)
-            <option id="{{ $id }}" value="{{ $id }}">{{ $id }}</option>
-        @endforeach
-    </select>
 
-    <br>
-    -  <a href="#" id="suppr_user">Supprimer un utilisateur</a>
+          <br>
+        </div>
+    </div>
 
-    <select id="id_user_to_delete">
-        @foreach($tab_final[1] as $id)
-            <option id="{{ $id }}" value="{{ $id }}">{{ $id }}</option>
-        @endforeach
-    </select>
-    <br>
 
 
 @endsection
