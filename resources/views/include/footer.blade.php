@@ -8,7 +8,7 @@
     <li><a tabindex="1" href="/apropos">A propos</a></li>
     <li><a tabindex="1" href="/mentionslegales">Mentions légales</a></li>
     <li><a tabindex="1" href="/cgu">CGU</a></li>
-    <li><a tabindex="1" href="/sitemap">Sitemap</a></li>
+    <li><a tabindex="1" href="/../../public/sitemap.xml">Sitemap</a></li>
     <li>
         <a tabindex="1" class="footer-social-media-link" href="/contact" title="Vers le formulaire de contact"><img
                     src="../../../public/images/icon-contact.png" alt="contact"/></a>
