@@ -1,7 +1,7 @@
 <aside class="mid-content-header">
-    <h3>Recherche en cours...</h3>
+    <p>Recherche en cours...</p>
     <p>Trier par
-        <select name="sorting_mode" class="selectpicker">
+        <select id="selectpicker" name="sorting_mode" class="selectpicker">
             <option value="0">Meilleures notes</option>
             <option value="1">Prix croissant</option>
             <option value="2">Prix décroissant</option>
