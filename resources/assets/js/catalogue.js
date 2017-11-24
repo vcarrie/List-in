@@ -311,15 +311,10 @@ function Catalogue() {
     };
 
     this.fetchListsSuccess = function(listsJson) {
-        if (listsJson.lists && listsJson.lists.length > 0) {
-            this.lists = this.filterCorruptedLists(listsJson.lists);
-            this.amountOfListsDisplayableAtOnce = this.getAmountOfListsDisplayableAtOnce()
-            this.createPagination();
-            this.displayPage(0);
-        } else {
-            this.clearListsContainer();
-            this.setContainerHeaderTitle('Aucune liste ne correspond à ces tags.');
-        }
+        this.lists = this.filterCorruptedLists(listsJson.lists);
+        this.amountOfListsDisplayableAtOnce = this.getAmountOfListsDisplayableAtOnce()
+        this.createPagination();
+        this.displayPage(0);
 
         this.setBusy(false);
     };
