@@ -57,6 +57,7 @@ $(function () {
             success: function(data) {
                 var $comment = $('<div class="comment col-md-10 col-md-offset-1"><h5>Par <span>'+username+'</span> le '+new Date().toISOString().slice(0, 10)+' à '+new Date().toTimeString().split(' ')[0]+'</h5><p>'+comment+'</p></div>');
                 $comment.hide();
+                $(this).remove();
                 $('.comments').prepend($comment);
                 $comment.fadeIn(500);
             }
