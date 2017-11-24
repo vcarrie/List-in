@@ -6,6 +6,8 @@ function Catalogue() {
     this.jsonTagsRoute = '/tags';
     this.jsonListsRoute = '/research';
     this.addToCartRoute = '/addtocart';
+    this.removeFromCartRoute = '/removefromcart';
+    this.jsonCartRoute = '/getcart';
     this.catalogueStructRoute = '/catalogue-struct';
     this.typeaheadSuggestedTagsLimit = 6;
     this.tagsMap = {};
@@ -59,6 +61,19 @@ function Catalogue() {
             success: this.ajaxJsonTagsSuccess
         });
 
+        $.ajax({
+            url: this.jsonCartRoute,
+            type: 'GET',
+            dataType: 'json',
+            context: this,
+            error: this.ajaxGetCartError,
+            success: function(data) {
+                console.log(data);
+                this.cart = data || [];
+                console.log(this.cart.length + " items in cart.")
+            }
+        });
+
         if (this.elemForm.length > 0 && this.elemTagsInput) {
             this.elemForm.submit(this.submitTags.bind(this));
         } else {
@@ -85,6 +100,10 @@ function Catalogue() {
 
     this.ajaxJsonTagsError = function (result, status, error) {
         console.error('Error 500: tags couldn\'t be retrieved.');
+    };
+
+    this.ajaxGetCartError = function (result, status, error) {
+        console.error('Error 500: cart items couldn\'t be retrieved.');
     };
 
     this.ajaxJsonTagsSuccess = function (jsonTags, status) {
@@ -368,13 +387,17 @@ function Catalogue() {
         $(this.elemContainerHeaderTitle).text(t);
     };
 
+    this.isListInCart = function(listId) {
+        return this.cart.indexOf(''+listId) !== -1;
+    };
+
     this.updateDisplayedLists = function (listsToDisplay, listsTotalAmount) {
         this.clearListsContainer();
         $(this.elemContainer).hide();
         this.setContainerHeaderTitle('Il y a ' + listsTotalAmount + ' listes associées aux tags "' + this.getSearchTagsChained().replace(/,/g, ', ') + '"');
 
         for (var i in listsToDisplay) {
-            var $cardHtml = this.templateListCard(listsToDisplay[i]);
+            var $cardHtml = this.templateListCard(listsToDisplay[i], this.isListInCart(listsToDisplay[i].list.id));
             $(this.elemContainer).append($cardHtml);
         }
 
@@ -493,7 +516,7 @@ function Catalogue() {
         this.displayPage(0);
     };
 
-    this.templateListCard = function (listJson) {
+    this.templateListCard = function (listJson, isListInCart) {
         var $card = $('<div class="card"></div>');
 
         var $card_header = $('<div class="card-header"></div>');
@@ -526,9 +549,18 @@ function Catalogue() {
         var $card_body = $('<div class="card-body"><h4 title="' + listJson.list.listName + '">' + listJson.list.listName + '</h4><p>' + listJson.list.description + '</p></div>');
         var $card_footer = $('<div class="card-footer"><table><tr><td></td><td class="card-price" rowspan="2">' + listJson.total_price + ' €</td></tr><tr><td class="card-item-count">' + listJson.nb_products + ' articles</td></tr></table></div>');
         var $action_see_more = $('<a href="/list/'+listJson.list.id+'">Voir la liste</a>');
-        var $action_add_to_cart = $('<button>Ajouter au panier</button>');
+        var $action_add_to_cart;
+        if (!isListInCart) {
+            $action_add_to_cart = $('<button>Ajouter au panier</button>');
+        } else {
+            $action_add_to_cart = $('<button class="btn-activated">Liste ajoutée</button>');
+        }
         $action_add_to_cart.click(function (e) {
-            this.addToCart(listJson.list.id, $action_add_to_cart);
+            if (this.isListInCart(listJson.list.id)) {
+                this.removeFromCart(listJson.list.id, $action_add_to_cart);
+            } else {
+                this.addToCart(listJson.list.id, $action_add_to_cart);
+            }
             return false;
         }.bind(this));
 
@@ -555,6 +587,28 @@ function Catalogue() {
     this.addToCartSuccess = function (response) {
         console.log('Cart contains lists '+response.join(", "));
         $(this.btnClicked).text('Liste ajoutée').addClass('btn-activated');
+        this.catalogue.cart = response;
+    };
+
+    this.removeFromCart = function (listId, btnClicked) {
+        console.log('"RemoveFromCart" action for list ' + listId);
+        $.ajax({
+            url: this.removeFromCartRoute + '/' + listId,
+            type: 'GET',
+            dataType: 'json',
+            context: { btnClicked: btnClicked, catalogue: this },
+            error: this.removeFromCartError,
+            success: this.removeFromCartSuccess
+        });
+    };
+
+    this.removeFromCartError = function (result, status, error) {
+        console.error('Error 500: list couldn\'t be removed from cart.');
+    };
+
+    this.removeFromCartSuccess = function (response) {
+        console.log('Cart contains lists '+response.join(", "));
+        $(this.btnClicked).text('Ajouter au panier').removeClass('btn-activated');
         this.catalogue.cart = response;
     };
 
