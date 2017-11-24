@@ -45,37 +45,38 @@ function Catalogue() {
         this.elemTagsInput = $(this.elemForm).find('.tags-input');
         this.elemContainerHeader = $('.mid-content-header');
         this.elemSortSelect = $(this.elemContainerHeader).find('select[name="sorting_mode"]');
-        this.elemContainerHeaderTitle = $(this.elemContainerHeader).find('h3');
+        this.elemContainerHeaderTitle = $(this.elemContainerHeader).find('#mid-content-header-title');
         this.elemPagination = $('.pagination');
     };
 
     this.init = function () {
         this.queryDOM();
 
-        $.ajax({
-            url: this.jsonTagsRoute,
-            type: 'GET',
-            dataType: 'json',
-            context: this,
-            error: this.ajaxJsonTagsError,
-            success: this.ajaxJsonTagsSuccess
-        });
-
-        $.ajax({
-            url: this.jsonCartRoute,
-            type: 'GET',
-            dataType: 'json',
-            context: this,
-            error: this.ajaxGetCartError,
-            success: function(data) {
-                console.log(data);
-                this.cart = data || [];
-                console.log(this.cart.length + " items in cart.")
-            }
-        });
-
         if (this.elemForm.length > 0 && this.elemTagsInput) {
             this.elemForm.submit(this.submitTags.bind(this));
+
+            $.ajax({
+                url: this.jsonTagsRoute,
+                type: 'GET',
+                dataType: 'json',
+                context: this,
+                error: this.ajaxJsonTagsError,
+                success: this.ajaxJsonTagsSuccess
+            });
+
+            $.ajax({
+                url: this.jsonCartRoute,
+                type: 'GET',
+                dataType: 'json',
+                context: this,
+                error: this.ajaxGetCartError,
+                success: function(data) {
+                    console.log(data);
+                    this.cart = data || [];
+                    console.log(this.cart.length + " items in cart.")
+                }
+            });
+
         } else {
             this.initError();
         }
@@ -272,7 +273,19 @@ function Catalogue() {
         }
     };
 
-    this.fetchListsBeforeSend = function() {
+    this.fetchLists = function (tags, pagination, sort) {
+        if (tags[0] !== undefined && !this.isBusy()) {
+            this.setBusy(true);
+
+            if (this.elemPagination.length === 0) {
+                this.fetchListsAndStructure(tags, pagination, sort);
+            } else {
+                this.fetchListsOnly(tags, pagination, sort);
+            }
+        }
+    };
+
+    this.fetchListsAndStructure = function(tags, pagination, sort) {
         if (this.elemPagination.length === 0) {
             console.log('Loading catalogue structure...');
 
@@ -285,12 +298,14 @@ function Catalogue() {
                     console.log('[Failed]');
                 },
                 success: function(data) {
+                    console.log('[Loaded]');
                     this.elemMaster.html(data);
                     this.queryDOM();
                     this.elemSortSelect.selectpicker();
                     this.displayLoadingScreen();
-                    console.log('[Loaded]');
                     this.listenToSortSelect();
+
+                    this.fetchListsOnly(tags, pagination, sort);
                 }
             });
         } else {
@@ -298,27 +313,22 @@ function Catalogue() {
         }
     };
 
-    this.fetchLists = function (tags, pagination, sort) {
-        if (tags[0] !== undefined && !this.isBusy()) {
-            console.log('Fetch Lists: ' + tags + ' &' + pagination + ' &' + sort);
-            this.setBusy(true);
+    this.fetchListsOnly = function (tags, pagination, sort) {
+        console.log('Fetch Lists: ' + tags + ' &' + pagination + ' &' + sort);
 
-            $.ajax({
-                url: this.jsonListsRoute,
-                type: 'GET',
-                dataType: 'json',
-                data: {
-                    tags: tags,
-                    pagination: pagination,
-                    sort: sort
-                },
-                context: this,
-                beforeSend: this.fetchListsBeforeSend,
-                error: this.fetchListsError,
-                success: this.fetchListsSuccess
-            });
-        }
-
+        $.ajax({
+            url: this.jsonListsRoute,
+            type: 'GET',
+            dataType: 'json',
+            data: {
+                tags: tags,
+                pagination: pagination,
+                sort: sort
+            },
+            context: this,
+            error: this.fetchListsError,
+            success: this.fetchListsSuccess
+        });
     };
 
     this.fetchListsError = function (result, status, error) {
@@ -332,6 +342,7 @@ function Catalogue() {
 
     this.fetchListsSuccess = function(listsJson) {
         if (listsJson.lists && listsJson.lists.length > 0) {
+            console.log('Fetch success!');
             this.lists = this.filterCorruptedLists(listsJson.lists);
             this.amountOfListsDisplayableAtOnce = this.getAmountOfListsDisplayableAtOnce()
             this.createPagination();
