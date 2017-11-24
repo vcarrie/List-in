@@ -1,5 +1,5 @@
 <aside class="mid-content-header">
-    <p>Recherche en cours...</p>
+    <p id="title-research">Recherche en cours...</p>
     <p>Trier par
         <select id="selectpicker" name="sorting_mode" class="selectpicker">
             <option value="0">Meilleures notes</option>
