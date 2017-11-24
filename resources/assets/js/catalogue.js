@@ -6,6 +6,8 @@ function Catalogue() {
     this.jsonTagsRoute = '/tags';
     this.jsonListsRoute = '/research';
     this.addToCartRoute = '/addtocart';
+    this.removeFromCartRoute = '/removefromcart';
+    this.jsonCartRoute = '/getcart';
     this.catalogueStructRoute = '/catalogue-struct';
     this.typeaheadSuggestedTagsLimit = 6;
     this.tagsMap = {};
@@ -15,6 +17,7 @@ function Catalogue() {
     this.lists = [];
     this.currentPage = 0; // 0 for page number 1
     this.amountOfListsDisplayableAtOnce = undefined; // calculated once so resizing the window doesn't disturb the pagination
+    this.cart = []; // contains the id of the lists in cart
 
     // initialized
     this.setReady = function () {
@@ -42,24 +45,38 @@ function Catalogue() {
         this.elemTagsInput = $(this.elemForm).find('.tags-input');
         this.elemContainerHeader = $('.mid-content-header');
         this.elemSortSelect = $(this.elemContainerHeader).find('select[name="sorting_mode"]');
-        this.elemContainerHeaderTitle = $(this.elemContainerHeader).find('h3');
+        this.elemContainerHeaderTitle = $(this.elemContainerHeader).find('#mid-content-header-title');
         this.elemPagination = $('.pagination');
     };
 
     this.init = function () {
         this.queryDOM();
 
-        $.ajax({
-            url: this.jsonTagsRoute,
-            type: 'GET',
-            dataType: 'json',
-            context: this,
-            error: this.ajaxJsonTagsError,
-            success: this.ajaxJsonTagsSuccess
-        });
-
         if (this.elemForm.length > 0 && this.elemTagsInput) {
             this.elemForm.submit(this.submitTags.bind(this));
+
+            $.ajax({
+                url: this.jsonTagsRoute,
+                type: 'GET',
+                dataType: 'json',
+                context: this,
+                error: this.ajaxJsonTagsError,
+                success: this.ajaxJsonTagsSuccess
+            });
+
+            $.ajax({
+                url: this.jsonCartRoute,
+                type: 'GET',
+                dataType: 'json',
+                context: this,
+                error: this.ajaxGetCartError,
+                success: function(data) {
+                    console.log(data);
+                    this.cart = data || [];
+                    console.log(this.cart.length + " items in cart.")
+                }
+            });
+
         } else {
             this.initError();
         }
@@ -68,7 +85,13 @@ function Catalogue() {
         if ($('.list-detail').length > 0) {
             var $addToCartBtn = $('.list-options button');
             $addToCartBtn.click(function() {
-                this.addToCart($addToCartBtn.attr('data-listId'), $addToCartBtn);
+                var listId = $addToCartBtn.attr('data-listId');
+                if (this.isListInCart(listId)) {
+                    this.removeFromCart(listId, $addToCartBtn);
+                } else {
+                    this.addToCart(listId, $addToCartBtn);
+                }
+                return false;
             }.bind(this));
         }
 
@@ -84,6 +107,10 @@ function Catalogue() {
 
     this.ajaxJsonTagsError = function (result, status, error) {
         console.error('Error 500: tags couldn\'t be retrieved.');
+    };
+
+    this.ajaxGetCartError = function (result, status, error) {
+        console.error('Error 500: cart items couldn\'t be retrieved.');
     };
 
     this.ajaxJsonTagsSuccess = function (jsonTags, status) {
@@ -252,7 +279,19 @@ function Catalogue() {
         }
     };
 
-    this.fetchListsBeforeSend = function() {
+    this.fetchLists = function (tags, pagination, sort) {
+        if (tags[0] !== undefined && !this.isBusy()) {
+            this.setBusy(true);
+
+            if (this.elemPagination.length === 0) {
+                this.fetchListsAndStructure(tags, pagination, sort);
+            } else {
+                this.fetchListsOnly(tags, pagination, sort);
+            }
+        }
+    };
+
+    this.fetchListsAndStructure = function(tags, pagination, sort) {
         if (this.elemPagination.length === 0) {
             console.log('Loading catalogue structure...');
 
@@ -265,12 +304,14 @@ function Catalogue() {
                     console.log('[Failed]');
                 },
                 success: function(data) {
+                    console.log('[Loaded]');
                     this.elemMaster.html(data);
                     this.queryDOM();
                     this.elemSortSelect.selectpicker();
                     this.displayLoadingScreen();
-                    console.log('[Loaded]');
                     this.listenToSortSelect();
+
+                    this.fetchListsOnly(tags, pagination, sort);
                 }
             });
         } else {
@@ -278,27 +319,22 @@ function Catalogue() {
         }
     };
 
-    this.fetchLists = function (tags, pagination, sort) {
-        if (tags[0] !== undefined && !this.isBusy()) {
-            console.log('Fetch Lists: ' + tags + ' &' + pagination + ' &' + sort);
-            this.setBusy(true);
+    this.fetchListsOnly = function (tags, pagination, sort) {
+        console.log('Fetch Lists: ' + tags + ' &' + pagination + ' &' + sort);
 
-            $.ajax({
-                url: this.jsonListsRoute,
-                type: 'GET',
-                dataType: 'json',
-                data: {
-                    tags: tags,
-                    pagination: pagination,
-                    sort: sort
-                },
-                context: this,
-                beforeSend: this.fetchListsBeforeSend,
-                error: this.fetchListsError,
-                success: this.fetchListsSuccess
-            });
-        }
-
+        $.ajax({
+            url: this.jsonListsRoute,
+            type: 'GET',
+            dataType: 'json',
+            data: {
+                tags: tags,
+                pagination: pagination,
+                sort: sort
+            },
+            context: this,
+            error: this.fetchListsError,
+            success: this.fetchListsSuccess
+        });
     };
 
     this.fetchListsError = function (result, status, error) {
@@ -311,10 +347,16 @@ function Catalogue() {
     };
 
     this.fetchListsSuccess = function(listsJson) {
-        this.lists = this.filterCorruptedLists(listsJson.lists);
-        this.amountOfListsDisplayableAtOnce = this.getAmountOfListsDisplayableAtOnce()
-        this.createPagination();
-        this.displayPage(0);
+        if (listsJson.lists && listsJson.lists.length > 0) {
+            console.log('Fetch success!');
+            this.lists = this.filterCorruptedLists(listsJson.lists);
+            this.amountOfListsDisplayableAtOnce = this.getAmountOfListsDisplayableAtOnce()
+            this.createPagination();
+            this.displayPage(0);
+        } else {
+            this.clearListsContainer();
+            this.setContainerHeaderTitle('Aucune liste ne correspond à ces tags.');
+        }
 
         this.setBusy(false);
     };
@@ -362,13 +404,17 @@ function Catalogue() {
         $(this.elemContainerHeaderTitle).text(t);
     };
 
+    this.isListInCart = function(listId) {
+        return this.cart.indexOf(''+listId) !== -1;
+    };
+
     this.updateDisplayedLists = function (listsToDisplay, listsTotalAmount) {
         this.clearListsContainer();
         $(this.elemContainer).hide();
         this.setContainerHeaderTitle('Il y a ' + listsTotalAmount + ' listes associées aux tags "' + this.getSearchTagsChained().replace(/,/g, ', ') + '"');
 
         for (var i in listsToDisplay) {
-            var $cardHtml = this.templateListCard(listsToDisplay[i]);
+            var $cardHtml = this.templateListCard(listsToDisplay[i], this.isListInCart(listsToDisplay[i].list.id));
             $(this.elemContainer).append($cardHtml);
         }
 
@@ -487,7 +533,7 @@ function Catalogue() {
         this.displayPage(0);
     };
 
-    this.templateListCard = function (listJson) {
+    this.templateListCard = function (listJson, isListInCart) {
         var $card = $('<div class="card"></div>');
 
         var $card_header = $('<div class="card-header"></div>');
@@ -520,9 +566,18 @@ function Catalogue() {
         var $card_body = $('<div class="card-body"><h4 title="' + listJson.list.listName + '">' + listJson.list.listName + '</h4><p>' + listJson.list.description + '</p></div>');
         var $card_footer = $('<div class="card-footer"><table><tr><td></td><td class="card-price" rowspan="2">' + listJson.total_price + ' €</td></tr><tr><td class="card-item-count">' + listJson.nb_products + ' articles</td></tr></table></div>');
         var $action_see_more = $('<a href="/list/'+listJson.list.id+'">Voir la liste</a>');
-        var $action_add_to_cart = $('<button>Ajouter au panier</button>');
+        var $action_add_to_cart;
+        if (!isListInCart) {
+            $action_add_to_cart = $('<button>Ajouter au panier</button>');
+        } else {
+            $action_add_to_cart = $('<button class="btn-activated">Liste ajoutée</button>');
+        }
         $action_add_to_cart.click(function (e) {
-            this.addToCart(listJson.list.id, $action_add_to_cart);
+            if (this.isListInCart(listJson.list.id)) {
+                this.removeFromCart(listJson.list.id, $action_add_to_cart);
+            } else {
+                this.addToCart(listJson.list.id, $action_add_to_cart);
+            }
             return false;
         }.bind(this));
 
@@ -536,7 +591,7 @@ function Catalogue() {
             url: this.addToCartRoute + '/' + listId,
             type: 'GET',
             dataType: 'json',
-            context: btnClicked,
+            context: { btnClicked: btnClicked, catalogue: this },
             error: this.addToCartError,
             success: this.addToCartSuccess
         });
@@ -548,7 +603,30 @@ function Catalogue() {
 
     this.addToCartSuccess = function (response) {
         console.log('Cart contains lists '+response.join(", "));
-        $(this).text('Liste ajoutée').addClass('btn-activated');
+        $(this.btnClicked).text('Liste ajoutée').addClass('btn-activated');
+        this.catalogue.cart = response;
+    };
+
+    this.removeFromCart = function (listId, btnClicked) {
+        console.log('"RemoveFromCart" action for list ' + listId);
+        $.ajax({
+            url: this.removeFromCartRoute + '/' + listId,
+            type: 'GET',
+            dataType: 'json',
+            context: { btnClicked: btnClicked, catalogue: this },
+            error: this.removeFromCartError,
+            success: this.removeFromCartSuccess
+        });
+    };
+
+    this.removeFromCartError = function (result, status, error) {
+        console.error('Error 500: list couldn\'t be removed from cart.');
+    };
+
+    this.removeFromCartSuccess = function (response) {
+        console.log('Cart contains lists '+response.join(", "));
+        $(this.btnClicked).text('Ajouter au panier').removeClass('btn-activated');
+        this.catalogue.cart = response;
     };
 
 }
