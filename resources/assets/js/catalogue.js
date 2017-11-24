@@ -15,6 +15,7 @@ function Catalogue() {
     this.lists = [];
     this.currentPage = 0; // 0 for page number 1
     this.amountOfListsDisplayableAtOnce = undefined; // calculated once so resizing the window doesn't disturb the pagination
+    this.cart = []; // contains the id of the lists in cart
 
     // initialized
     this.setReady = function () {
@@ -541,7 +542,7 @@ function Catalogue() {
             url: this.addToCartRoute + '/' + listId,
             type: 'GET',
             dataType: 'json',
-            context: btnClicked,
+            context: { btnClicked: btnClicked, catalogue: this },
             error: this.addToCartError,
             success: this.addToCartSuccess
         });
@@ -553,7 +554,8 @@ function Catalogue() {
 
     this.addToCartSuccess = function (response) {
         console.log('Cart contains lists '+response.join(", "));
-        $(this).text('Liste ajoutée').addClass('btn-activated');
+        $(this.btnClicked).text('Liste ajoutée').addClass('btn-activated');
+        this.catalogue.cart = response;
     };
 
 }

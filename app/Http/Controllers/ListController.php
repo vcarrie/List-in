@@ -43,7 +43,7 @@ class ListController extends Controller
 
         if (Auth::check()){
             if (count(Rate::getByIdListandListUser($id, Auth::user()->id)->get()) != 0){
-                $user_rating = Rate::getByIdListandListUser($id, Auth::user()->id)->first()->rating;
+                $user_rating = Rate::getByIdListandListUser($id, Auth::user()->id)->first();
             }
         }
 
