@@ -135,11 +135,10 @@ header {
   }
 
   .main-text {
-    margin: 1rem 0;
+    margin: 0rem 0;
     color: $color_text_white;
     font-family: 'Quicksand', sans-serif;
     font-size: 18px;
-
   }
 
   .tags-populaires {
@@ -319,7 +318,7 @@ __________________________________________________ */
   & > aside {
     margin-left: 2rem;
 
-    p#title-research {
+    #mid-content-header-title {
       margin-top: 0;
       margin-bottom: 10px;
       font-size: 24px
