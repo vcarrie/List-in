@@ -23,19 +23,19 @@
                         <li>
                             <a tabindex="1" href="/catalogue">
                                 <img alt="catalogue" src="../../../public/images/icon-catalogue.png"/>
-                                <h5>Catalogue</h5>
+                                <p>Catalogue</p>
                             </a>
                         </li>
                         <li>
                             <a tabindex="1" href="/create/list">
                                 <img alt="créer une liste" src="../../../public/images/icon-new-list.png"/>
-                                <h5>Créer une liste</h5>
+                                <p>Créer une liste</p>
                             </a>
                         </li>
                         <li>
                             <a tabindex="1" href="{{ route('cart') }}">
                                 <img alt="mon panier" src="../../../public/images/icon-basket.png"/>
-                                <h5>Mon Panier</h5>
+                                <p>Mon Panier</p>
                             </a>
                         </li>
 
@@ -44,7 +44,7 @@
                             <li>
                                 <a href="{{ route('login') }}" tabindex="1">
                                     <img alt="connexion" src="../../../public/images/icon-account.png"/>
-                                    <h5>Se connecter</h5>
+                                    <p>Se connecter</p>
                                 </a>
 
                             </li>
@@ -52,7 +52,7 @@
                             <li class="dropdown">
                                 <a class="dropdown-toggle" tabindex="1" href="#" id="dropdown-account" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <img alt="mon compte" src="../../../public/images/icon-account.png"/>
-                                    <h5>Mon Compte</h5>
+                                    <p>Mon Compte</p>
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="dropdown-account">
                                     <li>

@@ -12,7 +12,7 @@
                         $ratingdesc = "Pour ".count($listjson['Rates'])." notes";
                         $listrating = $listjson['Avg'];
                     } else {
-                        $ratingdesc = "Vous avez noté cette liste le ".$listjson['userRating']->updated_at;
+                        $ratingdesc = "Vous avez noté cette liste le ".substr($listjson['userRating']->updated_at,0,10);
                         $listrating = $listjson['userRating']->rating;
                     }
                     ?>
@@ -44,7 +44,11 @@
                 <h1>
                     {{ $listjson['TotalPrice'] }} €
                 </h1>
+                @if ($listjson['listIsInCart'] === false)
                 <button data-listId="{{ $listjson['list']['id'] }}" class="btn btn-default">Ajouter au panier</button>
+                @else
+                <button data-listId="{{ $listjson['list']['id'] }}" class="btn btn-default btn-activated">Liste ajoutée</button>
+                @endif
             </div>
         </div>
         <div class="list-images">

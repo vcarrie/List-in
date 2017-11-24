@@ -7,8 +7,8 @@
     <div class="container-contact">
         <div class="row card text-white bg-dark">
             <h1 class="card-header-contact">Contactez-nous</h1>
-            <h4 class="card-header">Des idées, des remarques, des questions ?</h4>
-            <h4 class="card-header">Faites-nous en part !</h4>
+            <p class="card-header">Des idées, des remarques, des questions ?</p>
+            <p class="card-header">Faites-nous en part !</p>
             <div class="card-body">
                 <form action="{{ url('contact') }}" method="POST">
                     {{ csrf_field() }}

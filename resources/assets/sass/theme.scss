@@ -91,7 +91,7 @@ header {
             }
           }
 
-          h5 {
+          p {
             margin: 0;
             font-size: 2rem;
             font-family: 'Quicksand', sans-serif;
@@ -132,6 +132,22 @@ header {
     margin: 1rem 0;
     color: $color_text_white;
     font-family: 'Quicksand', sans-serif;
+  }
+
+  .main-text {
+    margin: 0rem 0;
+    color: $color_text_white;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 18px;
+  }
+
+  .tags-populaires {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 12px;
+    margin-left: 15%;
+    text-align: left;
+    color: $color_text_white;
   }
 
   form {
@@ -216,11 +232,6 @@ header {
 
   }
 
-  h6 {
-    margin-left: 15%;
-    text-align: left;
-    color: $color_text_white;
-
     span.label-default {
       font-size: 1.1rem;
       color: $color_text_white;
@@ -239,7 +250,6 @@ header {
         background-color: $color_input_tags_background;
       }
     }
-  }
 
   span.label {
     cursor: pointer;
@@ -308,8 +318,10 @@ __________________________________________________ */
   & > aside {
     margin-left: 2rem;
 
-    h3 {
+    #mid-content-header-title {
       margin-top: 0;
+      margin-bottom: 10px;
+      font-size: 24px
     }
 
     .pagination-box {
@@ -700,9 +712,17 @@ __________________________________________________ */
     border-radius: 25px;
   }
 
-  /* CGU / Mentions Legales
+  /* Page ADMIN
   ___________________________________________________________________ */
 
+#admin_panel{
+  padding: 0%;
+  margin-top: 2%;
+  text-align: center;
+}
+
+  /* CGU / Mentions Legales
+  ___________________________________________________________________ */
 
   .cgu > div, .ml > div{
     background-color: #ffffff;
@@ -769,6 +789,12 @@ __________________________________________________ */
 
   /* CONTACT PAGE
   _____________________________________________________________________________ */
+
+  p.card-header{
+      font-size: 18px;
+      margin-top: 10px;
+      margin-bottom: 10px;
+  }
 
   .card-header-contact {
     font-weight: bold;

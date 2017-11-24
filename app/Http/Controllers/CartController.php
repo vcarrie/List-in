@@ -44,7 +44,7 @@ class CartController extends Controller
             }
         }
 
-        //  session()->flush();
+        $cart = array_values($cart);
 
         session(['cart' => $cart]);
         return session('cart');
@@ -52,6 +52,15 @@ class CartController extends Controller
     public function empty_cart(){
         $cart = null;
         session(['cart' => $cart]);
+    }
+
+    public function get_cart(Request $request){
+        if (!$request->session()->has('cart')) {
+            $cart = array();
+        }else{
+            $cart = session('cart');
+        }
+        return  $cart;
     }
 
     public function show_cart(Request $request, ApiCdiscountSearchByIdProductRepository $api){
