@@ -10,10 +10,7 @@ use App\Rate;
 use App\Repositories\ApiCdiscount\ApiCdiscountSearchByIdProductRepository;
 use App\User;
 use Bestmomo\LaravelEmailConfirmation\Notifications\ConfirmEmail;
-use Illuminate\Auth\Events\Registered;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Bestmomo\LaravelEmailConfirmation\Traits\RegistersUsers as MailNewEmail;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -73,7 +70,7 @@ class UserController extends Controller
         $user = User::find($idUser);
         $user->update(array('password' => Hash::make($request->new_pwd)));
 
-        return redirect("/account#account-section-2");
+        return redirect("/account#account-section-2")->with('confirmation-success-password', trans('confirmation.maj-password'));
     }
 
     public function updateUserEmail(ChangeEmailRequest $request)
@@ -91,6 +88,6 @@ class UserController extends Controller
         $class = ConfirmEmail::class;
         $user->notify(new $class);
 
-        return redirect("/account#account-section-2");
+        return redirect("/account#account-section-2")->with('confirmation-success-email', trans('confirmation::confirmation.resend'));
     }
 }
