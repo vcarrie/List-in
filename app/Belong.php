@@ -31,34 +31,31 @@ class Belong extends Model
                 unset($belong);
             }
         }
-
-    }
-
-    public static function getTotalByIdList($idList, ApiCdiscountSearchByIdProductRepository $apiCdiscountSearchByIdProduct){
-        $products_ids = static::getByIdList($idList)->get();
-        $total = 0;
-        foreach ($products_ids as $product) {
-            $theprod = $apiCdiscountSearchByIdProduct->searchWithIdProduct($product->idCdiscount);
-
-            if(isset($theprod->Products[0])){
-                $total += $theprod->Products[0]->BestOffer->SalePrice * $product->quantity;
-            }
-        }
-
-
-        return $total;
     }
 
     public static function getProductsByIdList($idList, ApiCdiscountSearchByIdProductRepository $apiCdiscountSearchByIdProduct){
         $products_ids = static::getByIdList($idList)->get();
+        $total = 0;
+
         $products = array();
 
         foreach ($products_ids as $product) {
-            $products[] = [$apiCdiscountSearchByIdProduct->searchWithIdProduct($product->idCdiscount), $product->quantity];
+
+            $list = $apiCdiscountSearchByIdProduct->searchWithIdProduct($product->idCdiscount);
+            $quantity = $product->quantity;
+
+            if(isset($list->Products[0]->BestOffer)){
+                $total += $list->Products[0]->BestOffer->SalePrice * $quantity;
+            }
+            else{
+                $total += 0;
+            }
+
+            $products[] = [$list, $quantity];
+
         }
 
-
-        return $products;
+        return [$products, $total];
     }
 
     public static function getProductsByIdsList($array_ids){
