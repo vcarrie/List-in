@@ -35,6 +35,7 @@ Route::get('/removefromcart/{id}', 'CartController@RemoveListFromCart');
 Route::get('/addtocart/{id}', 'CartController@addListToCart');
 Route::get('/emptycart', 'CartController@empty_cart');
 Route::get('/cart', 'CartController@show_cart')->name('cart');
+Route::get('/getcart', 'CartController@get_cart');
 
 
 Route::get('/', 'HomeController@index');
