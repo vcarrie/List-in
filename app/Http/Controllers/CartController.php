@@ -62,17 +62,13 @@ class CartController extends Controller
             $cart = session('cart');
         }
 
-
-
         $to_return = array();
         foreach ($cart as $id){
             $list = Liste::find($id);
-            $products = Belong::getProductsByIdList($id, $api);
-            $total = Belong::getTotalByIdList($id, $api);
-            $to_return[] = array($list, $products, count($products), $total);
+            $theBelong = Belong::getProductsByIdList($list, $api);
+            $to_return[] = array($list, $theBelong[0], count($theBelong[0]), $theBelong[1]);
 
         }
-
 
         return view('cart', compact('to_return', 'to_return'));
     }

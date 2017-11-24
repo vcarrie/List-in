@@ -31,23 +31,6 @@ class Belong extends Model
                 unset($belong);
             }
         }
-
-    }
-
-    public static function getTotalByIdList($idList, ApiCdiscountSearchByIdProductRepository $apiCdiscountSearchByIdProduct){
-        $products_ids = static::getByIdList($idList)->get();
-        $total = 0;
-
-        foreach ($products_ids as $product) {
-            $theprod = $apiCdiscountSearchByIdProduct->searchWithIdProduct($product->idCdiscount);
-
-            if(isset($theprod->Products[0])){
-                $total += $theprod->Products[0]->BestOffer->SalePrice * $product->quantity;
-            }
-        }
-
-
-        return $total;
     }
 
     public static function getProductsByIdList($idList, ApiCdiscountSearchByIdProductRepository $apiCdiscountSearchByIdProduct){
