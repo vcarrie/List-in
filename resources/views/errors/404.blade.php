@@ -46,7 +46,7 @@
         <div class="content">
             <img src="../../../public/images/Logo_404.png" alt="logo_404">
             <div class="title">
-                Sorry, the page you are looking for could not be found.
+                Désolé, la page que vous recherchez n'existe pas.
             </div>
         </div>
     </div>
