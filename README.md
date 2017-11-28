@@ -23,11 +23,11 @@ List'In est un site d'e-commerce qui vous propose d'effectuer vos achats en lign
  	Name:		Valentin CARRIÉ
  	Twitter:	@CarrieValSIO
 
- 	Role:		Designer, Community Manager
+ 	Role:		Designer, Community Manager, Dev Front-End
  	Name:		Matthieu CORMELIER
  	Twitter:	@cormelierm
 
- 	Role:		Content specialist
+ 	Role:		Content Specialist, Dev Front-End
  	Name:		Cédric FRÊCHEVILLE
  	Twitter:	@Frecheville_c
 
@@ -47,4 +47,5 @@ Jean Jacques SALVADOR (@...)
     	CSS3, HTML5
 
     Components:
-    	Apache Server Configs, jQuery, Modernizr, Normalize.css
+    	Apache Server Configs, jQuery, Modernizr, Normalize.css,
+    	Bootstrap, Typeahead
