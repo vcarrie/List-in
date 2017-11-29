@@ -2,7 +2,7 @@
 
 listin.fr
 
-# DESCRIPTION 
+# DESCRIPTION
 
 List'In est un site d'e-commerce qui vous propose d'effectuer vos achats en ligne à l'aide de listes d'articles créées par notre communauté.
 
@@ -14,8 +14,8 @@ List'In est un site d'e-commerce qui vous propose d'effectuer vos achats en lign
 	Role:		Project Manager, Dev Front-End
 	Name:		Marceau JEANJEAN
 	Twitter:	@Cocodufex
-    
-	Role:		Dev Back-End
+
+	Role:		Git Master, Dev Back-End
  	Name:		Théo FRISON
  	Twitter:	@DFG_Arkanii
 

@@ -1,12 +1,9 @@
-﻿# humanstxt.org/
-# The humans responsible & technology colophon
-
 # TEAM
 
 	Role:		Project Manager, Dev Front-End
 	Name:		Marceau JEANJEAN
 	Twitter:	@Cocodufex
-    
+
 	Role:		Dev Back-End, Git Master
  	Name:		Théo FRISON
  	Twitter:	@DFG_Arkanii
@@ -15,22 +12,10 @@
  	Name:		Valentin CARRIÉ
  	Twitter:	@CarrieValSIO
 
- 	Role:		Web Designer, Community Manager
+ 	Role:		Web Designer, Community Manager, Dev Front-End
  	Name:		Matthieu CORMELIER
  	Twitter:	@cormelierm
 
- 	Role:		Content specialist
+ 	Role:		Content specialist, Dev Front-End
  	Name:		Cédric FRÊCHEVILLE
  	Twitter:	@Frecheville_c
-
-# THANKS
-
-    
-
-# TECHNOLOGY COLOPHON
-
-    Standards:
-    	CSS3, HTML5
-
-    Components:
-    	Apache Server Configs, jQuery, Modernizr, Normalize.css
