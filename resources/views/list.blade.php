@@ -1,6 +1,6 @@
 @extends('template.main')
 
-@section('title', 'Nom de liste')
+@section('title', $listjson['list']['listName'])
 
 @section('mid-content')
     <div class="list-detail">
@@ -71,8 +71,8 @@
                             <p>{{ $item['Description'] }}</p>
                         </div>
                         <div class="card-footer">
-                            <div class="card-quantity-list">Qte : {{ $item['Quantity'] }}</div>
-                            <div class="card-price-list">{{ $item['Price'] }} €</div>
+                            <div class="card-quantity-list">Quantité : {{ $item['Quantity'] }}</div>
+                            <div class="card-price-list card-price">{{ $item['Price'] }} €</div>
                         </div>
                 </div>
             @endforeach
