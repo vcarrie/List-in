@@ -67,6 +67,12 @@ $(function () {
         return false;
     });
 
+    $('.cart-master .delete-list').click(function() {
+        console.log($(this));
+        $('#'+$(this).data('listid')).hide().html('<h1 style="font-size:2rem;"><i>Panier vide.</i></h1>').fadeIn(250);
+        return false;
+    });
+
     /* ACCESSIBILITY CORRECTIONS
     –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
