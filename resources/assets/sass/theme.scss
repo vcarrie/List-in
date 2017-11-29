@@ -352,12 +352,13 @@ __________________________________________________ */
   }
 
   .cards-container {
-    text-align: left;
+    text-align: center;
 
     .card {
       width: 250px;
       display: inline-block;
-      margin-right: 3rem;
+      margin-right: 1.5rem;
+      margin-left: 1.5rem;
       margin-bottom: 2rem;
       background-color: white;
       border: 0px solid $color_separation;
@@ -369,6 +370,11 @@ __________________________________________________ */
       box-shadow: 10px 10px 0px $color_background_dark;
       vertical-align: top;
       white-space: normal;
+
+      @media screen and (max-width: $bootstrap-sm) {
+        margin-right: 2rem;
+        margin-left: 0rem;
+      }
 
       .card-header {
         padding: 1.5rem;
