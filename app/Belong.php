@@ -60,10 +60,8 @@ class Belong extends Model
 
     public static function getProductsByIdsList($array_ids){
 
-       $products = static::all()->whereIn('id', $array_ids)->get();
+       return static::all()->whereIn('idList', $array_ids);
 
-
-        return $products;
     }
 
     public static function deleteProductbyIdList($idList){

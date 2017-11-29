@@ -77,26 +77,30 @@ class CartController extends Controller
         } else {
             $cart = session('cart');
             $idproducts = Belong::getProductsByIdsList($cart);
-            $idproducts_lenght = count($idproducts);
-
-            $result = $apicreate->createCart($idproducts[0]['idCdiscount'], $idproducts[0]['quantity']);
-            $numCart = $result['CartGUID'];
 
 
-            for ($i = 1; $i < $idproducts_lenght; $i++) {
-                $request_result = $apicreate->pushToCart($idproducts[0]['idCdiscount'], $idproducts[0]['quantity'], $numCart);
-                $url = $request_result['CheckoutUrl'];
+
+
+            $result = $apicreate->createCart("PTG8876RW", 1);
+            $numCart = $result->CartGUID;
+
+            $cpt = 0;
+            foreach($idproducts as $id) {
+                if ($cpt != 0){
+                    $request_result = $apicreate->pushToCart($id->idCdiscount, $id->quantity, $numCart);
+                    $url = $request_result;
+                }
+                $cpt ++;
+
             }
-
         }
-
         $to_return = array();
         foreach ($cart as $id) {
             $list = Liste::find($id);
-            $theBelong = Belong::getProductsByIdList($list, $api);
+            $theBelong = Belong::getProductsByIdList($id, $api);
             $to_return[] = array($list, $theBelong[0], count($theBelong[0]), $theBelong[1]);
         }
-
+        //return $to_return;
         return view('cart', compact('to_return', 'to_return'));
     }
 }
