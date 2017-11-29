@@ -69,7 +69,8 @@ class ListController extends Controller
                         'Price' => str_replace('.', ',', round($obj->BestOffer->SalePrice, 2)),
                         'Name' => $obj->Name,
                         'Description' => $obj->Description,
-                        'Image' => $obj->MainImageUrl
+                        'Image' => $obj->MainImageUrl,
+                        'Quantity' => $item[1]
                     );
                     $totalprice += $obj->BestOffer->SalePrice * $item[1];
                 } else {
@@ -78,7 +79,8 @@ class ListController extends Controller
                         'Price' => 'Plus en stock !',
                         'Name' => $obj->Name,
                         'Description' => $obj->Description,
-                        'Image' => $obj->MainImageUrl
+                        'Image' => $obj->MainImageUrl,
+                        'Quantity' => 0
                     );
                 }
 
@@ -88,10 +90,10 @@ class ListController extends Controller
                     'Price' => 0,
                     'Name' => 'Article indisponible',
                     'Description' => '',
-                    'Image' => '/images/dead.png'
+                    'Image' => '/images/dead.png',
+                    'Quantity' => 0
                 );
             }
-
         }
 
 
