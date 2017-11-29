@@ -467,12 +467,28 @@ __________________________________________________ */
           font-size: 1.1rem;
         }
 
-        .card-price {
+        .card-price, .card-quantity {
           text-align: right;
+        }
+
+        .card-price, .card-quantity, .card-price-list, .card-quantity-list {
           font-size: 2rem;
           line-height: 2rem;
           vertical-align: bottom;
           font-weight: bold;
+        }
+
+        .card-price-list{
+          text-align: right;
+        }
+
+        .card-quantity-list{
+          margin-bottom: 15px;
+        }
+
+        .card-price-list, .card-quantity-list {
+          width: 50%;
+          float: left;
         }
       }
 

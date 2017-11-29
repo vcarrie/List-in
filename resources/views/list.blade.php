@@ -7,7 +7,7 @@
         <div class="list-header row">
             <div class="col-xs-12">
                 <div class="list-rating">
-                    <?php 
+                    <?php
                     if (is_null($listjson['userRating'])) {
                         $ratingdesc = "Pour ".count($listjson['Rates'])." notes";
                         $listrating = $listjson['Avg'];
@@ -71,7 +71,8 @@
                             <p>{{ $item['Description'] }}</p>
                         </div>
                         <div class="card-footer">
-                            <div class="card-price">{{ $item['Price'] }} €</div>
+                            <div class="card-quantity-list">Qte : {{ $item['Quantity'] }}</div>
+                            <div class="card-price-list">{{ $item['Price'] }} €</div>
                         </div>
                 </div>
             @endforeach
