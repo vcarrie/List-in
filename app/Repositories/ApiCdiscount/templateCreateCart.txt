@@ -1,0 +1,8 @@
+{
+  "ApiKey": "c9dcd6cc-8908-4039-a91f-0f27ef9615b6",
+  "PushToCartRequest": {
+    "ProductId": "$1",
+    "Quantity": $1,
+    "SellerId": "0"
+  }
+}
