@@ -18,6 +18,8 @@ function Catalogue() {
     this.currentPage = 0; // 0 for page number 1
     this.amountOfListsDisplayableAtOnce = undefined; // calculated once so resizing the window doesn't disturb the pagination
     this.cart = []; // contains the id of the lists in cart
+    this.queryTags = []; // contient les tags envoyés à fetchLists
+    this.isPageCatalogue = true;
 
     // initialized
     this.setReady = function () {
@@ -51,9 +53,36 @@ function Catalogue() {
 
     this.init = function () {
         this.queryDOM();
+        this.setContainerHeaderTitle('Initialisation...');
 
-        if (this.elemForm.length > 0 && this.elemTagsInput) {
-            this.elemForm.submit(this.submitTags.bind(this));
+        // if the page is /list/{id}
+        if ($('.list-detail').length > 0) {
+            var $addToCartBtn = $('.list-options button');
+            $addToCartBtn.click(function() {
+                var listId = $addToCartBtn.attr('data-listId');
+                if (this.isListInCart(listId)) {
+                    this.removeFromCart(listId, $addToCartBtn);
+                } else {
+                    this.addToCart(listId, $addToCartBtn);
+                }
+                return false;
+            }.bind(this));
+            this.isPageCatalogue = false;
+        }
+
+        // if the page is /create/list
+        if ($('#list-creation').length > 0) {
+            console.log('<< list creation >>');
+            this.elemTagsInput = $('#list-creation').find('.tags-input');
+
+            this.isPageCatalogue = false;
+        }
+
+        if (this.elemTagsInput) {
+
+            if (this.elemForm.length > 0) {
+                this.elemForm.submit(this.submitTags.bind(this));
+            }
 
             $.ajax({
                 url: this.jsonTagsRoute,
@@ -80,24 +109,6 @@ function Catalogue() {
             this.initError();
         }
 
-        // if the page is /list/{id}
-        if ($('.list-detail').length > 0) {
-            var $addToCartBtn = $('.list-options button');
-            $addToCartBtn.click(function() {
-                var listId = $addToCartBtn.attr('data-listId');
-                if (this.isListInCart(listId)) {
-                    this.removeFromCart(listId, $addToCartBtn);
-                } else {
-                    this.addToCart(listId, $addToCartBtn);
-                }
-                return false;
-            }.bind(this));
-        }
-
-        // if the page is /create/list
-        if ($('#list-creation').length > 0) {
-            this.elemTagsInput = $('#list-creation').find('.tags-input');
-        }
     };
 
     this.initError = function () {
@@ -126,9 +137,19 @@ function Catalogue() {
 
             this.setReady();
             this.setBusy(false);
+            if (this.isPageCatalogue) {
+                this.populateDefault();
+            }
         } catch (e) {
             console.log(e);
         }
+    };
+
+    this.populateDefault = function() {
+        var randomTag = this.tags[~~(this.tags.length * Math.random())];
+        console.log('Populating catalogue with tag: ' + randomTag + ' ' + this.tagsMap[randomTag]);
+        this.setContainerHeaderTitle('Recherche de listes aléatoires en cours...');
+        this.fetchLists([randomTag], 0, 0);
     };
 
     this.typeaheadSubstringMatcher = function (strs) {
@@ -250,10 +271,10 @@ function Catalogue() {
         e.preventDefault();
         if (this.isReady()) {
 
-            var tags = this.getSearchTagsIds();
+            var tagsName = this.getSearchTagsName();
             var sort = this.getSearchSort();
-            if (tags.length > 0) {
-                this.fetchLists(tags, 0, sort);
+            if (tagsName.length > 0) {
+                this.fetchLists(tagsName, 0, sort);
             }
 
         }
@@ -278,21 +299,24 @@ function Catalogue() {
         }
     };
 
-    this.fetchLists = function (tags, pagination, sort) {
-        if (tags[0] !== undefined && !this.isBusy()) {
+    this.fetchLists = function (tagsName, pagination, sort) {
+        var tagsId = this.tagsNameToId(tagsName);
+        if (tagsId[0] !== undefined && !this.isBusy()) {
             this.setBusy(true);
             this.displayLoadingScreen();
 
+            this.queryTags = tagsName;
+
             if (this.elemPagination.length === 0) {
-                this.fetchListsAndStructure(tags, pagination, sort);
+                this.fetchListsAndStructure(tagsId, pagination, sort);
             } else {
                 this.elemPagination.hide();
-                this.fetchListsOnly(tags, pagination, sort);
+                this.fetchListsOnly(tagsId, pagination, sort);
             }
         }
     };
 
-    this.fetchListsAndStructure = function(tags, pagination, sort) {
+    this.fetchListsAndStructure = function(tagsId, pagination, sort) {
         console.log('Loading catalogue structure...');
 
         $.ajax({
@@ -307,24 +331,25 @@ function Catalogue() {
                 console.log('[Loaded]');
                 this.elemMaster.html(data);
                 this.queryDOM();
+                this.setContainerHeaderTitle('Recherche en cours...');
                 this.elemSortSelect.selectpicker();
                 this.displayLoadingScreen();
                 this.listenToSortSelect();
 
-                this.fetchListsOnly(tags, pagination, sort);
+                this.fetchListsOnly(tagsId, pagination, sort);
             }
         });
     };
 
-    this.fetchListsOnly = function (tags, pagination, sort) {
-        console.log('Fetch Lists: ' + tags + ' &' + pagination + ' &' + sort);
+    this.fetchListsOnly = function (tagsId, pagination, sort) {
+        console.log('Fetch Lists: ' + tagsId + ' &' + pagination + ' &' + sort);
 
         $.ajax({
             url: this.jsonListsRoute,
             type: 'GET',
             dataType: 'json',
             data: {
-                tags: tags,
+                tags: tagsId,
                 pagination: pagination,
                 sort: sort
             },
@@ -336,7 +361,7 @@ function Catalogue() {
 
     this.fetchListsError = function (result, status, error) {
         console.error('Error 500: lists couldn\'t be retrieved.');
-        
+
         this.clearListsContainer();
         this.setContainerHeaderTitle('Erreur interne (requête insoluble).');
 
@@ -398,7 +423,9 @@ function Catalogue() {
     };
 
     this.setContainerHeaderTitle = function(t) {
-        $(this.elemContainerHeaderTitle).text(t);
+        if (this.elemContainerHeader !== undefined && this.elemContainerHeader.length > 0) {
+            $(this.elemContainerHeaderTitle).text(t);
+        }
     };
 
     this.isListInCart = function(listId) {
@@ -408,7 +435,8 @@ function Catalogue() {
     this.updateDisplayedLists = function (listsToDisplay, listsTotalAmount) {
         this.clearListsContainer();
         $(this.elemContainer).hide();
-        this.setContainerHeaderTitle('Il y a ' + listsTotalAmount + ' listes associées aux tags "' + this.getSearchTagsChained().replace(/,/g, ', ') + '"');
+        var tagsAssociated = this.queryTags.join(', ');
+        this.setContainerHeaderTitle('Il y a ' + listsTotalAmount + ' liste'+(listsTotalAmount>1?'s':'')+' associée'+(listsTotalAmount>1?'s':'')+' au'+(tagsAssociated.indexOf(',')!==-1?'x':'')+' tag'+(tagsAssociated.indexOf(',')!==-1?'s':'')+' "' + tagsAssociated + '"');
 
         for (var i in listsToDisplay) {
             var $cardHtml = this.templateListCard(listsToDisplay[i], this.isListInCart(listsToDisplay[i].list.id));
