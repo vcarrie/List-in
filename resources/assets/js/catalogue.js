@@ -3,7 +3,7 @@ function Catalogue() {
     this.ready = false;
     this.busy = true;
 
-    this.jsonTagsRoute = '/tags';
+    this.jsonTagsRoute = '/tagsnotempty';
     this.jsonListsRoute = '/research';
     this.addToCartRoute = '/addtocart';
     this.removeFromCartRoute = '/removefromcart';
@@ -74,7 +74,7 @@ function Catalogue() {
         if ($('#list-creation').length > 0) {
             console.log('<< list creation >>');
             this.elemTagsInput = $('#list-creation').find('.tags-input');
-
+            this.jsonTagsRoute = '/tags';
             this.isPageCatalogue = false;
         }
 
