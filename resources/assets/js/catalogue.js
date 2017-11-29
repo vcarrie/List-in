@@ -55,8 +55,34 @@ function Catalogue() {
         this.queryDOM();
         this.setContainerHeaderTitle('Initialisation...');
 
-        if (this.elemForm.length > 0 && this.elemTagsInput) {
-            this.elemForm.submit(this.submitTags.bind(this));
+        // if the page is /list/{id}
+        if ($('.list-detail').length > 0) {
+            var $addToCartBtn = $('.list-options button');
+            $addToCartBtn.click(function() {
+                var listId = $addToCartBtn.attr('data-listId');
+                if (this.isListInCart(listId)) {
+                    this.removeFromCart(listId, $addToCartBtn);
+                } else {
+                    this.addToCart(listId, $addToCartBtn);
+                }
+                return false;
+            }.bind(this));
+            this.isPageCatalogue = false;
+        }
+
+        // if the page is /create/list
+        if ($('#list-creation').length > 0) {
+            console.log('<< list creation >>');
+            this.elemTagsInput = $('#list-creation').find('.tags-input');
+
+            this.isPageCatalogue = false;
+        }
+
+        if (this.elemTagsInput) {
+
+            if (this.elemForm.length > 0) {
+                this.elemForm.submit(this.submitTags.bind(this));
+            }
 
             $.ajax({
                 url: this.jsonTagsRoute,
@@ -83,26 +109,6 @@ function Catalogue() {
             this.initError();
         }
 
-        // if the page is /list/{id}
-        if ($('.list-detail').length > 0) {
-            var $addToCartBtn = $('.list-options button');
-            $addToCartBtn.click(function() {
-                var listId = $addToCartBtn.attr('data-listId');
-                if (this.isListInCart(listId)) {
-                    this.removeFromCart(listId, $addToCartBtn);
-                } else {
-                    this.addToCart(listId, $addToCartBtn);
-                }
-                return false;
-            }.bind(this));
-            this.isPageCatalogue = false;
-        }
-
-        // if the page is /create/list
-        if ($('#list-creation').length > 0) {
-            this.elemTagsInput = $('#list-creation').find('.tags-input');
-            this.isPageCatalogue = false;
-        }
     };
 
     this.initError = function () {
@@ -324,7 +330,7 @@ function Catalogue() {
             success: function(data) {
                 console.log('[Loaded]');
                 this.elemMaster.html(data);
-                this.queryDOM();        
+                this.queryDOM();
                 this.setContainerHeaderTitle('Recherche en cours...');
                 this.elemSortSelect.selectpicker();
                 this.displayLoadingScreen();
@@ -355,7 +361,7 @@ function Catalogue() {
 
     this.fetchListsError = function (result, status, error) {
         console.error('Error 500: lists couldn\'t be retrieved.');
-        
+
         this.clearListsContainer();
         this.setContainerHeaderTitle('Erreur interne (requête insoluble).');
 
