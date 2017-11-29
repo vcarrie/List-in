@@ -1,12 +1,13 @@
 # PROJECT NAME : List'In
 
-listin.fr
+    Current version : http://listin.arkanii.fr/
+    The final version will be at this URL : http://listin.fr/
 
-# DESCRIPTION
+# DESCRIPTION 
 
-List'In est un site d'e-commerce qui vous propose d'effectuer vos achats en ligne à l'aide de listes d'articles créées par notre communauté.
-
-[A ETOFFER]  
+    List'In is an e-commerce site (using the CDiscount API) that offers you to make your purchases online using lists of 
+    articles created by our community. On this site, each user can become a member by creating an account and thus participate 
+    in the construction of a community of enthusiasts in dozens of different fields, from sports to music and animal products!
 
 
 # TEAM
@@ -14,8 +15,8 @@ List'In est un site d'e-commerce qui vous propose d'effectuer vos achats en lign
 	Role:		Project Manager, Dev Front-End
 	Name:		Marceau JEANJEAN
 	Twitter:	@Cocodufex
-
-	Role:		Git Master, Dev Back-End
+    
+	Role:		Dev Back-End
  	Name:		Théo FRISON
  	Twitter:	@DFG_Arkanii
 
@@ -33,19 +34,68 @@ List'In est un site d'e-commerce qui vous propose d'effectuer vos achats en lign
 
 # THANKS
 
-Nicholas JOURNET (@njournet)
+    Nicholas JOURNET (@njournet)
 
-Marie-Laure BRACHET (@...)
+    Marie-Laure BRACHET
 
-Pierre GUIGUE (@naguelfar)
+    Pierre GUIGUE (@naguelfar)
 
-Jean Jacques SALVADOR (@...)
+    Jean Jacques SALVADOR 
+
+    Laracast (Laravel tutorials https://laracasts.com/)
 
 # TECHNOLOGY COLOPHON
 
     Standards:
-    	CSS3, HTML5
+    	CSS3, HTML5, Javascript, PHP
+    	
+    Framework : Laravel (https://laravel.com/)
 
     Components:
-    	Apache Server Configs, jQuery, Modernizr, Normalize.css,
-    	Bootstrap, Typeahead
+    	Apache Server Configs, jQuery, Modernizer, Normalize.css,
+    	Bootstrap, Typeahead, Node.js, npm, Composer
+    	
+# FONCTIONALITIES 
+
+    Implemented :
+        - Website interface 
+        - Connection (create account, update password / e-mail)
+        - Lists catalogue with tag search (linked to CDiscound API)
+        - Sorting list features (best mark, increasing or decreasing price)
+        - List creation and sharing (only for members)
+        - Recap of the lists you've made (only for members)
+        - Rate and comment lists (only for members)
+        - Tags and list and user management (only for admins)
+        - Mailing features (contact, e-mail validation)
+        
+    Incoming :
+        - Add selected lists to the user's basket
+        - Link a user basket to the CDiscount website to purchase his list(s)
+        - Use HTTPS
+        - Some bug fixes
+        
+    In a future version :
+        - User's purchase history
+        - Modify his created lists if some articles are obsoletes (only for members)
+        
+# HOW TO USE OUR WEBSITE
+
+    If you are on this Git deposit, then well played, you'll have the admin's rights ! 
+    Unless we give you the admin rights on your own account, you can use the following
+    mail and password to access our admin interface 
+        - listin_admin@yopmail.com
+        - dawin1718listin
+        
+    To access the admin interface, you must firstly connect this account and then go to 
+    this address : http://listin.arkanii.fr/admin
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
