@@ -34,7 +34,7 @@
 				<tr>
 					<td colspan="5">
 						<a style="cursor:not-allowed;" onclick="event.preventDefault();"  href="#" target="blank" class="btn btn-primary" title="Acheter sur CDiscount">Acheter sur CDiscount</a>
-						<ahref="#" class="btn btn-danger" title="Supprimer">Supprimer</a>
+						<a href="#" class="btn btn-danger" title="Supprimer">Supprimer</a>
 					</td>
 				</tr>
 			</tfoot>

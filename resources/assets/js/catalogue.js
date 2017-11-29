@@ -71,7 +71,6 @@ function Catalogue() {
                 context: this,
                 error: this.ajaxGetCartError,
                 success: function(data) {
-                    console.log(data);
                     this.cart = data || [];
                     console.log(this.cart.length + " items in cart.")
                 }
@@ -282,41 +281,39 @@ function Catalogue() {
     this.fetchLists = function (tags, pagination, sort) {
         if (tags[0] !== undefined && !this.isBusy()) {
             this.setBusy(true);
+            this.displayLoadingScreen();
 
             if (this.elemPagination.length === 0) {
                 this.fetchListsAndStructure(tags, pagination, sort);
             } else {
+                this.elemPagination.hide();
                 this.fetchListsOnly(tags, pagination, sort);
             }
         }
     };
 
     this.fetchListsAndStructure = function(tags, pagination, sort) {
-        if (this.elemPagination.length === 0) {
-            console.log('Loading catalogue structure...');
+        console.log('Loading catalogue structure...');
 
-            $.ajax({
-                url: this.catalogueStructRoute,
-                type: 'GET',
-                dataType: 'html',
-                context: this,
-                error: function(result, status, error) {
-                    console.log('[Failed]');
-                },
-                success: function(data) {
-                    console.log('[Loaded]');
-                    this.elemMaster.html(data);
-                    this.queryDOM();
-                    this.elemSortSelect.selectpicker();
-                    this.displayLoadingScreen();
-                    this.listenToSortSelect();
+        $.ajax({
+            url: this.catalogueStructRoute,
+            type: 'GET',
+            dataType: 'html',
+            context: this,
+            error: function(result, status, error) {
+                console.log('[Failed]');
+            },
+            success: function(data) {
+                console.log('[Loaded]');
+                this.elemMaster.html(data);
+                this.queryDOM();
+                this.elemSortSelect.selectpicker();
+                this.displayLoadingScreen();
+                this.listenToSortSelect();
 
-                    this.fetchListsOnly(tags, pagination, sort);
-                }
-            });
-        } else {
-            this.displayLoadingScreen();
-        }
+                this.fetchListsOnly(tags, pagination, sort);
+            }
+        });
     };
 
     this.fetchListsOnly = function (tags, pagination, sort) {
@@ -437,6 +434,7 @@ function Catalogue() {
             $paginationBox.append($pageFirst).append($pagePrevious).append($pageCurrent).append($pageNext).append($pageLast);
             $paginationBox.attr('data-ready', true);
         }
+        $paginationBox.show();
     };
 
     this.goToFirstPage = function() {
