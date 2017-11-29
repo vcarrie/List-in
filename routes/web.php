@@ -47,6 +47,7 @@ Route::get('/catalogue', 'HomeController@index');
 Route::get('/catalogue-struct', 'HomeController@struct');
 
 Route::get('/tags', 'TagsController@getTags');
+Route::get('/tagsnotempty', 'TagsController@getTagsNotEmpty');
 
 
 Route::get('/contact', 'ContactController@create');

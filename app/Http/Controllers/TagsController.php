@@ -13,6 +13,15 @@ class TagsController extends Controller
         return $tags;
     }
 
+    public function getTagsNotEmpty(){
+        $tags = Categorize::all()->groupBy('idTag');
+        $to_return = array();
+        foreach ($tags as $tag){
+            $to_return[] = Tag::find($tag->first()->idTag);
+        }
+        return $to_return;
+    }
+
     public function manageTags(){
         $tags = $this->getTags();
         return view('manageTags', compact('tags'));
