@@ -30,7 +30,7 @@ class ListController extends Controller
     public function getListById($id, ApiCdiscountSearchByIdProductRepository $apiCdiscountSearchByIdProduct, Request $request)
     {
         $list = Liste::find($id);
-        $comments = Comment::getByIdList($id)->orderBy('created_at')->get();
+        $comments = Comment::getByIdList($id)->orderBy('created_at', 'desc')->get();
         $rates = Rate::getByIdList($id)->get();
         $avg = Rate::averageForList($id);
         $user_rating = null;
