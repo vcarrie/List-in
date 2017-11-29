@@ -69,7 +69,8 @@ class ListController extends Controller
                     'Price' => str_replace('.',',',round($obj->BestOffer->SalePrice,2)),
                     'Name' => $obj->Name,
                     'Description' => $obj->Description,
-                    'Image' => $obj->MainImageUrl
+                    'Image' => $obj->MainImageUrl,
+                    'Quantity' => $item[1]
                 );
                 $totalprice += $obj->BestOffer->SalePrice * $item[1];
             }
@@ -80,7 +81,8 @@ class ListController extends Controller
                     'Price' => 'Plus en stock !',
                     'Name' => $obj->Name,
                     'Description' => $obj->Description,
-                    'Image' => $obj->MainImageUrl
+                    'Image' => $obj->MainImageUrl,
+                    'Quantity' => 0
                 );
             }
         }
