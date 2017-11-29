@@ -143,7 +143,7 @@ class ListController extends Controller
 
         Liste::find($id)->delete();
 
-        return redirect("/account");
+        return redirect("/account#account-section-3");
 
     }
 

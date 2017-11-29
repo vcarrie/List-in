@@ -54,7 +54,7 @@
 
                                     <div class="col-md-6">
                                         <input id="lastName" type="text" class="form-control" name="lastName"
-                                               required>
+                                               value="{{ old('lastName') }}" required>
 
                                         @if ($errors->has('lastName'))
                                             <span class="help-block">
