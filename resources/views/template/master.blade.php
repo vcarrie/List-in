@@ -3,15 +3,13 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="description" content="">
+    <meta name="description" content="Vous avez une envie, sans savoir comment la réaliser ? Rejoignez une communauté de passionnés sur List'In et trouvez LA liste adaptée à vos besoins !">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>List'In - @yield('title')</title>
 
     <link rel="author" type="text/plain" href="../../../public/humans.txt"/>
-    <link rel="manifest" href="../../../public/site.webmanifest">
-    <link rel="apple-touch-icon" href="../../../public/icon.png">
     <link rel="icon" type="image/png" href="../../../public/favicon.ico">
 
     <link rel="stylesheet" href="../../../public/css/all.css"/>
