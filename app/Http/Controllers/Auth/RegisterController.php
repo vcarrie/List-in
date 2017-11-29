@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Http\Controllers\ChangeEmailController;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
@@ -32,7 +33,6 @@ class RegisterController extends Controller
     /**
      * Create a new controller instance.
      *
-     * @return void
      */
     public function __construct()
     {
@@ -87,5 +87,22 @@ class RegisterController extends Controller
         }
 
         return property_exists($this, 'redirectTo') ? $this->redirectTo : '/';
+    }
+
+
+    /**
+     * Handle a confirmation request
+     *
+     * @param  integer $id
+     * @param  string  $confirmation_code
+     */
+    public function confirm($id, $confirmation_code)
+    {
+        $model = config('auth.providers.users.model');
+
+        $user = $model::whereId($id)->whereConfirmationCode($confirmation_code)->firstOrFail();
+        $user->confirmation_code = null;
+        $user->confirmed = true;
+        $user->save();
     }
 }

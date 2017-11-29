@@ -71,8 +71,7 @@ Route::get('/registerrate', 'CommentController@registerRate');
 
 // Email confirmation
 Route::get('/confirmation/resend', 'Auth\RegisterController@resend');
-Route::get('/confirmation/{id}/{token}', ['middleware' => ['guest'], 'uses' => 'Auth\RegisterController@confirm']);
-Route::get('/confirmation/{id}/{token}', ['middleware' => ['auth'], 'uses' =>'ChangeEmailController@confirm']);
+Route::get('/confirmation/{id}/{token}', 'VerifyEmailController@index');
 
 
 

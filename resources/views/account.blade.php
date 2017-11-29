@@ -22,11 +22,9 @@
                         <h2>Informations</h2>
                     </div>
                     <div class="col-xs-12">
-                        <p>{{ $to_return[0]->firstName }} {{ $to_return[0]->lastName }} ({{ $to_return[0]->pseudo }}
-                            )</p>
+                        <p>{{ $to_return[0]->firstName }} {{ $to_return[0]->lastName }} ( {{ $to_return[0]->pseudo }} )</p>
                         <p>{{ $to_return[0]->email }}</p>
                         <p>Inscrit le : {{ $to_return[0]->created_at }}</p>
-                        <p>Dernière connexion : date</p>
                     </div>
                 </section>
 
@@ -130,14 +128,25 @@
                                             <a href="/list/{{ $to_return[1][$i][0]['id'] }}">{{ $to_return[1][$i][0]['listName'] }}</a>
                                         </h4>
                                         <div class="hidden-xs list-figures">
-                                            @foreach ($to_return[1][$i][1] as $product)
-                                                <figure>
-                                                    <img src="{{ $product[0]->Products[0]->MainImageUrl }}"
-                                                         alt="produit"/>
-                                                    <figcaption>
-                                                        {{ $product[0]->Products[0]->Name }}
-                                                    </figcaption>
-                                                </figure>
+                                            @foreach ($to_return[1][$i][1][0] as $product)
+
+                                            @if(isset($product[0]->Products[0]))
+                                                    <figure>
+                                                        <img src="{{ $product[0]->Products[0]->MainImageUrl }}"
+                                                             alt="produit"/>
+                                                        <figcaption>
+                                                            {{ $product[0]->Products[0]->Name }}
+                                                        </figcaption>
+                                                    </figure>
+                                                @else
+                                                    <figure>
+                                                        <img src="/images/dead.png"
+                                                             alt="produit"/>
+                                                        <figcaption>
+                                                            Produit indisponible !
+                                                        </figcaption>
+                                                    </figure>
+                                                @endif
                                             @endforeach
                                         </div>
                                     </div>
