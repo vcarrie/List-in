@@ -1,6 +1,6 @@
 @extends('template.main')
 
-@section('title', 'Nom de liste')
+@section('title', $listjson['list']->listName)
 
 @section('mid-content')
     <div class="list-detail">
@@ -73,6 +73,7 @@
                         <div class="card-footer">
                             <div class="card-price">{{ $item['Price'] }} €</div>
                         </div>
+
                 </div>
             @endforeach
         </section>
