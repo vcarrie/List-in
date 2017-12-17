@@ -67,7 +67,7 @@
                                     <input class="form-control" type="password" id="new_pwd_confirmation"
                                            name="new_pwd_confirmation"/>
                                 </div>
-                                <input class="btn btn-default pull-right" type="submit" value="Confirmer"/>
+                                <input class="btn btn-secondary pull-right" type="submit" value="Confirmer"/>
                             </fieldset>
                         </form>
                     </div>
@@ -104,7 +104,7 @@
                                     <input class="form-control" type="text" id="new_email_confirmation"
                                            name="new_email_confirmation"/>
                                 </div>
-                                <input class="btn btn-default pull-right" type="submit" value="Confirmer"/>
+                                <input class="btn btn-secondary pull-right" type="submit" value="Confirmer"/>
                             </fieldset>
                         </form>
                     </div>

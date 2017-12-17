@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Notifications\PwdValidatorNotification;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -59,5 +60,13 @@ class User extends Authenticatable
     public function createdList()
     {
         return $this->hasMany('App\Liste', 'idCreator', 'id');
+    }
+
+    /**
+     * Send a password reset email to the user
+     */
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new PwdValidatorNotification($token));
     }
 }

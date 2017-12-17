@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\ChangeEmailController;
 use App\User;
 use App\Http\Controllers\Controller;
+use App\Notifications\MailValidatorNotification;
 use Illuminate\Support\Facades\Validator;
 use Bestmomo\LaravelEmailConfirmation\Traits\RegistersUsers;
+
 
 class RegisterController extends Controller
 {
@@ -105,4 +106,10 @@ class RegisterController extends Controller
         $user->confirmed = true;
         $user->save();
     }
+
+    protected function notifyUser($user)
+    {
+        $user->notify(new MailValidatorNotification());
+    }
+
 }
