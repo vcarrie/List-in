@@ -84,9 +84,7 @@ class UserController extends Controller
         $user->confirmed = 0;
         $user->confirmation_code = $code;
         $user->save();
-
-        $class = ConfirmEmail::class;
-        $user->notify(new $class);
+        $user->notify(new MailValidatorNotification());
 
         return redirect("/account#account-section-2")->with('confirmation-success-email', trans('confirmation::confirmation.resend'));
     }
