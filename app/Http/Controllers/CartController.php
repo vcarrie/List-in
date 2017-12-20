@@ -71,7 +71,7 @@ class CartController extends Controller
 
     public function show_cart(Request $request, ApiCdiscountSearchByIdProductRepository $api, ApiCdiscountPushToCart $apicreate)
     {
-
+        $url = "#";
         if (!$request->session()->has('cart')) {
             $cart = array();
         } else {
@@ -82,17 +82,21 @@ class CartController extends Controller
 
 
             $result = $apicreate->createCart("PTG8876RW", 1);
-            $numCart = $result->CartGUID;
+            if (isset($result->CartGUID)){
 
-            $cpt = 0;
-            foreach($idproducts as $id) {
-                if ($cpt != 0){
-                    $request_result = $apicreate->pushToCart($id->idCdiscount, $id->quantity, $numCart);
-                    $url = $request_result;
+                $numCart = $result->CartGUID;
+
+                $cpt = 0;
+                foreach($idproducts as $id) {
+                    if ($cpt != 0){
+                        $request_result = $apicreate->pushToCart($id->idCdiscount, $id->quantity, $numCart);
+                        $url = $request_result;
+                    }
+                    $cpt ++;
+
                 }
-                $cpt ++;
-
             }
+
         }
         $to_return = array();
         foreach ($cart as $id) {
@@ -100,6 +104,7 @@ class CartController extends Controller
             $theBelong = Belong::getProductsByIdList($id, $api);
             $to_return[] = array($list, $theBelong[0], count($theBelong[0]), $theBelong[1]);
         }
+        $to_return[] = $url;
         //return $to_return;
         return view('cart', compact('to_return', 'to_return'));
     }

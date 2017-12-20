@@ -41,7 +41,7 @@ class MailValidatorNotification extends Notification
                     ->view('mail.validateAccount', ['name' => $notifiable->firstName,
                                                     'id' => $notifiable->id,
                                                     'token' => $notifiable->confirmation_code])
-                    ->subject('Validation de compte');
+                    ->subject('Validation d\'e-mail');
     }
 
     /**

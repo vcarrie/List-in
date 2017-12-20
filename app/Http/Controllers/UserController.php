@@ -6,6 +6,7 @@ use App\Belong;
 use App\Comment;
 use App\Http\Requests\ChangeEmailRequest;
 use App\Http\Requests\ChangePasswordRequest;
+use App\Notifications\MailValidatorNotification;
 use App\Rate;
 use App\Repositories\ApiCdiscount\ApiCdiscountSearchByIdProductRepository;
 use App\User;
