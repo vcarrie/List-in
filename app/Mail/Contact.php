@@ -30,6 +30,6 @@ class Contact extends Mailable
      */
     public function build()
     {
-        return $this->from('noreply@listin.com')->view('mail.contact');
+        return $this->from('noreply@listin.fr')->view('mail.contact');
     }
 }
