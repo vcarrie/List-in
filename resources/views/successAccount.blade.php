@@ -4,6 +4,8 @@
 
 @section('main')
 
-Mail modifié avec succès !
+<div class="thanks">
+    Mail modifié avec succès !
+</div>
 
 @endsection
