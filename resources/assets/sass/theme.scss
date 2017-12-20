@@ -875,6 +875,16 @@ __________________________________________________ */
     }
   }
 
+  .thanks{
+    color: #3c763d;
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+    padding: 15px;
+    margin: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+  }
+  
 /* ACCOUNT
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
@@ -961,6 +971,10 @@ __________________________________________________ */
   table {
     width: 100%;
 
+    .no-wrap {
+      white-space: nowrap;
+    }
+
     tr {
       background-color: $color_background_grey;
 
@@ -970,12 +984,6 @@ __________________________________________________ */
         @media screen and (max-width: $bootstrap-sm) {
           padding: 0.2rem;
         }
-      }
-    }
-
-    td {
-      &.cart-small {
-        width: 3rem;
       }
     }
 
@@ -989,6 +997,12 @@ __________________________________________________ */
       tr:nth-child(2n+1) {
         background-color: $color_background;
       }
+
+      img {
+        width: 7rem;
+        height: 7rem;
+      }
+
     }
 
     tfoot {

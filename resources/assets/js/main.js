@@ -57,12 +57,19 @@ $(function () {
             success: function(data) {
                 var $comment = $('<div class="comment col-md-10 col-md-offset-1"><h5>Par <span>'+username+'</span> le '+new Date().toISOString().slice(0, 10)+' à '+new Date().toTimeString().split(' ')[0]+'</h5><p>'+comment+'</p></div>');
                 $comment.hide();
+                $(this).find('[name="remark"]').val('');
                 $(this).remove();
                 $('.comments').prepend($comment);
                 $comment.fadeIn(500);
             }
         });
 
+        return false;
+    });
+
+    $('.cart-master .delete-list').click(function() {
+        console.log($(this));
+        $('#'+$(this).data('listid')).hide().html('<h1 style="font-size:2rem;"><i>Panier vide.</i></h1>').fadeIn(250);
         return false;
     });
 
