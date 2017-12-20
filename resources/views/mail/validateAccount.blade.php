@@ -6,36 +6,34 @@
 
     td{
       background-color: #e03913;
-      border-color: #000000;
       border-radius: 5px;
-      border: 1px solid #000000;
-      padding: 10px;
+      padding: 10px 20px 10px 20px;
       text-align: center;
     }
 
     td > a{
       display: block;
-      color: #FFFFFF;
-      font-size: 12px;
-      font-family: Avenir,Helvetica,sans-serif;
       text-decoration: none;
+      color: #FFFFFF !important;
+      font-size: 15px;
+      font-family: Avenir,Helvetica,sans-serif;
     }
 
   </style>
 </head>
 <body>
   <h3>Bonjour, {{ $name }}</h3>
-  <p>Voici votre e-mail de confirmation</p>
-  <p>Pour valider votre compte, veuillez cliquer sur le bouton ci-dessous.</p>
+  <p>Nous avons besoin de vérifier votre e-mail afin de valider votre action</p>
+  <p>Pour cela, il vous suffit de cliquer sur le bouton ci-dessous.</p>
   <p>Vous serez redirigé vers notre site et pourrez ensuite profiter de toutes nos fonctionnalités.</p>
   <table>
       <tr>
           <td>
-              <a>Confirmer</a>
+              <a href="http://listin.fr/confirmation/{{ $id }}/{{ $token }}">Confirmer</a>
           </td>
       </tr>
   </table>
   <p>Merci de votre confiance,</p>
-  <p>List'In</p>
+  <img src="http://listin.arkanii.fr/images/Logo_V4_transparent.png" width="150">
 </body>
 </html>
