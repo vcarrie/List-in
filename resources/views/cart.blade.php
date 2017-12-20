@@ -7,13 +7,11 @@
 	<div class="row mid-content cart-master">
 
 		<h1>Mon Panier</h1>
-		@foreach ($to_return[0] as $list)
-		<!--
 		<pre>
-			<?php /* var_dump($list); */ ?>
+			@foreach ($to_return as $list)
+				<?php var_dump($list[0]->$attributes); ?>
+			@endforeach
 		</pre>
-		-->
-		@endforeach
 		<table id="foobar">
 			<thead>
 				<tr>
