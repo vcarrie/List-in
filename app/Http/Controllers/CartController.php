@@ -104,8 +104,9 @@ class CartController extends Controller
             $theBelong = Belong::getProductsByIdList($id, $api);
             $to_return[] = array($list, $theBelong[0], count($theBelong[0]), $theBelong[1]);
         }
+        //$to_return[] = $url;
         $to_return[] = $url;
-        $to_return[] = $url;
-        return view('cart', compact('to_return', 'to_return'));
+	//dd($to_return);
+        return view('cart', compact('to_return'));
     }
 }

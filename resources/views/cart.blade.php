@@ -7,7 +7,7 @@
 	<div class="row mid-content cart-master">
 
 		<h1>Mon Panier</h1>
-		@for ($i = 0; $i < count($to_return)-1; $i++)
+		@for ($i = 0; $i < count($to_return)-2; $i++)
 		<table id="cart-list-{{ $to_return[$i][0]->id }}">
 			<thead>
 				<tr>
