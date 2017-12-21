@@ -68,8 +68,19 @@ $(function () {
     });
 
     $('.cart-master .delete-list').click(function() {
-        console.log($(this));
-        $('#'+$(this).data('listid')).hide().html('<h1 style="font-size:2rem;"><i>Panier vide.</i></h1>').fadeIn(250);
+        var listid = $(this).data('listid');
+        $.ajax({
+            url: "/removefromcart/"+listid,
+            type: 'GET',
+            dataType: 'json',
+            context: this,
+            error: function(result, status, error) {
+                console.log('Error 500: couldn\'t remove from cart!');
+            },
+            success: function(data) {
+              $('#cart-list-'+listid).hide().html('<h1 style="font-size:2rem;"><i>Liste supprimée du panier.</i></h1>').fadeIn(250);
+            }
+        });
         return false;
     });
 

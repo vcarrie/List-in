@@ -7,62 +7,46 @@
 	<div class="row mid-content cart-master">
 
 		<h1>Mon Panier</h1>
-		<pre>
-			<?php
-			var_dump($to_return[0][0]);
-			?>
-		</pre>
-		<table id="foobar">
+		@for ($i = 0; $i < count($to_return)-1; $i++)
+		<table id="cart-list-{{ $to_return[$i][0]->id }}">
 			<thead>
 				<tr>
-					<th colspan="3">Kit de relaxation ambiante</th>
-					<th colspan="2" class="no-wrap">11,95 €</th>
+					<th colspan="3">{{ $to_return[$i][0]->listName }}</th>
+					<th colspan="2" class="no-wrap">{{ $to_return[$i][3] }} €</th>
 				</tr>
 			</thead>
 			<tbody>
+				@foreach ($to_return[$i][1] as $product)
 				<tr>
-					<td><img src="http://i2.cdscdn.com/pdt2/0/8/4/1/300x300/3662143014084.jpg" alt="produit"/></td>
-					<td>Bougie parfumée Senteur bois de santal - 6x10cm</td>
-					<td class="hidden-xs">Bougie parfumée Senteur bois de santal - 6x10cm</td>
+					<td><img src="{{ $product[0]->Products[0]->MainImageUrl }}" alt="produit"/></td>
+					<td>{{ $product[0]->Products[0]->Name }}</td>
+					<td class="hidden-xs">{{ $product[0]->Products[0]->Description }}</td>
 					<td class="visible-xs"></td>
-					<td class="no-wrap">× 2</td>
-					<td class="no-wrap">3,49 €</td>
-				</tr>
-				<tr>
-					<td><img src="http://i2.cdscdn.com/pdt2/0/1/7/1/300x300/COD6BAT017.jpg" alt="produit"/></td>
-					<td>20 Bâtons d'encens Relaxation brun</td>
-					<td class="hidden-xs">Bâtons d'encens 100% naturel vendus en lot de 20 au parfum de relaxation. Dimensions : 30,5x6,3x0,8 cm. Un cadeau original avec des encens purs et naturels de haute qualité.</td>
-					<td class="visible-xs"></td>
-					<td class="no-wrap">×̣ 1</td>
-					<td class="no-wrap">0,99 €</td>
-				</tr>
-				<tr>
-					<td><img src="http://i2.cdscdn.com/pdt2/0/1/3/1/300x300/COD6CNE013.jpg" alt="produit"/></td>
-					<td>20 Cônes d'encens Relaxation brun</td>
-					<td class="hidden-xs">Cônes d'encens 100% naturel vendus en lot de 20 au parfum de relaxation. Dimensions : 12,3x7x1,7 cm. Un cadeau original avec des ingrédients purs et naturels de haute qualité.</td>
-					<td class="visible-xs"></td>
-					<td class="no-wrap">× 1</td>
-					<td class="no-wrap">0,99 €</td>
-				</tr>
-				<tr>
-					<td><img src="http://i2.cdscdn.com/pdt2/1/0/2/1/300x300/COD6HUI102.jpg" alt="produit"/></td>
-					<td>Set 3 parfums d'ambiance brun</td>
-					<td class="hidden-xs">Set de 3 parfums d'ambiance 100% naturel de coloris brun. L'association de la relaxation, lotus et sérénité s'accorde en harmonie avec chaque ambiance. Dimensions : 9x8x2,5 cm.</td>
-					<td class="visible-xs"></td>
-					<td class="no-wrap">× 1</td>
-					<td class="no-wrap">2,99 €</td>
-				</tr>
-			</tbody>
+					<td class="no-wrap">× {{ $product[1] }}</td>
+					@if (isset($product[0]->Products[0]->BestOffer))
+						<td class="no-wrap">{{ round($product[0]->Products[0]->BestOffer->SalePrice, 2) }} €</td>
+					@else
+						<td class="no-wrap">Plus en stock</td>
+					@endif
+					</tr>
+				@endforeach
+			</body>
 			<tfoot>
 				<tr>
 					<td colspan="5">
-						<a style="cursor:not-allowed;" onclick="event.preventDefault();"  href="#" target="blank" class="btn btn-primary" title="Acheter sur CDiscount">Acheter sur CDiscount</a>
-						<a href="#" data-listid="foobar" class="delete-list btn btn-danger" title="Supprimer">Supprimer</a>
+						<a href="#" data-listid="{{ $to_return[$i][0]->id }}" class="delete-list btn btn-danger" title="Supprimer">Supprimer</a>
 					</td>
 				</tr>
 			</tfoot>
 		</table>
-
+		@endfor
+		<div class="cart-footer">
+			@if (count($to_return)>1)
+				<a href="{{ $to_return[count($to_return)-1] }}" target="blank" class="btn btn-lg btn-primary" title="Acheter sur CDiscount">Acheter sur CDiscount</a>
+			@else
+				<p>Panier vide.</p>
+			@endif
+		</div>
 	</div>
 </div>
 
