@@ -885,7 +885,7 @@ __________________________________________________ */
     border-radius: 4px;
     text-align: center;
   }
-  
+
 /* ACCOUNT
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
@@ -971,6 +971,7 @@ __________________________________________________ */
 .cart-master {
   table {
     width: 100%;
+    margin-bottom: 2rem;
 
     .no-wrap {
       white-space: nowrap;
@@ -1007,18 +1008,20 @@ __________________________________________________ */
     }
 
     tfoot {
-      text-align: center;
+      text-align: right;
+    }
+  }
 
-      a {
-        margin-right: 1rem;
+  .cart-footer {
+    text-align: center;
 
-        &.btn-primary {
-          background-color: $color_background_dark_grey;
-          border: 1px solid $color_background_dark;
+    a {
+      &.btn-primary {
+        background-color: $color_background_dark_grey;
+        border: 1px solid $color_background_dark;
 
-          &:hover, &:focus, &:active {
-            background-color: $color_background_dark;
-          }
+        &:hover, &:focus, &:active {
+          background-color: $color_background_dark;
         }
       }
     }
