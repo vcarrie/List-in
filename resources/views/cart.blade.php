@@ -8,9 +8,9 @@
 
 		<h1>Mon Panier</h1>
 		<pre>
-			@foreach ($to_return as $list)
-				<?php var_dump($list[0]->$attributes); ?>
-			@endforeach
+			<?php
+			var_dump($to_return[0][0]);
+			?>
 		</pre>
 		<table id="foobar">
 			<thead>
