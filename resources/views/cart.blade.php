@@ -23,8 +23,12 @@
 					<td class="hidden-xs">{{ $product[0]->Products[0]->Description }}</td>
 					<td class="visible-xs"></td>
 					<td class="no-wrap">× {{ $product[1] }}</td>
-					<td class="no-wrap">{{ round($product[0]->Products[0]->BestOffer->SalePrice, 2) }} €</td>
-				</tr>
+					@if (isset($product[0]->Products[0]->BestOffer))
+						<td class="no-wrap">{{ round($product[0]->Products[0]->BestOffer->SalePrice, 2) }} €</td>
+					@else
+						<td class="no-wrap">Plus en stock</td>
+					@endif
+					</tr>
 				@endforeach
 			</body>
 			<tfoot>
