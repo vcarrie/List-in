@@ -15,21 +15,21 @@
       <div class="content-team-part1">
         <div class="val">
           <figure>
-            <a href="https://www.linkedin.com/in/valentin-carri%C3%A9/?lipi=urn%3Ali%3Apage%3Ad_flagship3_people_connections%3BkUtnIGz6SDak4NhXTCFCgA%3D%3D" target="_blank"><img src="../../../public/images/wailordPl.png" alt="valentin"></a>
+            <a href="https://www.linkedin.com/in/valentin-carri%C3%A9/?lipi=urn%3Ali%3Apage%3Ad_flagship3_people_connections%3BkUtnIGz6SDak4NhXTCFCgA%3D%3D" target="_blank"><img src="../../../public/images/valentin.jpg" alt="valentin"></a>
             <figcaption>Valentin CARRIE</figcaption>
           </figure>
         </div>
 
         <div class="mat">
           <figure>
-            <a href="https://www.linkedin.com/in/matthieu-cormelier/?lipi=urn%3Ali%3Apage%3Ad_flagship3_people_connections%3BkUtnIGz6SDak4NhXTCFCgA%3D%3D" target="_blank"><img src="../../../public/images/Pikabear.jpg" alt="matthieu"></a>
+            <a href="https://www.linkedin.com/in/matthieu-cormelier/?lipi=urn%3Ali%3Apage%3Ad_flagship3_people_connections%3BkUtnIGz6SDak4NhXTCFCgA%3D%3D" target="_blank"><img src="../../../public/images/matthieu.jpg" alt="matthieu"></a>
             <figcaption>Matthieu CORMELIER</figcaption>
           </figure>
         </div>
 
         <div class="ced">
           <figure>
-            <a href="https://www.linkedin.com/in/cedricfrecheville/" target="_blank"><img src="../../../public/images/778.png" alt="cedric"></a>
+            <a href="https://www.linkedin.com/in/cedricfrecheville/" target="_blank"><img src="../../../public/images/cedric.jpg" alt="cedric"></a>
             <figcaption>Cédric FRECHEVILLE</figcaption>
           </figure>
         </div>
@@ -38,14 +38,14 @@
 
         <div class="the">
           <figure>
-            <a href="https://www.linkedin.com/in/theofrison/?lipi=urn%3Ali%3Apage%3Ad_flagship3_people_connections%3BkUtnIGz6SDak4NhXTCFCgA%3D%3D" target="_blank"><img src="../../../public/images/riolu-teo.jpg" alt="theo"></a>
+            <a href="https://www.linkedin.com/in/theofrison/?lipi=urn%3Ali%3Apage%3Ad_flagship3_people_connections%3BkUtnIGz6SDak4NhXTCFCgA%3D%3D" target="_blank"><img src="../../../public/images/theo.jpg" alt="theo"></a>
             <figcaption>Théo FRISON</figcaption>
           </figure>
         </div>
 
         <div class="mar">
           <figure>
-            <a href="https://www.linkedin.com/in/marceau-jeanjean/?lipi=urn%3Ali%3Apage%3Ad_flagship3_people_connections%3BkUtnIGz6SDak4NhXTCFCgA%3D%3D" target="_blank"><img src="../../../public/images/joliflor.png" alt="marceau"></a>
+            <a href="https://www.linkedin.com/in/marceau-jeanjean/?lipi=urn%3Ali%3Apage%3Ad_flagship3_people_connections%3BkUtnIGz6SDak4NhXTCFCgA%3D%3D" target="_blank"><img src="../../../public/images/marceau.jpg" alt="marceau"></a>
             <figcaption>Marceau JEANJEAN</figcaption>
           </figure>
         </div>
