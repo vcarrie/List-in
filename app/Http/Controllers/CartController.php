@@ -81,16 +81,18 @@ class CartController extends Controller
 
 
 
-            $result = $apicreate->createCart("PTG8876RW", 1);
+            $result = $apicreate->createCart($idproducts->first()->idCdiscount, $idproducts->first()->quantity);
             if (isset($result->CartGUID)){
 
                 $numCart = $result->CartGUID;
-
                 $cpt = 0;
                 foreach($idproducts as $id) {
                     if ($cpt != 0){
                         $request_result = $apicreate->pushToCart($id->idCdiscount, $id->quantity, $numCart);
-                        $url = $request_result;
+                        if (isset($request_result->CheckoutUrl)){
+
+                            $url = $request_result->CheckoutUrl;
+                        }
                     }
                     $cpt ++;
 
@@ -105,7 +107,6 @@ class CartController extends Controller
             $to_return[] = array($list, $theBelong[0], count($theBelong[0]), $theBelong[1]);
         }
         $to_return[] = $url;
-        //return $to_return;
         return view('cart', compact('to_return', 'to_return'));
     }
 }
