@@ -40,6 +40,8 @@
 
     Pierre GUIGUE (@naguelfar)
 
+    Grégoire Passault (@greg_war)
+
     Jean Jacques SALVADOR 
 
     Laracast (Laravel tutorials https://laracasts.com/)
@@ -67,9 +69,9 @@
         - Rate and comment lists (only for members)
         - Tags and list and user management (only for admins)
         - Mailing features (contact, e-mail validation)
+        - Add selected lists to the user's basket
         
     Incoming :
-        - Add selected lists to the user's basket
         - Link a user basket to the CDiscount website to purchase his list(s)
         - Use HTTPS
         - Some bug fixes
